@@ -6,9 +6,9 @@
 \origin unavailable
 \textclass book
 \use_default_options true
-\master ../TFG.lyx
+\master content.lyx
 \maintain_unincluded_children false
-\language english
+\language spanish
 \language_package default
 \inputencoding utf8
 \fontencoding global
@@ -59,7 +59,7 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\quotes_language french
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -73,19 +73,84 @@
 \begin_body
 
 \begin_layout Part
-[NAME OF THIS PART]
+Presentación del proyecto
 \end_layout
 
 \begin_layout Chapter
-INTRODUCTION
+Introducción
 \end_layout
 
 \begin_layout Section
-NAME OF THIS SECTION
+Motivación
+\end_layout
+
+\begin_layout Section
+Objetivos
 \end_layout
 
 \begin_layout Standard
-[TEXT OF THIS SECTION]
+Se persigue dotar de seguridad a un sistema Smarthome, compuesto por una
+ red de sensores que se comunican con un concentrador (gw).
+ Este concentrador se comunica con una red tipo IoT a través de Internet.
+ Se usarán protocolos seguros estándar para esta comunicación: TLS.
+ La nube elegida es la de Amazon.
+ Esta red requiere que los gw se autentiquen.
+\end_layout
+
+\begin_layout Subsection
+Metodología de trabajo
+\end_layout
+
+\begin_layout Standard
+primero pc y luego microcontrolador
+\end_layout
+
+\begin_layout Standard
+Tests a cada paso
+\end_layout
+
+\begin_layout Standard
+control de versiones con git es fundamental!
+\end_layout
+
+\begin_layout Standard
+IDE: DAVE
+\end_layout
+
+\begin_layout Section
+Estructura de la memoria
+\end_layout
+
+\begin_layout Chapter
+Estado de la técnica
+\end_layout
+
+\begin_layout Section
+TLS
+\end_layout
+
+\begin_layout Standard
+Handshake
+\end_layout
+
+\begin_layout Standard
+Ciphersuites
+\end_layout
+
+\begin_layout Standard
+Criptografía asimétrica
+\end_layout
+
+\begin_layout Standard
+Certificados: TrustChain, PEM, DER
+\end_layout
+
+\begin_layout Section
+La nube de Amazon IoT
+\end_layout
+
+\begin_layout Standard
+Objetos, sombras, certificados, panel de control, facturación...
 \end_layout
 
 \end_body
