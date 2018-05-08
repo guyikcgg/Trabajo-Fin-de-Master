@@ -6,9 +6,9 @@
 \origin unavailable
 \textclass book
 \use_default_options true
-\master preface.lyx
+\master prefaceSpanish.lyx
 \maintain_unincluded_children false
-\language english
+\language spanish
 \language_package default
 \inputencoding utf8
 \fontencoding global
@@ -59,7 +59,7 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\quotes_language french
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -73,7 +73,16 @@
 \begin_body
 
 \begin_layout Standard
-[THIS IS THE ABSTRACT]
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Resumen
+\end_layout
+
+\end_inset
+
+[ESTO ES EL ABSTRACT]
 \end_layout
 
 \end_body

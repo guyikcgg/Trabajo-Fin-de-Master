@@ -54,30 +54,31 @@
 % ********************************************************************
 % Re-usable information
 % ********************************************************************
-\newcommand{\myTitle}{[TITLE OF THE THESIS]\xspace}
-\newcommand{\myDegree}{[NAME OF THE DEGREE]\xspace}
-\newcommand{\myName}{[NAME OF THE AUTHORS]\xspace}
-\newcommand{\myPassport}{[PASSPORT NUMBER]\xspace}
-\newcommand{\myProf}{[NAME OF THESIS DIRECTOR 1]\xspace}
-\newcommand{\myOtherProf}{[NAME OF THESIS DIRECTOR 2]\xspace}
+\newcommand{\myTitle}{Seguridad de los Datos en Sistemas Empotrados\xspace}
+\newcommand{\myDegree}{Máster Universitario Oficial en Ciencia de Datos e Ingeniería de Computadores\xspace}
+\newcommand{\myName}{Cristian G. Guerrero\xspace}
+\newcommand{\myPassport}{53741253M\xspace}
+\newcommand{\myProf}{Antonio Francisco Díaz García\xspace}
+\newcommand{\myOtherProf}{Diego Pedro Morales Santos\xspace}
 %\newcommand{\mySupervisor}{[NOMBRE DEL SUPERVISOR]\xspace}
 \newcommand{\myFaculty}{Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación\xspace}
 \newcommand{\myFacultyShort}{E.T.S. de Ingenierías Informática y de Telecomunicación\xspace}
-\newcommand{\myDepartment}{Departamento de Electrónica y Tecnología de Computadores\xspace}
+\newcommand{\myDepartment}{Departamento de Arquitectura y Tecnología de Computadores\xspace}
+\newcommand{\myOtherDepartment}{Departamento de Electrónica y Tecnología de Computadores\xspace}
 \newcommand{\myUni}{\protect{Universidad de Granada}\xspace}
 \newcommand{\myLocation}{Granada\xspace}
 \newcommand{\myTime}{\today\xspace}
 \newcommand{\myVersion}{Version 0.2\xspace}
-\newcommand{\monthandyear}{[MONTH AND YEAR (e.g. June 2017)]\xspace}
-\newcommand{\finaldate}{[DATE (e.g. 15th June 2017)]\xspace}
+\newcommand{\monthandyear}{Julio 2018\xspace}
+\newcommand{\finaldate}{1 de julio de 2018\xspace}
 
 \usepackage[colorlinks=true, linkcolor=cool-green-2, urlcolor=blue,citecolor=black,anchorcolor=black,filecolor=black,menucolor=black,runcolor=black]{hyperref}
 \hypersetup{
-pdfauthor = {\myName (email (at) institutional-domain)},
+pdfauthor = {\myName (guyikcgg (at) correo.ugr.es)},
 pdftitle = {\myTitle},
 pdfsubject = {},
-pdfkeywords = {palabra_clave1, palabra_clave2, palabra_clave3, ...},
-pdfcreator = {LaTeX con el paquete ....},
+pdfkeywords = {Internet of Things, Cybersecurity, TLS, Microcontrollers},
+pdfcreator = {LyX Version 2.2.2},
 pdfproducer = {pdflatex}
 }
 
@@ -222,7 +223,7 @@ numbers=left
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
-\language english
+\language spanish
 \language_package default
 \inputencoding utf8
 \fontencoding global
@@ -286,7 +287,7 @@ numbers=left
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\quotes_language french
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -373,7 +374,27 @@ filename "cover/cover_2.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
+filename "cover/prefaceSpanish.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
 filename "cover/preface.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "cover/declaracionConformidad.lyx"
 
 \end_inset
 

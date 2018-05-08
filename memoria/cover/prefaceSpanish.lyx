@@ -8,7 +8,7 @@
 \use_default_options false
 \master ../THESIS.lyx
 \maintain_unincluded_children false
-\language english
+\language spanish
 \language_package default
 \inputencoding utf8
 \fontencoding default
@@ -72,7 +72,7 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\quotes_language french
 \papercolumns 1
 \papersides 2
 \paperpagestyle fancy
@@ -179,9 +179,13 @@ status collapsed
 
 
 \series bold
-Keywords
+Palabras
+\begin_inset space ~
+\end_inset
+
+clave
 \series default
-: Internet of Things, Cybersecurity, TLS, Microcontrollers
+: Internet de las Cosas, Ciberseguridad, TLS, Microcontroladores
 \begin_inset ERT
 status collapsed
 
@@ -217,7 +221,7 @@ status collapsed
 
 
 \series bold
-Abstract
+Resumen
 \series default
 
 \begin_inset ERT
@@ -231,16 +235,12 @@ status collapsed
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
-filename "Abstract.lyx"
+filename "AbstractSpanish.lyx"
 
 \end_inset
 

@@ -93,275 +93,21 @@ status open
 
 
 \backslash
-begin{titlepage}
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-par 
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newlength{
-\backslash
-centeroffset}
-\end_layout
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setlength{
-\backslash
-centeroffset}{-0.5
-\backslash
-oddsidemargin}
-\end_layout
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-addtolength{
-\backslash
-centeroffset}{0.5
-\backslash
-evensidemargin}
-\end_layout
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
 thispagestyle{empty}
 \end_layout
 
 \end_inset
 
 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-par 
 \end_layout
 
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-hspace*{
-\backslash
-centeroffset}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Box Frameless
-position "c"
-hor_pos "c"
-has_inner_box 1
-inner_pos "c"
-use_parbox 0
-use_makebox 0
-width "100text%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
-\end_layout
-
-\end_inset
-
- 
-\begin_inset Graphics
-	filename img/ugr2.png
-	lyxscale 50
-	width 90text%
-
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-[1.4cm]
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-\shape smallcaps
-\size larger
-Trabajo Fin de Máster
-\series default
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-[0.2cm]
-\end_layout
-
-\end_inset
-
-
-\shape default
- 
-\shape smallcaps
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-myDegree
-\end_layout
-
-\end_inset
-
-
-\shape default
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-[1cm]
-\end_layout
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-% Upper part of the page
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\series bold
-\size giant
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-myTitle
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\size default
-
+\begin_layout Standard
+\noindent
 \begin_inset CommandInset line
 LatexCommand rule
 offset "-1ex"
 width "100text%"
-height "3pt"
+height "2pt"
 
 \end_inset
 
@@ -375,77 +121,7 @@ status collapsed
 \backslash
 
 \backslash
-[3.5ex]
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-par 
-\end_layout
-
-\end_inset
-
-
-\begin_inset VSpace 1.5cm
-\end_inset
-
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-hspace*{
-\backslash
-centeroffset}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Box Frameless
-position "c"
-hor_pos "c"
-has_inner_box 1
-inner_pos "c"
-use_parbox 0
-use_makebox 0
-width "100text%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
+[4.5ex]
 \end_layout
 
 \end_inset
@@ -453,26 +129,9 @@ centering
 
 \end_layout
 
-\begin_layout Plain Layout
-
+\begin_layout Standard
+Yo, 
 \series bold
-Autor
-\series default
-
-\begin_inset Newline newline
-\end_inset
-
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
 
 \begin_inset ERT
 status collapsed
@@ -487,17 +146,129 @@ myName
 \end_inset
 
 
+\series default
+, alumno de la titulación 
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
-}
+
+\backslash
+myDegree
+\end_layout
+
+\end_inset
+
+ de la 
+\series bold
+Escuela Internacional de Posgrado de la Universidad de Granada
+\series default
+, con DNI 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+myPassport
+\end_layout
+
+\end_inset
+
+, autorizo la ubicación de la siguiente copia de mi Trabajo Fin de Grado
+ en la biblioteca del centro para que pueda ser consultada por las personas
+ que lo deseen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 6cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Fdo: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+myName
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align right
+Granada a 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finaldate
+\end_layout
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Newpage cleardoublepage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "-1ex"
+width "100text%"
+height "2pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
 \begin_inset ERT
 status collapsed
 
@@ -507,30 +278,18 @@ status collapsed
 \backslash
 
 \backslash
-[2.5ex]
+[4.5ex]
 \end_layout
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+D.
  
 \series bold
-Tutores
-\series default
-
-\begin_inset Newline newline
-\end_inset
-
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
 
 \begin_inset ERT
 status open
@@ -540,9 +299,45 @@ status open
 
 \backslash
 myProf
-\backslash
+\end_layout
+
+\end_inset
+
+
+\series default
+, profesor del 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
 
 \backslash
+myDepartment
+\end_layout
+
+\end_inset
+
+ de la Universidad de Granada.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D.
+ 
+\series bold
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
 
 \backslash
 myOtherProf
@@ -551,127 +346,65 @@ myOtherProf
 \end_inset
 
 
+\series default
+, profesor del 
 \begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-
-\backslash
-[1cm]
+myOtherDepartment
 \end_layout
 
 \end_inset
 
- 
-\begin_inset Graphics
-	filename img/ringo_horiz_color300.tif
-	width 30text%
+ de la Universidad de Granada.
+\end_layout
 
+\begin_layout Standard
+\begin_inset VSpace 0.5cm
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Informan:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Que el presente trabajo, titulado 
+\series bold
+\shape italic
+
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-
-\backslash
-[0.3cm]
+myTitle
 \end_layout
 
 \end_inset
 
- 
-\shape smallcaps
-Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación
+
+\series default
 \shape default
-
-\begin_inset Newline newline
-\end_inset
-
- 
-\shape smallcaps
-—
-\shape default
-
-\begin_inset Newline newline
-\end_inset
-
- Granada, 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-monthandyear
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-addtolength{
-\backslash
-textwidth}{
-\backslash
-centeroffset}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-vspace{
-\backslash
-stretch{2}}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
+, ha sido realizado bajo su supervisión por 
+\series bold
 
 \begin_inset ERT
 status open
@@ -680,11 +413,101 @@ status open
 
 
 \backslash
-end{titlepage}
+myName
 \end_layout
 
 \end_inset
 
+
+\series default
+, y autorizan la defensa de dicho trabajo ante el tribunal que corresponda.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Y para que conste, expiden y firman el presente informe en Granada a 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finaldate
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Los directores:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\series bold
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+myProf
+\end_layout
+
+\end_inset
+
+
+\series default
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\series bold
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+myOtherProf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
