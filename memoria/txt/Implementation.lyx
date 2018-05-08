@@ -77,7 +77,17 @@ Implementación
 \end_layout
 
 \begin_layout Chapter
-Análisis de requisitos y viabilidad
+Análisis 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+de requisitos
+\end_layout
+
+\end_inset
+
+ y viabilidad
 \end_layout
 
 \begin_layout Section
@@ -167,19 +177,11 @@ Identificar elementos físicos con nombres de Amazon
 \end_layout
 
 \begin_layout Section
-Análisis de requisitos
-\end_layout
-
-\begin_layout Subsection
-Funcionales
-\end_layout
-
-\begin_layout Subsection
-No funcionales
-\end_layout
-
-\begin_layout Section
 Análisis de diferentes bibliotecas TLS
+\end_layout
+
+\begin_layout Standard
+¿por qué TLS?
 \end_layout
 
 \begin_layout Subsection
