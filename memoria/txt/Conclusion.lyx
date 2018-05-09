@@ -6,9 +6,9 @@
 \origin unavailable
 \textclass book
 \use_default_options true
-\master preface.lyx
+\master content.lyx
 \maintain_unincluded_children false
-\language english
+\language spanish
 \language_package default
 \inputencoding utf8
 \fontencoding global
@@ -59,7 +59,7 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\quotes_language french
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -72,29 +72,12 @@
 
 \begin_body
 
-\begin_layout Standard
-Data security is critical in our days.
- Its great importance is not anymore limited to military or industrial applicati
-ons.
- In contrast, data security is now an important issue in consumer electronics.
- There are several security protocols available, aimed to protect both privacy
- and veracity of transmitted information.
- Among these protocols, TLS (Transport Layer Security) is one of the most
- important Internet security standards.
- Integrating security protocols in embedded systems has an increasingly
- importance, due to the arising of technologies such as Smart Home, Smart
- City, and briefly, an emergent paradigm known as Internet of Things (IoT).
- 
+\begin_layout Part
+Conclusiones y trabajo futuro
 \end_layout
 
-\begin_layout Standard
-
-\color red
-The result expected from this contract is a working implementation of TLS
- in a system aimed to IoT.
- More precisely, the purpose is to implement TLS security into a microcontroller
--based device, which plays the role of a gateway between a wireless sensor
- network (WSN) and the Internet.
+\begin_layout Chapter
+Conclusiones y trabajo futuro
 \end_layout
 
 \end_body

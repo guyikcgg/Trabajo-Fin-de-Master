@@ -73,16 +73,28 @@
 \begin_body
 
 \begin_layout Standard
-\begin_inset Index idx
-status open
+La seguridad de los datos ya no se limita a las aplicaciones militares o
+ industriales, sino que es muy relevante en la electrónica de consumo.
+ Existen varios protocolos de seguridad cuyo propósito es proteger la privacidad
+ y veracidad de la información transmitida.
+ De entre estos protocolos, TLS (Transport Layer Security) es uno de los
+ estándares de seguridad más importantes en Internet.
+ Integrar protocolos de seguridad en sistemas empotrados tiene una importancia
+ cada vez mayor, debido al surgimiento de tecnologías como Smart Home, Smart
+ City, y en resumen, al paradigma emergente conocido como Internet de las
+ Cosas (IoT).
 
-\begin_layout Plain Layout
-Resumen
+\color red
+ 
 \end_layout
 
-\end_inset
+\begin_layout Standard
 
-[ESTO ES EL ABSTRACT]
+\color red
+Como principal objetivo del presente trabajo, se espera tener una implementación
+ del protocolo TLS en un sistema empotrado basado en microcontrolador.
+ De esta forma, el dispositivo desarrollado deberá ser capaz de establecer
+ una comunicación segura con otro nodo o red IoT.
 \end_layout
 
 \end_body

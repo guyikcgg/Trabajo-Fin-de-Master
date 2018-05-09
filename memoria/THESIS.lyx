@@ -279,6 +279,7 @@ numbers=left
 \suppress_date false
 \justification true
 \use_refstyle 0
+\boxbgcolor #faf583
 \index Índice
 \shortcut idx
 \color #008000
@@ -496,7 +497,6 @@ filename "txt/content.lyx"
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-btprint "btPrintAll"
 bibfiles "thesis"
 options "unsrt"
 

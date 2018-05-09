@@ -77,17 +77,7 @@ Implementación
 \end_layout
 
 \begin_layout Chapter
-Análisis 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-de requisitos
-\end_layout
-
-\end_inset
-
- y viabilidad
+Análisis de la tarea
 \end_layout
 
 \begin_layout Section
@@ -121,6 +111,14 @@ Sistema objetivo
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\color red
+This system consists on an IoT gateway, which is based on a microcontroller
+ using ARM Cortex-M core.
+ Its firmware will use RTOS operating system and lwIP protocol stack.
 \end_layout
 
 \begin_layout Standard
@@ -173,7 +171,49 @@ Brevemente, ya ha sido descrita en cap 2
 \end_layout
 
 \begin_layout Standard
+
+\color red
 Identificar elementos físicos con nombres de Amazon
+\end_layout
+
+\begin_layout Standard
+Ahora que hemos estudiado la estructura de AWS
+\begin_inset space ~
+\end_inset
+
+IoT, vamos a poner nuestros conocimientos en práctica conectando un dispositivo
+ a la nube.
+ Este dispositivo enviará mensajes periódicamente, que contendrán los valores
+ de distancia medidos.
+ Para llevar a cabo este proceso, tendremos que ocuparnos de dos tareas
+ principales.
+ 
+\end_layout
+
+\begin_layout Standard
+En primer lugar, nos ocuparemos de definir un nuevo dispositivo en la nube
+ de Amazon.
+ Para ello, será necesario crear una cuenta en AWS y acceder a la consola
+ del servicio AWS
+\begin_inset space ~
+\end_inset
+
+IoT
+\begin_inset space ~
+\end_inset
+
+Core.
+ 
+\end_layout
+
+\begin_layout Standard
+Una vez configurado nuestro dispositovo virtual, pasaremos a escribir el
+ programa que se ejecutará en el módulo ESP8266.
+ Este programa será el responsable de establecer la conexión con AWS
+\begin_inset space ~
+\end_inset
+
+IoT.
 \end_layout
 
 \begin_layout Section
@@ -181,15 +221,51 @@ Análisis de diferentes bibliotecas TLS
 \end_layout
 
 \begin_layout Standard
-¿por qué TLS?
+
+\color red
+The aim of this section is to research and analyze the available TLS libraries.
+ WolfSSL and mbedTLS will be first considered and analyzed.
+ If other libraries with similar characteristics are found will be considered
+ in the study also.
+ A list of features will be evaluated, including (but not limiting to) computati
+onal requirements, functional capabilities, portability, cost implementation,
+ etc.
+ Choice of the TLS library to be adapted based on the features previously
+ evaluated.
+ The decision will be justified using engineering criteria.
+ The chosen TLS library will also satisfy the requirements regarding intended
+ functionality as well as economical and legal conditions.
+\end_layout
+
+\begin_layout Standard
+Alternativas a OpenSSL.
+ Más ligeras, gracias a que pueden elegirse las ciphersuites en tiempo de
+ compilación.
+\end_layout
+
+\begin_layout Standard
+Hablar brevemente de mi experiencia con las bibliotecas y chips que he usado
+ (características, requisitos en cuanto a recursos, opciones de configuración,
+ etc).
 \end_layout
 
 \begin_layout Subsection
 mbedTLS
 \end_layout
 
+\begin_layout Standard
+Es la biblioteca de seguridad del proyecto mbed de ARM.
+ Este proyecto trata de poner en conjunto una serie de herramientas para
+ el desarrollo ágil de sistemas empotrados, incluyendo IoT.
+\end_layout
+
 \begin_layout Subsection
 WolfSSL
+\end_layout
+
+\begin_layout Standard
+A version of the wolfCrypt cryptography library has been FIPS 140-2 validated
+ (Certificate #2425).
 \end_layout
 
 \begin_layout Subsection
