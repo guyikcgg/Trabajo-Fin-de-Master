@@ -220,6 +220,14 @@ numbers=left
 \usepackage{alphalph}
 
 \usepackage[font=small]{caption} 
+
+\usepackage{textcomp}
+
+
+\let\oldforeignlanguage\foreignlanguage
+\renewcommand{\foreignlanguage}[2]{\emph{\oldforeignlanguage{#1}{#2}}}
+
+\usepackage{ccicons}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false

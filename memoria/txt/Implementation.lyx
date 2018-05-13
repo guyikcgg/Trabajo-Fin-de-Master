@@ -114,6 +114,48 @@ Sistema objetivo
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/MiniGW_01.jpg
+	lyxscale 10
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/MiniGW_02.jpg
+	lyxscale 10
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 
 \color red
 This system consists on an IoT gateway, which is based on a microcontroller
@@ -123,6 +165,13 @@ This system consists on an IoT gateway, which is based on a microcontroller
 
 \begin_layout Standard
 Descripción del GW:
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:XMC4500"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -143,6 +192,13 @@ Flash
 
 \begin_layout Standard
 TDA
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:TDA5340"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

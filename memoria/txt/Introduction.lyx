@@ -129,6 +129,20 @@ Estructura de la memoria
 \end_layout
 
 \begin_layout Chapter
+Conceptos de seguridad
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-ModernOS"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
 Seguridad en sistemas empotrados
 \end_layout
 
