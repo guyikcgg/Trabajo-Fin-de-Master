@@ -299,8 +299,717 @@ A continuación: Descripción detallada de la biblioteca mbedTLS
 Arquitectura de la biblioteca
 \end_layout
 
+\begin_layout Standard
+Se ha realizado una evaluación de la implementación TLS seleccionada.
+ Para ello, se ha consultado la documentación oficial de mbedTLS en su web
+ y se ha analizado parte del código fuente.
+ A continuación se presentan los siguientes temas: características principales
+ de la biblioteca, opciones de configuración, proceso de compilación, el
+ tema de la portabilidad y uso básico.
+\end_layout
+
+\begin_layout Subsection
+Características principales de mbedTLS
+\end_layout
+
+\begin_layout Standard
+mbedTLS ofrece APIs tanto para la parte del cliente como para la del servidor,
+ con soporte para todos los estándares SSL y TLS actuales.
+ Además, la biblioteca incluye una amplio rango de algoritmos criptográficos.
+ Asímismo, incluye una variedad de métodos de intercambio de claves, algoritmos
+ de cifrado simétrico, algoritmos de hash, diversas curvas elípticas y herramien
+tas para la generación de números aleatorios 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-core-features"
+
+\end_inset
+
+.
+ Además, mbedTLS dispone de todos los algoritmos criptográficos definidos
+ en la 
+\emph on
+Suite
+\begin_inset space ~
+\end_inset
+
+B
+\emph default
+ de la Agencia Nacional de Seguridad estadounidense (NSA) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rfc6379-NSA-Suite-B"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Opciones de configuración
+\end_layout
+
+\begin_layout Standard
+Dado que muy pocos sistemas requieren de todos los algoritmos criptográficos
+ disponibles, mbedTLS permite habilitarlos o deshabilitarlos en tiempo de
+ compilación.
+ De este modo, tanto el tamaño del ejecutable como la memoria requerida
+ en tiempo de ejecución son minimizados, atendiendo a las necesidades de
+ la aplicación.
+ Para facilitar el proceso de configuración a los desarrolladores, la biblioteca
+ incluye un fichero de configuración con todas las opciones disponibles.
+ Este fichero de configuración es, en realidad, un archivo de cabecera en
+ lenguaje
+\begin_inset space ~
+\end_inset
+
+C, que contiene una lista exhaustiva de definiciones con su correspondiente
+ documentación.
+ De esta forma, el dearrollador puede activar o desactivar cualquiera de
+ las opciones.
+ El fichero de configuración es referenciado por cada uno de los otros ficheros
+ de cabecera, consiguiendo que la configuración se haga efectiva en tiempo
+ de compilación.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-config_h"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Las opciones son comprobadas para ver si son compatibles (por ejemplo, no
+ se puede hacer un intercambio de claves basado en clave pública si no hay
+ habilitadas claves públicas)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Las opciones de configuración pueden ser divididas en cutro grupos:
+\end_layout
+
+\begin_layout Description
+Soporte
+\begin_inset space ~
+\end_inset
+
+del
+\begin_inset space ~
+\end_inset
+
+sistema estas opciones deben seleccionarse de forma acorde a la plataforma
+ sobre la que se ejecutará mbedTLS.
+\end_layout
+
+\begin_layout Description
+Soporte
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+características
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+seguridad estas opciones permiten elegir las características que son necesarias
+ de cada módulo hablitado.
+ De esta forma, pueden seleccionarse qué modos de cifrado estarán disponibles,
+ qué curvas elípticas, qué algoritmos de intercambio de claves, etc.
+ Se trata de opciones con una alta granularidad.
+\end_layout
+
+\begin_layout Description
+Módulos
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+mbedTLS estas opciones permiten habilitar o deshabilitar los módulos de
+ mbedTLS de forma completa.
+ Por ejemplo, podríamos deshabilitar completamente RSA o MD5 si no son necesario
+s
+\end_layout
+
+\begin_layout Description
+Opciones
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+configuración
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+los
+\begin_inset space ~
+\end_inset
+
+módulos estas opciones permiten ajustas opciones específicas para cada módulo,
+ como el tamaño máximo de los números enteros, el tamñao de los búferes
+ interonos de SSL, etc.
+\end_layout
+
+\begin_layout Standard
+Todas estas opciones pueden modificarse de forma manual o usando un script
+ en Perl proporcionado con la biblioteca.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-how-do-i-configure,mbedTLS-reduce-footprint"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Opciones de compilación
+\end_layout
+
+\begin_layout Standard
+Con el fin ejecutar mbedTLS en la plataforma objetivo, tendremos que compilarlo
+ con las opciones apropiadas, usando el conjunto de herramientas de compilación
+ y enlazado necesarias.
+ Tenemos cuatro formas de compilar la biblioteca.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-how-do-I-build-compile"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Makefile a pesar de ser el método de compilación por defecto en sistemas
+ Unix-like, no es recomendada, ya que dejó de ser mantenida por el equipo
+ de desarrollo de mbedTLS.
+\end_layout
+
+\begin_layout Description
+CMake este método permite generar un fichero Makefile bien estructurado
+ y de forma autmática, detectando las dependencias y las opciones de compilación.
+ Además, crea una estructura de directorios con la que se consigue que los
+ ficheros objeto no se mezclen con el código fuente.
+ Este es el método recomendado por el equipo de mbedTLS.
+\end_layout
+
+\begin_layout Description
+Yotta esta herramienta, creada en el marco del proyecto mbed de ARM, pretende
+ ayudar a los desarrolladores que incluyen distintos módulos de mbed en
+ sus proyectos.
+ Está basada en CMake, pero cuenta con el concepto de módulos, de forma
+ que resulta sencillo compilar distintos módulos que vayan a usarse en mbedOS.
+\end_layout
+
+\begin_layout Description
+MS
+\begin_inset space ~
+\end_inset
+
+Visual
+\begin_inset space ~
+\end_inset
+
+Studio el equipo de mbedTLS proporciona un fichero de proyecto de Microsoft
+ Visual Studio con el objetivo de que los desarrolladores que usen esta
+ IDE puedan compilar la biblioteca sin preocuparse demasiado por el proceo
+ de compilación.
+\end_layout
+
+\begin_layout Standard
+Aunque estos son los procedimientos de compilación provistos con la biblioteca,
+ existen más opciones.
+ Por ejemplo, podemos incluir el código fuente en un proyecto de DAVE y
+ dejar que este lo compile de forma automática.
+ Esto es posible gracias a que DAVE genera los ficheros objeto para cada
+ fichero 
+\family typewriter
+.c
+\family default
+, buscando las cabeceras en los directorios que se le indique.
+ De esta forma, DAVE comprobará si hemos realizado algún cambio en los ficheros
+ de mbedTLS antes de cada compilación, por lo que no tendremos que compilar
+ la biblioteca y el proyecto por separado.
+ Esta opción, aunque muy flexible, puede ser más lenta.
+ Por eso, hemos preferido compilar la biblioteca en un fichero archivador
+ (
+\family typewriter
+.a
+\family default
+), que será el que incluímos en el proyecto junto con los ficheros de cabecera
+ (
+\family typewriter
+.h
+\family default
+).
+\end_layout
+
+\begin_layout Subsection
+Portabilidad a otras plataformas
+\end_layout
+
+\begin_layout Standard
+mbedTLS está programado en código C estándar, por lo que es fácilmente portable.
+ Además, el código de esta biblioteca es muy modular, siendo los siguientes
+ los únicos módulos que presentan dependencias de la plataforma.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-how-do-I-port"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Módulo
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+red
+\begin_inset space ~
+\end_inset
+
+(
+\lang english
+Networking
+\lang spanish
+)
+\begin_inset space ~
+\end_inset
+
+[requerido] las funciones de red están implementadas usando la API de sockets
+ BSD.
+ Gracias es esto, el módulo de red incluido con la biblioteca es compatible
+ tanto con sistemas Unix con Windows.
+ A fin de que mbedTLS pueda establecer comunicaciones de red en un sistema
+ empotrado, será necesario compilarlo junto a una biblioteca que proporcione
+ una interfaz de sockets BSD.
+ 
+\end_layout
+
+\begin_layout Description
+Módulo
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+temporización
+\begin_inset space ~
+\end_inset
+
+(
+\lang english
+Timing
+\lang spanish
+) este módulo es requerido únicamente cuando nuestro sistema establezca
+ comunicaciones a través del protocolo DTLS.
+ De lo contrario, podemos deshabilitarlo de forma segura.
+\end_layout
+
+\begin_layout Description
+Fuentes
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+entropía
+\begin_inset space ~
+\end_inset
+
+por
+\begin_inset space ~
+\end_inset
+
+defecto
+\begin_inset space ~
+\end_inset
+
+(
+\lang english
+Default
+\begin_inset space ~
+\end_inset
+
+entropy
+\begin_inset space ~
+\end_inset
+
+sources
+\lang spanish
+)
+\begin_inset space ~
+\end_inset
+
+[requerido] el pool de entropía (entropy pool) se encarga de acumular y
+ combinar la entropopía de distintas fuentes de una forma segura.
+ Estas fuentes pueden estar basadas en software o en hardware, y deben proporcio
+nársele al módulo de generación de números aleatorios.
+ Aunque las funciones de entropía pueden ser desactivadas sin afectar a
+ ningún otro módulo, la generación de números aleatorios es esencial para
+ muchas des las funciones criptográficas, por lo que tendremos que asegurarnos
+ una buena fuente de entropía para hacer que nuestro sistema sea seguro.
+\end_layout
+
+\begin_layout Description
+Aceleración
+\begin_inset space ~
+\end_inset
+
+Hardware
+\begin_inset space ~
+\end_inset
+
+(
+\lang english
+Hardware
+\begin_inset space ~
+\end_inset
+
+Acceleration
+\lang spanish
+) muchos de los módulos que implementan primitivas criptográficas pueden
+ ser sustituidos por implementaciones alternativas de las mismas.
+ De esta forma, la es posible aprovechar implementaciones hardware que puedieran
+ estar presentes en la plataforma.
+\end_layout
+
+\begin_layout Description
+Acceso
+\begin_inset space ~
+\end_inset
+
+al
+\begin_inset space ~
+\end_inset
+
+sitema
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+ficheros
+\begin_inset space ~
+\end_inset
+
+(
+\lang english
+Filesystem
+\begin_inset space ~
+\end_inset
+
+access
+\lang spanish
+) todas las funciones que acceden al sistema de ficheros están implementadas
+ de forma que, en realidad, simplemente se lee un búfer de memoria.
+ De este modo, solo es necesario portar las funciones que cargan/guardan
+ el contenido de estos búferes del/al sistema de ficheros.
+ Gracias a esta implementación, los desarrolladores pueden elegir si prefieren
+ leer los datos del disco o incrustarlos 
+\begin_inset Quotes fld
+\end_inset
+
+a fuego
+\begin_inset Quotes frd
+\end_inset
+
+ en el código fuente (hard-coded).
+\end_layout
+
+\begin_layout Description
+Reloj
+\begin_inset space ~
+\end_inset
+
+en
+\begin_inset space ~
+\end_inset
+
+tiempo
+\begin_inset space ~
+\end_inset
+
+real
+\begin_inset space ~
+\end_inset
+
+(
+\lang english
+Real-Time
+\begin_inset space ~
+\end_inset
+
+Clock
+\lang spanish
+) algunos módulos acceden de forma opcional a la hora y fecha actuales,
+ bien para medir intervalos de tiempo, bien para conocer la fecha y hora
+ actuales.
+ Este módulo solo es imprescindible a la hora de validar la vigencia o caducidad
+ de los certificados X.509.
+\end_layout
+
 \begin_layout Subsection
 Estructura de ficheros
+\end_layout
+
+\begin_layout Standard
+El código fuente de la biblioteca está estructurado de la forma que se presenta
+ a continuación.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+/
+\family default
+ en el directorio raíz se encuentran los ficheros que podemos encontrar
+ en la mayoría de los proyectos, como 
+\family typewriter
+Makefile
+\family default
+, 
+\family typewriter
+README
+\family default
+, 
+\family typewriter
+LICENSE
+\family default
+, etc.
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+
+\family typewriter
+configs/
+\family default
+ en este directorio podemos encontrar diversos ejmplos de ficheros de configurac
+ión.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+doxygen/
+\family default
+ ficheros de entrada para la documentación generada con Doxygen
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+include/
+\family default
+ ficheros de cabecera (
+\family typewriter
+.h
+\family default
+).
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+programs/
+\family default
+ programas de ejemplo, que demuestran las distintas características de mbedTLS.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+scripts/
+\family default
+ scripts útiles para configurar mbedTLS y medir su rendimiento.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+tests/
+\family default
+ programas y scripts de test.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+visualc/
+\family default
+ proyecto de Microsoft
+\begin_inset space ~
+\end_inset
+
+Visual
+\begin_inset space ~
+\end_inset
+
+Studio, usado para compilar mbedTLS en entornos Windows.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+yotta/
+\family default
+ ficheros usados por Yotta para compilar mbedTLS como un módulo ARM
+\begin_inset space ~
+\end_inset
+
+mbed.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+6.2 Certificate Authorities 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+programs/x509/cert_app.c
+\family default
+ demuestra el uso de certificados X.509 en mbedTLS.
+ 
+\end_layout
+
+\begin_layout Standard
+Las autoridades certificadoras pueden cargarse a partir del sistema de ficheros
+ haciendo uso de las funciones 
+\family typewriter
+mbedtls_x509_crt_parse_file()
+\family default
+ y 
+\family typewriter
+mbedtls_x509_crt_parse_path()
+\family default
+.
+ Estas funciones no son más que una envoltura (wrapper) de la función 
+\family typewriter
+mbedtls_x509_crt_parse()
+\family default
+, la cuál analiza el contenido de un búfer para obtener los distintos campos
+ que conforman el certificado, guardándolos en una estructura definida en
+ la biblioteca.
+\end_layout
+
+\begin_layout Standard
+6.3 Connection sockets 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+programs/ssl/ssl_client1.c
+\family default
+ demuestra el uso de sockets a la hora de realizar una conexión TLS desde
+ el lado del cliente.
+ Los siguientes pasos deben seguirse para establecer la conexión.
+\end_layout
+
+\begin_layout Enumerate
+Inicializar el contexto TCP mediante la función 
+\family typewriter
+mbedtls_net_connect()
+\family default
+.
+ En este paso deben especificarse la dirección del servidor (IP o DNS),
+ el puerto y el protocolo.
+\end_layout
+
+\begin_layout Enumerate
+Configurar el contexto TLS con 
+\family typewriter
+mbedtls_ssl_config_defaults()
+\family default
+.
+ En este paso deben definirse algunos parámetros de configuración de TLS,
+ 
+\color red
+como la versión o las ciphersuites
+\color inherit
+.
+\end_layout
+
+\begin_layout Enumerate
+Iniciar la conexión segura con 
+\family typewriter
+mbedtls_ssl_set_bio()
+\family default
+ y 
+\family typewriter
+mbedtls_ssl_handshake()
+\family default
+.
+ Si todo va bien, después de este paso el handshake habrá concluido con
+ éxito, por lo que podremos pasar a transmitir datos de forma segura.
+\end_layout
+
+\begin_layout Enumerate
+Recibir y enviar datos de forma segura con 
+\family typewriter
+mbedtls_ssl_read()
+\family default
+ y 
+\family typewriter
+mbedtls_ssl_write()
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+Para finalizar, debe cerrarse la conexión con 
+\family typewriter
+mbedtls_ssl_close_notify()
+\family default
+.
+ No debemos olvidarnos de liberar la memoria dinámica que hayamos reservado
+ en los pasos anteriores.
 \end_layout
 
 \begin_layout Subsection
@@ -329,8 +1038,27 @@ Compila en Linux sin problema, usando la herramienta Make.
 \begin_layout Standard
 Configuración de la biblioteca (script de Perl).
  Make y Cmake (cambiar parámetros / flags de compilación).
- Una vez compilada, se pueden pasar tests.
- Programas de ejemplo ilustrativos.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Una vez compilada, se pueden pasar tests.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Programas de ejemplo ilustrativos.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
