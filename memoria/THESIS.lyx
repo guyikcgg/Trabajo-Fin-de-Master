@@ -13,7 +13,6 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{listings}
-\usepackage[]{babel}
 \usepackage{xspace}
 
 \usepackage{xcolor}         
@@ -35,7 +34,6 @@
 \usepackage{dcolumn}
 \newcolumntype{.}{D{.}{\esperiod}{-1}}
 
-\addto\shorthandsspanish{\let\esperiod\es@period@code}
 
 
 
@@ -232,7 +230,7 @@ numbers=left
 \use_default_options true
 \maintain_unincluded_children false
 \language spanish
-\language_package default
+\language_package babel
 \inputencoding utf8
 \fontencoding global
 \font_roman "default" "default"
@@ -345,6 +343,80 @@ tablename}{Tabla}
 \backslash
 frontmatter %turns off chapter numbering and uses roman numerals for page
  numbers
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addto
+\backslash
+extrasspanish{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+chapterautorefname}{capítulo}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+sectionautorefname}{sección}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+subsectionautorefname}{sección}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+chapref}[1]{
+\backslash
+autoref{chap:#1}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+secref}[1]{
+\backslash
+autoref{sec:#1}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+subsecref}[1]{
+\backslash
+autoref{subsec:#1}}
 \end_layout
 
 \end_inset
