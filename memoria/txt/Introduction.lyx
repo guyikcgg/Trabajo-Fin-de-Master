@@ -166,7 +166,7 @@ El proyecto ha sido puesto bajo control de versiones, usando Git.
  de crear ramas para gestionar las distintas características del proyecto.
  En este trabajo, para cada nueva línea de investigación se ha creado una
  rama, uniéndose los beneficios obtenidos a las ramas comunes.
- En concreto, el sistema de ramificaciones está basado en 
+ En concreto, el sistema de ramificaciones está basado en
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Successful-Git"
@@ -177,7 +177,6 @@ key "Successful-Git"
  Git es además un sistema distribuido, siendo muy sencillo crear un repositorio
  de trabajo y compartirlo para permitir el trabajo en equipo, fundamental
  en cualquier ámbito de desarrollo, ya sea software o hardware.
- 
 \begin_inset Note Note
 status open
 
@@ -204,7 +203,7 @@ La memoria se estructura en tres grandes partes, que describimos a continuación
 \end_layout
 
 \begin_layout Paragraph
-Introducción.
+Introducción
 \end_layout
 
 \begin_layout Standard
@@ -215,47 +214,44 @@ La primera parte está dedicada a una breve introducción y a la presentación
 
 \begin_layout Standard
 En primer lugar, llevaremos a cabo una exposición de los principios básicos
- de seguridad (capítulo
-\begin_inset space ~
-\end_inset
-
-
+ de seguridad (
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "chap:Principios-seguridad"
 
 \end_inset
 
 ), prestando especial atención a los requisitos de seguridad en sistemas
- empotrados (capítulo
-\begin_inset space ~
-\end_inset
-
-
+ empotrados (
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "chap:Seguridad-en-sist-empotrados"
 
 \end_inset
 
 ).
- 
 \end_layout
 
 \begin_layout Standard
-A continuación presentaremos brevemente el protocolo TLS (capítulo
-\begin_inset space ~
+A continuación presentaremos brevemente el protocolo TLS (
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:TLS"
+
 \end_inset
 
-#), así como la estructura de la nube AWS IoT (capítulo
-\begin_inset space ~
+), así como la estructura de la nube AWS IoT (
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:AWS-IoT"
+
 \end_inset
 
-#).
+).
 \end_layout
 
 \begin_layout Paragraph
-Trabajo realizado.
+Trabajo realizado
 \end_layout
 
 \begin_layout Standard
@@ -275,7 +271,6 @@ Comenzaremos esta parte con una presentación pormenorizada del sistema objetivo
 \end_inset
 
 #).
- 
 \end_layout
 
 \begin_layout Standard
@@ -302,7 +297,7 @@ SDK (capítulo
 \end_layout
 
 \begin_layout Paragraph
-Conclusiones y trabajo futuro.
+Conclusiones y trabajo futuro
 \end_layout
 
 \begin_layout Standard
@@ -351,51 +346,93 @@ Seguridad en sistemas empotrados
 \end_layout
 
 \begin_layout Standard
-
-\color red
-Qué entendemos por seguridad y por qué es importante
-\end_layout
-
-\begin_layout Standard
-Para entender mejor qué elementos deben asegurarse en un sistema empotrado,
- tenemos que tener en cuenta que existen diversas entidades implicadas en
- el desarrollo, fabricación y uso del producto.
- Esto quiere decir que los requisitos de seguridad dependerán de la perspectiva
- desde la que se vea el sistema.
- En este sentido, el usuario estará interesado en mantener la confidencialidad
- y la integridad de los datos que almacena o transmite haciendo uso del
- sistema, mientras que el proveedor de hardware tratará de proteger la propiedad
- intelectual de los módulos provistos al diseñador del dispositivo.
- A pesar de estas diferencias y de los intereses de las distintas partes,
- existe una serie de requisitos generales que deben tenerse en cuenta a
- la hora de diseñar la seguridad del sistema.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset line
-LatexCommand rule
-offset "0.5ex"
-width "100col%"
-height "1pt"
-
-\end_inset
-
-Antes de entrar en faena, dos cosas:
-\end_layout
-
-\begin_layout Standard
+La seguridad suele estar relacionada con operaciones computacionalmente
+ costosas.
+ Sin embargo, los sistemas empotrados
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
-1.
- DEBEMOS ASEGURAR MUCHAS COSAS.
- SEGÚN DESDE QUÉ PUNTO DE VISTA VEAMOS EL SISTEMA, TENEMOS DISTINTOS FRENTES.
- Before discussing the common security requirements of em- bedded systems,
- it is important to note that there are many entities involved in a typical
- embedded system design, manufacturing, and usage chain.
- Security requirements vary depending on whose perspective we consider.
+, como los usados en los nodos finales y en las pasarelas de las infraestructura
+s IoT,
+\end_layout
+
+\end_inset
+
+ suelen tener unas fuertes limitaciones en los recursos, que van desde limitacio
+nes computacionales (microcontroladores) hasta limitaciones energéticas
+ (batería)
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+, que a su vez se traduce en limitaciones en el tiempo de cómputo empleable
+\end_layout
+
+\end_inset
+
+.
+ Esto hace que la seguridad en sistemas empotrados se trate de un modo algo
+ especial.
  
+\end_layout
+
+\begin_layout Standard
+Para empezar, recordemos que la seguridad es un término que abarca muchos
+ ámbitos (y muy variados).
+ En el caso de los sistemas empotrados, tendremos diversos actores que se
+ preocuparán de la seguridad de formas muy diferentes: El usuario estará
+ interesado en mantener la confidencialidad y la integridad de los datos
+ que almacena o transmite haciendo uso del sistema.
+ El proveedor de hardware, en cambio, tratará de proteger la propiedad intelectu
+al de los módulos provistos al diseñador del dispositivo.
+ 
+\end_layout
+
+\begin_layout Standard
+Por otro lado, 
+\color red
+Dado que no tenemos un OS ni un stack que nos proporcione la seguridad,
+ tendremos que estudiar los requisitos generales de seguridad y ver cuáles
+ son aplicables a nuestro sistema.
+\end_layout
+
+\begin_layout Standard
+
+\color red
+A pesar de estas diferencias y de los intereses de las distintas partes,
+ existe una serie de 
+\emph on
+requisitos generales
+\emph default
+ que deben tenerse en cuenta a la hora de diseñar la seguridad del sistema.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/actores-implicados-seguridad.png
+	lyxscale 10
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Particularidades de los sistemas empotrados
+\end_layout
+
+\begin_layout Standard
+Como hemos introducido anteriormente, los sistemas empotrados presentan
+ varias particularidades.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Un sistema empotrado se define porque resuelve una tarea específica, a pesar
+ de hacerlo con un microcontrolador
 \end_layout
 
 \end_inset
@@ -404,17 +441,113 @@ status collapsed
 \end_layout
 
 \begin_layout Standard
-2.
- HEMOS DICHO QUE LOS SISTEMAS EMPOTRADOS SUELEN TENER POCOS RECURSOS.
- ESO VA A SER UN PROBLEMA.
- PERO ES QUE ADEMÁS....
- PUEDEN IR CON BATERÍA!! ESTO COMPLICA LAS COSAS, YA QUE LA SEGURIDAD METE
- UN OVERHEAD IMPORTANTE (más procesamiento => ir más lento y gastar más
- batería).
+Los sistemas empotrados (también conocidos como sistemas embebidos o 
+\emph on
+embedded system
+\emph default
+s) son sistemas basados en un computador y que están diseñados para realizar
+ una función concreta.
+ Muchos sistemas empotrados llevan a cabo tareas a tiempo real, siendo frecuente
+ su uso en el control de sistemas mecánicos, como ascensores o cadenas de
+ montaje.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "EmbeddedSysDesign"
+
+\end_inset
+
  
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
+Además, estos sistemas están presentes en muchos electrodomésticos, como
+ hornos microondas, lavadoras o reproductores de música.
+ En este contexto, también los encontramos en el núcleo de muchos dispositivos
+ cotidianos, como la calculadora, la cámara de fotos o el marcapasos.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-ModernOS"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Podría discutirse si algunos dispositivos como los 
+\emph on
+smartpohnes
+\emph default
+ o las videoconsolas de última generación son también sistemas empotrados.
+ No obstante, estos dispositivos cuentan con un sistema operativo (OS) que
+ les permite ejecutar aplicaciones de terceros bajo demanda del usuario.
+ Por este motivo, estos dispositivos serán considerados en este trabajo
+ como computadores de propósito general, a pesar de compartir algunas caracterís
+ticas con los sistemas empotrados.
+\end_layout
+
+\begin_layout Standard
+Estas son las principales características que consideraremos para decir
+ que un sistema es empotrado:
+\end_layout
+
+\begin_layout Itemize
+Se trata de un sistema electrónico basado en microprocesador (normalmente
+ microcontrolador).
+\end_layout
+
+\begin_layout Itemize
+El sistema está diseñado para llevar a cabo una aplicación o tarea específica,
+ ejecutando un software concreto que es instalado en el proceso de producción.
+ El sistema no está diseñado para ejecutar software de terceros.
+\end_layout
+
+\begin_layout Itemize
+El sistema cuenta con los periféricos necesarios para llevar a cabo su función.
+ El sistema está diseñado para controlar este hardware específico, no permitiend
+o que se añadan nuevos periféricos.
+\end_layout
+
+\begin_layout Itemize
+El sistema puede ser el núcleo de un dispositivo autónomo (como un mando
+ a distancia), o puede formar parte de un sistema mayor (como las distintas
+ unidades de control electrónico de un automóvil).
+\end_layout
+
+\begin_layout Itemize
+Los recursos computacionales suelen ser muy limitados, con el objetivo de
+ abaratar costes.
+ Este hecho, junto con el 
+\begin_inset Quotes fld
+\end_inset
+
+propósito no general
+\begin_inset Quotes frd
+\end_inset
+
+ de estos sistemas, hace que no tengan sistema operativo (como mucho 
+\lang english
+scheduler
+\lang spanish
+ o RTOS)
+\end_layout
+
+\begin_layout Standard
+En numerosas ocasiones, las tareas deben ser realizadas en tiempo real,
+ proporcionando respuestas a ciertos eventos en un intervalo de tiempo controlad
+o y reducido.
+ Esto tiene gran relación con la tendencia a usar sistemas empotrados en
+ la implementación de sistemas críticos.
+ Los sistemas críticos deben ser altamente fiables, llevando a cabo su función
+ de forma rigurosa y precisa.
+ En caso de error, un sistema crítico puede desencadenar un fallo general
+ del sistema, incurrir en enormes pérdidas económicas o incluso poner en
+ riesgo la vida de personas.
+\end_layout
+
+\begin_layout Section
 Requisitos generales de seguridad
 \end_layout
 
@@ -425,7 +558,6 @@ status open
 \begin_layout Plain Layout
 Qué se debe asegurar y cuáles son las dificultades (escasa CPU, RAM, batería,
  etc).
- 
 \end_layout
 
 \end_inset
@@ -441,7 +573,7 @@ Identificación de usuarios
 Se trata del proceso de validar a los usuarios antes de permitirles usar
  es sitema.
  Este requisito es fundamental cuando el sistema proporciona el acceso a
- datos sensibles (como los valores de sensores en un 
+ datos sensibles (como los valores de sensores en un
 \emph on
 SmartHome
 \emph default
@@ -451,7 +583,7 @@ SmartHome
 
 \begin_layout Standard
 La identificación de usuarios es especialmente importante cuando el sistema
- empotrado puede ser accedido por personas no autorizadas con facilidad,
+ empotrado puede ser accedido con facilidad por personas no autorizadas,
  como son aquellos que están conectados a Internet.
 \end_layout
 
@@ -475,10 +607,20 @@ Acceso seguro a la red
 \end_layout
 
 \begin_layout Standard
-Consiste en proporcionar acceso a una conexión de red o aun servicio solo
+Consiste en proporcionar acceso a una conexión de red o a un servicio solo
  si el dispositivo está autorizado.
  Por ejemplo, un router doméstico no debería permitir el acceso a ningún
  dispositivo que haya sido autorizado a usar la red.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ejemplo con IoT?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -520,7 +662,19 @@ Garantizar la integridad de los datos comunicados, evitando que puedan ser
 \end_layout
 
 \begin_layout Enumerate
-Evitar el repudio de transacciones.
+Evitar el repudio de transacciones, como puede ser una transferencia bancaria.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+hablar de transacciones bancarias? de cambios de domicilio? de pedidos de
+ pizza? patentes airbnb?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -563,6 +717,17 @@ Consiste en asegurar la confidencialidad y la integridad de la información
  sensible almacenada en el sistema.
  Por ejemplo, en el caso de una tarjeta bancaria, solo el usuario debería
  poder modificar la clave, y solo el banco debería poder modificar el saldo.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ejemplo IoT!!
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -574,36 +739,6 @@ mandates confidentiality and integrity of sensitive information stored in
  the system.
  -> en el caso de la tarjeta bancaria/DNIe, nadie debería poder acceder
  a las claves que la identifican o al saldo almacenado (en su caso)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Seguridad del contenido
-\end_layout
-
-\begin_layout Standard
-La seguridad del contenido impone restricciones sobre el acceso o almacenamiento
- de contenido digital.
- De este modo, el usuario de una 
-\emph on
-SmartTV
-\emph default
- solo debería poder acceder al contenido contratado, y no debería poder
- realizar copias ilegales del contenido visualizado.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-enforces the usage restrictions of the digital content stored or accessed
- by the system.
- -> DRM
 \end_layout
 
 \end_inset
@@ -666,7 +801,7 @@ PERO TAMBIÉN...
 status collapsed
 
 \begin_layout Subsubsection
-Resistencia a la manipulación 
+Resistencia a la manipulación
 \emph on
 (Tamper resistance)
 \end_layout
@@ -693,7 +828,6 @@ n software.
  confidential information (privacy attacks), and/or deny access to system
  re- sources (availability attacks), it is necessary to develop and deploy
  various HW/SW countermeasures against these attacks.
- 
 \end_layout
 
 \end_inset
@@ -711,11 +845,16 @@ Fiabilidad del sistema
 \end_layout
 
 \begin_layout Standard
-Para decir que un sistema es realmente fiable, no basta con que este funcione
+Para afirmar que un sistema es realmente fiable, no basta con que este funcione
  de forma correcta la mayor parte del tiempo, sino que debe verificarse
  que su funcionamiento es el esperado en todo momento.
  Si además el sistema ha de ser seguro, este debe funcionar incluso cuando
  es sometido a ataques de seguridad.
+ La fiabilidad es un requisito fundamental cuando se trata de 
+\emph on
+sistemas críticos
+\emph default
+.
 \end_layout
 
 \begin_layout Standard
@@ -727,7 +866,7 @@ La implementación y testeo de sistemas altamente fiables son mucho más complej
  que las de aquellos sistemas que simplemente funcionan correctamente la
  mayor parte del tiempo.
  Los sistemas seguros se enfrentan a un desafío aún mayor: deben operar
- de forma fiable incluso cuando 
+ de forma fiable incluso cuando
 \end_layout
 
 \begin_layout Plain Layout
@@ -745,8 +884,15 @@ It is well known that truly reliable systems are much more difficult to
 
 \end_layout
 
-\begin_layout Subsection
-Cómo se lleva a cabo
+\begin_layout Section
+Soluciones de seguridad
+\end_layout
+
+\begin_layout Standard
+Existen múltiples técnicas con las que se trata de satisfacer los requisitos
+ de seguridad presentados en la sección anterior.
+ A continuación se presentan algunos de ellos, prestando especial atención
+ a los que tienen más relevancia en la realización de este trabajo.
 \end_layout
 
 \begin_layout Subsubsection
@@ -760,11 +906,11 @@ Los protocolos de seguridad proporcionan formas de establecer canales de
  para asegurar la integridad de los mensajes y autenticando cada uno de
  los extremos de la comunicación.
  De esta forma, dos dispositivos pueden comunicarse de forma segura a través
- de una red no segura 
+ de una red 
 \emph on
-a priori
+a priori 
 \emph default
-.
+no segura.
 \end_layout
 
 \begin_layout Standard
@@ -780,7 +926,6 @@ Tal vez los protocolos de seguridad más conocidos sean IPSec y TLS (antes
  No obstante, los requisitos computacionales que supone el uso de estos
  protocolos pueden comprometer la capacidad computacional del sistema con
  gran facilidad.
- 
 \end_layout
 
 \begin_layout Standard
@@ -798,30 +943,14 @@ DATOS EN TLS: WolfSSL (memoria) y estudio de esta gente (CPU y tamaño del
 \end_layout
 
 \begin_layout Standard
-A continuación se muestra un
-\end_layout
-
-\begin_layout Standard
-Por ejemplo, el uso de TLS duplica la 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-provide ways of ensuring secure communication channels to and from the embedded
- system.
- IPSec [IPSec] and SSL [SSL] are popu- lar examples of security protocols,
- widely used for Virtual Private Networks (VPNs) and secure web transactions,
- respectively (we will be exaamining se- curity protocols in greater detail
- in Section 5).
- 
-\end_layout
+En el 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:TLS"
 
 \end_inset
 
-
+ presentamos las características principales del protocolo TLS.
 \end_layout
 
 \begin_layout Subsubsection
@@ -833,38 +962,33 @@ Los certificados digitales proporcionan formas de asociar una identidad
  digital con una entidad física, basándose en criptografía asimétrica.
  Se trata de un fichero usado para validar la propiedad de una clave pública.
  El certificado incluye información sobre la clave, la identidad de su propietar
-io (sujeto del certificado) y sobre la firma digital de la entidad 
+io (sujeto del certificado) y sobre la firma digital de la entidad
 \end_layout
 
 \begin_layout Standard
-is an electronic document used to prove the ownership of a public key.
- The certificate includes information about the key, information about the
- identity of its owner (called the subject), and the digital signature of
- an entity that has verified the certificate's contents (called the issuer).
- If the signature is valid, and the software examining the certificate trusts
- the issuer, then it can use that key to communicate securely with the certifica
-te's subject.
+\begin_inset Graphics
+	filename img/cert-digital.gif
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/chain-of-trust.png
+	width 50text%
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-provide ways of associating identity with an entity, while biometric technologie
-s [Reid 2003] such as fingerprint recognition and voice recognition aid
- in end-user authentication.
- Digital signatures, which func- tion as the electronic equivalent of handwritte
-n signatures, can be used to authenticate the source of data as well as
- verify its identity.
- 
-\end_layout
-
-\begin_layout Subsubsection
-Gestión de derechos digitales (DRM)
-\end_layout
-
-\begin_layout Standard
-protocols, such as OpenIPMP [OpenIPMP], MPEG [MPEG], ISMA [ISMA], and MOSES
- [MOSES], provide secure frameworks for protecting application content against
- unauthorized use.
- 
+Esto se cosigue gracias a un documento electrónico (fichero), el propio
+ certificado, el cuál contiene información sobre la identidad del usuario/entida
+d certificada y su clave pública.
+ Este certificado también contiene una firma, emitida por la entidad certificado
+ra.
+ Se establece una cadena de confianza.
 \end_layout
 
 \begin_layout Subsubsection
@@ -872,17 +996,37 @@ Almacenamiento y ejecución seguros
 \end_layout
 
 \begin_layout Standard
-require that the architecture of the sys- tem be tailored for security considera
-tions.
- Simple examples include the use of hardware to monitor bus transactions
- and block illegal accesses to protected areas in the memory [Discretix],
- authentication of firmware that executes on the system, application isolation
- to preserve the privacy and integrity of code and data associated with
- a given application or process [Lie et al.
- 2000], HW/SW techniques to preserve the privacy and integrity of data throughou
-t the memory hierarchy [Suh et al.
- 2003], execution of en- crypted code [Best 1981; Kuhn 1997], and so on.
- 
+Requieren que la arquitectura del sistema sea diseñada teniendo en cuenta
+ la seguridad.
+ Ejemplos de soluciones de ejecución segura incluyen 
+\end_layout
+
+\begin_layout Standard
+el uso de hardware para monitorizar transacciones en un bus, bloqueando
+ accesos ilegales a regiones de memoria protegidas.
+\end_layout
+
+\begin_layout Standard
+autenticación del firmware que se ejecuta en el sistema.
+\end_layout
+
+\begin_layout Standard
+aislamiento de aplicaciones con el fin de mantener la privacidad y la integridad
+ de las instrucciones y de los datos.
+\end_layout
+
+\begin_layout Standard
+ejecución de código encriptado
+\end_layout
+
+\begin_layout Standard
+En embebidos: Algunas arquitecturas hardware están diseñadas para la ejecución
+ segura [#ref ARM-TrustZone#].
+ Existen sistemas operativos de tiempo real diseñados para esta ejecución
+ segura #ref!!#.
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ravi2004security"
@@ -892,20 +1036,44 @@ key "ravi2004security"
 
 \end_layout
 
-\begin_layout Chapter
-Estado de la técnica
-\end_layout
-
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 QUE QUEDE CLARO LA PARTE INVESTIGADORA AQUI (bibliografia!!)
 \end_layout
 
-\begin_layout Section
-TLS
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:TLS"
+
+\end_inset
+
+Introducción al protocolo TLS
 \end_layout
 
 \begin_layout Standard
-Handshake
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+QUE QUEDE CLARO LA PARTE INVESTIGADORA AQUI (bibliografia!!)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Record layer VS Handshake
 \end_layout
 
 \begin_layout Standard
@@ -920,98 +1088,13 @@ Criptografía asimétrica
 Certificados: TrustChain, PEM, DER
 \end_layout
 
-\begin_layout Section
-La nube de Amazon IoT
-\end_layout
-
-\begin_layout Standard
-Amazon Web Services (AWS) ofrece un amplio abanico de servicios de computación
- en la nube.
- Para cada servicio, el usuario debe abonar el precio correspondiente a
- los recursos consumidos.
- Aunque existen varias modalidades de facturación, todas ellas requieren
- que el usuario proporcione un método de pago.
- Sin embargo, existen dos alternativas gratuitas.
-\end_layout
-
-\begin_layout Subsubsection
-AWS Free Tier
-\end_layout
-
-\begin_layout Standard
-Amazon establece un período de prueba gratuito para atraer nuevos clientes
- y dar a conocer su tecnología.
- En este período, es posible utilizar la mayoría de los servicios ofrecidos
- por AWS sin incurrir en gastos.
- No obstante, es necesario configurar un método de pago para comenzar a
- usar los servicios.
- Todos los detalles sobre AWS
-\begin_inset space ~
-\end_inset
-
-Free
-\begin_inset space ~
-\end_inset
-
-Tier están disponibles en 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://aws.amazon.com/free/
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Subsubsection
-AWS Educate
-\end_layout
-
-\begin_layout Standard
-AWS
-\begin_inset space ~
-\end_inset
-
-Educate proporciona a profesores y alumnos acceso a muchos de los servicios
- de AWS.
- Además, incluye ventajas como programas de capacitación y rutas profesionales
- en la nube de Amazon.
- Esta modalidad, que está disponible en 47 países, requiere que el usuario
- esté vinculado a alguna institución académica y procese una solicitud que
- será tratada de forma personalizada por Amazon
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Deberá usarse el correo institucional en la solicitud.
-\end_layout
-
-\end_inset
-
-.
- Los detalles de esta modalidad están disponibles en 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://aws.amazon.com/education/
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Nosotros hemos optado por esta segunda opción.
-\end_layout
-
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:AWS-IoT"
+
+\end_inset
+
 Amazon Web Services IoT
 \end_layout
 
@@ -1040,7 +1123,7 @@ https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html
 \begin_inset space ~
 \end_inset
 
-IoT proporciona una 
+IoT proporciona una
 \emph on
 comunicación bidireccional segura
 \emph default
@@ -1058,11 +1141,11 @@ Cloud
  Esto nos permite recoger, almacenar y analizar datos de una gran variedad
  de dispositivos.
  Del mismo modo, nos permite crear aplicaciones para controlar estos dispositivo
-s a través de un 
+s a través de un
 \emph on
 smartphone
 \emph default
- o 
+ o
 \emph on
 tablet
 \emph default
@@ -1089,11 +1172,11 @@ IoT cuenta con un panel de control relativamente complejo, que nos permitirá
  gestionar una multitud de opciones.
  No obstante, esta plataforma no proporciona por sí misma herramientas para
  representar los datos obtenidos.
- Usaremos una aplicación web basada en 
+ Usaremos una aplicación web basada en
 \emph on
 Charts.js
 \emph default
- y 
+ y
 \emph on
 Bootstrap
 \emph default
@@ -1160,6 +1243,7 @@ Principales componentes de AWS
 \end_inset
 
 IoT.
+ REF#
 \end_layout
 
 \end_inset
@@ -1191,15 +1275,15 @@ reference "fig:Componentes-AWS"
 IoT.
  Los elementos que quedan dentro del recuadro amarillo constituyen la plataforma
  propiamente dicha.
- Fuera del recuadro quedan los 
+ Fuera del recuadro quedan los
 \emph on
 dispositivos
 \emph default
-, las 
+, las
 \emph on
 aplicaciones
 \emph default
- y los 
+ y los
 \emph on
 servicios
 \emph default
@@ -1234,7 +1318,7 @@ gateway
 \lang spanish
 ) se encarga de establecer la comunicación entre la nube de Amazon y cada
  dispositivo.
- El 
+ El
 \lang english
 Device
 \begin_inset space ~
@@ -1301,7 +1385,7 @@ engine
 \lang spanish
 ) proporciona funciones de procesamiento de mensajes y de integración con
  otros sevicios de la nube de Amazon.
- También permite usar el 
+ También permite usar el
 \lang english
 Message
 \begin_inset space ~
@@ -1380,7 +1464,7 @@ Device
 
 shadow
 \lang spanish
-) documento JSON utilizado para 
+) documento JSON utilizado para
 \begin_inset Note Note
 status open
 
@@ -1390,7 +1474,7 @@ almacenar y recuperar información
 
 \end_inset
 
- representar el estado actual de un dispositivo.
+ representar el estado de un dispositivo.
  También es usado para solicitar una acción al dispositivo.
 \end_layout
 
@@ -1418,6 +1502,8 @@ IoT.
 \end_layout
 
 \begin_layout Section
+
+\color red
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Esquema-de-funcionamiento"
@@ -1447,7 +1533,7 @@ IoT es el siguiente.
 \end_layout
 
 \begin_layout Standard
-Por un lado, tendremos un dispositivo físico ejecutando el 
+Por un lado, tendremos un dispositivo físico ejecutando el
 \emph on
 kit de desarrollo de software del dispositivo
 \emph default
@@ -1487,11 +1573,11 @@ Por otro lado, tendremos que definir el dispositivo en la plataforma, usando
 Registry
 \lang spanish
 ) anteriormente descrito.
- Este dispositivo virtual dispondrá de un 
+ Este dispositivo virtual dispondrá de un
 \emph on
 nombre único
 \emph default
-, que servirá para identificarlo, y de unos 
+, que servirá para identificarlo, y de unos
 \emph on
 atributos estáticos
 \emph default
@@ -1516,48 +1602,21 @@ Policies
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset Box Shaded
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "95col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-
-\family sans
-\series bold
-\size small
-Nota:
-\series default
- Los Atributos estáticos sirven para describir los dispositivos, y su función
- no debe confundirse con la de la Sombra del dispositivo (Device shadow).
+Cabe destacar que los Atributos estáticos sirven para describir los dispositivos
+, y su función no debe confundirse con la de la Sombra del dispositivo (
+\lang english
+device shadow
+\lang spanish
+).
  Estos atributos se almacenan de forma estática en el Registro.
  Algunos ejemplos de atributos son: número de serie, versión de firmware
  y descripción del sensor.
  Los valores de sensores y de actuadores se almacenan en un documento dinámico
- denominado 
+ denominado
 \emph on
-sombra del dispositivo
+ sombra del dispositivo
 \emph default
 .
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection
@@ -1601,8 +1660,8 @@ Ejemplo de sombra de dispositivo.
 \end_layout
 
 \begin_layout Standard
-El estado actual del dispositivo se guarda en un fichero JSON especial denominad
-o sombra del dispositivo (
+El estado del dispositivo se guarda en un fichero JSON especial denominado
+ sombra del dispositivo (
 \lang english
 device shadow
 \lang spanish
@@ -1660,6 +1719,7 @@ name "fig:Flujo-de-mensajes-sombra"
 
 Flujo de mensajes en la iinteracción entre el dispositivo y una aplicación
  a través de la sombra.
+ REF#
 \end_layout
 
 \end_inset
@@ -1750,11 +1810,11 @@ IoT, asumiendo el rol de cliente.
 \begin_layout Standard
 Una vez establecida la comunicación segura, el dispositivo puede publicar
  mensajes siguiendo el protocolo MQTT.
- Cuando el dispositivo trata de publicar un mensaje en un 
+ Cuando el dispositivo trata de publicar un mensaje en un
 \lang english
 topic
 \lang spanish
-, la plataforma verifica si este tiene permiso para publicar en dicho 
+, la plataforma verifica si este tiene permiso para publicar en dicho
 \lang english
 topic
 \lang spanish
@@ -1765,7 +1825,7 @@ topic
 
 broker retransmite este mensaje a cualquier elemento de la red suscrito
  a este topic.
- Del mismo modo, el dispositivo puede suscribirse a cualquier 
+ Del mismo modo, el dispositivo puede suscribirse a cualquier
 \lang english
 topic
 \lang spanish
@@ -1779,11 +1839,11 @@ Actualización de la sombra
 \begin_layout Standard
 La actualización de la sombra se lleva a cabo publicando mensajes en unos
  topics especiales, destinados a este fin.
- En concreto, están definidos los siguientes 
+ En concreto, están definidos los siguientes
 \lang english
 topics
 \lang spanish
-, donde el dispositivo queda identificado por la variable 
+, donde el dispositivo queda identificado por la variable
 \family typewriter
 thingName
 \family default
@@ -1796,7 +1856,7 @@ thingName
 $aws/things/thingName/shadow/update
 \family default
  Tanto las aplicaciones como los dispositivos pueden publicar mensajes a
- este 
+ este
 \lang english
 topic
 \lang spanish
@@ -1812,7 +1872,7 @@ $aws/things/thingName/update/accepted
 \begin_inset space ~
 \end_inset
 
-IoT publica un mensaje en este 
+IoT publica un mensaje en este
 \lang english
 topic
 \lang spanish
@@ -1828,7 +1888,7 @@ $aws/things/thingName/update/rejected
 \begin_inset space ~
 \end_inset
 
-IoT publica un mensaje en este 
+IoT publica un mensaje en este
 \lang english
 topic
 \lang spanish
@@ -1841,7 +1901,7 @@ topic
 $aws/things/thingName/get
 \family default
  Tanto las aplicaciones como los dispositivos pueden publicar un mensaje
- vacío a este 
+ vacío a este
 \lang english
 topic
 \lang spanish
@@ -1857,7 +1917,7 @@ $aws/things/thingName/get/accepted
 \begin_inset space ~
 \end_inset
 
-IoT publica un mensaje en este 
+IoT publica un mensaje en este
 \lang english
 topic
 \lang spanish
@@ -1873,7 +1933,7 @@ $aws/things/thingName/get/rejected
 \begin_inset space ~
 \end_inset
 
-IoT publica un mensaje de error en este 
+IoT publica un mensaje de error en este
 \lang english
 topic
 \lang spanish
@@ -1881,7 +1941,7 @@ topic
 \end_layout
 
 \begin_layout Standard
-De forma adicional, existen otros 
+De forma adicional, existen otros
 \lang english
 topics
 \lang spanish
@@ -1909,66 +1969,6 @@ IoT dispone de una API RESTful para permitir que las aplicaciones puedan
 clave) en vez de un certificado.
 \end_layout
 
-\begin_layout Standard
-Para interaccionar con la sombra, la aplicación debe conectarse con la siguiente
- URL:
-\end_layout
-
-\begin_layout LyX-Code
-https://
-\color brown
-endpoint
-\color inherit
-/things/
-\color brown
-thingName
-\color inherit
-/shadow
-\end_layout
-
-\begin_layout Standard
-donde 
-\family typewriter
-thingName
-\family default
- es el nombre que identifica al dispositivo, y 
-\family typewriter
-endpoint
-\family default
- tiene la forma mostrada a continuación.
-\end_layout
-
-\begin_layout LyX-Code
-
-\color brown
-identifier
-\color inherit
-.iot.
-\color brown
-region
-\color inherit
-.amazonaws.com
-\end_layout
-
-\begin_layout Standard
-Este endpoint puede ser consultado en la consola de AWS
-\begin_inset space ~
-\end_inset
-
-IoT, como haremos en el capítulo
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:CONECTION"
-
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Section
 Disparadores y reglas
 \end_layout
@@ -1980,12 +1980,12 @@ AWS
 
 IoT permite definir reglas con las que pueden realizarse diversas acciones
  al detectar eventos determinados.
- De este modo, es posible redireccionar mensajes entre distintos 
+ De este modo, es posible redireccionar mensajes entre distintos
 \lang english
 topics
 \lang spanish
  MQTT, detectar la superación de un umbral en un determinado parámetro,
- detectar la aparición de un mensaje concreto en un 
+ detectar la aparición de un mensaje concreto en un
 \lang english
 topic
 \lang spanish
@@ -1993,7 +1993,7 @@ topic
  Las acciones que pueden asociarse a un evento son muy variopintas, pero
  siempre implican una interacción con otros servicios de la nube de Amazon.
  Así, por ejemplo, es posible insertar un nuevo registro en una base de
- datos 
+ datos
 \emph on
 AWS
 \begin_inset space ~
@@ -2001,7 +2001,7 @@ AWS
 
 DynamoDB
 \emph default
-, invocar una función 
+, invocar una función
 \emph on
 AWS
 \begin_inset space ~
@@ -2009,7 +2009,7 @@ AWS
 
 Lambda
 \emph default
- o enviar mensajes específicos a 
+ o enviar mensajes específicos a
 \emph on
 AWS
 \begin_inset space ~
@@ -2020,28 +2020,112 @@ Salesforce
 .
 \end_layout
 
+\begin_layout Section
+Opciones de facturación
+\end_layout
+
 \begin_layout Standard
-En el capítulo
+Amazon Web Services (AWS) ofrece un amplio abanico de servicios de computación
+ en la nube.
+ Para cada servicio, el usuario debe abonar el precio correspondiente a
+ los recursos consumidos.
+ Aunque existen varias modalidades de facturación, todas ellas requieren
+ que el usuario proporcione un método de pago.
+ Sin embargo, existen dos alternativas gratuitas.
+\end_layout
+
+\begin_layout Subsubsection
+AWS Free Tier
+\end_layout
+
+\begin_layout Standard
+Amazon establece un período de prueba gratuito para atraer nuevos clientes
+ y dar a conocer su tecnología.
+ En este período, es posible utilizar la mayoría de los servicios ofrecidos
+ por AWS sin incurrir en gastos.
+ No obstante, es necesario configurar un método de pago para comenzar a
+ usar los servicios.
+ Todos los detalles sobre AWS
 \begin_inset space ~
 \end_inset
 
+Free
+\begin_inset space ~
+\end_inset
 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "chap:DASHBOARD"
+Tier están disponibles en
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://aws.amazon.com/free/
+\end_layout
 
 \end_inset
 
- definiremos algunas reglas con el objetivo de guardar un histórico de valores
- en una base de datos 
-\emph on
+.
+\end_layout
+
+\begin_layout Subsubsection
+AWS Educate
+\end_layout
+
+\begin_layout Standard
 AWS
 \begin_inset space ~
 \end_inset
 
-DynamoDB
-\emph default
+Educate proporciona a profesores y alumnos acceso a muchos de los servicios
+ de AWS.
+ Además, incluye ventajas como programas de capacitación y rutas profesionales
+ en la nube de Amazon.
+ Esta modalidad, que está disponible en 47 países, requiere que el usuario
+ esté vinculado a alguna institución académica y procese una solicitud que
+ será tratada de forma personalizada por Amazon
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Deberá usarse el correo institucional en la solicitud.
+\end_layout
+
+\end_inset
+
 .
+ Los detalles de esta modalidad están disponibles en
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://aws.amazon.com/education/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nosotros hemos optado por esta segunda opción.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Hablar de tarifas después del período gratuito!
+\end_layout
+
+\begin_layout Plain Layout
+Comparar con: google, ibm, microsoft?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
