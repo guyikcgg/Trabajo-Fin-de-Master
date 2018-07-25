@@ -968,8 +968,8 @@ mbed.
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-6.2 Certificate Authorities 
+\begin_layout Subsection
+Certificate Authorities 
 \end_layout
 
 \begin_layout Standard
@@ -1001,8 +1001,8 @@ mbedtls_x509_crt_parse()
  la biblioteca.
 \end_layout
 
-\begin_layout Standard
-6.3 Connection sockets 
+\begin_layout Subsection
+Connection sockets 
 \end_layout
 
 \begin_layout Standard
@@ -1087,12 +1087,12 @@ etc.
 Ejemplo cliente-servidor sencillo (Anexo)
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Proceso de compilación
 \end_layout
 
 \begin_layout Standard
-Compila en Linux sin problema, usando la herramienta Make.
+Compila en GNU/Linux sin problema, usando la herramienta Make.
  También viene con un proyecto en Visual Studio para compilar en Windows.
  Todos los ficheros tienen muchas directivas para el preprocesador, para
  detectar el entorno y compilar correctamente.
@@ -1125,35 +1125,7 @@ Programas de ejemplo ilustrativos.
 \end_layout
 
 \begin_layout Section
-Portando a otras plataformas
-\end_layout
-
-\begin_layout Subsection
-Elementos que se deben portar/se deben considerar
-\end_layout
-
-\begin_layout Standard
-Los ficheros de plataforma!!
-\end_layout
-
-\begin_layout Subsubsection
-Generador de números aleatorios
-\end_layout
-
-\begin_layout Subsubsection
-etc.
-\end_layout
-
-\begin_layout Subsection
-Toolchain
-\end_layout
-
-\begin_layout Standard
-Usar Defines custom y make!
-\end_layout
-
-\begin_layout Section
-Portando mbedTLS a XMC con CMSIS-RTOS
+Portando mbedTLS en XMC con CMSIS-RTOS
 \end_layout
 
 \begin_layout Standard
@@ -1189,8 +1161,16 @@ lwip (version)
 Se usa make por debajo, pero lo genera DAVE automáticamente
 \end_layout
 
+\begin_layout Standard
+J-TAG para programar y depurar (debugger no incluido en el dispositivo)
+\end_layout
+
 \begin_layout Subsection
 Elementos portados
+\end_layout
+
+\begin_layout Standard
+Los ficheros de plataforma!!
 \end_layout
 
 \begin_layout Subsubsection
@@ -1199,11 +1179,18 @@ Generador de números aleatorios
 
 \begin_layout Standard
 Basado en HW.
- Testeado.
+ Comentar las especificaciones del HW (del datasheet).
+ Testeado -> cómo!!??.
 \end_layout
 
 \begin_layout Subsubsection
 lwIP (Actualización de lwIP)
+\end_layout
+
+\begin_layout Standard
+Versión de lwIP en DAVE.
+ Versión requerida.
+ Proceso de actualización (parches con git)
 \end_layout
 
 \begin_layout Standard
@@ -1223,7 +1210,18 @@ bibliotecas con referencias
 \begin_inset Quotes frd
 \end_inset
 
- de DAVE
+ de DAVE: Nos permite tener la biblioteca en una localización diferente
+ a la del proyecto, haciéndose fácil su importación.
+ Configuración de Símbolos?
+\end_layout
+
+\begin_layout Standard
+Certificados: TrustChain, PEM, DER
+\end_layout
+
+\begin_layout Standard
+Ciphersuites - configurados en config.h de mbedTLS para tener una versión
+ mínima que compile y se ejecute.
 \end_layout
 
 \begin_layout Subsection
@@ -1235,6 +1233,38 @@ Se usa heap, ya que no es un sistema crítico.
  Hemos tenido que aumentar el tamaño del heap en el linkerscript
 \end_layout
 
+\begin_layout Standard
+BigNum 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+es el culpable!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Cómo era el linkerscript original? Bancos de memoria, cuánto espacio para
+ qué cosa...
+\end_layout
+
+\begin_layout Plain Layout
+Cómo se queda el linkerscript: cuánto espacio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Tests
 \end_layout
@@ -1244,8 +1274,64 @@ Se consigue crear comunicación cifrada entre un servidor sencillo basado
  en OpenSSL y un programa de ejemplo.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Explicar montaje en el laboratorio: miniGW, router, PC, Inet
+\end_layout
+
+\begin_layout Plain Layout
+Se ha conseguido recibir una respuesta de servidores en Inet, viendo el
+ HTTP 200 OK.
+\end_layout
+
+\begin_layout Plain Layout
+Hablar de la estructura del programa:
+\end_layout
+
+\begin_layout Enumerate
+Inicializar biblioteca?
+\end_layout
+
+\begin_layout Enumerate
+Certificados en variables (fichero .c?)
+\end_layout
+
+\begin_layout Enumerate
+Cargar certificados
+\end_layout
+
+\begin_layout Enumerate
+Iniciar conexión
+\end_layout
+
+\begin_layout Enumerate
+En cada paso se imprime por el puerto serial información útil.
+ Si todo va bien, se imprime la respuesta del servidor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
-Implementación de MQTT
+Implementación de AWS IoT SDK
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Qué hicimos aquí? Copiar la carpeta y ya?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

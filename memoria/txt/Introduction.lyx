@@ -1354,11 +1354,21 @@ En este capítulo, presentamos una introducción al protocolo TLS, en el que
 \begin_layout Standard
 Transport Layer Security (TLS) es un protocolo de red cuyo principal objetivo
  es establecer una comunicación segura entre dos nodos de una red que no
- tiene por qué ser segura (
+ tiene por qué ser segura
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ (
 \emph on
 aunque sí reliable
 \emph default
-).
+)
+\end_layout
+
+\end_inset
+
+.
  Es el sucesor de Secure Sockets Layer, por lo que comparte muchas característic
 as con el mismo.
 \end_layout
@@ -1396,8 +1406,13 @@ es básicas:
 \end_layout
 
 \begin_layout Itemize
-La conexión es privada: Los datos son encriptados con algoritmos de criptografía
- simétrica (como AES, RC4, etc).
+
+\series bold
+La conexión es privada
+\series default
+.
+ Los datos son encriptados con algoritmos de criptografía simétrica (como
+ AES, RC4, etc).
  Las claves usadas en esta encriptación simétrica se generan de forma única
  para cada conexión, a través de una negociación secreta que lleva a cabo
  otro protocolo (como el 
@@ -1405,7 +1420,7 @@ La conexión es privada: Los datos son encriptados con algoritmos de criptograf�
 TLS Handshake Protocol
 \emph default
 ).
- El 
+ Aunque no es común, el 
 \emph on
 TLS Record Protocol
 \emph default
@@ -1413,15 +1428,20 @@ TLS Record Protocol
 \end_layout
 
 \begin_layout Itemize
-La conexión es confiable: El transporte de mensajes incluye una comprobación
- de la integridad del mensaje, que se basa en un código MAC (
+
+\series bold
+La conexión es confiable
+\series default
+.
+ El transporte de mensajes incluye una comprobación de la integridad del
+ mensaje, que se basa en un código MAC (
 \emph on
 Message Authentication Code
 \emph default
 ).
  El cálculo del código MAC se lleva a cabo haciendo uso de funciones de
  hash seguras (como SHA).
- El 
+ Aunque no es común, el 
 \emph on
 TLS Record Protocol
 \emph default
@@ -1451,7 +1471,26 @@ TLS Handshake Protocol
 
 \begin_layout Itemize
 Permite autenticar la identidad de los extremos, usando criptografía asimétrica
- (como RSA, DSA, etc).
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Existe una modalidad que permite usar criptografía simétrica en la autenticación
+, a través de un sistema de claves compartidas (PSK) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rfc4279-TLS+PSK,rfc4285-TLS+PSK-NULL"
+
+\end_inset
+
+.
+ Esto puede ser útil en determinadas circunstancias, por ejemplo, si se
+ requiere autenticación y los recursos computacionales son muy limitados.
+\end_layout
+
+\end_inset
+
+ (como RSA, DSA, etc.).
  Esta autenticación puede ser requerida por la aplicación, o alternativamente,
  hacerse de forma opcional.
 \end_layout
@@ -1463,15 +1502,26 @@ La negociación de una clave secreta es segura: la clave simétrica negociada
 \end_layout
 
 \begin_layout Itemize
-La negociación es confiable: ningún atacante puede modificar la negociación
- sin ser detectado por los nodos.
+La negociación es confiable, de forma que ningún atacante puede modificar
+ la negociación sin ser detectado por los nodos.
 \end_layout
 
 \begin_layout Standard
 TLS se sitúa en la capa de aplicación del modelo OSI.
  Esto quiere decir que son las aplicaciones las que deben incorporar una
- biblioteca que les habilite las capacidades de encriptación y de comunicación
- segura que proporciona este protocolo.
+ biblioteca 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+no hablar de biblioteca: mejor algoritmos o protocolos.
+ La biblioteca es la implementación
+\end_layout
+
+\end_inset
+
+que les habilite las capacidades de encriptación y de comunicación segura
+ que proporciona este protocolo.
  Esto tiene varias implicaciones: Por un lado, los datos viajarán seguros
  desde la aplicación, sin que exista la posibilidad de que estos sean intercepta
 dos en una capa de red inferior.
@@ -1582,8 +1632,49 @@ content types
 Handshake Protocol
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Pequeña descripción
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Se comentará en más detalle más adelante (cross ref)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Alert Protocol
+\end_layout
+
+\begin_layout Standard
+Los mensajes de alerta comunican la severidad de una alerta (
+\emph on
+warning
+\emph default
+ o 
+\emph on
+fatal
+\emph default
+) y su descripción.
+ Un mensaje de alerta fatal resulta en la conclusión inmediata de la conexión.
+ Como con el resto de protocolos, los mensajes de alerta son encriptados
+ y comprimidos sigiuiendo las especificaciones del estado actual de la conexión.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1591,17 +1682,27 @@ Change Cipher Spec Protocol
 \end_layout
 
 \begin_layout Standard
-El Change Cipher Spec Protocol es usado para notificar un cambio en las
- estrategias de cifrado.
+El 
+\lang english
+Change Cipher Spec Protocol
+\lang spanish
+ es usado para notificar un cambio en las estrategias de cifrado.
  El protocolo consiste en un mensaje único, que se comprime y encripta haciendo
  uso de los parámetros de cifrado actuales.
 \end_layout
 
 \begin_layout Standard
-El mensaje ChangeCipherSpec es enviado tanto por el cliente como por el
- servidor para notificar que los mensajes enviados a continuación estarán
- protegidos atendiendo a las nuevas especificaciones de cifrado (CipherSpec)
- y claves establecidas.
+El mensaje 
+\emph on
+ChangeCipherSpec
+\emph default
+ es enviado tanto por el cliente como por el servidor para notificar que
+ los mensajes enviados a continuación estarán protegidos atendiendo a las
+ nuevas especificaciones de cifrado (
+\emph on
+CipherSpec
+\emph default
+) y claves establecidas.
 \end_layout
 
 \begin_layout Standard
@@ -1670,140 +1771,145 @@ The encryption and MAC functions translate a TLSCompressed structure into
 \end_layout
 
 \begin_layout Section
-Los 
+El 
 \emph on
-TLS Handshaking Protocols
+TLS Handshak Protocol
 \end_layout
 
 \begin_layout Standard
-TLS has three subprotocols that are used to allow peers to agree upon security
- parameters for the record layer, to authenticate themselves, to instantiate
- negotiated security parameters, and to report error conditions to each
- other.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TLS cuenta con tres subprotocolos que permiten a los nodos negociar los
+ parámetros de seguridad que serán usados en la Record Layer.
+ Estos protocolos, además, permiten que los nodos puedan autenticarse, 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-The Handshake Protocol is responsible for negotiating a session, which consists
- of the following items: 
+Como se ha visto anteriormente, TLS tiene tres subprotocolos con los que
+ los extremos de la conexión pueden acordar los parámetros de seguridad
+ para la record layer, autenticarse e informarse sobre errores producidos
+ en la conexión.
 \end_layout
 
 \begin_layout Standard
-session identifier An arbitrary byte sequence chosen by the server to identify
- an active or resumable session state.
+El Handshake Protocol es responsable de negociar la sesión, cuyos principales
+ elementos son:
+\end_layout
+
+\begin_layout Description
+session
+\begin_inset space ~
+\end_inset
+
+identifier Una secuencia de bytes arbitrarios elegidos por el servidor para
+ identificar la sesión activa.
+\end_layout
+
+\begin_layout Description
+peer
+\begin_inset space ~
+\end_inset
+
+certificate Certificado del cliente o del servidor, definido por el estándar
+ X509v3.
+ Este elemento puede no estar presente.
+\end_layout
+
+\begin_layout Description
+compression
+\begin_inset space ~
+\end_inset
+
+method El algoritmo utilizado para comprimir datos antes de la encriptación.
+\end_layout
+
+\begin_layout Description
+cipher
+\begin_inset space ~
+\end_inset
+
+spec Especifica la función pseudo-aleatoria (pseudorandom function PRF)
+ que se usará para usar las claves, el algoritmo de encriptación simétrica
+ (como AES, etc.) y el algoritmo de MAC (como HMAC-SHA1).
+ También define los atributos criptográficos como la longitud de MAC, entre
+ otros.
+\end_layout
+
+\begin_layout Description
+master
+\begin_inset space ~
+\end_inset
+
+secret Clave de 48 bytes compartido entre el cliente y el servidor.
 \end_layout
 
 \begin_layout Standard
-peer certificate X509v3 [PKIX] certificate of the peer.
- This element of the state may be null.
+Estos elementos son usados para crear los parámetros de seguridad que la
+ Record Layer usará para proteger los datos de aplicación.
+ Distintas conexiones pueden ser instanciadas usando la misma sesión, gracias
+ a la característica de reanudación del protocolo TLS Handshake Protocol.
+\end_layout
+
+\begin_layout Subsection
+Funcionamiento del Handshake Protocol
 \end_layout
 
 \begin_layout Standard
-compression method The algorithm used to compress data prior to encryption.
+Los parámetros criptográficos del estado de la sesión son establecidos por
+ el TLS Handshake Protocol, el cuál opera sobre la capa TLS record layer.
+ Cuando un cliente y un servidor TLS comienzan a comunicarse por primera
+ vez, negocian una versión del protocolo, eligen los algoritmos criptográficos,
+ se autentican mutuamente (de forma opcional), y usan técnicas de criptografía
+ asimétrica para generar claves compartidas.
 \end_layout
 
 \begin_layout Standard
-cipher spec Specifies the pseudorandom function (PRF) used to generate keying
- material, the bulk data encryption algorithm (such as null, AES, etc.) and
- the MAC algorithm (such as HMAC-SHA1).
- It also defines cryptographic attributes such as the mac_length.
- (See Appendix A.6 for formal definition.)
+El TLS Handshake Protocol implica los siguientes pasos:
 \end_layout
 
-\begin_layout Standard
-master secret 48-byte secret shared between the client and server.
+\begin_layout Itemize
+Intercambio de mensajes 
+\emph on
+hello
+\emph default
+ para negociar los algoritmos, intercambiar valores aleatorios y comprobar
+ si debe reanudarse una sesión anterior.
 \end_layout
 
-\begin_layout Standard
-is resumable A flag indicating whether the session can be used to initiate
- new connections.
+\begin_layout Itemize
+Intercambio de los parámetros criptográficos necesarios para permitir que
+ cliente y servidor puedan compartir una clave 
+\emph on
+pre-maestra
+\emph default
+.
 \end_layout
 
-\begin_layout Standard
-These items are then used to create security parameters for use by the record
- layer when protecting application data.
- Many connections can be instantiated using the same session through the
- resumption feature of the TLS Handshake Protocol.
- 
+\begin_layout Itemize
+Intercambio de los certificados e información criptográfica para permitir
+ que cliente y servidor puedan autenticarse mutuamente.
 \end_layout
 
-\begin_layout Standard
-7.1.
- Change Cipher Spec Protocol
+\begin_layout Itemize
+Generación de una clave maestra (master secret) a partir de la clave pre-maestra
+ e intercambiar valores aleatorios.
 \end_layout
 
-\begin_layout Standard
-The change cipher spec protocol exists to signal transitions in ciphering
- strategies.
- The protocol consists of a single message, which is encrypted and compressed
- under the current (not the pending) connection state.
- 
+\begin_layout Itemize
+Proporcionar parámetros de seguridad para la record layer.
 \end_layout
 
-\begin_layout Standard
-7.2.
- Alert Protocol
-\end_layout
-
-\begin_layout Standard
-One of the content types supported by the TLS record layer is the alert
- type.
- Alert messages convey the severity of the message (warning or fatal) and
- a description of the alert.
- Alert messages with a level of fatal result in the immediate termination
- of the connection.
- In this case, other connections corresponding to the session may continue,
- but the session identifier MUST be invalidated, preventing the failed session
- from being used to establish new connections.
- Like other messages, alert messages are encrypted and compressed, as specified
- by the current connection state.
-\end_layout
-
-\begin_layout Standard
-7.3.
- Handshake Protocol Overview
-\end_layout
-
-\begin_layout Standard
-The cryptographic parameters of the session state are produced by the TLS
- Handshake Protocol, which operates on top of the TLS record layer.
- When a TLS client and server first start communicating, they agree on a
- protocol version, select cryptographic algorithms, optionally authenticate
- each other, and use public-key encryption techniques to generate shared
- secrets.
-\end_layout
-
-\begin_layout Standard
-The TLS Handshake Protocol involves the following steps:
-\end_layout
-
-\begin_layout Standard
-- Exchange hello messages to agree on algorithms, exchange random values,
- and check for session resumption.
-\end_layout
-
-\begin_layout Standard
-- Exchange the necessary cryptographic parameters to allow the client and
- server to agree on a premaster secret.
-\end_layout
-
-\begin_layout Standard
-- Exchange certificates and cryptographic information to allow the client
- and server to authenticate themselves.
-\end_layout
-
-\begin_layout Standard
-- Generate a master secret from the premaster secret and exchanged random
- values.
-\end_layout
-
-\begin_layout Standard
-- Provide security parameters to the record layer.
-\end_layout
-
-\begin_layout Standard
-- Allow the client and server to verify that their peer has calculated the
- same security parameters and that the handshake occurred without tampering
- by an attacker.
+\begin_layout Itemize
+Permitir que cliente y servidor verifiquen que el otro extremo ha calculado
+ los mismos parámetros de seguridad y que por tanto el handshake se ha llevado
+ a cabo sin la manipulación de un atacante.
 \end_layout
 
 \begin_layout Standard
@@ -1818,6 +1924,70 @@ the handshake protocol, which can be summarized as follows: The client sends
  and ServerHello.random.
 \end_layout
 
+\begin_layout Section
+Conclusión/Resumen?
+\end_layout
+
+\begin_layout Standard
+TLS permite conexiones seguras.
+ Las conexiones conllevan:
+\end_layout
+
+\begin_layout Enumerate
+Handshake
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+sirve los siguientes propósitos:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+define parámetros de seguridad a usar en la sesión
+\end_layout
+
+\begin_layout Enumerate
+autentica los nodos
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+esto se lleva a cabo a través de un esquema de criptografía asimétrica (computac
+ionalmente costoso, pero muy seguro)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+gracias al esquema de criptografía asimétrica, el propio handshake se lleva
+ a cabo encriptado
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+App data exchange
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+los datos de la capa superior son transmitidos de forma transparente, usando
+ los parámetros de seguridad establecidos (criptografía simétrica)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Spec change / alerts
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+los nodos pueden cambiar los parámetros de seguridad (algoritmos de cifrado,
+ clave, etc.), pueden intercambiar warnings o pueden cerrar la sesión si
+ se detecta un problema serio de seguridad
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Note Note
 status open
@@ -1843,8 +2013,39 @@ Ciphersuites
 Criptografía asimétrica
 \end_layout
 
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:X509"
+
+\end_inset
+
+Certificados digitales X.509
+\end_layout
+
 \begin_layout Standard
 Certificados: TrustChain, PEM, DER
+\end_layout
+
+\begin_layout Standard
+ITU-T Standard!
+\end_layout
+
+\begin_layout Standard
+Contenido del certificado
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Copiar de Tanenbaum
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -2892,6 +3093,45 @@ Análisis de diferentes bibliotecas TLS
 \end_layout
 
 \begin_layout Standard
+Como se vio en el 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:Seguridad-en-sist-empotrados"
+
+\end_inset
+
+, las dos características principales de un sistema empotrado son sus limitacion
+es de recursos y la ausencia de un sistema operativo real.
+ Estas dos características derivan directamente de la definición de sistema
+ empotrado (sistema que realiza una tarea específica), y condicionan por
+ completo el desarrollo de su software.
+\end_layout
+
+\begin_layout Standard
+En el tema que nos ocupa, las limitaciones en los recursos computacionales
+ nos llevarán a buscar implementaciones del protocolo TLS ligeras, cuya
+ configuración se realice, preferiblemente, en tiempo de compilación.
+ También tendremos que asegurarnos de que las implementaciones analizadas
+ puedan funcionar con los servicios mínimos proporcionados por un RTOS.
+\end_layout
+
+\begin_layout Standard
+Dedicaremos el presente capítulo al análisis de diversas implementaciones
+ TLS, llevado a cabo tras un ejercicio de búsqueda cuyo objetivo ha sido
+ conocer las implementaciones TLS más destacadas en el ámbito de los sistemas
+ empotrados.
+ Realizaremos este análisis mediante la evaluación de una lista de característic
+as, que incluye, pero no se limita a: requisitos computacionales, funcionalidade
+s, portabilidad y coste de la implementación.
+ Elegiremos la biblioteca TLS atendiendo al análisis presentado a continuación,
+ que también contará, de forma adicional, con algunos aspectos económicos
+ y de licencia.
+\color red
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
 
 \color red
 The aim of this section is to research and analyze the available TLS libraries.
@@ -2908,16 +3148,39 @@ onal requirements, functional capabilities, portability, cost implementation,
  functionality as well as economical and legal conditions.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Alternativas a OpenSSL.
  Más ligeras, gracias a que pueden elegirse las ciphersuites en tiempo de
  compilación.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
 Hablar brevemente de mi experiencia con las bibliotecas y chips que he usado
  (características, requisitos en cuanto a recursos, opciones de configuración,
  etc).
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3017,6 +3280,8 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+
+\size small
 \begin_inset Tabular
 <lyxtabular version="3" rows="14" columns="6">
 <features tabularvalignment="middle">
@@ -3031,6 +3296,20 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+rowcolor{head}
+\end_layout
+
+\end_inset
+
+
+\size small
 Implemen-tación
 \end_layout
 
@@ -3040,6 +3319,8 @@ Implemen-tación
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 WolfSSL
 \end_layout
 
@@ -3049,6 +3330,8 @@ WolfSSL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 mbedTLS
 \end_layout
 
@@ -3058,6 +3341,8 @@ mbedTLS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 MatrixSSL
 \end_layout
 
@@ -3067,6 +3352,8 @@ MatrixSSL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 cryptlyb
 \end_layout
 
@@ -3076,6 +3363,8 @@ cryptlyb
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 SharkSSL
 \end_layout
 
@@ -3087,6 +3376,8 @@ SharkSSL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Developed by
 \end_layout
 
@@ -3096,6 +3387,8 @@ Developed by
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 WolfSSL
 \end_layout
 
@@ -3105,6 +3398,8 @@ WolfSSL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 ARM
 \end_layout
 
@@ -3114,6 +3409,8 @@ ARM
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 PeerSec Networks
 \end_layout
 
@@ -3123,6 +3420,8 @@ PeerSec Networks
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Peter Gutmann
 \end_layout
 
@@ -3132,6 +3431,8 @@ Peter Gutmann
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Real Time Logic
 \end_layout
 
@@ -3143,6 +3444,8 @@ Real Time Logic
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 License
 \end_layout
 
@@ -3152,6 +3455,8 @@ License
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 GPLv2 / comercial
 \end_layout
 
@@ -3161,6 +3466,8 @@ GPLv2 / comercial
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Apache Licences 2.0 || GPLv2 / comercial
 \end_layout
 
@@ -3170,6 +3477,20 @@ Apache Licences 2.0 || GPLv2 / comercial
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+
+\size small
 GPLv2 / comercial
 \end_layout
 
@@ -3179,6 +3500,8 @@ GPLv2 / comercial
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Licencia Sleepycat / comercial
 \end_layout
 
@@ -3188,6 +3511,8 @@ Licencia Sleepycat / comercial
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Privativa (distribución comercial)
 \end_layout
 
@@ -3199,6 +3524,8 @@ Privativa (distribución comercial)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Precio para uso comercial
 \end_layout
 
@@ -3208,6 +3535,8 @@ Precio para uso comercial
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 USD $5000
 \end_layout
 
@@ -3217,6 +3546,8 @@ USD $5000
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sin costo (con condiciones)
 \end_layout
 
@@ -3226,6 +3557,20 @@ Sin costo (con condiciones)
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
+
+\size small
 Información no disponible en la web
 \end_layout
 
@@ -3235,6 +3580,8 @@ Información no disponible en la web
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 USD $5000
 \end_layout
 
@@ -3244,6 +3591,8 @@ USD $5000
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Información no disponible en la web
 \end_layout
 
@@ -3255,6 +3604,8 @@ Información no disponible en la web
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 SSL 2.0 (no
 \begin_inset space ~
 \end_inset
@@ -3268,6 +3619,8 @@ seguro)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3277,6 +3630,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3286,6 +3641,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3295,6 +3652,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3304,6 +3663,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No especificado
 \end_layout
 
@@ -3315,6 +3676,8 @@ No especificado
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 SSL 3.0 (no
 \begin_inset space ~
 \end_inset
@@ -3328,6 +3691,8 @@ seguro)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Desactivado por defecto
 \end_layout
 
@@ -3337,6 +3702,8 @@ Desactivado por defecto
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Desactivado por defecto
 \end_layout
 
@@ -3346,6 +3713,8 @@ Desactivado por defecto
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Desactivado por defecto
 \end_layout
 
@@ -3355,6 +3724,8 @@ Desactivado por defecto
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Desactivado por defecto
 \end_layout
 
@@ -3364,6 +3735,8 @@ Desactivado por defecto
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No especificado
 \end_layout
 
@@ -3375,6 +3748,8 @@ No especificado
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 TLS 1.0
 \end_layout
 
@@ -3384,6 +3759,8 @@ TLS 1.0
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3393,6 +3770,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3402,6 +3781,20 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -3411,6 +3804,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3420,6 +3815,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3431,6 +3828,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 TLS 1.1
 \end_layout
 
@@ -3440,6 +3839,8 @@ TLS 1.1
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3449,6 +3850,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3458,6 +3861,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3467,6 +3872,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3476,6 +3883,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3487,6 +3896,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 TLS 1.2
 \end_layout
 
@@ -3496,6 +3907,8 @@ TLS 1.2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3505,6 +3918,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3514,6 +3929,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3523,6 +3940,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3532,6 +3951,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3543,6 +3964,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 DTLS 1.0
 \end_layout
 
@@ -3552,6 +3975,8 @@ DTLS 1.0
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3561,6 +3986,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3570,6 +3997,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3579,6 +4008,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3588,6 +4019,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3599,6 +4032,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 DTLS 1.2
 \end_layout
 
@@ -3608,6 +4043,8 @@ DTLS 1.2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3617,6 +4054,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3626,6 +4065,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3635,6 +4076,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3644,6 +4087,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3655,6 +4100,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 NSA suite B
 \end_layout
 
@@ -3664,6 +4111,8 @@ NSA suite B
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3673,6 +4122,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3682,6 +4133,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3691,6 +4144,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3700,6 +4155,8 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sí
 \end_layout
 
@@ -3712,6 +4169,7 @@ Sí
 
 \begin_layout Plain Layout
 
+\size small
 \color red
 Certificaciones FIPS 140 de nivel 1
 \end_layout
@@ -3722,6 +4180,8 @@ Certificaciones FIPS 140 de nivel 1
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 wolfCrypt FIPS Module: 3.6.0 (#2425)
 \end_layout
 
@@ -3731,6 +4191,8 @@ wolfCrypt FIPS Module: 3.6.0 (#2425)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3740,6 +4202,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 SafeZone FIPS Cryptographic Mudule: 11 (#2389)
 \end_layout
 
@@ -3749,6 +4213,8 @@ SafeZone FIPS Cryptographic Mudule: 11 (#2389)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3758,6 +4224,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 No
 \end_layout
 
@@ -3769,6 +4237,8 @@ No
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Conocido por
 \end_layout
 
@@ -3778,6 +4248,8 @@ Conocido por
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Usado en MySQL
 \end_layout
 
@@ -3787,6 +4259,8 @@ Usado en MySQL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Parte del proyecto mbed de ARM
 \end_layout
 

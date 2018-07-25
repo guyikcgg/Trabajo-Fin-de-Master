@@ -15,7 +15,7 @@
 \usepackage{listings}
 \usepackage{xspace}
 
-\usepackage{xcolor}         
+\usepackage[table]{xcolor}
 \usepackage{sectsty}       
 \definecolor{grey-blue}{rgb}{0.27,0.33,0.415}  
 \definecolor{blue-grey}{rgb}{0.192,0.278,0.4}  
@@ -226,6 +226,11 @@ numbers=left
 \renewcommand{\foreignlanguage}[2]{\emph{\oldforeignlanguage{#1}{#2}}}
 
 \usepackage{ccicons}
+
+\definecolor{good}{rgb}{0.84,0.89,0.74}
+\definecolor{meh}{rgb}{1.00,0.95,0.80}
+\definecolor{bad}{rgb}{0.95,0.81,0.81}
+\definecolor{head}{rgb}{0.19,0.51,0.61}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
