@@ -1633,6 +1633,31 @@ Handshake Protocol
 \end_layout
 
 \begin_layout Standard
+Los parámetros criptográficos que se usarán en la sesión son acordados mediante
+ el Handshake Protocol.
+ Este protocolo implica el intercambio de varios mensajes entre cliente
+ y servidor, en los que se establece un secreto compartido, se lleva a cabo
+ la autenticación de los nodos y finalmente, si se verifica que no se ha
+ producido ningún intento de ataque, se configuran los parámetros del record
+ protocol para que pueda comenzar la transmisión de los datos de aplicación.
+\end_layout
+
+\begin_layout Standard
+Puesto que este protocolo está íntimamente relacionado con 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+el establecimiento de
+\end_layout
+
+\end_inset
+
+ los parámetros criptográficos que se usarán en la sesión, y dado que estos
+ parámetros .
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
