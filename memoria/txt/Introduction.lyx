@@ -1653,8 +1653,10 @@ el establecimiento de
 
 \end_inset
 
- los parámetros criptográficos que se usarán en la sesión, y dado que estos
- parámetros .
+ los parámetros criptográficos que se usarán en la sesión, y dado que el
+ uso de estos parámetros requiere que estén disponibles en la implementación
+ TLS a usar, dedicaremos una sección completa al Handshake Protocol más
+ adelante en este mismo capítulo.
 \end_layout
 
 \begin_layout Standard
@@ -1749,7 +1751,7 @@ Los datos de aplicación son transportados directamnete por la
 Record Layer
 \emph default
 , donde son fragmentados, comprimidos y encriptados atendiendo al estado
- actual de la conexión y a sus parámetros.
+ de la conexión y a sus parámetros.
  De esta manera, los mensajes provenientes de la capa de aplicación son
  tratados de forma transparente por la 
 \emph on
@@ -1759,21 +1761,25 @@ Record Layer
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Greyedout
+status collapsed
+
+\begin_layout Plain Layout
 6.2.
  Record Layer
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 The TLS record layer receives uninterpreted data from higher layers in non-empty
  blocks of arbitrary size.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 6.2.1.
  Fragmentation
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 The record layer fragments information blocks into TLSPlaintext records
  carrying data in chunks of 2^14 bytes or less.
  Client message boundaries are not preserved in the record layer (i.e., multiple
@@ -1782,17 +1788,22 @@ The record layer fragments information blocks into TLSPlaintext records
  records).
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 6.2.3.
  Record Payload Protection
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 The encryption and MAC functions translate a TLSCompressed structure into
  a TLSCiphertext.
  The decryption functions reverse the process.
  The MAC of the record also includes a sequence number so that missing,
  extra, or repeated messages are detectable.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1938,6 +1949,15 @@ Permitir que cliente y servidor verifiquen que el otro extremo ha calculado
 \end_layout
 
 \begin_layout Standard
+La figura_# muestra los pasos llevados a cabo en el establecimiento de la
+ conexión llevada a cabo por el Handshake Protocol.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 the handshake protocol, which can be summarized as follows: The client sends
  a ClientHello message to which the server must respond with a ServerHello
  message, or else a fatal error will occur and the connection will fail.
@@ -1949,13 +1969,27 @@ the handshake protocol, which can be summarized as follows: The client sends
  and ServerHello.random.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Conclusión/Resumen?
 \end_layout
 
 \begin_layout Standard
-TLS permite conexiones seguras.
- Las conexiones conllevan:
+TLS permite conexiones seguras a nivel de la capa de aplicación.
+ El establecimiento de la conexión se lleva a cabo de forma segura, usando
+ criptografía asimétrica para el intercambio de las claves compartidas,
+ que serán usadas en el cifrado de los mensajes de aplicación.
+ Durante el establecimiento de la conexión, conocido como handshake, los
+ nodos pueden autenticarse mutuamente usando certificados digitales X.509.
+\end_layout
+
+\begin_layout Standard
+El siguiente esquema resume las funcionalidades básicas de los distintos
+ subprotocolos de TLS.
 \end_layout
 
 \begin_layout Enumerate
@@ -1963,53 +1997,80 @@ Handshake
 \end_layout
 
 \begin_deeper
-\begin_layout Enumerate
-sirve los siguientes propósitos:
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-define parámetros de seguridad a usar en la sesión
+\begin_layout Standard
+Se encarga del establecimiento de la conexión entre dos nodos (cliente y
+ servidor).
+ El handshake conlleva:
 \end_layout
 
 \begin_layout Enumerate
-autentica los nodos
+Definición de los parámetros de seguridad a usar en la sesión (algoritmos
+ de cifrado, clave, compresión, etc.), que son negociados entre cliente y
+ servidor, de acuerdo con las funciones criptográficas implementadas en
+ cada uno.
+\end_layout
+
+\begin_layout Enumerate
+Autenticación mutua de los nodos cliente y servidor (opcional, puede llevarse
+ a cabo en una única dirección).
+\end_layout
+
+\begin_layout Standard
+El establecimiento de la conexión implica un esquema de criptografía asimétrica,
+ usando claves relativamente largas generadas exclusivamente para la conexión
+ a partir de una fuente de entropía.
+ Este esquema es computacionalmente muy costoso, pero también muy seguro.
+\end_layout
+
+\begin_layout Enumerate
+Gracias al esquema de criptografía asimétrica, el contenido del propio handshake
+ queda oculto para un observador externo, haciendo imposible deducir los
+ parámetros de la sesión.
+\end_layout
+
+\begin_layout Enumerate
+El handshake cuenta con mecanismos de detección de 
+\begin_inset Quotes fld
+\end_inset
+
+tampering
+\begin_inset Quotes frd
+\end_inset
+
+, por lo que un ataque sería detectado.
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
-esto se lleva a cabo a través de un esquema de criptografía asimétrica (computac
-ionalmente costoso, pero muy seguro)
+Intercambio de datos de aplicación
 \end_layout
 
 \begin_deeper
-\begin_layout Enumerate
-gracias al esquema de criptografía asimétrica, el propio handshake se lleva
- a cabo encriptado
+\begin_layout Standard
+Los datos de la capa superior son transmitidos de forma transparente, usando
+ los parámetros de seguridad establecidos.
 \end_layout
 
-\end_deeper
-\end_deeper
 \begin_layout Enumerate
-App data exchange
+Estos datos son cifrados usando criptografía simétrica, haciendo uso de
+ la clave acordada durante el handshake.
 \end_layout
 
-\begin_deeper
 \begin_layout Enumerate
-los datos de la capa superior son transmitidos de forma transparente, usando
- los parámetros de seguridad establecidos (criptografía simétrica)
+Los datos de aplicación son comprimidos (de forma opcional) y fragmentados
+ para optimizar el uso de la red.
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
-Spec change / alerts
+Cambios de especificación y alertas
 \end_layout
 
 \begin_deeper
-\begin_layout Enumerate
-los nodos pueden cambiar los parámetros de seguridad (algoritmos de cifrado,
- clave, etc.), pueden intercambiar warnings o pueden cerrar la sesión si
- se detecta un problema serio de seguridad
+\begin_layout Standard
+Los nodos pueden cambiar los parámetros de seguridad en cualquier momento.
+ Además, pueden intercambiar avisos o incluso cerrar la sesión si se detecta
+ un problema serio de seguridad.
 \end_layout
 
 \end_deeper
@@ -2027,15 +2088,24 @@ QUE QUEDE CLARO LA PARTE INVESTIGADORA AQUI (bibliografia!!)
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Record layer VS Handshake
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Ciphersuites
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Criptografía asimétrica
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -3205,6 +3275,10 @@ Hablar brevemente de mi experiencia con las bibliotecas y chips que he usado
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
