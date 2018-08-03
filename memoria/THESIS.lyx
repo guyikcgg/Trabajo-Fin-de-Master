@@ -231,6 +231,7 @@ numbers=left
 \definecolor{meh}{rgb}{1.00,0.95,0.80}
 \definecolor{bad}{rgb}{0.95,0.81,0.81}
 \definecolor{head}{rgb}{0.19,0.51,0.61}
+%\definecolor{head}{rgb}{0.81,0.78,0.87}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -270,7 +271,7 @@ numbers=left
 \pdf_pdfusetitle true
 \pdf_quoted_options "pdfcreator={LaTeX con el paquete ....},pdfproducer={pdflatex}"
 \papersize a4paper
-\use_geometry false
+\use_geometry true
 \use_package amsmath 2
 \use_package amssymb 2
 \use_package cancel 1
@@ -295,6 +296,10 @@ numbers=left
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 4cm
+\topmargin 4cm
+\rightmargin 3cm
+\bottommargin 4cm
 \secnumdepth 2
 \tocdepth 2
 \paragraph_separation indent
@@ -332,15 +337,6 @@ Document>Settings...
 \begin_layout Standard
 \begin_inset ERT
 status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-renewcommand{
-\backslash
-tablename}{Tabla}
-\end_layout
 
 \begin_layout Plain Layout
 
@@ -388,6 +384,15 @@ subsectionautorefname}{sección}
 
 \begin_layout Plain Layout
 
+
+\backslash
+renewcommand{
+\backslash
+tableautorefname}{tabla}
+\end_layout
+
+\begin_layout Plain Layout
+
 }
 \end_layout
 
@@ -422,6 +427,30 @@ renewcommand{
 subsecref}[1]{
 \backslash
 autoref{subsec:#1}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+tabref}[1]{
+\backslash
+autoref{tab:#1}}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+tablename}{Tabla}%
 \end_layout
 
 \end_inset

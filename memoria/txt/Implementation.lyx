@@ -77,6 +77,12 @@ Implementación
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Descripción-del-sistema"
+
+\end_inset
+
 Descripción del sistema
 \end_layout
 

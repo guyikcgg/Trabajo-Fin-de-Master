@@ -2088,6 +2088,13 @@ QUE QUEDE CLARO LA PARTE INVESTIGADORA AQUI (bibliografia!!)
 \end_layout
 
 \begin_layout Standard
+Este protocolo (TLS) ha inspirado a otros, como DTLS [#ref], que no requiere
+ una comunicacion reliable, sino que puede operar sobre protocolos como
+ UDP.
+ (INTRODUCIR DTLS SI NO SE HA HECHO ANTES).
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -3278,8 +3285,8 @@ Hablar brevemente de mi experiencia con las bibliotecas y chips que he usado
 
 \end_layout
 
-\begin_layout Standard
-
+\begin_layout Section
+Criterios de búsqueda y evaluación
 \end_layout
 
 \begin_layout Standard
@@ -3299,7 +3306,95 @@ d system, and also ensure the compatibility with other software modules.
  of every one of them.
 \end_layout
 
+\begin_layout Itemize
+activas (en continuo desarrollo): requisito de seguridad, por si se encuentran
+ vulnerabilidades
+\end_layout
+
+\begin_layout Itemize
+coded in standard C language 
+\end_layout
+
+\begin_layout Itemize
+having few dependencies
+\end_layout
+
+\begin_layout Itemize
+ciphersuite compatible con AWS IoT (TLS v1.2) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-Security-and-Identity"
+
+\end_inset
+
+ Se recomiendan:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ECDHE-ECDSA-AES128-GCM-SHA256 (recommended)
+\end_layout
+
+\begin_layout Itemize
+ECDHE-RSA-AES128-GCM-SHA256 (recommended)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Las bibliotecas que no cumplan estos mínimos serán automáticamente descartadas.
+ VS No se considerarán bibliotecas que no cumplan estos requisitos.
+\end_layout
+
+\begin_layout Standard
+Se evaluarán positivamente:
+\end_layout
+
+\begin_layout Itemize
+Licencias compatibles con la actividad a realizar
+\end_layout
+
+\begin_layout Itemize
+Precios razonables
+\end_layout
+
+\begin_layout Standard
+The following criteria have been first analyzed, as they are considered
+ of major importance.
+ 
+\end_layout
+
+\begin_layout Standard
+Documentation availability – indispensable to check the available features
+ and their use, as well as comparing the library’s API and suitability 
+\end_layout
+
+\begin_layout Standard
+Support for engineers – very convenient in the case support is needed during
+ the implementation 
+\end_layout
+
+\begin_layout Standard
+Source code availability – helps with the task of finding features, makes
+ possible the evaluation of the implementation; in the case of open repository
+ (like github), the development can be watched closely 
+\end_layout
+
+\begin_layout Standard
+Presence on social networks – can be used an indicator of how alive the
+ company is 
+\end_layout
+
 \begin_layout Section
+Bibliotecas analizadas
+\end_layout
+
+\begin_layout Standard
+En esta sección presentaremos brevemente cada una de las bibliotecas analizadas.
+ En esta introducción revisaremos algunos datos generales o de especial
+ relevancia.
+\end_layout
+
+\begin_layout Subsection
 mbedTLS
 \end_layout
 
@@ -3318,7 +3413,7 @@ Es la biblioteca de seguridad del proyecto mbed de ARM.
  el desarrollo ágil de sistemas empotrados, incluyendo IoT.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 WolfSSL
 \end_layout
 
@@ -3337,7 +3432,7 @@ A version of the wolfCrypt cryptography library has been FIPS 140-2 validated
  (Certificate #2425).
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 MatrixSSL
 \end_layout
 
@@ -3349,7 +3444,7 @@ Initially released in 2004, it supports major TLS protocols and settings.
  available (price not available on the website).
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 cryptlib
 \end_layout
 
@@ -3359,7 +3454,7 @@ Initially released in 1995, it supports major TLS protocols and settings.
 l one – the commercial license costs USD $5000.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 SharkSSL
 \end_layout
 
@@ -3372,15 +3467,32 @@ It is the solution offered by Real Time Logic, a company from the US dedicated
  It is distributed under a private license (price not available on the website).
 \end_layout
 
+\begin_layout Section
+Comparativa de las bibliotecas
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
+
+\backslash
+arrayrulewidth=1.3pt
+\end_layout
+
+\end_inset
+
+
 \size small
+
 \begin_inset Tabular
 <lyxtabular version="3" rows="14" columns="6">
 <features tabularvalignment="middle">
@@ -3391,7 +3503,7 @@ status open
 <column alignment="left" valignment="top" width="2cm">
 <column alignment="left" valignment="top" width="2cm">
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3402,7 +3514,11 @@ status open
 
 
 \backslash
+arrayrulecolor{white}
+\backslash
 rowcolor{head}
+\backslash
+color{white}
 \end_layout
 
 \end_inset
@@ -3414,56 +3530,116 @@ Implemen-tación
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 WolfSSL
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 mbedTLS
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 MatrixSSL
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 cryptlyb
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 SharkSSL
 \end_layout
 
@@ -3477,7 +3653,21 @@ SharkSSL
 \begin_layout Plain Layout
 
 \size small
-Developed by
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
+Desarrollador
 \end_layout
 
 \end_inset
@@ -3488,7 +3678,19 @@ Developed by
 \begin_layout Plain Layout
 
 \size small
-WolfSSL
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+WolfSSL Inc.
 \end_layout
 
 \end_inset
@@ -3499,7 +3701,19 @@ WolfSSL
 \begin_layout Plain Layout
 
 \size small
-ARM
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Arm Limited
 \end_layout
 
 \end_inset
@@ -3510,6 +3724,18 @@ ARM
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 PeerSec Networks
 \end_layout
 
@@ -3521,6 +3747,18 @@ PeerSec Networks
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Peter Gutmann
 \end_layout
 
@@ -3532,6 +3770,18 @@ Peter Gutmann
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Real Time Logic
 \end_layout
 
@@ -3545,6 +3795,20 @@ Real Time Logic
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 License
 \end_layout
 
@@ -3554,6 +3818,18 @@ License
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 
 \size small
 GPLv2 / comercial
@@ -3565,6 +3841,18 @@ GPLv2 / comercial
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 
 \size small
 Apache Licences 2.0 || GPLv2 / comercial
@@ -3583,7 +3871,7 @@ status open
 
 
 \backslash
-cellcolor{meh}
+cellcolor{good}
 \end_layout
 
 \end_inset
@@ -3599,6 +3887,18 @@ GPLv2 / comercial
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 
 \size small
 Licencia Sleepycat / comercial
@@ -3610,6 +3910,18 @@ Licencia Sleepycat / comercial
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 
 \size small
 Privativa (distribución comercial)
@@ -3625,6 +3937,20 @@ Privativa (distribución comercial)
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Precio para uso comercial
 \end_layout
 
@@ -3636,6 +3962,18 @@ Precio para uso comercial
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 USD $5000
 \end_layout
 
@@ -3647,6 +3985,18 @@ USD $5000
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sin costo (con condiciones)
 \end_layout
 
@@ -3681,6 +4031,18 @@ Información no disponible en la web
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 USD $5000
 \end_layout
 
@@ -3690,6 +4052,18 @@ USD $5000
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 
 \size small
 Información no disponible en la web
@@ -3705,6 +4079,20 @@ Información no disponible en la web
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 SSL 2.0 (no
 \begin_inset space ~
 \end_inset
@@ -3720,6 +4108,18 @@ seguro)
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -3731,6 +4131,18 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -3742,6 +4154,18 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -3753,6 +4177,18 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -3764,6 +4200,18 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 No especificado
 \end_layout
 
@@ -3777,6 +4225,20 @@ No especificado
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 SSL 3.0 (no
 \begin_inset space ~
 \end_inset
@@ -3792,6 +4254,18 @@ seguro)
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Desactivado por defecto
 \end_layout
 
@@ -3803,6 +4277,18 @@ Desactivado por defecto
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Desactivado por defecto
 \end_layout
 
@@ -3814,6 +4300,18 @@ Desactivado por defecto
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Desactivado por defecto
 \end_layout
 
@@ -3825,6 +4323,18 @@ Desactivado por defecto
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Desactivado por defecto
 \end_layout
 
@@ -3836,6 +4346,18 @@ Desactivado por defecto
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 No especificado
 \end_layout
 
@@ -3849,6 +4371,20 @@ No especificado
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 TLS 1.0
 \end_layout
 
@@ -3860,6 +4396,18 @@ TLS 1.0
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -3871,6 +4419,279 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
+TLS 1.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
+TLS 1.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -3905,6 +4726,41 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+Sí
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -3916,6 +4772,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -3929,142 +4797,20 @@ Sí
 \begin_layout Plain Layout
 
 \size small
-TLS 1.1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
-\size small
-Sí
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
 \end_layout
 
 \end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
 
-\begin_layout Plain Layout
-
-\size small
-Sí
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-Sí
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-Sí
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-Sí
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-TLS 1.2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-Sí
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-Sí
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-Sí
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-Sí
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-Sí
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
 DTLS 1.0
 \end_layout
 
@@ -4076,6 +4822,18 @@ DTLS 1.0
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4087,6 +4845,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4098,6 +4868,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4109,6 +4891,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -4120,6 +4914,18 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -4133,6 +4939,20 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 DTLS 1.2
 \end_layout
 
@@ -4144,6 +4964,18 @@ DTLS 1.2
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4155,6 +4987,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4166,6 +5010,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4177,6 +5033,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -4188,6 +5056,18 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -4201,6 +5081,20 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 NSA suite B
 \end_layout
 
@@ -4212,6 +5106,18 @@ NSA suite B
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4223,6 +5129,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4234,6 +5152,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4245,6 +5175,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4256,6 +5198,18 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -4269,6 +5223,21 @@ Sí
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
+
 \color red
 Certificaciones FIPS 140 de nivel 1
 \end_layout
@@ -4281,6 +5250,18 @@ Certificaciones FIPS 140 de nivel 1
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 wolfCrypt FIPS Module: 3.6.0 (#2425)
 \end_layout
 
@@ -4292,6 +5273,18 @@ wolfCrypt FIPS Module: 3.6.0 (#2425)
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -4303,6 +5296,18 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 SafeZone FIPS Cryptographic Mudule: 11 (#2389)
 \end_layout
 
@@ -4314,6 +5319,18 @@ SafeZone FIPS Cryptographic Mudule: 11 (#2389)
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -4325,6 +5342,18 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 No
 \end_layout
 
@@ -4338,6 +5367,20 @@ No
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Conocido por
 \end_layout
 
@@ -4349,6 +5392,18 @@ Conocido por
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Usado en MySQL
 \end_layout
 
@@ -4360,6 +5415,18 @@ Usado en MySQL
 \begin_layout Plain Layout
 
 \size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Parte del proyecto mbed de ARM
 \end_layout
 
@@ -4370,6 +5437,20 @@ Parte del proyecto mbed de ARM
 
 \begin_layout Plain Layout
 
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+No aplica
 \end_layout
 
 \end_inset
@@ -4379,6 +5460,20 @@ Parte del proyecto mbed de ARM
 
 \begin_layout Plain Layout
 
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+No aplica
 \end_layout
 
 \end_inset
@@ -4388,6 +5483,20 @@ Parte del proyecto mbed de ARM
 
 \begin_layout Plain Layout
 
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+No aplica
 \end_layout
 
 \end_inset
@@ -4404,7 +5513,8 @@ Parte del proyecto mbed de ARM
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+Comparación de las bibliotecas analizadas: datos generales, licencia y compatibi
+lidad con los distintos estándares TLS
 \end_layout
 
 \end_inset
@@ -4460,61 +5570,54 @@ Suitable size for embedded systems
 ARM compatible
 \end_layout
 
-\begin_layout Section
-Como de bien se ajusta al sistema objetivo (suitability)
+\begin_layout Subsection
+Compatibilidad con el sistema objetivo
 \end_layout
 
 \begin_layout Standard
-Target system is based on ARM Cortex M4 microprocessor, using CMSIS-RTOS
- as Operating System and lwIP for TCP and UDP over IP protocol stack.
- Implementing MQTT for the application layer is also required for machine
- to machine communication as a subsequent task.
- These aspects have been strongly considered in order to give relevant informati
-on in the task of choosing the TLS library that better fits into the system.
- Not only the compatibility has been regarded, but also the availability
- of resources and examples, which can highly ease and speed up the developing
- task.
+Como desarrollaremos en el 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:Descripción-del-sistema"
+
+\end_inset
+
+, el sistema objetivo está basado en un procesador de la familia ARM Cortex
+ M4, en el que se ejecuta CMSIS-RTOS como sistema operativo de tiempo real
+ y se usa light-weight IP (lwIP) para implementar la pila de protocolos
+ TCP/IP y UDP/IP.
 \end_layout
 
 \begin_layout Standard
-The following criteria have been first analyzed, as they are considered
- of major importance.
- 
+Estos aspectos deben considerarse cuidadosamente a la hora de elegir la
+ biblioteca TLS a implementar.
+ En esta sección trataremos los aspectos de compatibilidad con el sistema
+ objetivo, así como la disponibilidad de documentación y de otros recursos.
 \end_layout
 
 \begin_layout Standard
-Documentation availability – indispensable to check the available features
- and their use, as well as comparing the library’s API and suitability 
+Además de los criterios mencionados al comienzo de este capítulo, evaluaremos:
 \end_layout
 
-\begin_layout Standard
-Support for engineers – very convenient in the case support is needed during
- the implementation 
-\end_layout
-
-\begin_layout Standard
-Source code availability – helps with the task of finding features, makes
- possible the evaluation of the implementation; in the case of open repository
- (like github), the development can be watched closely 
-\end_layout
-
-\begin_layout Standard
-Presence on social networks – can be used an indicator of how alive the
- company is 
-\end_layout
-
-\begin_layout Standard
+\begin_layout Itemize
 Support for CMSIS-RTOS – reduce development time 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Support for lwIP – reduce development time MQTT facilities – reduce development
- time The following table summarizes the information obtained from official
- sources.
+ time
 \end_layout
 
-\begin_layout Section
-Elección de la biblioteca
+\begin_layout Standard
+La 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:Comparación-doc+compatib"
+
+\end_inset
+
+ muestra un resumen de la información obtenida a partir de fuentes oficiales
+ de cada una de las implementaciones al respecto.
 \end_layout
 
 \begin_layout Standard
@@ -4524,9 +5627,22 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+arrayrulewidth=1.3pt
+\end_layout
+
+\end_inset
+
+
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="6">
-<features tabularvalignment="middle">
+<features islongtable="true" headBottomDL="true" longtabularalignment="center">
 <column alignment="left" valignment="top" width="2cm">
 <column alignment="left" valignment="top" width="2cm">
 <column alignment="left" valignment="top" width="2cm">
@@ -4534,55 +5650,143 @@ status open
 <column alignment="left" valignment="top" width="2cm">
 <column alignment="left" valignment="top" width="2cm">
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+arrayrulecolor{white}
+\backslash
+rowcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
+
+\size small
 Implemen-tación
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 WolfSSL
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 mbedTLS
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 MatrixSSL
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 cryptlyb
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 SharkSSL
 \end_layout
 
@@ -4594,6 +5798,22 @@ SharkSSL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Disponibilidad de documentación
 \end_layout
 
@@ -4603,9 +5823,23 @@ Disponibilidad de documentación
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Disponible de forma abierta en la web oficial.
  Exhaustiva y bien organizada.
- Numerosos recursos en línea (comunidad activa)
+ Numerosos recursos en línea
 \end_layout
 
 \end_inset
@@ -4614,9 +5848,23 @@ Disponible de forma abierta en la web oficial.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Disponible de forma abierta en la web oficial.
  Exhaustiva y bien organizada.
- Numerosos recursos en línea (comunidad activa)
+ Numerosos recursos en línea
 \end_layout
 
 \end_inset
@@ -4625,9 +5873,23 @@ Disponible de forma abierta en la web oficial.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Disponible de forma abierta en forma de PDF, que pueden descargarse del
- repositorio oficial.
- Recursos en línea limitados (comunidad no muy activa)
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Disponible de forma abierta en forma de PDF, descargable desde el repositorio
+ oficial.
+ Recursos en línea limitados
 \end_layout
 
 \end_inset
@@ -4636,8 +5898,22 @@ Disponible de forma abierta en forma de PDF, que pueden descargarse del
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Disponible de forma abierta en forma de manual PDF.
- Recursos en línea limitados (comunidad no muy activa)
+ Recursos en línea limitados
 \end_layout
 
 \end_inset
@@ -4646,9 +5922,174 @@ Disponible de forma abierta en forma de manual PDF.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 No disponible de forma abierta (es necesario registrarse para probar ejemplos).
- Sin recursos en línea, (software privativo sin comunidad, es necesario
- hablar directamente con los desarrolladores para realizar cualquier consulta).
+ Sin recursos en línea
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
+Comunidad 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+
+\size default
+Muy activa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+
+\size default
+Muy activa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
+
+\size default
+Poco activa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
+
+\size default
+Poco activa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
+
+\size default
+Inexistente
 \end_layout
 
 \end_inset
@@ -4659,6 +6100,22 @@ No disponible de forma abierta (es necesario registrarse para probar ejemplos).
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Soporte para ingenieros
 \end_layout
 
@@ -4668,7 +6125,21 @@ Soporte para ingenieros
 \begin_inset Text
 
 \begin_layout Plain Layout
-Foro con preguntas y respuestas casi a diario.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+Foro para Q&A.
  Soporte por e-mail.
  GitHub Issues
 \end_layout
@@ -4679,7 +6150,21 @@ Foro con preguntas y respuestas casi a diario.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Foro con preguntas y respuestas casi a diario.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+Foro para Q&A.
  Soporte por e-mail.
  GitHub Issues
 \end_layout
@@ -4690,6 +6175,20 @@ Foro con preguntas y respuestas casi a diario.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Soporte por e-mail.
  GitHub Issues
 \end_layout
@@ -4700,6 +6199,20 @@ Soporte por e-mail.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Soporte por e-mail.
 \end_layout
 
@@ -4709,6 +6222,20 @@ Soporte por e-mail.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Soporte por e-mail.
 \end_layout
 
@@ -4720,6 +6247,22 @@ Soporte por e-mail.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Disponibilidad del código fuente
 \end_layout
 
@@ -4729,13 +6272,26 @@ Disponibilidad del código fuente
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Disponible en GitHub (
 \color red
 73+
 \color inherit
  versiones estables).
- Disponible el código de la última versión estable en la web oficial (tras
- rellenar un formulario).
+ Disponible el código de la última versión estable en la web oficial
 \end_layout
 
 \end_inset
@@ -4744,12 +6300,26 @@ Disponible en GitHub (
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Disponible en GitHub (
 \color red
 99+
 \color inherit
  versiones estables).
- Disponibles varias versiones estables en la web oficial (descarga directa).
+ Disponibles varias versiones estables en la web oficial
 \end_layout
 
 \end_inset
@@ -4758,12 +6328,26 @@ Disponible en GitHub (
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Disponible en GitHub (
 \color red
 2+
 \color inherit
  versiones estables).
- Disponibles 46+ versiones estables en la web oficial (descarga directa).
+ Disponibles 46+ versiones estables en la web oficial
 \end_layout
 
 \end_inset
@@ -4772,7 +6356,21 @@ Disponible en GitHub (
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bajo demanda (tras rellenar un formulario).
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
+Bajo demanda, tras rellenar un formulario
 \end_layout
 
 \end_inset
@@ -4781,21 +6379,47 @@ Bajo demanda (tras rellenar un formulario).
 \begin_inset Text
 
 \begin_layout Plain Layout
-No disponible antes del 
-\color red
-pago
-\color inherit
- de la licencia.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
+No disponible antes de la adquisición de la licencia
 \end_layout
 
 \end_inset
 </cell>
 </row>
-<row>
+<row newpage="true">
 <cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Presencia en las redes sociales
 \end_layout
 
@@ -4805,6 +6429,20 @@ Presencia en las redes sociales
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Web clara, GitHub, Twitter, Facebook, Linkedin
 \end_layout
 
@@ -4814,6 +6452,20 @@ Web clara, GitHub, Twitter, Facebook, Linkedin
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Web clara, GitHub, Twitter, Facebook, Linkedin
 \end_layout
 
@@ -4823,6 +6475,20 @@ Web clara, GitHub, Twitter, Facebook, Linkedin
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Web plana, GitHub, blog
 \end_layout
 
@@ -4832,6 +6498,20 @@ Web plana, GitHub, blog
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
 Web poco clara, blog
 \end_layout
 
@@ -4841,6 +6521,20 @@ Web poco clara, blog
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{meh}
+\end_layout
+
+\end_inset
+
 Web clara
 \end_layout
 
@@ -4852,6 +6546,22 @@ Web clara
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Soporte para CMSIS-RTOS
 \end_layout
 
@@ -4861,7 +6571,21 @@ Soporte para CMSIS-RTOS
 \begin_inset Text
 
 \begin_layout Plain Layout
-Sí, característica incluida.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+Sí, característica incluida
 \end_layout
 
 \end_inset
@@ -4870,7 +6594,21 @@ Sí, característica incluida.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Sí, característica incluida.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+Sí, característica incluida
 \end_layout
 
 \end_inset
@@ -4879,7 +6617,21 @@ Sí, característica incluida.
 \begin_inset Text
 
 \begin_layout Plain Layout
-No se mencina en la web.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
+No se mencina en la web
 \end_layout
 
 \end_inset
@@ -4888,6 +6640,20 @@ No se mencina en la web.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, característica incluida.
 \end_layout
 
@@ -4897,74 +6663,71 @@ Sí, característica incluida.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Con soporte para MDK-ARM y mbed.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
+Con soporte para MDK-ARM y mbed
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Soporte para lwIP
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Sí, característica incluida.
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Sí, característica incluida.
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-No se mencina en la web.
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-No se mencina en la web ni en la documentación.
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Sí.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
 <cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Facilidad para MQTT
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+Sí, característica incluida
 \end_layout
 
 \end_inset
@@ -4973,8 +6736,21 @@ Facilidad para MQTT
 \begin_inset Text
 
 \begin_layout Plain Layout
-Sí, WolfMQTT es desarrollado por la misma empresa, bajo la misma licencia
- y con condiciones similares.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+Sí, característica incluida
 \end_layout
 
 \end_inset
@@ -4983,8 +6759,21 @@ Sí, WolfMQTT es desarrollado por la misma empresa, bajo la misma licencia
 \begin_inset Text
 
 \begin_layout Plain Layout
-Sí, mbed MQTT está en desarrollo, basado en Paho, que debería funcionar
- sin gran esfuerzo.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
+\end_layout
+
+\end_inset
+
+No se mencina en la web
 \end_layout
 
 \end_inset
@@ -4993,16 +6782,21 @@ Sí, mbed MQTT está en desarrollo, basado en Paho, que debería funcionar
 \begin_inset Text
 
 \begin_layout Plain Layout
-No se menciona en la web.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{bad}
 \end_layout
 
 \end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
 
-\begin_layout Plain Layout
-No se mencina en la web ni en la documentación.
+No se mencina en la web ni en la documentación
 \end_layout
 
 \end_inset
@@ -5011,8 +6805,21 @@ No se mencina en la web ni en la documentación.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Sí, SharkMQTT es desarrollado por la misma empresa, bajo la misma licencia
- y con condiciones similares.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+Sí
 \end_layout
 
 \end_inset
@@ -5029,7 +6836,14 @@ Sí, SharkMQTT es desarrollado por la misma empresa, bajo la misma licencia
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Comparación-doc+compatib"
 
+\end_inset
+
+Comparación de las bibliotecas analizadas: disponibilidad de documentación
+ y soporte y compatibilidad con el sistema objetivo
 \end_layout
 
 \end_inset
@@ -5040,6 +6854,10 @@ Sí, SharkMQTT es desarrollado por la misma empresa, bajo la misma licencia
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Elección de la biblioteca
 \end_layout
 
 \begin_layout Standard
@@ -5057,6 +6875,19 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+arrayrulewidth=1.3pt
+\end_layout
+
+\end_inset
+
+
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="3">
 <features tabularvalignment="middle">
@@ -5064,28 +6895,74 @@ status open
 <column alignment="left" valignment="top" width="4cm">
 <column alignment="left" valignment="top" width="4cm">
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+arrayrulecolor{white}
+\backslash
+rowcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
+
+\size small
 Implementación
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 WolfSSL
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 mbedTLS
 \end_layout
 
@@ -5097,6 +6974,22 @@ mbedTLS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Compilación en MS Windows
 \end_layout
 
@@ -5106,6 +6999,20 @@ Compilación en MS Windows
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, con el proyecto de Visual Studio incluido
 \end_layout
 
@@ -5115,6 +7022,20 @@ Sí, con el proyecto de Visual Studio incluido
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, con el proyecto de Visual Studio incluido y con la IDE Eclipse
 \end_layout
 
@@ -5126,6 +7047,22 @@ Sí, con el proyecto de Visual Studio incluido y con la IDE Eclipse
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Compilación en GNU/Linux
 \end_layout
 
@@ -5135,6 +7072,20 @@ Compilación en GNU/Linux
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, usando Make
 \end_layout
 
@@ -5144,6 +7095,20 @@ Sí, usando Make
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, usando Make y CMake
 \end_layout
 
@@ -5155,6 +7120,22 @@ Sí, usando Make y CMake
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Configuración de la biblioteca
 \end_layout
 
@@ -5164,6 +7145,20 @@ Configuración de la biblioteca
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, en la forma de un fichero de configuración que modifica el comportamiento
  de Make
 \end_layout
@@ -5174,6 +7169,20 @@ Sí, en la forma de un fichero de configuración que modifica el comportamiento
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, modificando el fichero config.h
 \end_layout
 
@@ -5185,6 +7194,22 @@ Sí, modificando el fichero config.h
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Soporte para otros sistemas operativos de tiempo real (RTOS)
 \end_layout
 
@@ -5194,6 +7219,20 @@ Soporte para otros sistemas operativos de tiempo real (RTOS)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, incluyendo Linux embebido, FreeRTOS, TinyOS y 
 \begin_inset Formula $\mu$
 \end_inset
@@ -5207,7 +7246,21 @@ C/OS.
 \begin_inset Text
 
 \begin_layout Plain Layout
-Sí, incluyendo FreeRTOS,, SEGGER, embedOS y eCOS.
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
+Sí, incluyendo FreeRTOS, SEGGER, embedOS y eCOS.
 \end_layout
 
 \end_inset
@@ -5218,6 +7271,22 @@ Sí, incluyendo FreeRTOS,, SEGGER, embedOS y eCOS.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Tests funcionales y comprobaciones de integridad
 \end_layout
 
@@ -5227,6 +7296,20 @@ Tests funcionales y comprobaciones de integridad
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, conjunto de tests incluido
 \end_layout
 
@@ -5236,6 +7319,20 @@ Sí, conjunto de tests incluido
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí, conjunto de tests incluido
 \end_layout
 
@@ -5247,6 +7344,22 @@ Sí, conjunto de tests incluido
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Compatible con OpenSSL
 \end_layout
 
@@ -5256,6 +7369,20 @@ Compatible con OpenSSL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -5265,6 +7392,20 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -5276,6 +7417,22 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{head}
+\backslash
+color{white}
+\end_layout
+
+\end_inset
+
 Disponibilidad de una versión con funcionalidades mínimas
 \end_layout
 
@@ -5285,6 +7442,20 @@ Disponibilidad de una versión con funcionalidades mínimas
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -5294,6 +7465,20 @@ Sí
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{good}
+\end_layout
+
+\end_inset
+
 Sí
 \end_layout
 
@@ -5311,7 +7496,8 @@ Sí
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+Comparación de WolfSSL y mbedTLS: características de compilación y configuración
+ de la biblioteca
 \end_layout
 
 \end_inset
@@ -5343,6 +7529,23 @@ A series of different TLS implementations have been analyzed and compared.
 
 \begin_layout Standard
 Tras valorar estas opciones, decidimos mbedTLS por los siguientes motivos:
+ 
+\end_layout
+
+\begin_layout Itemize
+#
+\end_layout
+
+\begin_layout Itemize
+#
+\end_layout
+
+\begin_layout Itemize
+#
+\end_layout
+
+\begin_layout Itemize
+#
 \end_layout
 
 \end_body
