@@ -73,11 +73,7 @@
 \begin_body
 
 \begin_layout Chapter
-
-\color red
-Introducción
-\color inherit
- / Presentación del proyecto
+Presentación del proyecto
 \end_layout
 
 \begin_layout Section
@@ -166,7 +162,7 @@ El proyecto ha sido puesto bajo control de versiones, usando Git.
  de crear ramas para gestionar las distintas características del proyecto.
  En este trabajo, para cada nueva línea de investigación se ha creado una
  rama, uniéndose los beneficios obtenidos a las ramas comunes.
- En concreto, el sistema de ramificaciones está basado en
+ En concreto, el sistema de ramificaciones está basado en 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Successful-Git"
@@ -420,13 +416,9 @@ De forma similar,
  Esto indica que la obtención del texto plano a partir del criptograma pasa
  por aplicar la función de desencriptación al mismo, tomando como segundo
  parámetro la clave de desencriptación.
- La relación entre estas operaciones queda ilustrada en la figura
-\begin_inset space ~
-\end_inset
-
-
+ La relación entre estas operaciones queda ilustrada en la 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "fig:Relacion-plaintext-ciphertext"
 
 \end_inset
@@ -2341,13 +2333,9 @@ IoT.
 \end_layout
 
 \begin_layout Standard
-La figura
-\begin_inset space ~
-\end_inset
-
-
+La 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "fig:Componentes-AWS"
 
 \end_inset
@@ -2817,13 +2805,9 @@ Flujo de mensajes en la iinteracción entre el dispositivo y una aplicación
 \end_layout
 
 \begin_layout Standard
-La figura
-\begin_inset space ~
-\end_inset
-
-
+La 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "fig:Flujo-de-mensajes-sombra"
 
 \end_inset
@@ -2856,6 +2840,10 @@ reference "alg:Ejemplo-de-sombra"
 
 \end_inset
 
+
+\color red
+##
+\color inherit
  muestra un ejemplo sencillo de sombra de dispositivo, en el que la aplicación
  requiere un cambio de color en el LED del dispositivo.
 \end_layout

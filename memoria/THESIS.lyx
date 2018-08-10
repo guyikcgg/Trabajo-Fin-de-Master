@@ -393,6 +393,15 @@ tableautorefname}{tabla}
 
 \begin_layout Plain Layout
 
+
+\backslash
+renewcommand{
+\backslash
+figureautorefname}{figura}
+\end_layout
+
+\begin_layout Plain Layout
+
 }
 \end_layout
 
@@ -442,6 +451,17 @@ autoref{tab:#1}}
 
 \begin_layout Plain Layout
 
+
+\backslash
+renewcommand{
+\backslash
+figref}[1]{
+\backslash
+autoref{fig:#1}}
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -450,7 +470,7 @@ autoref{tab:#1}}
 \backslash
 renewcommand{
 \backslash
-tablename}{Tabla}%
+tablename}{Tabla}
 \end_layout
 
 \end_inset
