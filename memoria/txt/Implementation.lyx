@@ -83,11 +83,11 @@ name "chap:Descripción-del-sistema"
 
 \end_inset
 
-Descripción del sistema
+Presentación del sistema
 \end_layout
 
 \begin_layout Section
-Arquitectura (objetivo perseguido)
+Objetivo perseguido y arquitectura propuesta
 \end_layout
 
 \begin_layout Standard
@@ -111,15 +111,14 @@ Se pretende conectar una red de sensores a un gateway, y de ahí a AWS a
 tenemos red de sensores, gw
 \end_layout
 
+\begin_layout Section
+Componentes del sistema
+\end_layout
+
 \begin_layout Subsection
-\begin_inset Quotes fld
-\end_inset
-
-Sistema objetivo
-\begin_inset Quotes frd
-\end_inset
-
-
+Pasarela 
+\emph on
+miniGW
 \end_layout
 
 \begin_layout Standard
@@ -291,7 +290,13 @@ Arquitectura software.
 \end_layout
 
 \begin_layout Subsection
-La nube de Amazon IoT
+La nube de Amazon 
+\emph on
+AWS
+\begin_inset space ~
+\end_inset
+
+IoT
 \end_layout
 
 \begin_layout Standard
@@ -354,11 +359,17 @@ IoT.
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Análisis-implementacions-TLS"
+
+\end_inset
+
 Análisis de diferentes bibliotecas TLS
 \end_layout
 
 \begin_layout Standard
-Como se vio en el 
+Como vimos en el 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:Seguridad-en-sist-empotrados"
@@ -453,43 +464,60 @@ Criterios de búsqueda y evaluación
 \end_layout
 
 \begin_layout Standard
-An initial research of the available TLS libraries has been performed.
- WolfSSL and mbed TLS have been first considered, and they have been analyzed
- more deeply.
- Along with these two options, a wide search for alternatives has been performed
- using several search engines, including Google, Wikipedia, Github and Stackexch
-ange.
- The search criteria only included TLS implementations that are actually
- suitable for embedded systems.
- This criteria only involves libraries coded in standard C language and
- having few dependencies.
- These features are indispensable requisites for the target microcontroller-base
-d system, and also ensure the compatibility with other software modules.
- The following is a list of the found candidates, with a short description
- of every one of them.
+La búsqueda de bibliotecas TLS se ha llevado a cabo usando diversas herramientas
+ de búsqueda, entre las que se inclyen el motor genérico de Google, artículos
+ de Wikipedia 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wiki:tls-implementations"
+
+\end_inset
+
+, los repositorios de Github y el foro de desarrolladores Stackexchange.
+ Esta búsqueda, en cambio, ha prescindido de bases de datos académicas,
+ ya que se solo hemos considerado implementaciones comerciales o que se
+ encuentren en producción.
+\end_layout
+
+\begin_layout Standard
+En nuestra búsqueda, solo hemos considerado aquellas implementaciones de
+ TLS que se ajustaran a sistemas embebidos.
+ Este criterio supone que las bibliotecas deben estar programadas en lenguaje
+ C estándar, y que deben presentar el mínimo número de dependencias.
+ Estas características son muy deseables a la hora de integrar una biblioteca
+ en un sistema embebido.
+ Idealmente, la biblioteca seleccionada presentará ciertas facilidades para
+ la integración con el sistema objetivo, como la compilación nativa en CMSIS-RTO
+S o compatibilidad con la pila de lwIP.
+\end_layout
+
+\begin_layout Standard
+Además de la compatibilidad con el sistema, 
 \end_layout
 
 \begin_layout Itemize
 activas (en continuo desarrollo): requisito de seguridad, por si se encuentran
- vulnerabilidades
+ vulnerabilidades - presencia en redes sociales / foros y actividad de la
+ comunidad.
 \end_layout
 
 \begin_layout Itemize
-coded in standard C language 
-\end_layout
+ciphersuite compatible con AWS
+\begin_inset space ~
+\end_inset
 
-\begin_layout Itemize
-having few dependencies
-\end_layout
+IoT (TLS
+\begin_inset space ~
+\end_inset
 
-\begin_layout Itemize
-ciphersuite compatible con AWS IoT (TLS v1.2) 
+1.2) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "AWS-IoT-Security-and-Identity"
 
 \end_inset
 
+.
  Se recomiendan:
 \end_layout
 
@@ -504,12 +532,43 @@ ECDHE-RSA-AES128-GCM-SHA256 (recommended)
 
 \end_deeper
 \begin_layout Standard
-Las bibliotecas que no cumplan estos mínimos serán automáticamente descartadas.
- VS No se considerarán bibliotecas que no cumplan estos requisitos.
+Los criterios de búsqueda establecidos nos hacen descartar la conocida bibliotec
+a de seguridad OpenSSL.
+ A pesar de que esta biblioteca cuenta con una larga tradición y sigue siendo
+ un marco de referencia para muchas de las aplicaciones que implementan
+ TLS, OpenSSL no fue diseñada para sistemas embebidos, por lo que su tamaño
+ excede las limitaciones de nuestro sistema.
+ Además, presenta dependencias que serían difícilmente salvables, y sus
+ desarrolladores no recomiendan compilar OpenSSL en un entorno para el que
+ no está preparado 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OpenSSL-wiki-config"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Se evaluarán positivamente:
+Además de los requisitos mencionados anteriormente, se evaluarán positivamente
+ las siguientes características:
+\end_layout
+
+\begin_layout Itemize
+Documentation availability – indispensable to check the available features
+ and their use, as well as comparing the library’s API and suitability 
+\end_layout
+
+\begin_layout Itemize
+Support for engineers – very convenient in the case support is needed during
+ the implementation 
+\end_layout
+
+\begin_layout Itemize
+Source code availability – helps with the task of finding features, makes
+ possible the evaluation of the implementation; in the case of open repository
+ (like github), the development can be watched closely 
 \end_layout
 
 \begin_layout Itemize
@@ -520,44 +579,16 @@ Licencias compatibles con la actividad a realizar
 Precios razonables
 \end_layout
 
-\begin_layout Standard
-The following criteria have been first analyzed, as they are considered
- of major importance.
- 
-\end_layout
-
-\begin_layout Standard
-Documentation availability – indispensable to check the available features
- and their use, as well as comparing the library’s API and suitability 
-\end_layout
-
-\begin_layout Standard
-Support for engineers – very convenient in the case support is needed during
- the implementation 
-\end_layout
-
-\begin_layout Standard
-Source code availability – helps with the task of finding features, makes
- possible the evaluation of the implementation; in the case of open repository
- (like github), the development can be watched closely 
-\end_layout
-
-\begin_layout Standard
-Presence on social networks – can be used an indicator of how alive the
- company is 
-\end_layout
-
 \begin_layout Section
 Bibliotecas analizadas
 \end_layout
 
 \begin_layout Standard
-En esta sección presentaremos brevemente cada una de las bibliotecas analizadas.
- En esta introducción revisaremos algunos datos generales o de especial
- relevancia.
+En esta sección presentaremos brevemente cada una de las bibliotecas analizadas,
+ revisando algunos datos generales o de especial relevancia.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 mbedTLS
 \end_layout
 
@@ -579,7 +610,7 @@ Además, mbedTLS es la biblioteca de seguridad del proyecto mbed de ARM.
  de forma segura.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 WolfSSL
 \end_layout
 
@@ -607,7 +638,7 @@ certificación FIPS
  #REF# (Certificate #2425).
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 MatrixSSL
 \end_layout
 
@@ -621,7 +652,7 @@ Lanzada en 2004, da soporte a los protocolos y configuraciones de TLS más
  existe una licencia comercial (precio no disponible en la web oficial).
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 cryptlib
 \end_layout
 
@@ -633,7 +664,7 @@ Lanzada inicialmente en 1995, da soporte a los protocolos y configuraciones
  #REF#
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 SharkSSL
 \end_layout
 
@@ -650,7 +681,7 @@ e dedicada a IoT.
 \end_layout
 
 \begin_layout Section
-Comparativa de las bibliotecas
+Análisis comparativo
 \end_layout
 
 \begin_layout Standard
@@ -2781,7 +2812,7 @@ Compatibilidad con el sistema objetivo
 \end_layout
 
 \begin_layout Standard
-Como desarrollaremos en el 
+Como desarrollamos en el 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:Descripción-del-sistema"
@@ -2802,16 +2833,9 @@ Estos aspectos deben considerarse cuidadosamente a la hora de elegir la
 \end_layout
 
 \begin_layout Standard
-Además de los criterios mencionados al comienzo de este capítulo, evaluaremos:
-\end_layout
-
-\begin_layout Itemize
-Suporte para CMSIS-RTOS – reduce development time 
-\end_layout
-
-\begin_layout Itemize
-Suporte para lwIP – reduce development time MQTT facilities – reduce development
- time
+Además de los criterios mencionados al comienzo de este capítulo, evaluaremos
+ el soporte para CMSIS-RTOS y para lwIP que ofrecen estas bibliotecas, ya
+ que pueden reducir dramáticamente el tiempo de desarrollo.
 \end_layout
 
 \begin_layout Standard
@@ -4755,6 +4779,12 @@ Tras valorar estas opciones, decidimos mbedTLS por los siguientes motivos:
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Implementación-TLS"
+
+\end_inset
+
 Implementación de TLS
 \end_layout
 
@@ -5729,6 +5759,12 @@ En cada paso se imprime por el puerto serial información útil.
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Implementación-AWS-IoT"
+
+\end_inset
+
 Implementación de AWS IoT SDK
 \end_layout
 

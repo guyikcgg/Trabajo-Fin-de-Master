@@ -199,7 +199,7 @@ La memoria se estructura en tres grandes partes, que describimos a continuación
 \end_layout
 
 \begin_layout Paragraph
-Introducción
+Fundamentos teóricos y presentación de la tecnología
 \end_layout
 
 \begin_layout Standard
@@ -236,7 +236,18 @@ reference "chap:TLS"
 
 \end_inset
 
-), así como la estructura de la nube AWS IoT (
+), los certificados digitales X.509 (
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:X509"
+
+\end_inset
+
+) y la estructura de la nube de Amazon AWS
+\begin_inset space ~
+\end_inset
+
+IoT (
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:AWS-IoT"
@@ -257,25 +268,34 @@ En la segunda parte desarrollamos con detalle el trabajo realizado durante
 
 \begin_layout Standard
 Comenzaremos esta parte con una presentación pormenorizada del sistema objetivo
- (capítulo
-\begin_inset space ~
+ (
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:Descripción-del-sistema"
+
 \end_inset
 
-#), a la que seguirá el anális de las imprementaciones TLS existentes y
- se justificará la eleción de mbedTLS (capítulo
-\begin_inset space ~
+), a la que seguirá el anális de las imprementaciones TLS existentes y se
+ justificará la eleción de mbedTLS (
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:Análisis-implementacions-TLS"
+
 \end_inset
 
-#).
+).
 \end_layout
 
 \begin_layout Standard
 También presentaremos aquí los detalles de la integración de TLS en el sistema,
- así como los problemas que hemos tenido que resolver durante la misma (capítulo
-\begin_inset space ~
+ así como los problemas que hemos tenido que resolver durante la misma (
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:Implementación-TLS"
+
 \end_inset
 
-#).
+).
  Pondremos fin a esta parte con los detalles de la integración del Kit de
  Desarrollo de Software AWS
 \begin_inset space ~
@@ -285,11 +305,14 @@ IoT
 \begin_inset space ~
 \end_inset
 
-SDK (capítulo
-\begin_inset space ~
+SDK (
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:Implementación-AWS-IoT"
+
 \end_inset
 
-#).
+).
 \end_layout
 
 \begin_layout Paragraph
@@ -1270,6 +1293,18 @@ ra.
  Se establece una cadena de confianza.
 \end_layout
 
+\begin_layout Standard
+Dada la importancia de los certificados digitales en este proyecto, dedicaremos
+ el 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:X509"
+
+\end_inset
+
+ a estudiarlos más a fondo.
+\end_layout
+
 \begin_layout Subsubsection
 Almacenamiento y ejecución seguros
 \end_layout
@@ -1967,7 +2002,7 @@ the handshake protocol, which can be summarized as follows: The client sends
 \end_layout
 
 \begin_layout Section
-Conclusión/Resumen
+Resumen
 \end_layout
 
 \begin_layout Standard
@@ -2089,7 +2124,7 @@ Este protocolo (TLS) ha inspirado a otros, como DTLS [#ref], que no requiere
 \begin_layout Standard
 En los siguientes capítulos hablaremos de distintas implementaciones de
  TLS.
- Cabe destacar aquí que una buena implementación del estándard debe cumplir
+ Cabe destacar aquí que una buena implementación del estándar debe cumplir
  con todos los requisitos definidos en el mismo.
  Sin embargo, no tiene por qué abarcar el amplio abanico de parámetros de
  seguridad disponibles.
@@ -2574,15 +2609,13 @@ IoT.
 \end_layout
 
 \begin_layout Section
-
-\color red
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Esquema-de-funcionamiento"
 
 \end_inset
 
-Esquema de funcionamiento
+Descripción funcional
 \end_layout
 
 \begin_layout Standard
@@ -3125,7 +3158,7 @@ Free
 \begin_inset space ~
 \end_inset
 
-Tier están disponibles en
+Tier están disponibles en 
 \begin_inset Flex URL
 status open
 
@@ -3165,7 +3198,7 @@ Deberá usarse el correo institucional en la solicitud.
 \end_inset
 
 .
- Los detalles de esta modalidad están disponibles en
+ Los detalles de esta modalidad están disponibles en 
 \begin_inset Flex URL
 status open
 
