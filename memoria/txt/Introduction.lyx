@@ -1655,7 +1655,7 @@ content types
 ).
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Handshake Protocol
 \end_layout
 
@@ -1712,7 +1712,7 @@ Se comentará en más detalle más adelante (cross ref)
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Alert Protocol
 \end_layout
 
@@ -1731,7 +1731,7 @@ fatal
  y comprimidos sigiuiendo las especificaciones del estado actual de la conexión.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Change Cipher Spec Protocol
 \end_layout
 
@@ -1768,7 +1768,7 @@ Para ser más específicos, si un handshake tiene lugar durante una transmisión
  de este deberá atender a los nuevos parámetros y claves de cifrado.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Application Protocol
 \end_layout
 
@@ -1920,8 +1920,8 @@ Estos elementos son usados para crear los parámetros de seguridad que la
  a la característica de reanudación del protocolo TLS Handshake Protocol.
 \end_layout
 
-\begin_layout Subsection
-Funcionamiento del Handshake Protocol
+\begin_layout Paragraph
+Descripción funcinal del Handshake Protocol
 \end_layout
 
 \begin_layout Standard

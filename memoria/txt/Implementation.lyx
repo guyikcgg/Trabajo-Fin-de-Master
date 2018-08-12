@@ -86,6 +86,15 @@ name "chap:Descripción-del-sistema"
 Presentación del sistema
 \end_layout
 
+\begin_layout Standard
+En el presente capítulo describiremos con detalle el funcionamiento general
+ del sistema y cada uno de los elementos que lo forman.
+ En primer lugar, presentaremos la estructura general del sistema, profundizando
+ en la función llevada a cabo por cada uno de los elementos que lo forman.
+ A continuación, describiremos estos elementos en mayor profundidad, a fin
+ de comprender mejor los detalles de la posterior implementación.
+\end_layout
+
 \begin_layout Section
 Objetivo perseguido y arquitectura propuesta
 \end_layout
@@ -112,13 +121,31 @@ tenemos red de sensores, gw
 \end_layout
 
 \begin_layout Section
-Componentes del sistema
-\end_layout
-
-\begin_layout Subsection
 Pasarela 
 \emph on
 miniGW
+\end_layout
+
+\begin_layout Standard
+Circuito impreso basado en microcontrolador 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:miniGW-foto-hardware"
+
+\end_inset
+
+.
+ 2 Componentes principales: XMC + TDA.
+ XMC se encarga de la lógica (en él se encuentra el programa con sus diferentes
+ tareas, pila de protocolos, etc, es con lo que trabajaremos), y está conectado
+ con múltiples interfaces.
+ TDA se encarga de la comunicación (transceiver) y está supeditado al XMC,
+ al cuál se conecta a través de una interfaz SPI.
+ 
+\end_layout
+
+\begin_layout Standard
+Dimensiones físicas!!
 \end_layout
 
 \begin_layout Standard
@@ -150,7 +177,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Hardware del miniGW.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:miniGW-foto-hardware"
+
+\end_inset
+
+Fotografía del hardware del miniGW.
 \end_layout
 
 \end_inset
@@ -164,61 +197,44 @@ Hardware del miniGW.
 \end_layout
 
 \begin_layout Standard
+El resto de Interfaces son las siguientes: 
+\end_layout
 
-\color red
-This system consists on an IoT gateway, which is based on a microcontroller
- using ARM Cortex-M core.
- Its firmware will use RTOS operating system and lwIP protocol stack.
+\begin_layout Description
+Micro
+\begin_inset space ~
+\end_inset
+
+USB power + firmware upgrade
+\end_layout
+
+\begin_layout Description
+Ethernet conexión con Internet
+\end_layout
+
+\begin_layout Description
+Micro
+\begin_inset space ~
+\end_inset
+
+SD almacenamiento de datos de sensores, página web, etc.
+ firmware upgrade
+\end_layout
+
+\begin_layout Description
+JTAG programación y depuración - conector solo disponible para desarrollo,
+ no en producción.
 \end_layout
 
 \begin_layout Standard
-Descripción del GW:
-\begin_inset CommandInset citation
-LatexCommand cite
-key "infineon:XMC4500"
+Estos elementos principales e interfaces quedan reflejados en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:miniGW-Arquitectura-hardware"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Software: CMSIS-RTOS y lwIP
-\end_layout
-
-\begin_layout Standard
-Hardware:
-\end_layout
-
-\begin_layout Standard
-XMC4500
-\end_layout
-
-\begin_layout Standard
-RAM
-\end_layout
-
-\begin_layout Standard
-Flash
-\end_layout
-
-\begin_layout Standard
-TDA
-\begin_inset CommandInset citation
-LatexCommand cite
-key "infineon:TDA5340"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Generador de números aleatorios
-\end_layout
-
-\begin_layout Standard
-...
+, que muestra la arquitectura hardware del miniGW.
 \end_layout
 
 \begin_layout Standard
@@ -242,7 +258,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Arquitectura hardware.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:miniGW-Arquitectura-hardware"
+
+\end_inset
+
+Arquitectura hardware del miniGW.
 \end_layout
 
 \end_inset
@@ -253,6 +275,49 @@ Arquitectura hardware.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Paragraph
+XMC4500
+\end_layout
+
+\begin_layout Standard
+
+\color red
+This system consists on an IoT gateway, which is based on a microcontroller
+ using ARM Cortex-M core.
+ Its firmware will use RTOS operating system and lwIP protocol stack.
+\end_layout
+
+\begin_layout Standard
+Hardware 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:XMC4500"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+XMC4500
+\end_layout
+
+\begin_layout Standard
+RAM
+\end_layout
+
+\begin_layout Standard
+Flash
+\end_layout
+
+\begin_layout Standard
+Generador de números aleatorios
+\end_layout
+
+\begin_layout Standard
+Software: CMSIS-RTOS y lwIP
 \end_layout
 
 \begin_layout Standard
@@ -289,7 +354,63 @@ Arquitectura software.
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
+TDA5340
+\end_layout
+
+\begin_layout Standard
+Es el transceiver que se encargará de la comunicación con la red de sensores.
+ Como hemos mencionado anteriormente #!, TDA recibirá los paquetes de los
+ distintos sensores y los hará llegar al XMC, a través de un bus SPI.
+ De forma análoga, el TDA enviará paquetes a los actuadores, tales como
+ el smartplug.
+ TDA Se trata de un...
+ (copiar descripción de datasheet) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:TDA5340"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+...
+\end_layout
+
+\begin_layout Section
+Red de sensores y actuadores
+\end_layout
+
+\begin_layout Standard
+Miden con diversos sensores
+\end_layout
+
+\begin_layout Standard
+Sensores: transmisor
+\end_layout
+
+\begin_layout Standard
+Actuadores: transceiver
+\end_layout
+
+\begin_layout Standard
+En ambos casos, se usa un protocolo custom que se encarga de la seguridad
+ de los datos (y de otras cosas), usando Cipher Block Chaining (CBC) AES-CBC.
+\end_layout
+
+\begin_layout Standard
+Sensores con batería: larga duración, transmitiendo datos cada varios segundos-m
+inuto para así lograr meses de duración.
+\end_layout
+
+\begin_layout Standard
+Familia de sensores: apertura de puertas y ventanas, calidad del aire, smartplug
+, wheather, motion, somoke
+\end_layout
+
+\begin_layout Section
 La nube de Amazon 
 \emph on
 AWS
@@ -2807,7 +2928,7 @@ Footprint reducida, necesaria para la integración en sistemas embebidos
 Compatible con la arquitectura ARM
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Compatibilidad con el sistema objetivo
 \end_layout
 
@@ -4785,7 +4906,7 @@ name "chap:Implementación-TLS"
 
 \end_inset
 
-Implementación de TLS
+Integración de mbedTLS
 \end_layout
 
 \begin_layout Standard
