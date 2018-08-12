@@ -5167,6 +5167,10 @@ lwip
 (vX.Y) Es la pila de protocolos 
 \end_layout
 
+\begin_layout Description
+...
+\end_layout
+
 \begin_layout Standard
 Se usa make por debajo, pero lo genera DAVE automáticamente, por lo que
  no se puede modificar.
@@ -5178,11 +5182,12 @@ J-TAG para programar y depurar (debugger no incluido en el dispositivo)
 \end_layout
 
 \begin_layout Section
-Arquitectura de la biblioteca
+Detalles de la biblioteca
 \end_layout
 
 \begin_layout Standard
-Se ha realizado una evaluación de la implementación TLS seleccionada.
+Se ha realizado una evaluación en profundidad de la implementación TLS seleccion
+ada.
  Para ello, se ha consultado la documentación oficial de mbedTLS en su web
  y se ha analizado parte del código fuente.
  A continuación se presentan los siguientes temas: características principales
@@ -5457,6 +5462,12 @@ Aunque estos son los procedimientos de compilación provistos con la biblioteca,
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Portabilidad-mbedTLS"
+
+\end_inset
+
 Portabilidad a otras plataformas
 \end_layout
 
@@ -5788,6 +5799,18 @@ mbed.
 
 \end_deeper
 \begin_layout Subsection
+Programas de ejemplo
+\end_layout
+
+\begin_layout Standard
+mbedTLS incluye numerosos programas de ejemplo, con los que pueden probarse
+ las distintas características de la biblioteca.
+ Por su relevancia en este proyecto, haremos referencia a dos de ellos.
+ Estos programas han sido cuidadosamente estudiados, usando parte de su
+ código en algunos pasos de la integración.
+\end_layout
+
+\begin_layout Subsubsection
 Certificate Authorities 
 \end_layout
 
@@ -5820,7 +5843,7 @@ mbedtls_x509_crt_parse()
  la biblioteca.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Connection sockets 
 \end_layout
 
@@ -5895,47 +5918,26 @@ mbedtls_ssl_close_notify()
 \end_layout
 
 \begin_layout Subsection
-Funciones principales (socket, verificación de certificados, etc)
-\end_layout
-
-\begin_layout Subsection
-etc.
+Comprobaciones de integridad
 \end_layout
 
 \begin_layout Standard
-Ejemplo cliente-servidor sencillo (Anexo)
-\end_layout
-
-\begin_layout Subsection
-Proceso de compilación
-\end_layout
-
-\begin_layout Standard
-Compila en GNU/Linux sin problema, usando la herramienta Make.
- También viene con un proyecto en Visual Studio para compilar en Windows.
- Todos los ficheros tienen muchas directivas para el preprocesador, para
- detectar el entorno y compilar correctamente.
+La biblioteca incluye numerosos tests, que comprueban que los distintos
+ módulos funcionan de manera adecuada.
+ Estos tests son, en realidad, programas que se compilan haciendo uso de
+ los diferentes módulos de la biblioteca.
+ Al ejecutarse, cada test comprueba que los módulos examinados funcionan
+ de forma correcta o, en su defecto, qué código de error devuelven, para
+ informar al usuario.
 \end_layout
 
 \begin_layout Standard
-Configuración de la biblioteca (script de Perl).
- Make y Cmake (cambiar parámetros / flags de compilación).
- 
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Una vez compilada, se pueden pasar tests.
-\end_layout
-
-\end_inset
-
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Programas de ejemplo ilustrativos.
+Añadir ejemplos de los tests! Se ha usado uno de estos test en el microcontrolad
+or para comprobar que todo funcionaba, no?
 \end_layout
 
 \end_inset
@@ -5957,11 +5959,66 @@ Hablar del montaje en el laboratorio (PC como bridge, switch, intranet,
 \end_layout
 
 \begin_layout Subsection
+Importación de los ficheros mbedTLS
+\end_layout
+
+\begin_layout Standard
+En primer lugar, es necesario incluir los ficheros de la biblioteca en el
+ proyecto.
+ Hay dos formas de hacerlo: copiarlos o enlazarlos.
+ En cualquier caso, será necesario configurar algunos flags y símbolos en
+ el compilador.
+\end_layout
+
+\begin_layout Standard
+herramienta 
+\begin_inset Quotes fld
+\end_inset
+
+bibliotecas con referencias
+\begin_inset Quotes frd
+\end_inset
+
+ de DAVE: Nos permite tener la biblioteca en una localización diferente
+ a la del proyecto, haciéndose fácil su importación.
+ Configuración de Símbolos?
+\end_layout
+
+\begin_layout Standard
+Certificados: TrustChain, PEM, DER
+\end_layout
+
+\begin_layout Standard
+Ciphersuites - configurados en config.h de mbedTLS para tener una versión
+ mínima que compile y se ejecute.
+\end_layout
+
+\begin_layout Subsection
 Elementos portados
 \end_layout
 
 \begin_layout Standard
-Los ficheros de plataforma!!
+Los ficheros de plataforma!! (ver 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Portabilidad-mbedTLS"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Wrapper functions? cómo hicimos esto?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -5989,34 +6046,51 @@ Se han usado parches y mucho git.
 \end_layout
 
 \begin_layout Subsection
-Importación de los ficheros mbedTLS
+Configuración de la biblioteca
 \end_layout
 
 \begin_layout Standard
-herramienta 
-\begin_inset Quotes fld
+Se ha usado una configuración mínima, a la que se han ido añadiendo característi
+cas, para comprobar que los distintos elementos se han integrado correctamente
+ en la plataforma.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+enseñar config? hablar de la configuración mínima?
+\end_layout
+
 \end_inset
 
-bibliotecas con referencias
-\begin_inset Quotes frd
-\end_inset
 
- de DAVE: Nos permite tener la biblioteca en una localización diferente
- a la del proyecto, haciéndose fácil su importación.
- Configuración de Símbolos?
-\end_layout
-
-\begin_layout Standard
-Certificados: TrustChain, PEM, DER
-\end_layout
-
-\begin_layout Standard
-Ciphersuites - configurados en config.h de mbedTLS para tener una versión
- mínima que compile y se ejecute.
 \end_layout
 
 \begin_layout Section
-Tests
+Verificación de la integración
+\end_layout
+
+\begin_layout Subsection
+Tests proporcionados 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+unitarios?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+para comprobar que los módulos de cifrado y tal funcionan correctamente.
+ qué configuración se usan? tamaño de claves, etc.
+\end_layout
+
+\begin_layout Subsection
+Test funcional
 \end_layout
 
 \begin_layout Standard
@@ -6133,7 +6207,7 @@ BigNum
 status open
 
 \begin_layout Plain Layout
-es el culpable!
+es el culpable! -> Certificados con muchos bits! era eso, no?
 \end_layout
 
 \end_inset
@@ -6146,8 +6220,14 @@ es el culpable!
 status open
 
 \begin_layout Plain Layout
-Cómo era el linkerscript original? Bancos de memoria, cuánto espacio para
- qué cosa...
+Cómo era el linkerscript original? Bancos de memoria 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:XMC-block-diagram"
+
+\end_inset
+
+, cuánto espacio para qué cosa...
 \end_layout
 
 \begin_layout Plain Layout
