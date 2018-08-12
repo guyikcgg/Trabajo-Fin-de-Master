@@ -87,8 +87,22 @@ Presentación del sistema
 \end_layout
 
 \begin_layout Standard
-En el presente capítulo describiremos con detalle el funcionamiento general
- del sistema y cada uno de los elementos que lo forman.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Breve introducción de la Parte II
+\end_layout
+
+\end_inset
+
+ Una vez revisados los fundamentos teóricos y las tecnologías usadas en
+ la realización de este trabajo, pasaremos a 
+\end_layout
+
+\begin_layout Standard
+En este capítulo describiremos con detalle el funcionamiento general del
+ sistema y cada uno de los elementos que lo forman.
  En primer lugar, presentaremos la estructura general del sistema, profundizando
  en la función llevada a cabo por cada uno de los elementos que lo forman.
  A continuación, describiremos estos elementos en mayor profundidad, a fin
@@ -100,16 +114,20 @@ Objetivo perseguido y arquitectura propuesta
 \end_layout
 
 \begin_layout Standard
-Se pretende conectar una red de sensores a un gateway, y de ahí a AWS a
- través del protocolo MQTT con la capa segura TLS.
- El gw y AWS deberán autenticarse con certificados digitales.
+Producto final: SmartHome products.
+ It enables the user to remotely control, manage and monitor connected devices
+ at home.
+ Para ello 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Graphics
-	filename img/arquitectura-general.jpg
-	lyxscale 40
-	width 100text%
+Se pretende conectar una red de sensores a un gateway, y de ahí a AWS a
+ través del protocolo MQTT con la capa segura TLS.
+ El gw y AWS deberán autenticarse con certificados digitales.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arquitectura-del-sistema"
 
 \end_inset
 
@@ -117,7 +135,48 @@ Se pretende conectar una red de sensores a un gateway, y de ahí a AWS a
 \end_layout
 
 \begin_layout Standard
-tenemos red de sensores, gw
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/esquema-general.eps
+	lyxscale 40
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arquitectura-del-sistema"
+
+\end_inset
+
+Arquitectura general del sistema.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+tenemos red de sensores, gw, Cloud y terminal (App)
 \end_layout
 
 \begin_layout Section
@@ -244,10 +303,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename img/arquitectura-hw.jpg
+	filename img/hardware-architecture.eps
 	lyxscale 50
-	width 50text%
+	scale 50
 
 \end_inset
 
@@ -277,8 +337,69 @@ Arquitectura hardware del miniGW.
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 XMC4500
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:XMC-block-diagram"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/XMC-block-diagram.eps
+	width 90col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:XMC-block-diagram"
+
+\end_inset
+
+Diagrama de bloques del microcontrolador XMC4500 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:XMC4500"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -354,7 +475,7 @@ Arquitectura software.
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 TDA5340
 \end_layout
 
@@ -477,6 +598,22 @@ Una vez configurado nuestro dispositovo virtual, pasaremos a escribir el
 \end_inset
 
 IoT.
+\end_layout
+
+\begin_layout Section
+App móvil
+\end_layout
+
+\begin_layout Standard
+La App se conecta a la nube de Amazon a través de las APIs pertinentes,
+ permitiendo al usuario visualizar los datos.
+ Esta App queda fuera del alcance de este documento.
+\end_layout
+
+\begin_layout Standard
+Sin embargo, para comprobar que la conexión entre el miniGW y la nube de
+ Amazon se establece correctamente, se ha usado la consola de AWS IoT, como
+ se describirá en el capítulo ###.
 \end_layout
 
 \begin_layout Chapter
@@ -709,7 +846,7 @@ En esta sección presentaremos brevemente cada una de las bibliotecas analizadas
  revisando algunos datos generales o de especial relevancia.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 mbedTLS
 \end_layout
 
@@ -731,7 +868,7 @@ Además, mbedTLS es la biblioteca de seguridad del proyecto mbed de ARM.
  de forma segura.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 WolfSSL
 \end_layout
 
@@ -759,7 +896,7 @@ certificación FIPS
  #REF# (Certificate #2425).
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 MatrixSSL
 \end_layout
 
@@ -773,7 +910,7 @@ Lanzada en 2004, da soporte a los protocolos y configuraciones de TLS más
  existe una licencia comercial (precio no disponible en la web oficial).
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 cryptlib
 \end_layout
 
@@ -785,7 +922,7 @@ Lanzada inicialmente en 1995, da soporte a los protocolos y configuraciones
  #REF#
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 SharkSSL
 \end_layout
 
@@ -4920,6 +5057,126 @@ Pasamos a la implementación del protocolo TLS.
 A continuación: Descripción detallada de la biblioteca mbedTLS
 \end_layout
 
+\begin_layout Standard
+Antes de continuar: una breve reseña sobre el entorno de trabajo y el workflow
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Entorno-de-trabajo"
+
+\end_inset
+
+Entorno de trabajo: DAVE
+\end_layout
+
+\begin_layout Standard
+Sistema embebido: código en C, cross compilado a la arquitectura deseada.
+ Usaremos DAVE, el IDE proporcionado por Infineon para desarrollar en XMC.
+ Se trata de un IDE basado en Eclipse.
+ La ventaja de usar un IDE como Eclipse es que podemos escribir/editar código,
+ compilar, programar el microcontrolador y depurarlo desde el mismo programa,
+ gracias a la versatilidad que presenta.
+ Además, DAVE proporciona una herramienta muy innovadora con la que se facilita
+ el uso de los distintos módulos del microcontrolador y de otras bibliotecas.
+ Esta herramienta (DAVE Apps #ref#) ponen a disposición del desarrollador
+ unas cajas que, al ser importadas en el proyecto, añaden al código de inicializ
+ación todas las instrucciones necesarias para usar la biblioteca/hardware
+ específico.
+ Además, permite  configurar la bilbioteca/hw de forma gráfica, con multitud
+ de opciones, proporcionadas por la App.
+ 
+\end_layout
+
+\begin_layout Standard
+En este proyecto se están usando las siguientes Apps (
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:DAVE"
+
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DAVE"
+
+\end_inset
+
+Vista principal de DAVE.
+ En la zona inferior pueden observarse las Apps de DAVE que se usan en el
+ proyecto.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Esto está explicado en la arquitectura.
+ Repetir?
+\end_layout
+
+\end_inset
+
+CMSIS-RTOS
+\begin_inset space ~
+\end_inset
+
+(vX.Y) Es el sistema operativo de tiempo real que usaremos en el proyecto.
+ Proporciona un scheduler y algunos otros elementos más avanzados (mailboxes,
+ etc).
+\end_layout
+
+\begin_layout Description
+lwip
+\begin_inset space ~
+\end_inset
+
+(vX.Y) Es la pila de protocolos 
+\end_layout
+
+\begin_layout Standard
+Se usa make por debajo, pero lo genera DAVE automáticamente, por lo que
+ no se puede modificar.
+ Básicamente, se compilan todos los ficheros incluidos en el proyecto.
+\end_layout
+
+\begin_layout Standard
+J-TAG para programar y depurar (debugger no incluido en el dispositivo)
+\end_layout
+
 \begin_layout Section
 Arquitectura de la biblioteca
 \end_layout
@@ -5687,44 +5944,16 @@ Programas de ejemplo ilustrativos.
 \end_layout
 
 \begin_layout Section
-Portando mbedTLS en XMC con CMSIS-RTOS
+Integración de mbedTLS en el miniGW
+\end_layout
+
+\begin_layout Standard
+Portar a XMC con CMSIS-RTOS, vamos
 \end_layout
 
 \begin_layout Standard
 Hablar del montaje en el laboratorio (PC como bridge, switch, intranet,
  Internet)
-\end_layout
-
-\begin_layout Subsection
-Entorno de trabajo: DAVE
-\end_layout
-
-\begin_layout Standard
-IDE basado en Eclipse
-\end_layout
-
-\begin_layout Standard
-Ventaja: programación con las cajitas (configuran el hw + bibliotecas)
-\end_layout
-
-\begin_layout Standard
-Qué tenemos? 
-\end_layout
-
-\begin_layout Standard
-CMSIS-RTOS (version)
-\end_layout
-
-\begin_layout Standard
-lwip (version)
-\end_layout
-
-\begin_layout Standard
-Se usa make por debajo, pero lo genera DAVE automáticamente
-\end_layout
-
-\begin_layout Standard
-J-TAG para programar y depurar (debugger no incluido en el dispositivo)
 \end_layout
 
 \begin_layout Subsection
@@ -5786,48 +6015,7 @@ Ciphersuites - configurados en config.h de mbedTLS para tener una versión
  mínima que compile y se ejecute.
 \end_layout
 
-\begin_layout Subsection
-Modificación del mapa de memoria
-\end_layout
-
-\begin_layout Standard
-Se usa heap, ya que no es un sistema crítico.
- Hemos tenido que aumentar el tamaño del heap en el linkerscript
-\end_layout
-
-\begin_layout Standard
-BigNum 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-es el culpable!
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Cómo era el linkerscript original? Bancos de memoria, cuánto espacio para
- qué cosa...
-\end_layout
-
-\begin_layout Plain Layout
-Cómo se queda el linkerscript: cuánto espacio
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
+\begin_layout Section
 Tests
 \end_layout
 
@@ -5889,14 +6077,117 @@ name "chap:Implementación-AWS-IoT"
 Implementación de AWS IoT SDK
 \end_layout
 
+\begin_layout Section
+Definición de una nueva plataforma
+\end_layout
+
+\begin_layout Standard
+Lo que viene siendo portar...
+\end_layout
+
+\begin_layout Standard
+Funciones que son en realidad wrappers, y que dependen de la plataforma.
+ Se han tenido que portar:
+\end_layout
+
+\begin_layout Subsection
+Timers
+\end_layout
+
+\begin_layout Subsection
+pthread
+\end_layout
+
+\begin_layout Subsection
+network 
+\end_layout
+
+\begin_layout Standard
+mbedTLS
+\end_layout
+
+\begin_layout Section
+Configuración de RTOS y opciones de compilación
+\end_layout
+
+\begin_layout Subsection
+CMSIS-RTOS
+\end_layout
+
+\begin_layout Standard
+Más heap!
+\end_layout
+
+\begin_layout Subsection
+Modificación del mapa de memoria
+\end_layout
+
+\begin_layout Standard
+Se usa heap, ya que no es un sistema crítico.
+ Hemos tenido que aumentar el tamaño del heap en el linkerscript
+\end_layout
+
+\begin_layout Standard
+BigNum 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+es el culpable!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Qué hicimos aquí? Copiar la carpeta y ya?
+Cómo era el linkerscript original? Bancos de memoria, cuánto espacio para
+ qué cosa...
 \end_layout
 
+\begin_layout Plain Layout
+Cómo se queda el linkerscript: cuánto espacio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Configuración de AWS IoT SDK
+\end_layout
+
+\begin_layout Standard
+Como se vio en #(AWS IoT) es necesario que el dispositivo tenga algunos
+ parámetros de AWS.
+\end_layout
+
+\begin_layout Subsubsection
+Certificado digital del dispositivo
+\end_layout
+
+\begin_layout Standard
+Copiar certificado en un fichero .c (hardcoded) en formato .pem? .der?.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Certificado digital para validar Amazon
+\end_layout
+
+\begin_layout Subsubsection
+URL de 
+\begin_inset Quotes fld
+\end_inset
+
+la sombra?
+\begin_inset Quotes frd
 \end_inset
 
 

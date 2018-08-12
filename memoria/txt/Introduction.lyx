@@ -141,7 +141,7 @@ La pasarela está diseñada entorno a un microcontrolador XMC4500 de Infineon,
  que intercambiará mensajes mediante el protocolo MQTT.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Metodología de trabajo
 \end_layout
 
@@ -187,7 +187,14 @@ Fácil integración con el resto del código del gateway: Diseño modular +
 \end_layout
 
 \begin_layout Standard
-IDE: DAVE
+IDE: DAVE (ver 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Entorno-de-trabajo"
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Section
