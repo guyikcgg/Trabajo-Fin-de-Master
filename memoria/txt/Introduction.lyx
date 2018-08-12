@@ -2182,18 +2182,6 @@ Certificados digitales X.509
 \end_layout
 
 \begin_layout Standard
-Certificados: TrustChain, PEM, DER
-\end_layout
-
-\begin_layout Standard
-ITU-T Standard!
-\end_layout
-
-\begin_layout Standard
-Contenido del certificado
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -2204,6 +2192,128 @@ Copiar de Tanenbaum
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Certificados muy estándar (X.509 v3).
+ Son intercambiado durante el handshake de TLS, para verificar la identidad.
+ Es interesante conocer el contenido de estos certificados, y cómo funciona
+ la verificación de la identidad.
+\end_layout
+
+\begin_layout Standard
+ITU-T Standard!
+\end_layout
+
+\begin_layout Section
+Contenido de los certificados
+\end_layout
+
+\begin_layout Standard
+Los campos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Campos de los certificados X.509.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Cadena de confianza
+\end_layout
+
+\begin_layout Standard
+PKI
+\end_layout
+
+\begin_layout Standard
+TrustChain
+\end_layout
+
+\begin_layout Section
+Estructura y tipos de fichero
+\end_layout
+
+\begin_layout Standard
+Los campos de los certificados X.509 se transmiten como ficheros, que pueden
+ presentar distintos formatos.
+ A pesar de esto, todos estos ficheros parten de X.690, un estándar de ITU-T
+ que especifica diversos formatos ASN.1 #ref#.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+https://en.wikipedia.org/wiki/X.690#BER_encoding
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+https://stackoverflow.com/questions/22743415/what-are-the-differences-between-pem
+-cer-and-der
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+DER (Distinguished Encoding Rules) is the method of encoding the data that
+ makes up the certificate.
+ DER itself could represent any kind of data, but usually it describes an
+ encoded certificate or a CMS container.
+ The structure of a certificate is described using the ASN.1 data representation
+ language.
+ BER and DER are binary encoding methods for data described by ASN.1.
+\end_layout
+
+\begin_layout Standard
+PEM is a method of encoding binary data as a string (ASCII armor).
+ It contains a header and a footer line (specifying the type of data that
+ is encoded and showing begin/end if the data is chained together) and the
+ data in the middle is the base 64 data.
+ In the case that it encodes a certificate it would simply contain the base
+ 64 encoding of the DER certificate.
+ PEM stands for Privacy Enhanced Mail; mail cannot contain unencoded binary
+ values such as DER directly.
 \end_layout
 
 \begin_layout Chapter
