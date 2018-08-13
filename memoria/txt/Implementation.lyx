@@ -143,9 +143,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/esquema-general.eps
-	lyxscale 40
-	scale 50
+	filename img/XMC-portfolio.png
+	lyxscale 20
+	width 70col%
 
 \end_inset
 
@@ -5047,18 +5047,88 @@ Integración de mbedTLS
 \end_layout
 
 \begin_layout Standard
-Pasamos a la implementación del protocolo TLS.
- La biblioteca con la que se llevaará a cabo es mbedTLS.
- Sobre la metodología: Primero se evaluarán las bibliotecas en PC y luego
- se pasarán al XMC.
+Tras elegir la implementación TLS que integremos en el sistema, hemos llevado
+ a cabo una evaluación en profundidad de la misma.
+ Esta se ha basado principalmente en la documentación oficial de mbedTLS,
+ disponible en su página web 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-knowledge-base"
+
+\end_inset
+
+.
+ También hemos estudiado su código fuente y su documentación para aclarar
+ algunos detalles 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-API-reference"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-A continuación: Descripción detallada de la biblioteca mbedTLS
+Dedicaremos este capítulo a la integración de mbedTLS en el XMC4500 presente
+ en el miniGW.
+ Presentaremos aquí algunos detalles de la biblioteca, que serán de interés
+ para integrarla al sistema.
+ A continuación, discutiremos los detalles de esta integración, recorriendo
+ cada uno de los elementos portados.
 \end_layout
 
 \begin_layout Standard
-Antes de continuar: una breve reseña sobre el entorno de trabajo y el workflow
+Comenzaremos por introducir 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+dave
+\end_layout
+
+\end_inset
+
+, el entorno de desarrollo integrado (IDE) proporcionado por Infineon para
+ trabajar con sus microcontroladores 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+xmc
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:DAVE"
+
+\end_inset
+
+.
+ Será este IDE el que usaremos para editar el código fuente, compilar el
+ proyecto y cargar el firmware en el dispositivo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+una breve reseña sobre el entorno de trabajo y el workflow
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -5068,28 +5138,244 @@ name "sec:Entorno-de-trabajo"
 
 \end_inset
 
-Entorno de trabajo: DAVE
+Entorno de trabajo: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Sistema embebido: código en C, cross compilado a la arquitectura deseada.
- Usaremos DAVE, el IDE proporcionado por Infineon para desarrollar en XMC.
- Se trata de un IDE basado en Eclipse.
- La ventaja de usar un IDE como Eclipse es que podemos escribir/editar código,
- compilar, programar el microcontrolador y depurarlo desde el mismo programa,
- gracias a la versatilidad que presenta.
- Además, DAVE proporciona una herramienta muy innovadora con la que se facilita
- el uso de los distintos módulos del microcontrolador y de otras bibliotecas.
- Esta herramienta (DAVE Apps #ref#) ponen a disposición del desarrollador
- unas cajas que, al ser importadas en el proyecto, añaden al código de inicializ
-ación todas las instrucciones necesarias para usar la biblioteca/hardware
- específico.
- Además, permite  configurar la bilbioteca/hw de forma gráfica, con multitud
- de opciones, proporcionadas por la App.
+Trabajar con microcontroladores supone editar código fuente, compilarlo
+ a la plataforma de destino, cargar el firmware en el dispositivo y depurar
+ el programa en tiempo de ejecución.
+ Esto puede hacerse de diferentes formas, usando distintos flujos de trabajo.
+ Una de las más populares es usar un entorno de desarrollo integrado (IDE),
+ que reúna las herramientas necesarias para llevar a cabo estas tareas.
+ En la realización de este trabajo, hemos usado 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ en su versión 4.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ es un IDE profesional y gratuito con el cuál podemos llevar a cabo todo
+ el proceso de desarrollo, desde la evaluación hasta la producción (E2P)
  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:DAVE"
+
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ está basado en Eclipse #ref#, e incluye el compilador de C de GNU, interfaz
+ de depuración, repositorio de código completo, plug-in de generación de
+ código y administración de recursos de hardware.
 \end_layout
 
 \begin_layout Standard
+Como peculiaridad, resaltaremos que esta IDE incluye las denominadas 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ APPs, que son componentes software orientados a aplicación que pueden configura
+rse a través de una interfaz gráfica de usuario (GUI).
+ Gracias a las mismas, es posible usar muchos de los módulos del microcontrolado
+r de forma sencilla y eficiente.
+ Al añadir una de estas APPs al proyecto, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ importa el código necesario para usar la biblioteca o módulo hardware proporcio
+nados por la misma, colocando los ficheros de la biblioteca en un directorio
+ reservado a tal efecto.
+ Asímismo, las APPs proporcionan una API homogénea para acceder a los distintos
+ recursos del microcontrolador, y están ampliamente documentadas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/XMC-portfolio.png
+	lyxscale 20
+	width 75col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Componentes-DAVE"
+
+\end_inset
+
+Componentes de 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ y flujo de trabajo.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:DAVE"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Componentes-DAVE"
+
+\end_inset
+
+ muestra la posición de las 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ APPs en el entorno del IDE, además del flujo de trabajo E2P que puede obtenerse
+ con el mismo.
+ Como puede comprobarse en la misma, las 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ APPs se apoyan en la 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+XMC
+\end_layout
+
+\end_inset
+
+ Lib, que proporciona acceso a los distintos elementos del microcontrolador
+ en un nivel más cercano a la máquina.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 En este proyecto se están usando las siguientes Apps (
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -5100,15 +5386,11 @@ reference "fig:DAVE"
 ):
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -5130,16 +5412,20 @@ Vista principal de DAVE.
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Description
+CMSIS-RTOS
+\begin_inset space ~
+\end_inset
+
+(vX.Y) Es el sistema operativo de tiempo real que usaremos en el proyecto.
+ Proporciona un scheduler y algunos otros elementos más avanzados (mailboxes,
+ etc).
+ 
 \begin_inset Note Note
 status open
 
@@ -5150,13 +5436,7 @@ Esto está explicado en la arquitectura.
 
 \end_inset
 
-CMSIS-RTOS
-\begin_inset space ~
-\end_inset
 
-(vX.Y) Es el sistema operativo de tiempo real que usaremos en el proyecto.
- Proporciona un scheduler y algunos otros elementos más avanzados (mailboxes,
- etc).
 \end_layout
 
 \begin_layout Description
@@ -5171,6 +5451,11 @@ lwip
 ...
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Se usa make por debajo, pero lo genera DAVE automáticamente, por lo que
  no se puede modificar.
@@ -5183,30 +5468,6 @@ J-TAG para programar y depurar (debugger no incluido en el dispositivo)
 
 \begin_layout Section
 Detalles de la biblioteca
-\end_layout
-
-\begin_layout Standard
-Se ha realizado una evaluación en profundidad de la implementación TLS seleccion
-ada.
- Para ello, se ha consultado la documentación oficial de mbedTLS en su web
- y se ha analizado parte del código fuente.
- A continuación se presentan los siguientes temas: características principales
- de la biblioteca, opciones de configuración, proceso de compilación, el
- tema de la portabilidad y uso básico.
-\end_layout
-
-\begin_layout Subsection
-Características principales de mbedTLS
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-quitar esta cabecera?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard

@@ -232,6 +232,12 @@ numbers=left
 \definecolor{bad}{rgb}{0.95,0.81,0.81}
 \definecolor{head}{rgb}{0.19,0.51,0.61}
 %\definecolor{head}{rgb}{0.81,0.78,0.87}
+
+\usepackage{textcomp}
+\newcommand{\dave}{DAVE\texttrademark\xspace}
+\newcommand{\DAVE}{\dave}
+\newcommand{\xmc}{XMC\texttrademark\xspace}
+\newcommand{\XMC}{\xmc}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -636,7 +642,7 @@ options "bibtotoc,unsrt"
 
 \end_inset
 
-
+ 
 \end_layout
 
 \begin_layout Standard
