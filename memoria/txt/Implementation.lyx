@@ -5021,7 +5021,7 @@ Tras valorar estas opciones, decidimos mbedTLS por los siguientes motivos:
 \end_layout
 
 \begin_layout Itemize
-#
+AWS IoT Device SDK funciona con mbedTLS de forma nativa
 \end_layout
 
 \begin_layout Itemize
@@ -5197,6 +5197,16 @@ ada.
 
 \begin_layout Subsection
 Características principales de mbedTLS
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+quitar esta cabecera?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -5232,6 +5242,119 @@ key "rfc6379-NSA-Suite-B"
 .
 \end_layout
 
+\begin_layout Subsection
+Estructura de ficheros
+\end_layout
+
+\begin_layout Standard
+El código fuente de la biblioteca está estructurado de la forma que se presenta
+ a continuación.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+/
+\family default
+ en el directorio raíz se encuentran los ficheros que podemos encontrar
+ en la mayoría de los proyectos, como 
+\family typewriter
+Makefile
+\family default
+, 
+\family typewriter
+README
+\family default
+, 
+\family typewriter
+LICENSE
+\family default
+, etc.
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+
+\family typewriter
+configs
+\family default
+ en este directorio podemos encontrar diversos ejmplos de ficheros de configurac
+ión.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+doxygen
+\family default
+ ficheros de entrada para la documentación generada con Doxygen.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+include
+\family default
+ ficheros de cabecera (
+\family typewriter
+.h
+\family default
+).
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+programs
+\family default
+ programas de ejemplo, que demuestran las distintas características de mbedTLS.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+scripts
+\family default
+ scripts útiles para configurar mbedTLS y medir su rendimiento.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+tests
+\family default
+ programas y scripts de test.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+visualc
+\family default
+ proyecto de Microsoft
+\begin_inset space ~
+\end_inset
+
+Visual
+\begin_inset space ~
+\end_inset
+
+Studio, usado para compilar mbedTLS en entornos Windows.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+yotta
+\family default
+ ficheros usados por Yotta para compilar mbedTLS como un módulo ARM
+\begin_inset space ~
+\end_inset
+
+mbed.
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 Opciones de configuración
 \end_layout
@@ -5485,6 +5608,22 @@ key "mbedTLS-how-do-I-port"
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+en el directorio library, cada fichero .c contiene una serie de defines con
+ los que se selecciona la plataforma (#if #else).
+ Para añadir la nueva plataforma, deberán modificarse estos ficheros y añadir
+ las líneas pertinentes.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Description
 Módulo
 \begin_inset space ~
@@ -5686,119 +5825,6 @@ Clock
 \end_layout
 
 \begin_layout Subsection
-Estructura de ficheros
-\end_layout
-
-\begin_layout Standard
-El código fuente de la biblioteca está estructurado de la forma que se presenta
- a continuación.
-\end_layout
-
-\begin_layout Description
-
-\family typewriter
-/
-\family default
- en el directorio raíz se encuentran los ficheros que podemos encontrar
- en la mayoría de los proyectos, como 
-\family typewriter
-Makefile
-\family default
-, 
-\family typewriter
-README
-\family default
-, 
-\family typewriter
-LICENSE
-\family default
-, etc.
-\end_layout
-
-\begin_deeper
-\begin_layout Description
-
-\family typewriter
-configs/
-\family default
- en este directorio podemos encontrar diversos ejmplos de ficheros de configurac
-ión.
-\end_layout
-
-\begin_layout Description
-
-\family typewriter
-doxygen/
-\family default
- ficheros de entrada para la documentación generada con Doxygen
-\end_layout
-
-\begin_layout Description
-
-\family typewriter
-include/
-\family default
- ficheros de cabecera (
-\family typewriter
-.h
-\family default
-).
-\end_layout
-
-\begin_layout Description
-
-\family typewriter
-programs/
-\family default
- programas de ejemplo, que demuestran las distintas características de mbedTLS.
-\end_layout
-
-\begin_layout Description
-
-\family typewriter
-scripts/
-\family default
- scripts útiles para configurar mbedTLS y medir su rendimiento.
-\end_layout
-
-\begin_layout Description
-
-\family typewriter
-tests/
-\family default
- programas y scripts de test.
-\end_layout
-
-\begin_layout Description
-
-\family typewriter
-visualc/
-\family default
- proyecto de Microsoft
-\begin_inset space ~
-\end_inset
-
-Visual
-\begin_inset space ~
-\end_inset
-
-Studio, usado para compilar mbedTLS en entornos Windows.
-\end_layout
-
-\begin_layout Description
-
-\family typewriter
-yotta/
-\family default
- ficheros usados por Yotta para compilar mbedTLS como un módulo ARM
-\begin_inset space ~
-\end_inset
-
-mbed.
-\end_layout
-
-\end_deeper
-\begin_layout Subsection
 Programas de ejemplo
 \end_layout
 
@@ -5959,7 +5985,7 @@ Hablar del montaje en el laboratorio (PC como bridge, switch, intranet,
 \end_layout
 
 \begin_layout Subsection
-Importación de los ficheros mbedTLS
+Importación de mbedTLS al proyecto
 \end_layout
 
 \begin_layout Standard
@@ -5968,6 +5994,20 @@ En primer lugar, es necesario incluir los ficheros de la biblioteca en el
  Hay dos formas de hacerlo: copiarlos o enlazarlos.
  En cualquier caso, será necesario configurar algunos flags y símbolos en
  el compilador.
+\end_layout
+
+\begin_layout Standard
+For CDT projects, you can define include paths and preprocessor symbols
+ for the parser.
+ This lets the parser understand the contents of the C/C++ source code so
+ that you can more effectively use the search and code completion features.
+\end_layout
+
+\begin_layout Standard
+If Autodiscovery is enabled, after a build finishes, any discovered paths
+ and symbols will be displayed in the Discovered Paths section.
+ You can also define the properties on a per project basis in the C/C++
+ Projects or Navigator views.
 \end_layout
 
 \begin_layout Standard
@@ -5994,7 +6034,7 @@ Ciphersuites - configurados en config.h de mbedTLS para tener una versión
 \end_layout
 
 \begin_layout Subsection
-Elementos portados
+Adaptación de la biblioteca a la plataforma
 \end_layout
 
 \begin_layout Standard
@@ -6148,10 +6188,260 @@ name "chap:Implementación-AWS-IoT"
 
 \end_inset
 
-Implementación de AWS IoT SDK
+Implementación de AWS IoT Device SDK
 \end_layout
 
 \begin_layout Section
+Detalles de la biblioteca
+\end_layout
+
+\begin_layout Standard
+El Device SDK de AWS IoT para C embebido es una colección de ficheros C
+ diseñada para conectar aplicaciones embebidas a la nube de AWS IoT de forma
+ segura.
+ El SDK incluye clientes de la capa de transporte, implementaciones TLS
+ y ejemplos de su uso.
+ También da soporte a características específicas de AWS IoT, como una API
+ para acceder al 
+\lang english
+Device Shadow service
+\lang spanish
+.
+ Se distribuye en la forma de código fuente, de forma que deberá compilarse
+ junto con la aplicación deseada, permitiendo la existencia de otras bibliotecas
+ y RTOS 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-SDK"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Estructura de ficheros
+\end_layout
+
+\begin_layout Standard
+A continuación se presenta la estructura de ficheros del Device SDK para
+ C embebido 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-SDK-porting-guide"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+certs
+\family default
+ este directorio es en el que albergará los certificados digitales necesarios
+ para la autenticación mutua entre el dispositivo y los servidores de AWS
+ IoT.
+ Aquí se almacenarán el certificado del cliente, su clave privada y la autoridad
+ certificadora con la que se verificará la autenticidad del servidor.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+docs
+\family default
+ documentación de la API del Device SDK.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+external_libs
+\family default
+ código fuente de las bibliotecas de las que depende el Device SDK: mbedTLS
+ y jsmn.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+ El código fuente de jsmn siempre está presente.
+ El código fuente de mbedTLS solo se incluyen cuando el SDK se descarga
+ en formato tarball, por lo que debe incluirse en otro caso.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+include
+\family default
+ este directorio contiene los archivos de cabecera (header files) que las
+ aplicaciones deben incluir para hacer uso del Device SDK.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+src
+\family default
+ este directorio contiene el código fuente del SDK, incluyendo la biblioteca
+ MQTT, el código de la sombra de dispositivo (device shadow) y otras utilidades.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+platform
+\family default
+ este directorio contiene los ficheros dependientes de la plataforma, tales
+ como los temporizadores (timers), la implementación de TLS y la capa de
+ concurrencia.
+ Por defecto, el directorio incluye una implementación para Linux usando
+ mbedTLS y pthread.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+samples
+\family default
+ este directorio contiene algunos programas de ejemplo, así como sus makefiles.
+ Entre estos programas, caben destacar dos ejemplos: el primero demuestra
+ el uso de MQTT, a través de la suscripción y publicación en un canal de
+ AWS IoT; el segundo muestra cómo interactuar con la sombra del dispositivo
+ (device shadow).
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+tests
+\family default
+ contiene tests para verificar la funcionalidad del SDK.
+\end_layout
+
+\begin_layout Subsection
+Portabilidad a otras plataformas
+\end_layout
+
+\begin_layout Standard
+En esta sección, explicaremos los elementos del Device SDK que deben ser
+ portados para hacer que este pueda ejecutarse en una nueva plataforma.
+ Cabe destacar que las interfaces del SDK siguen el modelo de controlador,
+ donde solo los prototipos están definidos por el Device SDK, mientras que
+ la implementación corre a cargo del usuario del SDK, que deberá ajustarla
+ a la plataforma en uso.
+\end_layout
+
+\begin_layout Standard
+A continuación se presentan las funcionalidades necesarias para que el Device
+ SDK se ejecute correctamente en una plataforma arbitraria 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-SDK-porting-guide"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Timer Functions [requerido]
+\end_layout
+
+\begin_layout Standard
+El SDK necesita una implementación de temporizador para gestionar los tiempos
+ de espera de las peticiones MQTT (como connect y subscribe, entre otros
+ comandos), así como para el mantenimiento de la conexión (MQTT keep-alive
+ pings).
+ Los temporizadores deberán tener una resolución de milisegundos.
+ Puesto que los temporizadores se consultan para comprobar si ha transcurrido
+ un determinado intervalo de tiempo, es posible usar un contador de ejecución
+ del tipo 
+\begin_inset Quotes fld
+\end_inset
+
+milisegundos desde el inicio
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Network Functions [requerido]
+\end_layout
+
+\begin_layout Standard
+Para que la pila de clientes MQTT pueda comunicarse a través de la pila
+ de protocolos TCP/IP utilizando una conexión TLS autenticada mutuamente,
+ es necesario contar con una implementación de las funciones de red.
+ Sin embargo, la biblioteca TLS proporciona generalmente la API para el
+ socket TCP subyacente.
+\end_layout
+
+\begin_layout Subsubsection
+Threading Functions
+\end_layout
+
+\begin_layout Standard
+La capa de concurrencia proporciona la implementación de mutexes usados
+ para operaciones 
+\lang english
+thread-safe
+\lang spanish
+.
+ Aunque el cliente MQTT utiliza una máquina de estados para controlar las
+ operaciones un un entorno multi-hebra, requiere la implementación de los
+ mutexes para garantizar la seguridad de las hebras (thread safety).
+ Esto no es necesario en los casos en que la seguridad de las hebras no
+ es importante, por lo que está deshabilitado por defecto.
+\end_layout
+
+\begin_layout Section
+Integración de AWS IoT SDK en el miniGW
+\end_layout
+
+\begin_layout Subsection
+Importación de AWS IoT SDK al proyecto
+\end_layout
+
+\begin_layout Standard
+Como con mbedTLS.
+ Pero esta vez, pondremos mbedTLS dentro de SDK 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+no?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Entrega del trabajo a la empresa: copiar y pegar + aplicar parches, siguiendo
+ tutorial
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Definición de una nueva plataforma
 \end_layout
 
@@ -6164,28 +6454,204 @@ Funciones que son en realidad wrappers, y que dependen de la plataforma.
  Se han tenido que portar:
 \end_layout
 
-\begin_layout Subsection
-Timers
-\end_layout
-
-\begin_layout Subsection
-pthread
-\end_layout
-
-\begin_layout Subsection
-network 
+\begin_layout Subsubsection
+Temporizadores
 \end_layout
 
 \begin_layout Standard
+Define the Timer Struct as in timer_platform.h
+\end_layout
+
+\begin_layout Standard
+void init_timer(Timer *); init_timer - A timer structure is initialized
+ to a clean state.
+\end_layout
+
+\begin_layout Standard
+bool has_timer_expired(Timer *); has_timer_expired - a polling function
+ to determine if the timer has expired.
+\end_layout
+
+\begin_layout Standard
+void countdown_ms(Timer *, uint32_t); countdown_ms - set the timer to expire
+ in x milliseconds and start the timer.
+\end_layout
+
+\begin_layout Standard
+void countdown_sec(Timer *, uint32_t); countdown_sec - set the timer to
+ expire in x seconds and start the timer.
+\end_layout
+
+\begin_layout Standard
+uint32_t left_ms(Timer *); left_ms - query time in milliseconds left on
+ the timer.
+\end_layout
+
+\begin_layout Subsubsection
+Concurrencia
+\end_layout
+
+\begin_layout Standard
+Define the IoT_Mutex_t Struct as in threads_platform.h This is used for data
+ specific to the TLS library being used.
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t aws_iot_thread_mutex_init(IoT_Mutex_t *); Initialize the mutex
+ provided as argument.
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t aws_iot_thread_mutex_lock(IoT_Mutex_t *); Lock the mutex provided
+ as argument
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t aws_iot_thread_mutex_unlock(IoT_Mutex_t *); Unlock the mutex
+ provided as argument.
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t aws_iot_thread_mutex_destroy(IoT_Mutex_t *); Destroy the mutex
+ provided as argument.
+\end_layout
+
+\begin_layout Subsubsection
+Conectividad de red
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 mbedTLS
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Define the TLSDataParams Struct as in network_platform.h This is used for
+ data specific to the TLS library being used.
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t iot_tls_init(Network *pNetwork, char *pRootCALocation, char
+ *pDeviceCertLocation, char *pDevicePrivateKeyLocation, char *pDestinationURL,
+ uint16_t DestinationPort, uint32_t timeout_ms, bool ServerVerificationFlag);
+ Initialize the network client / structure.
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t iot_tls_connect(Network *pNetwork, TLSConnectParams *TLSParams);
+ Create a TLS TCP socket to the configure address using the credentials
+ provided via the NewNetwork API call.
+ This will include setting up certificate locations / arrays.
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t iot_tls_write(Network*, unsigned char*, size_t, Timer *, size_t
+ *); Write to the TLS network buffer.
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t iot_tls_read(Network*, unsigned char*, size_t, Timer *, size_t
+ *); Read from the TLS network buffer.
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t iot_tls_disconnect(Network *pNetwork); Disconnect API
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t iot_tls_destroy(Network *pNetwork); Clean up the connection
+\end_layout
+
+\begin_layout Standard
+IoT_Error_t iot_tls_is_connected(Network *pNetwork); Check if the TLS layer
+ is still connected
+\end_layout
+
+\begin_layout Subsection
+Configuración de AWS IoT SDK
+\end_layout
+
+\begin_layout Standard
+Como se vio en #(AWS IoT) es necesario que el dispositivo tenga algunos
+ parámetros de AWS.
+\end_layout
+
+\begin_layout Standard
+Open the aws_iot_config.h file and, in the //Get from console section, update
+ the values for the following:
+\end_layout
+
+\begin_layout Standard
+AWS_IOT_MQTT_HOST
+\end_layout
+
+\begin_layout Standard
+Your personal endpoint.
+ AWS_IOT_MY_THING_NAME
+\end_layout
+
+\begin_layout Standard
+Your thing name.
+ AWS_IOT_ROOT_CA_FILENAME
+\end_layout
+
+\begin_layout Standard
+Your root CA certificate.
+ AWS_IOT_CERTIFICATE_FILENAME
+\end_layout
+
+\begin_layout Standard
+Your certificate.
+ AWS_IOT_PRIVATE_KEY_FILENAME
+\end_layout
+
+\begin_layout Standard
+Your private key.
+\end_layout
+
+\begin_layout Subsubsection
+Certificado digital del dispositivo
+\end_layout
+
+\begin_layout Standard
+Copiar certificado en un fichero .c (hardcoded) en formato .pem? .der?.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Certificado digital para validar Amazon
+\end_layout
+
+\begin_layout Subsubsection
+URL de 
+\begin_inset Quotes fld
+\end_inset
+
+la sombra?
+\begin_inset Quotes frd
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
+Resolución de problemas
+\end_layout
+
+\begin_layout Standard
 Configuración de RTOS y opciones de compilación
 \end_layout
 
 \begin_layout Subsection
-CMSIS-RTOS
+Configuración de CMSIS-RTOS
 \end_layout
 
 \begin_layout Standard
@@ -6234,40 +6700,6 @@ reference "fig:XMC-block-diagram"
 Cómo se queda el linkerscript: cuánto espacio
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Configuración de AWS IoT SDK
-\end_layout
-
-\begin_layout Standard
-Como se vio en #(AWS IoT) es necesario que el dispositivo tenga algunos
- parámetros de AWS.
-\end_layout
-
-\begin_layout Subsubsection
-Certificado digital del dispositivo
-\end_layout
-
-\begin_layout Standard
-Copiar certificado en un fichero .c (hardcoded) en formato .pem? .der?.
- 
-\end_layout
-
-\begin_layout Subsubsection
-Certificado digital para validar Amazon
-\end_layout
-
-\begin_layout Subsubsection
-URL de 
-\begin_inset Quotes fld
-\end_inset
-
-la sombra?
-\begin_inset Quotes frd
 \end_inset
 
 
