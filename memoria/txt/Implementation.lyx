@@ -1108,6 +1108,12 @@ Este módulo será el encargado de comunicar el miniGW con la red de sensores,
  microcontrolador.
 \end_layout
 
+\begin_layout Standard
+La comunicación con los sensores y actuadores de la red de sensores se lleva
+ a cabo a través de un protocolo propietario, que usa AES en su modo Cipher-Bloc
+k Chaining (AES-CBC) para garantizar la seguridad.
+\end_layout
+
 \begin_layout Subsubsection
 Firmware del XMC4500
 \end_layout
@@ -1120,11 +1126,22 @@ La lógica del XMC4500 debe garantizar que el miniGW realiza todas las funciones
  actualización de la fecha y hora a través del protocolo NTP.
  La estructura del firmware es muy compleja y escapa a los objetivos de
  esta memoria.
- Sin embargo, la finalidad de este proyecto es proporcionar una capa de
- seguridad TLS compatible con el resto de elementos del firmware.
+ Sin embargo, la finalidad de este proyecto es demostrar el uso de AWS IoT
+ SDK
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+revisar!!
+\end_layout
+
+\end_inset
+
+, a través de una capa de seguridad TLS que deberá permanecer compatible
+ con el resto de elementos del firmware.
  Por este motivo, necesitamos revisar cuáles son los elementos fundamentales
  que estarán incluidos en el sistema final, y que supondrán el marco en
- el cuál deberemos integrar la biblioteca TLS elegida.
+ el cuál deberemos integrar la biblioteca TLS y el AWS IoT SDK.
 \end_layout
 
 \begin_layout Standard
@@ -1136,6 +1153,39 @@ reference "fig:Arquitectura-firmware"
 \end_inset
 
 .
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Explicar mejor cómo funciona el firmware y qué tareas se van a tener (explicació
+n exhaustiva de las funciones implementadas en el miniGW -> fuera del scope
+ del documento, pero se contarán algunas tareas representativas y qué recursos
+ requieren p.ej.
+ NTP client ejecutándose cada cierto intervalo de tiempo y actualizando
+ el RTC, reenvío de datos de los sensores cada vez que se recibe un paquete
+ (TDA->SHEI->JSON->lwIP)).
+\end_layout
+
+\begin_layout Plain Layout
+En la prueba 1: una tarea sencilla que sea cliente HTTPS.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+En la prueba 2: Cliente de AWS IoT, que enviará un mensaje a un canal MQTT
+ cada cierto tiempo.
+\end_layout
+
+\begin_layout Plain Layout
+En el sistema final (fuera de los objetivos de este trabajo): tarea para
+ NTP, tarea para recepción de los datos de los sensores, tarea para actualizar
+ la sombra, etc.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1324,30 +1374,48 @@ Red de sensores
 \end_layout
 
 \begin_layout Standard
-Miden con diversos sensores
+La red de sensores se encarga de monitorizar variables de interés para el
+ usuario, transmitiéndolos al miniGW de forma inalámbrica.
+ La gama de productos H2 de eesy-innovation incluye una multitud de sensores
+ y actuadores, como sensores de presencia, estación meteorológica, enchufe
+ inteligente (SmartPlug), etc.
+ Todos estos nodos se comunican con el miniGW a través de un protocolo propietar
+io, que usa AES en su modo Cipher-Block Chaining (AES-CBC) para garantizar
+ la seguridad.
+ Además, cada uno de estos sensores y actuadores tiene un UID que lo identifica
+ de forma única, no solo en la red local, sino en toda la Internet.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+explicar mejor
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Sensores: transmisor
+Una diferencia a destacar entre los sensores y los actuadores es que los
+ primeros usan un transmisor (comunicación unidireccional) mientras que
+ los segundos hacen uso de un transceptor (comunicación bidireccional).
+ Esto fuerza que la topología de red sea en estrella, donde el nodo central
+ es el miniGW.
 \end_layout
 
 \begin_layout Standard
-Actuadores: transceiver
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Gracias al uso de transmisores dede muy bajo consumo, los sensores que les
+ permite funcionar con batería durante meses
 \end_layout
 
-\begin_layout Standard
-En ambos casos, se usa un protocolo custom que se encarga de la seguridad
- de los datos (y de otras cosas), usando Cipher Block Chaining (CBC) AES-CBC.
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Sensores con batería: larga duración, transmitiendo datos cada varios segundos-m
-inuto para así lograr meses de duración.
-\end_layout
 
-\begin_layout Standard
-Familia de sensores: apertura de puertas y ventanas, calidad del aire, smartplug
-, wheather, motion, somoke
 \end_layout
 
 \begin_layout Section
@@ -1358,6 +1426,19 @@ AWS
 \end_inset
 
 IoT
+\end_layout
+
+\begin_layout Standard
+El servicio AWS IoT se encarga de almacenar los datos de los sensores, haciendo
+ que permanezcan disponibles para que el usuario pueda consultarlos cuando
+ desee.
+ Esto se consigue gracias a la sombra del dispositivo descrita con mas detalle
+ en el cap 2#ref#.
+\end_layout
+
+\begin_layout Standard
+La nube contendrá dispositivos virtuales, uno por cada sensor/actuador físico,
+ que tendrá que asociarse al usuario.
 \end_layout
 
 \begin_layout Standard
@@ -6885,7 +6966,7 @@ name "chap:Implementación-AWS-IoT"
 
 \end_inset
 
-Implementación de AWS IoT Device SDK
+Integración de AWS IoT Device SDK
 \end_layout
 
 \begin_layout Section

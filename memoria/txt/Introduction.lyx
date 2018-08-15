@@ -80,8 +80,62 @@ Presentación del proyecto
 Motivación
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Here is a problem • It’s an interesting problem • It’s an unsolved problem
+ • Here is my idea • My idea works (details, data) • Here’s how my idea
+ compares to other people’s approaches
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Describe the problem • State your contributions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Algunas empresas se lo toman en serio.
+ Uno de los referentes, AWS 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+buscar otros
+\end_layout
+
+\end_inset
+
+, no permite conexiones no seguras.
+ Esto fuerza a las empresas que quieren trabajar con estos proveedores de
+ servicio profesionales/robustos, que quieren hacer un buen producto, a
+ integrar seguridad en sus sistemas.
+ Es el ejemplo de eesy innovation, que tiene una gama de productos SmartHome
+ (H2) usando tecnología IoT.
+\end_layout
+
 \begin_layout Section
 Objetivos
+\end_layout
+
+\begin_layout Standard
+El presente trabajo tiene como objetivo interconectar los productos de IoT
+ de una empresa (eesy) con una plataforma bien conocida de IoT (AWS).
+ Para ello, sera necesario integrar seguridad y conectividad a la plataforma.
 \end_layout
 
 \begin_layout Standard
@@ -195,6 +249,20 @@ reference "sec:Entorno-de-trabajo"
 \end_inset
 
 )
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Decir que se han entregado reports y código a la empresa de forma periódica,
+ que el trabajo se ha realizado bajo su supervisión.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -391,7 +459,14 @@ descifrado
 \emph on
 seguridad por oscuridad
 \emph default
-, y suelen acarrear severos problemas de seguridad.
+, y suelen acarrear severos problemas de seguridad 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-ModernOS"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -627,7 +702,16 @@ Criptografía de clave pública
 \end_layout
 
 \begin_layout Section
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Funciones unidireccionales
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -635,13 +719,38 @@ Firmas digitales
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Tanenbaum-ModernOS"
+Las firmas tradicionales se llevan usando mucho tiempo, para resolver los
+ problemas:
+\end_layout
 
-\end_inset
+\begin_layout Enumerate
+The receiver can verify the claimed identity of the sender.
+ 
+\end_layout
 
+\begin_layout Enumerate
+The sender cannot later repudiate the contents of the message.
+ 
+\end_layout
 
+\begin_layout Enumerate
+The receiver cannot possibly have concocted the message himself.
+\end_layout
+
+\begin_layout Standard
+Estos problemas son de gran importancia con las transacciones bancarias,
+ etc.
+ Sin embargo, cuando nos movemos al mundo digital, tenemos un puñado de
+ ceros y unos.
+ cómo saber si un documento es auténtico? firmas digitales.
+ Las firmas digitales resuelven estos problemas (authenticity, non repudiation
+ y ...).
+ Existen varias modalidades de firmas digitales, la más usada hoy en día
+ #ref# es la que se basa en clave pública.
+\end_layout
+
+\begin_layout Subsection
+Firmas digitales de clave pública
 \end_layout
 
 \begin_layout Chapter
@@ -840,7 +949,17 @@ propósito no general
 \lang english
 scheduler
 \lang spanish
- o RTOS)
+ o RTOS
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Definir RTOS
+\end_layout
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Standard
@@ -1195,6 +1314,20 @@ It is well known that truly reliable systems are much more difficult to
 
 \begin_layout Section
 Soluciones de seguridad
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Usando las técnicas explicadas en el cap 2, se pueden elaborar soluciones
+ completas de seguridad
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
