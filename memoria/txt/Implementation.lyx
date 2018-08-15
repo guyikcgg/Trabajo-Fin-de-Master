@@ -560,8 +560,8 @@ miniGW
 
 \end_inset
 
- su función es comunicar la red de sensores con la nube, de forma que no
- se pierdan datos.
+ pasarela IoT, cuya función es comunicar la red de sensores con la nube
+ de forma confiable, segura y eficiente.
  También está encargada de almacenar algunos elementos de configuración.
 \end_layout
 
@@ -655,7 +655,7 @@ cm #!.
  de las distintas interfaces.
  Es en este circuito donde se encuentra el programa que gestiona las distintas
  tareas de las que el miniGW tiene que hacerse cargo, así como la pila de
- protocolos de Internet y los drivers de las distintas interfaces.
+ protocolos de Internet y los controladores de las distintas interfaces.
  Entre estas interfaces, cabe destacar el TDA5340, un transceptor de muy
  bajo consumo encargado de mantener la comunicación con los sensores.
 \end_layout
@@ -718,7 +718,7 @@ reference "fig:miniGW-Arquitectura-hardware"
 
 \end_inset
 
-, permiten al miniGW establecer comunicación con el mundo exterior:
+, permiten que miniGW se comunique con el mundo exterior:
 \end_layout
 
 \begin_layout Description
@@ -823,6 +823,8 @@ Arquitectura hardware del miniGW.
 \begin_layout Standard
 A continuación expondremos algunos detalles de interés sobre los dos módulos
  principales del sistema: el microcontrolador XMC4500 y el transceptor TDA5340.
+ Posteriormente, introduciremos la estructura del firmware presente en el
+ miniGW.
 \end_layout
 
 \begin_layout Subsubsection
@@ -830,32 +832,11 @@ XMC4500
 \end_layout
 
 \begin_layout Standard
-XMC4500 es un microcontrolador diseñado y producido por Infineon para aplicacion
-es industriales y de automoción.
- Se trata de un microcontrolador basado el el procesador ARM Cortex-M4,
- #kB de RAM dividida en tres bloques #! y ...
-\end_layout
-
-\begin_layout Standard
-Este circuito cuenta con las siguientes características 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "infineon:XMC4500"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-La 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:XMC-block-diagram"
-
-\end_inset
-
- muestra el diagrama de bloques de este circuito.
+XMC4500 es un microcontrolador de la familia de microcontroladores de alto
+ rendimiento XMC4000 de Infineon.
+ Esta familia, basada en el procesador ARM Cortex-M4, está optimizada para
+ tareas tales como el control industrial, conversión de potencia y sensorización
+ y control.
 \end_layout
 
 \begin_layout Standard
@@ -900,86 +881,202 @@ key "infineon:XMC4500"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
+La 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:XMC-block-diagram"
 
-\color red
-This system consists on an IoT gateway, which is based on a microcontroller
- using ARM Cortex-M core.
- Its firmware will use RTOS operating system and lwIP protocol stack.
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Hardware 
+ muestra el diagrama de bloques de este circuito, que cuenta con numerosos
+ módulos de aceleración hardware.
+ A continuación presentamos una lista con las características principales
+ de este microcontrolador 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "infineon:XMC4500"
 
 \end_inset
 
-:
+.
+ Esta lista no es exhaustiva, nos centraremos exclusivamente en aquellas
+ características que serán más relevantes en la consecución del presente
+ proyecto.
+\end_layout
+
+\begin_layout Itemize
+Núcleo de procesamiento
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Núcleo ARM Cortex-M4.
+ CPU de 32 bits de alto rendimiento, con instrucciones para procesamiento
+ digital de señales (DSP).
+\end_layout
+
+\begin_layout Itemize
+Temporizador del sistema (SysTick) para dar soporte a sistemas operativos.
+\end_layout
+
+\begin_layout Itemize
+Unidades de acceso directo a memoria (DMA) y de protección de memoria (MPU).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Bancos de memoria integrados
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\lang english
+16 KB on-chip boot ROM
+\end_layout
+
+\begin_layout Itemize
+
+\lang english
+64 KB on-chip high-speed program memory 
+\end_layout
+
+\begin_layout Itemize
+
+\lang english
+64 KB on-chip high speed data memory 
+\end_layout
+
+\begin_layout Itemize
+
+\lang english
+32 KB on-chip high-speed communication 
+\end_layout
+
+\begin_layout Itemize
+
+\lang english
+1024 KB on-chip Flash Memory with 4 KB instruction cache
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Periféficos de comunicación
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Módulo Ethernet MAC compatible con las tasas de transmisión 10/100 Mbit/s.
+\end_layout
+
+\begin_layout Itemize
+Universal Serial Bus, USB 2.0 host.
+\end_layout
+
+\begin_layout Itemize
+Canales de interfaz serial universal (USIC), configurables como interfaces
+ UART, double-SPI, quad-SPI, IIC, IIS y LIN.
+\end_layout
+
+\begin_layout Itemize
+Interfaces SD y Multi-Media Card (SDMMC) para tarjetas de almacenamiento
+ de datos.
+\end_layout
+
+\begin_layout Itemize
+Unidad de interfaz de bus externo (EBU), permitiendo la comunicación con
+ memorias externas y otros periféricos 
+\lang english
+off-chip
+\lang spanish
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Periféricos de control industrial
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Unidades de captura y comparación (CCU4 y CCU8), que pueden ser configuradas
+ como temporizadores o generadores de señal modulada por ancho de pulsos
+ (PWM), entre otras muchas configuraciones 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:CCU8,infineon:CCU8"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Perro guardián (WDT).
+\end_layout
+
+\begin_layout Itemize
+Reloj de tiempo real (RTC).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Soporte para depuración del firmware
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Interfaces ARM-JTAG y SWD.
+\end_layout
+
+\begin_layout Itemize
+Soporte para 
+\lang english
+breakpoints
+\lang spanish
+.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+TDA5340
 \end_layout
 
 \begin_layout Standard
-XMC4500
-\end_layout
-
-\begin_layout Standard
-RAM
-\end_layout
-
-\begin_layout Standard
-Flash
-\end_layout
-
-\begin_layout Standard
-Generador de números aleatorios
-\end_layout
-
-\begin_layout Standard
-Software: CMSIS-RTOS y lwIP
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/arquitectura-sw.jpg
-	lyxscale 50
-	width 50text%
+Es el transceiver que se encargará de la comunicación con la red de sensores.
+ Como hemos mencionado anteriormente #!, TDA recibirá los paquetes de los
+ distintos sensores y los hará llegar al XMC, a través de un bus SPI.
+ De forma análoga, el TDA enviará paquetes a los actuadores, tales como
+ el smartplug.
+ TDA Se trata de un...
+ (copiar descripción de datasheet) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:TDA5340"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Arquitectura software.
+\begin_layout Standard
+...
 \end_layout
 
-\end_inset
-
-
+\begin_layout Subsubsection
+Firmware
 \end_layout
 
-\end_inset
+\begin_layout Standard
 
-
+\color red
+Its firmware will use RTOS operating system and lwIP protocol stack.
 \end_layout
 
 \begin_layout Standard
@@ -1067,29 +1164,42 @@ lwip
 
 \end_layout
 
-\begin_layout Subsubsection
-TDA5340
+\begin_layout Standard
+Software: CMSIS-RTOS y lwIP
 \end_layout
 
 \begin_layout Standard
-Es el transceiver que se encargará de la comunicación con la red de sensores.
- Como hemos mencionado anteriormente #!, TDA recibirá los paquetes de los
- distintos sensores y los hará llegar al XMC, a través de un bus SPI.
- De forma análoga, el TDA enviará paquetes a los actuadores, tales como
- el smartplug.
- TDA Se trata de un...
- (copiar descripción de datasheet) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "infineon:TDA5340"
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/arquitectura-sw.jpg
+	lyxscale 50
+	width 50text%
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-...
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Arquitectura software.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
