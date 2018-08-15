@@ -496,7 +496,7 @@ Se pretende conectar una red de sensores a un gateway, y de ahí a AWS a
  El gw y AWS deberán autenticarse con certificados digitales.
  
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "fig:Arquitectura-del-sistema"
 
 \end_inset
@@ -1000,11 +1000,38 @@ off-chip
 
 \end_deeper
 \begin_layout Itemize
-Periféricos de control industrial
+Periféricos analógicos
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
+Conversores analógico-digital (VADC) con 12 bits de resolución.
+\end_layout
+
+\begin_layout Itemize
+Conversores digital-analógico (DAC) con 12 bits de resolución.
+ Estos conversores tienen distintos modos de operación, con los que pueden
+ generar distintas formas de onda, incluyendo ruido 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:XMC4500-reference"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Periféricos de control industrial
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Unidades de captura y comparación (CCU4 y CCU8), que pueden ser configuradas
  como temporizadores o generadores de señal modulada por ancho de pulsos
  (PWM), entre otras muchas configuraciones 
@@ -1015,6 +1042,11 @@ key "infineon:CCU8,infineon:CCU8"
 \end_inset
 
 .
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1049,123 +1081,61 @@ TDA5340
 \end_layout
 
 \begin_layout Standard
-Es el transceiver que se encargará de la comunicación con la red de sensores.
- Como hemos mencionado anteriormente #!, TDA recibirá los paquetes de los
- distintos sensores y los hará llegar al XMC, a través de un bus SPI.
- De forma análoga, el TDA enviará paquetes a los actuadores, tales como
- el smartplug.
- TDA Se trata de un...
- (copiar descripción de datasheet) 
+El TDA5340 es un transceptor de bajo consumo diseñado y producido por Infineon
+ para aplicaciones en la industria del automóvil.
+ Este circuito integrado permite distintos tipos de modulación, como ASK,
+ FSK y GFSK para las bandas de frecuencia 300-320, 415-495 y 863-960 MHz
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "infineon:TDA5340"
 
 \end_inset
 
-
+.
+ El tipo de modulación, la frecuencia y otros parámetros de transmisión
+ son seleccionados a través de un pequeño firmware que se ejecuta en este
+ circuito.
+ Este firmware permite además llevar a cabo algunas operaciones básicas
+ como la entrada en el modo de suspensión.
 \end_layout
 
 \begin_layout Standard
-...
+Este módulo será el encargado de comunicar el miniGW con la red de sensores,
+ recibiendo los datos de los distintos sensores para proporcionárselos al
+ XMC4500 a través de un bus SPI.
+ De forma análoga, el TDA enviará comandos a los actuadores a petición del
+ microcontrolador.
 \end_layout
 
 \begin_layout Subsubsection
-Firmware
+Firmware del XMC4500
 \end_layout
 
 \begin_layout Standard
-
-\color red
-Its firmware will use RTOS operating system and lwIP protocol stack.
+La lógica del XMC4500 debe garantizar que el miniGW realiza todas las funciones
+ para las que fue diseñado.
+ En este firmware se incluyen diversas tareas que deberán ejecutarse en
+ paralelo, como la recepción de paquetes de datos de los sensores o la continua
+ actualización de la fecha y hora a través del protocolo NTP.
+ La estructura del firmware es muy compleja y escapa a los objetivos de
+ esta memoria.
+ Sin embargo, la finalidad de este proyecto es proporcionar una capa de
+ seguridad TLS compatible con el resto de elementos del firmware.
+ Por este motivo, necesitamos revisar cuáles son los elementos fundamentales
+ que estarán incluidos en el sistema final, y que supondrán el marco en
+ el cuál deberemos integrar la biblioteca TLS elegida.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-En este proyecto se están usando las siguientes Apps (
+La arquitectura del firmware puede consultarse en la 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig:DAVE"
+reference "fig:Arquitectura-firmware"
 
 \end_inset
 
-):
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:DAVE"
-
-\end_inset
-
-Vista principal de DAVE.
- En la zona inferior pueden observarse las Apps de DAVE que se usan en el
- proyecto.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-CMSIS-RTOS
-\begin_inset space ~
-\end_inset
-
-(vX.Y) Es el sistema operativo de tiempo real que usaremos en el proyecto.
- Proporciona un scheduler y algunos otros elementos más avanzados (mailboxes,
- etc).
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Esto está explicado en la arquitectura.
- Repetir?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-lwip
-\begin_inset space ~
-\end_inset
-
-(vX.Y) Es la pila de protocolos 
-\end_layout
-
-\begin_layout Description
-...
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Software: CMSIS-RTOS y lwIP
+.
 \end_layout
 
 \begin_layout Standard
@@ -1189,7 +1159,154 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Arquitectura software.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arquitectura-firmware"
+
+\end_inset
+
+Arquitectura del firmware del miniGW.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+CMSIS-RTOS
+\begin_inset space ~
+\end_inset
+
+(vX.Y)
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+versión del software!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Las distintas tareas que debe realizar
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+El firmware d
+\end_layout
+
+\end_inset
+
+ el miniGW está construidas sobre un sistema operativo de tiempo real denominado
+ CMSIS-RTOS.
+ Este RTOS, diseñado especialmente para dispositivos Cortex-M #ref#, permite
+ que las distintas tareas se ejecuten de forma concurrente y proporcionan
+ herramientas para la gestión de recursos y de la comunicación entre tareas.
+\end_layout
+
+\begin_layout Paragraph
+lwip
+\begin_inset space ~
+\end_inset
+
+(vX.Y)
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+versión del software!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La pila de protocolos de Internet está proporcionada por lwIP.
+ Esta biblioteca está diseñada para reducir el uso de recursos, conservando
+ todas las funcionalidades de TCP/IP #ref#.
+\end_layout
+
+\begin_layout Standard
+Tanto CMSIS-RTOS como lwIP están disponibles en el formato de 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ APPs, por lo que han sido añadidas al proyecto usando esta herramienta,
+ como muestra la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:DAVE-main"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DAVE-main"
+
+\end_inset
+
+Vista principal en 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+.
+ En la zona inferior pueden observarse las 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ APPs que se usan en el proyecto de partida.
 \end_layout
 
 \end_inset
@@ -1203,7 +1320,7 @@ Arquitectura software.
 \end_layout
 
 \begin_layout Section
-Red de sensores y actuadores
+Red de sensores
 \end_layout
 
 \begin_layout Standard
