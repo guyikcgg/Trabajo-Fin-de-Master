@@ -103,6 +103,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename img/test-setup-final.eps
+	lyxscale 70
 	scale 50
 
 \end_inset

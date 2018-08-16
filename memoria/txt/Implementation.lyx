@@ -7214,6 +7214,107 @@ Configuración de mbedTLS
 \end_layout
 
 \begin_layout Standard
+Una vez integrados los diferentes módulos con la plataforma, será necesario
+ configurar mbedTLS para que pueda compilar.
+\end_layout
+
+\begin_layout Standard
+La configuración de mbedTLS se lleva a cabo modificando el fichero config.h.
+ La biblioteca incluye varios de estos ficheros para ejemplificar algunas
+ configuraciones comunes.
+ Para llevar a cabo esta configuración, hemos partido del fichero 
+\family typewriter
+config-suite-b.h
+\family default
+, que presenta una configuración mínima para la TLS Suite B definida por
+ la NSA.
+ Esta configuración trata de minimizar el de RAM y usa únicamente criptografía
+ de curva elíptica (ECC) como algoritmos de clave pública.
+\end_layout
+
+\begin_layout Standard
+Destacamos la adición de los siguientes símbolos en nuestra configuración
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-config_h"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_SELF_TEST
+\family default
+ habilita las funciones de reconocimiento, para poder verificar la integridad
+ de la biblioteca.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_PLATFORM_C
+\family default
+ habilita la capa de abstracción de plataforma que permite reasignar funciones
+ como calloc(), printf(), etc.
+ Es necesaria para reasignar las funciones de lectura del RTC.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_HAVE_TIME_DATE
+\family default
+ habilita la verificación de la validez de los certificados digitales basada
+ en la fecha y hora.
+ Requiere la integración del RTC.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_PLATFORM_TIME_ALT
+\family default
+ permite que mbedTLS soporte funciones de alternativas en el módulo de temporiza
+ción, que estarán definidas en la capa de abstracción de plataforma.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_NO_PLATFORM_ENTROPY
+\family default
+ evita que mbedTLS use las funciones de entropía definidas por defecto,
+ y que requieren de sistemas tipo Unix o MS
+\begin_inset space ~
+\end_inset
+
+Windows.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_ENTROPY_HARDWARE_ALT
+\family default
+ permite que mbedTLS use una implementación propia de un recolector de entropía
+ hardware.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-reduce-footprint"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Ciphersuites - configurados en config.h de mbedTLS para tener una versión
  mínima que compile y se ejecute.
 \end_layout
@@ -7236,31 +7337,13 @@ enseñar config? hablar de la configuración mínima?
 \end_layout
 
 \begin_layout Section
-Resolución de problemas
-\end_layout
-
-\begin_layout Subsubsection
-lwIP (Actualización de lwIP)
-\end_layout
-
-\begin_layout Standard
-Versión de lwIP en DAVE.
- Versión requerida.
- Proceso de actualización (parches con git)
-\end_layout
-
-\begin_layout Standard
-Se han usado parches y mucho git.
-\end_layout
-
-\begin_layout Section
 Verificación de la integración
 \end_layout
 
 \begin_layout Subsection
 Tests proporcionados 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 unitarios?
@@ -7326,6 +7409,45 @@ En cada paso se imprime por el puerto serial información útil.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Resolución de problemas
+\end_layout
+
+\begin_layout Subsubsection
+lwIP (Actualización de lwIP)
+\end_layout
+
+\begin_layout Standard
+Versión de lwIP en DAVE.
+ Versión requerida.
+ Proceso de actualización (parches con git)
+\end_layout
+
+\begin_layout Standard
+Se han usado parches y mucho git.
+\end_layout
+
+\begin_layout Subsubsection
+Configuración de mbedTLS
+\end_layout
+
+\begin_layout Standard
+Habilitación de más ciphersuites y RSA para conectar con servidor HTTPS.
+ Además:
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_SSL_MAX_CONTENT_LEN
+\begin_inset space \quad{}
+\end_inset
+
+2048
+\family default
+ permite que la longitud de un paquete TLS sea de hasta 2048 bytes.
 \end_layout
 
 \begin_layout Chapter
