@@ -533,6 +533,9 @@ name "fig:Arquitectura-del-sistema"
 \end_inset
 
 Arquitectura general del sistema.
+ Las líneas discontinuas representan la conexión inalámbrica a través del
+ protocolo propietario de eesy-innovation.
+ Las líneas continuas representan conexión IP.
 \end_layout
 
 \end_inset
@@ -546,7 +549,16 @@ Arquitectura general del sistema.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 tenemos red de sensores, gw, Cloud y terminal (App)
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Description
@@ -696,6 +708,7 @@ name "fig:miniGW-foto-hardware"
 \end_inset
 
 Fotografía del hardware del miniGW.
+ Pueden observarse distintos componentes electrónicos e interfaces.
 \end_layout
 
 \end_inset
@@ -6762,33 +6775,81 @@ Hablar del montaje en el laboratorio (PC como bridge, switch, intranet,
  Internet)
 \end_layout
 
+\begin_layout Standard
+Partiremos de un proyecto inicial en el que están presentes CMSIS-RTOS y
+ lwIP.
+ Este proyecto de partida no realiza ninguna función en especial, pero tiene
+ una pila IP funcional, y se le puede hacer ping.
+\end_layout
+
 \begin_layout Subsection
 Importación de mbedTLS al proyecto
 \end_layout
 
 \begin_layout Standard
-En primer lugar, es necesario incluir los ficheros de la biblioteca en el
- proyecto.
- Hay dos formas de hacerlo: copiarlos o enlazarlos.
- En cualquier caso, será necesario configurar algunos flags y símbolos en
- el compilador.
+Para integrar cualquier biblioteca, lo primero que tendremos que hacer es
+ importarla al proyecto.
+ De esta forma, el IDE la compilará automáticamente con el resto del código,
+ pudiéndose referenciar los objetos de la misma desde cualquier lugar.
+ Existen dos formas principales de importar la biblioteca al proyecto.
+ La primera de ellas consiste en copiar los ficheros de la biblioteca al
+ directorio del proyecto.
+ De esta forma, todo el código fuente, tanto el del programa usuario como
+ el de la biblioteca, se encontrará bajo el mismo directorio, siendo accesible
+ al proceso de compilación.
+ Sin embargo, esta aproximación presenta algunos inconvenientes, sobre todo
+ cuando se trata de usar una misma biblioteca que está sujeta a cambios
+ en distintos proyectos.
+ En este caso, DAVE nos ofrece una alternativa, que hereda de Eclipse IDE.
+ La alternativa consiste en 
+\begin_inset Quotes fld
+\end_inset
+
+enlazar
+\begin_inset Quotes frd
+\end_inset
+
+ la biblioteca al proyecto, de forma que en el mismo lo único que existe
+ es una referencia a la primera.
+ De esta forma, cualquier cambio que realicemos a la biblioteca dentro del
+ proyecto quedará guardado en la misma.
+ Este flujo de trabajo es especialmente conveniente cuando la biblioteca
+ se tiene bajo control de versiones, en un repositorio compartido por todo
+ el equipo
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Git submodules es otra forma de resolver este problema.
+ Sin embargo, el flujo de trabajo de eesy-innovation no contempla el uso
+ de submódulos.
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-For CDT projects, you can define include paths and preprocessor symbols
- for the parser.
- This lets the parser understand the contents of the C/C++ source code so
- that you can more effectively use the search and code completion features.
+Una vez que el código fuente de la biblioteca está accesible y puede compilarse
+ en conjunto con el resto del proyecto, será necesario ajustar algunos parámetro
+s de la compilación.
+ En concreto, será necesario añadir algunos símbolos y rutas, que en DAVE,
+ como en Eclipse IDE, puede hacerse de forma gráfica accediendo a las propiedade
+s de compilación del proyecto.
+ En el caso que nos ocupa, definiremos un símbolo DAVE, sin ningún valor
+ específico, para usarlo como indicador de la plataforma cuando modifiquemos
+ el código fuente de la biblioteca al portarla.
+ Esto en GCC se consigue con el flag '-D'.
+ También tendremos que indicar al compilador que busque archivos de cabecera
+ en las rutas de la biblioteca (flag '-I').
 \end_layout
 
 \begin_layout Standard
-If Autodiscovery is enabled, after a build finishes, any discovered paths
- and symbols will be displayed in the Discovered Paths section.
- You can also define the properties on a per project basis in the C/C++
- Projects or Navigator views.
-\end_layout
+\begin_inset Note Note
+status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 herramienta 
 \begin_inset Quotes fld
 \end_inset
@@ -6802,13 +6863,9 @@ bibliotecas con referencias
  Configuración de Símbolos?
 \end_layout
 
-\begin_layout Standard
-Certificados: TrustChain, PEM, DER
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Ciphersuites - configurados en config.h de mbedTLS para tener una versión
- mínima que compile y se ejecute.
+
 \end_layout
 
 \begin_layout Subsection
@@ -6816,14 +6873,157 @@ Adaptación de la biblioteca a la plataforma
 \end_layout
 
 \begin_layout Standard
-Los ficheros de plataforma!! (ver 
+Una vez importado el código de la biblioteca y configurada la compilación,
+ pasaremos a realizar los cambios necesarios para que la esta pueda compilarse
+ y ser funcional en la nueva plataforma.
+ Puesto que mbedTLS selecciona la plataforma a través de directivas condicionale
+s del preprocesador de C (#if #else), tendremos que modificar cada uno de
+ los ficheros dependientes de la plataforma.
+ Como explicamos en 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "subsec:Portabilidad-mbedTLS"
 
 \end_inset
 
-)
+, los módulos dependientes de la plataforma y que deben ser portados son
+ el módulo de red y la fuente de entropía.
+ A continuación describimos los cambios realizados en cada uno de estos
+ módulos.
+\end_layout
+
+\begin_layout Subsubsection
+Módulo de red
+\end_layout
+
+\begin_layout Standard
+Con respecto a las capacidades de red, mbedTLS se basa en los sockets BSD
+ estándar, que es la interfaz de red predeterminada en muchos sistemas tipo
+ Unix, así como lo es en Windows.
+ Las versiones recientes de lwIP proporcionan esta interfaz de sockets estándar,
+ por lo que se puede utilizar como la pila de red para el sistema.
+\end_layout
+
+\begin_layout Standard
+Hemos modificado el fichero mbedtls/library/net_sockets.c, que es una capa
+ de abstracción donde se interconecta mbedTLS con los sockets tipo BSD.
+ Esta es la lista de cambios que hemos realizado en el fichero:
+\end_layout
+
+\begin_layout Itemize
+Permitir compilar este archivo para un entorno distinto a Unix y Windows,
+ incluyendo directivas #if al comiendo del fichero.
+\end_layout
+
+\begin_layout Itemize
+Uso de la lwIP como la pila de red, incluyendo los ficheros de cabecera
+ al comienzo de net_sockets.c.
+ Bajo #ifdef DAVE.
+\end_layout
+
+\begin_layout Itemize
+Deshabilitar IPv6 cuando esté definido el símbolo DAVE, ya que esta versión
+ del protocolo aún no está soportado por lwIP.
+\end_layout
+
+\begin_layout Itemize
+Uso de la implementación de la función fcntl() provista por el kit de herrameint
+as arm-none-eabi.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+seguro que es arm-none-eabi?? no es newlib?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Fuentes de entropía y generador de números aleatorios
+\end_layout
+
+\begin_layout Standard
+La entropía puede obtenerse de diversas maneras.
+ Los módulos de hardware que proporcionan entropía, como los módulos de
+ generación de números (pseudo-) aleatorios (PRNG) son comunes en muchos
+ microcontroladores.
+ XMC4500 incluye uno de estos módulos PRNG que se utilizará para la generación
+ de entropía en este caso.
+ El PRNG forma parte de los generadores de señal del módulo DAC.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/XMC4500-PRNG-block-diagram.eps
+	width 60col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:XMC-PRNG-block-diagram"
+
+\end_inset
+
+Diagrama de bloques del generador de números pseudo aleatorios (PRNG) disponible
+ en el XMC4500.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El PRNG presente en el XMC4500, cuyo diagrama de bloque puede consultarse
+ en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:XMC-PRNG-block-diagram"
+
+\end_inset
+
+, genera un número pseudoaleatorio de 12 bits.
+ Para ello, se utiliza un 
+\emph on
+registro de desplazamiento de realimentación lineal
+\emph default
+ (LFSR) de 20 bits que funciona a la frecuencia de reloj del sistema.
+ En el registro de salida se copiará el valor presente en el LFSR al dispararse
+ la señal de trigger.
+ Este será el valor que se presente a la salida del módulo.
+ Cada vez que se habilita el PRNG, el LFSR vuelve a su valor inicial y,
+ por lo tanto, siempre comienza a emitir la misma secuencia pseudoaleatoria
+ de númeors 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:XMC4500-reference"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -6831,40 +7031,42 @@ reference "subsec:Portabilidad-mbedTLS"
 status open
 
 \begin_layout Plain Layout
-Wrapper functions? cómo hicimos esto?
+Por qué esto debiería funcionar bien: 1) no determinismo.
+ 2) DAC+ADC
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Subsubsection
-Generador de números aleatorios
-\end_layout
-
-\begin_layout Standard
-Basado en HW.
- Comentar las especificaciones del HW (del datasheet).
- Testeado -> cómo!!??.
-\end_layout
-
-\begin_layout Subsubsection
-lwIP (Actualización de lwIP)
+No obstante, puesto que los números aleatorios se requerirán siempre en
+ distintos ciclos de reloj (RTOS no determinista), los números obtenidos
+ serán siempre aleatorios.
 \end_layout
 
 \begin_layout Standard
-Versión de lwIP en DAVE.
- Versión requerida.
- Proceso de actualización (parches con git)
+El uso del PRNG en el proyecto se ha llevado a cabo mediante el uso de 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE APPs
 \end_layout
 
-\begin_layout Standard
-Se han usado parches y mucho git.
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Subsection
 Configuración de la biblioteca
+\end_layout
+
+\begin_layout Standard
+Ciphersuites - configurados en config.h de mbedTLS para tener una versión
+ mínima que compile y se ejecute.
 \end_layout
 
 \begin_layout Standard
@@ -6882,6 +7084,24 @@ enseñar config? hablar de la configuración mínima?
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Resolución de problemas
+\end_layout
+
+\begin_layout Subsubsection
+lwIP (Actualización de lwIP)
+\end_layout
+
+\begin_layout Standard
+Versión de lwIP en DAVE.
+ Versión requerida.
+ Proceso de actualización (parches con git)
+\end_layout
+
+\begin_layout Standard
+Se han usado parches y mucho git.
 \end_layout
 
 \begin_layout Section
@@ -7426,6 +7646,12 @@ Resolución de problemas
 
 \begin_layout Standard
 Configuración de RTOS y opciones de compilación
+\end_layout
+
+\begin_layout Standard
+Ciphersuites - configurados en config.h de mbedTLS para tener una versión
+ compatible.
+ o venía ya hecho?
 \end_layout
 
 \begin_layout Subsection
