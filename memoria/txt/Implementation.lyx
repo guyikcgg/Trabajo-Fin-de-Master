@@ -1158,15 +1158,6 @@ revisar!!
 \end_layout
 
 \begin_layout Standard
-La arquitectura del firmware puede consultarse en la 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:Arquitectura-firmware"
-
-\end_inset
-
-.
- 
 \begin_inset Note Note
 status open
 
@@ -1230,11 +1221,40 @@ name "fig:Arquitectura-firmware"
 \end_inset
 
 Arquitectura del firmware del miniGW.
+ Las líneas continuas indican dependencias entre módulos, las líneas discontinua
+s indican comunicación entre tareas.
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La arquitectura del firmware puede consultarse en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Arquitectura-firmware"
+
+\end_inset
+
+.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Contar un poco la arquitectura: tareas con funcionalidad específica que
+ se sustentan en otras bibliotecas, principalmente las pilas de protocolos
+ IP y SHEI (red de sensores) y en los elementos de bajo nivel, proporcionados
+ en última instancia por la XMClib.
+ Se explican con detalle dos de los módulos más grandes y que serán usados
+ posteriormente.
 \end_layout
 
 \end_inset
@@ -1300,6 +1320,7 @@ versión del software!
 La pila de protocolos de Internet está proporcionada por lwIP.
  Esta biblioteca está diseñada para reducir el uso de recursos, conservando
  todas las funcionalidades de TCP/IP #ref#.
+ Proporciona una interfaz de sockets tipo BSD estándar.
 \end_layout
 
 \begin_layout Standard
@@ -7124,12 +7145,68 @@ entropy_poll.c
  plataforma.
  En este fichero, hemos añadido una sección específica para la plataforma
  DAVE.
- En esta sección, simplemente hemos completado la función mbedtls_hardware_poll
+ En esta sección, simplemente hemos completado la función 
+\family typewriter
+mbedtls_hardware_poll()
+\family default
  para que lea números aleatorios a partir del ADC.
 \end_layout
 
 \begin_layout Subsubsection
 Módulo de temporización
+\end_layout
+
+\begin_layout Standard
+Aunque este módulo no es un requisito para el funcionamiento de la biblioteca,
+ será necesario a la hora de verificar la validez del certificado de AWS.
+ Para integrar el RTC con mbedTLS, hemos creados los fichero 
+\family typewriter
+platform_DAVE.c
+\family default
+ y 
+\family typewriter
+platform_DAVE.h
+\family default
+, referenciándolos luego en 
+\family typewriter
+main.c
+\family default
+.
+ Más concretamente, en la secuencia de inicialización llamamos a la función
+ 
+\family typewriter
+mbedtls_platform_set_time()
+\family default
+, pasándole como parámetro la función 
+\family typewriter
+mbedtls_time_DAVE()
+\family default
+ definida en 
+\family typewriter
+platform_DAVE.c
+\family default
+.
+ Esta última función realiza una lectura del RTC del microcontrolador a
+ través de la API definida en una 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE APP
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La fecha y hora del RTC serán ajustadas gracias a un cliente NTP sencillo,
+ que actualizará la hora periódicamente basándose en una lista de servidores.
+ El código fuente de este cliente ha sido proporcionado por la empresa.
 \end_layout
 
 \begin_layout Subsection
