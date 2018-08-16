@@ -1208,10 +1208,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename img/arquitectura-sw.jpg
+	filename img/firmware-architecture.eps
 	lyxscale 50
-	width 50text%
+	scale 50
 
 \end_inset
 
@@ -6905,20 +6906,35 @@ Con respecto a las capacidades de red, mbedTLS se basa en los sockets BSD
 \end_layout
 
 \begin_layout Standard
-Hemos modificado el fichero mbedtls/library/net_sockets.c, que es una capa
- de abstracción donde se interconecta mbedTLS con los sockets tipo BSD.
+Hemos modificado el fichero 
+\family typewriter
+net_sockets.c
+\family default
+, que es una capa de abstracción donde se interconecta mbedTLS con los sockets
+ tipo BSD.
  Esta es la lista de cambios que hemos realizado en el fichero:
 \end_layout
 
 \begin_layout Itemize
-Permitir compilar este archivo para un entorno distinto a Unix y Windows,
- incluyendo directivas #if al comiendo del fichero.
+Permitir compilar este archivo para un entorno distinto a Unix y MS
+\begin_inset space ~
+\end_inset
+
+Windows, incluyendo directivas 
+\family typewriter
+#if
+\family default
+ al comiendo del fichero.
 \end_layout
 
 \begin_layout Itemize
 Uso de la lwIP como la pila de red, incluyendo los ficheros de cabecera
  al comienzo de net_sockets.c.
- Bajo #ifdef DAVE.
+ Bajo 
+\family typewriter
+#ifdef DAVE
+\family default
+.
 \end_layout
 
 \begin_layout Itemize
@@ -6927,8 +6943,11 @@ Deshabilitar IPv6 cuando esté definido el símbolo DAVE, ya que esta versión
 \end_layout
 
 \begin_layout Itemize
-Uso de la implementación de la función fcntl() provista por el kit de herrameint
-as arm-none-eabi.
+Uso de la implementación de la función 
+\family typewriter
+fcntl()
+\family default
+ provista por el kit de herrameintas arm-none-eabi.
 \begin_inset Note Note
 status open
 
@@ -6942,17 +6961,19 @@ seguro que es arm-none-eabi?? no es newlib?
 \end_layout
 
 \begin_layout Subsubsection
-Fuentes de entropía y generador de números aleatorios
+Fuentes de entropía
 \end_layout
 
 \begin_layout Standard
-La entropía puede obtenerse de diversas maneras.
+Una buena entropía es la base fundamental para criptografía TLS robusta.
+ Esta entropía puede obtenerse de diversas maneras.
  Los módulos de hardware que proporcionan entropía, como los módulos de
- generación de números (pseudo-) aleatorios (PRNG) son comunes en muchos
+ generación de números (pseudo-) aleatorios (PRNG) está presente en muchos
  microcontroladores.
- XMC4500 incluye uno de estos módulos PRNG que se utilizará para la generación
- de entropía en este caso.
- El PRNG forma parte de los generadores de señal del módulo DAC.
+ El microcontrolador XMC4500 incluye uno de estos módulos PRNG como parte
+ de los generadores de señal del módulo DAC.
+ Utilizaremos este módulo como fuente principal de entropía en este proyecto.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -6984,6 +7005,14 @@ name "fig:XMC-PRNG-block-diagram"
 
 Diagrama de bloques del generador de números pseudo aleatorios (PRNG) disponible
  en el XMC4500.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "infineon:XMC4500-reference"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7005,18 +7034,21 @@ reference "fig:XMC-PRNG-block-diagram"
 
 \end_inset
 
-, genera un número pseudoaleatorio de 12 bits.
- Para ello, se utiliza un 
+ genera números pseudoaleatorios de 12 bits.
+ Para ello, utiliza un 
 \emph on
 registro de desplazamiento de realimentación lineal
 \emph default
  (LFSR) de 20 bits que funciona a la frecuencia de reloj del sistema.
- En el registro de salida se copiará el valor presente en el LFSR al dispararse
- la señal de trigger.
- Este será el valor que se presente a la salida del módulo.
- Cada vez que se habilita el PRNG, el LFSR vuelve a su valor inicial y,
- por lo tanto, siempre comienza a emitir la misma secuencia pseudoaleatoria
- de númeors 
+ Al recibir una señal de 
+\emph on
+trigger
+\emph default
+, el valor presente en el LFSR se copia al registro de salida, permaneciendo
+ en este para su lectura por otro módulo.
+ Cada vez que se reinicia el PRNG, el LFSR vuelve a su valor inicial y,
+ por lo tanto, siempre se repite la misma secuencia de números pseudoaleatorios
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "infineon:XMC4500-reference"
@@ -7024,26 +7056,48 @@ key "infineon:XMC4500-reference"
 \end_inset
 
 .
+ A pesar de esto, hay tres factores que deberían garantizar una buena entropía
+ en la implementación.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Por qué esto debiería funcionar bien: 1) no determinismo.
- 2) DAC+ADC
+\begin_layout Enumerate
+Existen muchos factores que hacen que el sistema no sea determinista, por
+ lo que el momento en que se leen los números aleatorios es cada vez distinto.
+ Entre estos factores podemos contar con el propio RTOS, que no garantiza
+ que las tareas se ejecuten siempre en el mismo orden, o el hecho de que
+ los tiempos de transmisión en la red sean cada vez distintos.
 \end_layout
+
+\begin_layout Enumerate
+El PRNG forma parte del módulo DAC del microcontrolador, por lo que será
+ necesario transformar la señal analógica generada a un número digital,
+ a través de un ADC.
+ Esta lectura está sujeta a pequeñas variaciones, pues la señal analógica
+ generada se verá afectada por distintos ruidos, siempre presentes en los
+ circuitos electrónicos #ref#.
+ Además, usaremos una frecuencia relativamente alta en la generación de
+ números aleatorios, de forma que el ADC no llegue a estabilizarse en la
+ lectura y siempre cometa un error #ref:ADC necesita reposo#.
+\end_layout
+
+\begin_layout Enumerate
+mbedTLS toma estos números aleatorios como una fuente de entropía, para
+ luego combinarla con otras fuentes en el recolector de entropía.
+ Esto se hace con la finalidad de asegurar una generación de números lo
+ más aleatorios posibles.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-add-entropy"
 
 \end_inset
 
-No obstante, puesto que los números aleatorios se requerirán siempre en
- distintos ciclos de reloj (RTOS no determinista), los números obtenidos
- serán siempre aleatorios.
+.
 \end_layout
 
 \begin_layout Standard
-El uso del PRNG en el proyecto se ha llevado a cabo mediante el uso de 
+El uso del PRNG en el proyecto se ha llevado a cabo mediante el uso de diversad
+ 
 \begin_inset ERT
 status open
 
@@ -7056,12 +7110,30 @@ DAVE APPs
 
 \end_inset
 
-.
+, con las que hemos configurado uno de los módulos DAC para la generación
+ de ruido y uno de los ADC para leer la señal generada.
+\end_layout
+
+\begin_layout Standard
+Para integrar esta fuente de entropía en mbedTLS hemos modificado el fichero
  
+\family typewriter
+entropy_poll.c
+\family default
+, que contine las funciones de entropía definidas por el usuario para cada
+ plataforma.
+ En este fichero, hemos añadido una sección específica para la plataforma
+ DAVE.
+ En esta sección, simplemente hemos completado la función mbedtls_hardware_poll
+ para que lea números aleatorios a partir del ADC.
+\end_layout
+
+\begin_layout Subsubsection
+Módulo de temporización
 \end_layout
 
 \begin_layout Subsection
-Configuración de la biblioteca
+Configuración de mbedTLS
 \end_layout
 
 \begin_layout Standard
