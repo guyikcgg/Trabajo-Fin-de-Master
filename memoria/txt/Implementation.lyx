@@ -6118,6 +6118,19 @@ include
 \begin_layout Description
 
 \family typewriter
+library
+\family default
+ en este directorio se encuentran los ficheros 
+\family typewriter
+.c
+\family default
+ de la biblioteca, que contienen el código fuente de los distintos módulos
+ y funciones de la misma.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
 programs
 \family default
  programas de ejemplo, que demuestran las distintas características de mbedTLS.
@@ -6898,18 +6911,55 @@ Git submodules es otra forma de resolver este problema.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+solo se debe importar include y library.
+ El resto, si se incluye en el proyecto, debe marcarse para la no compilación.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Una vez que el código fuente de la biblioteca está accesible y puede compilarse
  en conjunto con el resto del proyecto, será necesario ajustar algunos parámetro
 s de la compilación.
- En concreto, será necesario añadir algunos símbolos y rutas, que en DAVE,
- como en Eclipse IDE, puede hacerse de forma gráfica accediendo a las propiedade
-s de compilación del proyecto.
- En el caso que nos ocupa, definiremos un símbolo DAVE, sin ningún valor
- específico, para usarlo como indicador de la plataforma cuando modifiquemos
- el código fuente de la biblioteca al portarla.
- Esto en GCC se consigue con el flag '-D'.
+ En concreto, será necesario añadir algunos símbolos y rutas, que en 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+, como en Eclipse IDE, puede hacerse de forma gráfica accediendo a las propiedad
+es de compilación del proyecto.
+ En el caso que nos ocupa, definiremos un símbolo 
+\family typewriter
+DAVE
+\family default
+, sin ningún valor específico, para usarlo como indicador de la plataforma
+ cuando modifiquemos el código fuente de la biblioteca al portarla.
+ Esto en GCC se consigue con el flag '
+\family typewriter
+-D
+\family default
+'.
  También tendremos que indicar al compilador que busque archivos de cabecera
- en las rutas de la biblioteca (flag '-I').
+ contenidos en mbedtls/include añadiendo esta ruta con el flag '
+\family typewriter
+-I
+\family default
+'.
 \end_layout
 
 \begin_layout Standard
@@ -7776,6 +7826,12 @@ Entre los cambios recogidos en este parche, cabe destacar la inclusión de
  símbolos.
 \end_layout
 
+\begin_layout Standard
+Después de aplicar los cambios mencionados, hemos tenido que actualizar
+ las propiedades de compilación para incluir algunas rutas de archivos de
+ cabecera, que se encuentran en dististos directorios ahora.
+\end_layout
+
 \begin_layout Subsubsection
 Configuración de mbedTLS
 \end_layout
@@ -7885,7 +7941,20 @@ docs
 external_libs
 \family default
  código fuente de las bibliotecas de las que depende el Device SDK: mbedTLS
- y jsmn.
+ y jsmn
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Jsmn (pronunciado como 'jasmine') es una biblioteca para dar soporte a JSON
+ en C.
+ Gracias a su implementación minimalista, se puede integrar fácilmente proyectos
+ con limitaciones de recursos, incluyendo sistemas embebidos #ref#.
+\end_layout
+
+\end_inset
+
+.
 \begin_inset Note Note
 status collapsed
 
@@ -7924,8 +7993,11 @@ src
 platform
 \family default
  este directorio contiene los ficheros dependientes de la plataforma, tales
- como los temporizadores (timers), la implementación de TLS y la capa de
- concurrencia.
+ como los temporizadores (
+\lang english
+timers
+\lang spanish
+), la implementación de TLS y la capa de concurrencia.
  Por defecto, el directorio incluye una implementación para Linux usando
  mbedTLS y pthread.
 \end_layout
@@ -8032,37 +8104,72 @@ thread-safe
 Integración de AWS IoT SDK en el miniGW
 \end_layout
 
+\begin_layout Standard
+Partiremos del proyecto con mbedTLS, sin ningún programa de ejemplo.
+ Gracias a las ramas de git!
+\end_layout
+
 \begin_layout Subsection
-Importación de AWS IoT SDK al proyecto
+Importación de AWS IoT Device SDK al proyecto
 \end_layout
 
 \begin_layout Standard
-Como con mbedTLS.
- Pero esta vez, pondremos mbedTLS dentro de SDK 
-\begin_inset Note Note
+Al igual que en el caso de mbedTLS, tendremos que importar la biblioteca
+ al proyecto.
+ De nuevo, enlazaremos sus ficheros usando las propiedades del proyecto
+ en 
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-no?
+
+
+\backslash
+DAVE
 \end_layout
 
 \end_inset
 
-
+.
+ En este caso, solo necesitamos los directorios 
+\family typewriter
+include
+\family default
+, 
+\family typewriter
+src
+\family default
+ y 
+\family typewriter
+external_libs/jsmn
+\family default
+, por lo que tendremos que prescindir del resto.
+ Como ya hemos importado mbedTLS y hemos añadido las rutas de los archivos
+ de cabecera, no será necesario introducir la biblioteca en el directorio
+ external_libs, aunque podemos hacerlo para una mejor organización.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Entrega del trabajo a la empresa: copiar y pegar + aplicar parches, siguiendo
- tutorial
+Para terminar de importar AWS IoT Device SDK y permitir que el compilador
+ encuentre los archivos de cabecera referenciados por la biblioteca, será
+ necesario añadir algunas rutas en las opciones de compilación.
+ En concreto, hemos añadido las siguientes entradas con el flag '
+\family typewriter
+-I
+\family default
+', para que se encuentren los archivos de cabecera:
 \end_layout
 
-\end_inset
+\begin_layout Itemize
 
+\family typewriter
+AWS-IoT-SDK/include
+\end_layout
 
+\begin_layout Itemize
+
+\family typewriter
+AWS-IoT-SDK/external_libs/jsmn
 \end_layout
 
 \begin_layout Subsection
@@ -8070,12 +8177,39 @@ Definición de una nueva plataforma
 \end_layout
 
 \begin_layout Standard
-Lo que viene siendo portar...
+A diferencia de mbedTLS, el Device SDK de AWS IoT se basa en el modelo de
+ controladores para facilitar la portabilidad a otras plataformas.
+ Siguiendo este modelo, esta biblioteca incluye un directorio platform,
+ donde se colocan los ficheros dependientes de plataforma de forma estructurada.
+ De esta forma, es posible definir varias plataformas, usándose solo la
+ que se incluya en las opciones de compilación del proyecto.
+ Otra particularidad de este modelo es que las funciones que se encuentran
+ en este directorio son, en realidad, envoltorios (
+\lang english
+wrappers
+\lang spanish
+), dentro de los cuáles se llama a las funciones que realizarán el trabajo
+ real en cada caso.
+ Esta estructura dota a la biblioteca de una gran versatilidad y hace muy
+ sencilla su integración en nuevos sistemas.
+ Añadiremos el directorio 
+\family typewriter
+platform/DAVE4_CMSIS_RTOS
+\family default
+, con la estructura encontrada en 
+\family typewriter
+platform/Linux
+\family default
+.
 \end_layout
 
 \begin_layout Standard
-Funciones que son en realidad wrappers, y que dependen de la plataforma.
- Se han tenido que portar:
+A continuación se listan los elementos que han debido portarse.
+ Como hemos mencionado, será necesario añadir los subdirectorios de 
+\family typewriter
+port
+\family default
+ a la ruta de búsqueda de archivos de cabecera.
 \end_layout
 
 \begin_layout Subsubsection
@@ -8083,32 +8217,22 @@ Temporizadores
 \end_layout
 
 \begin_layout Standard
-Define the Timer Struct as in timer_platform.h
-\end_layout
-
-\begin_layout Standard
-void init_timer(Timer *); init_timer - A timer structure is initialized
- to a clean state.
-\end_layout
-
-\begin_layout Standard
-bool has_timer_expired(Timer *); has_timer_expired - a polling function
- to determine if the timer has expired.
-\end_layout
-
-\begin_layout Standard
-void countdown_ms(Timer *, uint32_t); countdown_ms - set the timer to expire
- in x milliseconds and start the timer.
-\end_layout
-
-\begin_layout Standard
-void countdown_sec(Timer *, uint32_t); countdown_sec - set the timer to
- expire in x seconds and start the timer.
-\end_layout
-
-\begin_layout Standard
-uint32_t left_ms(Timer *); left_ms - query time in milliseconds left on
- the timer.
+Estas funciones se encargan de los timeouts.
+ Rellenaremos los wrappers encontrados en el fichero 
+\family typewriter
+timer.c
+\family default
+ e incluiremos los archivos de cabecera necesarios en 
+\family typewriter
+timer_platform.h
+\family default
+, ambos ficheros encontrados en el directorio 
+\family typewriter
+platform/DAVE4_CMSIS_RTOS/common
+\family default
+.
+ Las funciones definidas harán uso de SysTick, disponible a través de CMSIS-RTOS
+, para proporcionar las funcionalidades requeridas.
 \end_layout
 
 \begin_layout Subsubsection
@@ -8116,28 +8240,22 @@ Concurrencia
 \end_layout
 
 \begin_layout Standard
-Define the IoT_Mutex_t Struct as in threads_platform.h This is used for data
- specific to the TLS library being used.
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t aws_iot_thread_mutex_init(IoT_Mutex_t *); Initialize the mutex
- provided as argument.
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t aws_iot_thread_mutex_lock(IoT_Mutex_t *); Lock the mutex provided
- as argument
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t aws_iot_thread_mutex_unlock(IoT_Mutex_t *); Unlock the mutex
- provided as argument.
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t aws_iot_thread_mutex_destroy(IoT_Mutex_t *); Destroy the mutex
- provided as argument.
+Al igual que con los temporizadores, completaremos las funciones del fichero
+ 
+\family typewriter
+threads.c
+\family default
+ y añadiremos las cabecereas necesarias a 
+\family typewriter
+threads_platform.h
+\family default
+, ambos en el directorio 
+\family typewriter
+platform/DAVE4_CMSIS_RTO/pthreads
+\family default
+.
+ En esta ocasión, usaremos los mutexes proporcionados por CMSIS-RTOS para
+ conseguir las funcionalidades necesarias.
 \end_layout
 
 \begin_layout Subsubsection
@@ -8145,58 +8263,18 @@ Conectividad de red
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-mbedTLS
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Define the TLSDataParams Struct as in network_platform.h This is used for
- data specific to the TLS library being used.
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t iot_tls_init(Network *pNetwork, char *pRootCALocation, char
- *pDeviceCertLocation, char *pDevicePrivateKeyLocation, char *pDestinationURL,
- uint16_t DestinationPort, uint32_t timeout_ms, bool ServerVerificationFlag);
- Initialize the network client / structure.
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t iot_tls_connect(Network *pNetwork, TLSConnectParams *TLSParams);
- Create a TLS TCP socket to the configure address using the credentials
- provided via the NewNetwork API call.
- This will include setting up certificate locations / arrays.
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t iot_tls_write(Network*, unsigned char*, size_t, Timer *, size_t
- *); Write to the TLS network buffer.
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t iot_tls_read(Network*, unsigned char*, size_t, Timer *, size_t
- *); Read from the TLS network buffer.
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t iot_tls_disconnect(Network *pNetwork); Disconnect API
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t iot_tls_destroy(Network *pNetwork); Clean up the connection
-\end_layout
-
-\begin_layout Standard
-IoT_Error_t iot_tls_is_connected(Network *pNetwork); Check if the TLS layer
- is still connected
+El directorio 
+\family typewriter
+platform/DAVE4_CMSIS_RTOS/mbedtls
+\family default
+ contiene las funciones que se encargan de inicializar los contextos TLS
+ y usar los sockets de manera conveniente.
+ Puesto que AWS IoT Device SDK usa mbedTLS por defecto, no ha habido que
+ realizar grandes cambios aquí.
+ Simplemente, hemos tenido que modificar algunas líneas de network_mbedtls_wrapp
+er.c, en concreto, la función iot_tls_init(), para hacer que no cargue los
+ certificados a partir de ficheros, sino que parsee certificados contenidos
+ en variables directamente.
 \end_layout
 
 \begin_layout Subsection
@@ -8293,7 +8371,7 @@ Ciphersuites - configurados en config.h de mbedTLS para tener una versión
  o venía ya hecho?
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Configuración de CMSIS-RTOS
 \end_layout
 
@@ -8301,7 +8379,7 @@ Configuración de CMSIS-RTOS
 Más heap!
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Modificación del mapa de memoria
 \end_layout
 
@@ -8311,7 +8389,7 @@ Se usa heap, ya que no es un sistema crítico.
 \end_layout
 
 \begin_layout Standard
-BigNum 
+BigNum (aka MPI) 
 \begin_inset Note Note
 status open
 
@@ -8346,6 +8424,16 @@ Cómo se queda el linkerscript: cuánto espacio
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+Sockets BSD
+\end_layout
+
+\begin_layout Standard
+en aws_iot_mqtt_client.h: #undef connect #undef read #undef write (se deben
+ usar ¿los de lwIP?, pero estos están definidos en algún otro sitio y producen
+ conflicto, no?)
 \end_layout
 
 \end_body
