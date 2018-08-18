@@ -6757,17 +6757,62 @@ mbedtls_ssl_close_notify()
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:mbedTLS-test-programs"
+
+\end_inset
+
 Comprobaciones de integridad
 \end_layout
 
 \begin_layout Standard
-La biblioteca incluye numerosos tests, que comprueban que los distintos
- módulos funcionan de manera adecuada.
- Estos tests son, en realidad, programas que se compilan haciendo uso de
- los diferentes módulos de la biblioteca.
- Al ejecutarse, cada test comprueba que los módulos examinados funcionan
- de forma correcta o, en su defecto, qué código de error devuelven, para
- informar al usuario.
+mbedTLS incluye programas de test, con los que puede verificarse el correcto
+ funcionamiento de cada uno de los módulos de la biblioteca.
+ Al ejecutarse, estos programas llaman a las funciones de los distintos
+ módulos con parámetros conocidos y comprueban que el resultado obtenido
+ sea el esperado, verificando de esta forma si los módulos trabajan de manera
+ adecuada.
+ Si se detecta algún error en los módulos examinados, el programa de test
+ informará al usuario de la existencia del problema.
+ Los tests que verifican la funcionalidad de un módulo concreto solo se
+ ejecutarán si mbedTLS fue configurado para usar este módulo, es decir,
+ si la biblioteca fue compilada con el módulo en cuestión.
+\end_layout
+
+\begin_layout Standard
+Además de estos programas de test, mbedTLS incluye numerosos scripts que
+ realizan pruebas automatizadas (
+\lang english
+automated testing
+\lang spanish
+).
+ Estos scripts no se limitan a la comprobación de los distintos módulos
+ de la biblioteca, sino que son capaces de verificar el proceso de compilación,
+ realizar pruebas de interoperabilidad con OpenSSL y GnuTLS, etc.
+ Estos scripts proporcionan un banco de pruebas muy completo, con más de
+ 6000 tests 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-tests-guidelines,mbedTLS-tests-scripts"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+, y solo requieren de las herramientas de compilación Make y del intérprete
+ Perl .
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7219,7 +7264,11 @@ Una vez integrados los diferentes módulos con la plataforma, será necesario
 \end_layout
 
 \begin_layout Standard
-La configuración de mbedTLS se lleva a cabo modificando el fichero config.h.
+La configuración de mbedTLS se lleva a cabo modificando el fichero 
+\family typewriter
+config.h
+\family default
+.
  La biblioteca incluye varios de estos ficheros para ejemplificar algunas
  configuraciones comunes.
  Para llevar a cabo esta configuración, hemos partido del fichero 
@@ -7230,6 +7279,21 @@ config-suite-b.h
  la NSA.
  Esta configuración trata de minimizar el de RAM y usa únicamente criptografía
  de curva elíptica (ECC) como algoritmos de clave pública.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Se ha usado una configuración mínima, a la que se han ido añadiendo característi
+cas, para comprobar que los distintos elementos se han integrado correctamente
+ en la plataforma.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7305,6 +7369,59 @@ MBEDTLS_ENTROPY_HARDWARE_ALT
 \end_layout
 
 \begin_layout Standard
+Además de estos nuevos símbolos, el fichero de configuración incluye opciones
+ para reducir el uso de memoria de mbedTLS.
+ El uso de algunas de estas opciones requiere conocer cuáles son los requisitos
+ específicos de la comunicación con el servidor, ya que la reducción del
+ uso de memoria consiste, en muchos casos, en limitar los ciphersuites disponibl
+es y el tamaño de las operaciones.
+ A continuación destacamos alguna de estas opciones:
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_AES_ROM_TABLES
+\family default
+ almacena las tablas AES en la ROM, evitando consumo de RAM.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_ECP_MAX_BITS
+\family default
+ limita el tamaño máximo reservado para las curvas elípticas.
+ 
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_MPI_MAX_SIZE
+\family default
+ limita el tamaño máximo de los enteros de precisión múltiple (MPI).
+ El uso de esta opción requiere conocer cuáles son los requisitos de la
+ comunicación.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+MBEDTLS_SSL_CIPHERSUITES
+\family default
+ permite definir las ciphersuites que serán requeridas.
+ Solo estas estarán disponibles, evitando que mbedTLS incluya código de
+ otras en su compilación y reduciendo por tanto el tamaño del programa.
+\end_layout
+
+\begin_layout Standard
+Con esta configuración, hemos podido compilar el código de la biblioteca
+ y llamar a sus funciones desde las distintas tareas.
+ En la siguiente sección hablamos de la verificación de la integración.
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand cite
 key "mbedTLS-reduce-footprint"
@@ -7315,15 +7432,20 @@ key "mbedTLS-reduce-footprint"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Ciphersuites - configurados en config.h de mbedTLS para tener una versión
  mínima que compile y se ejecute.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-Se ha usado una configuración mínima, a la que se han ido añadiendo característi
-cas, para comprobar que los distintos elementos se han integrado correctamente
- en la plataforma.
- 
 \begin_inset Note Note
 status open
 
@@ -7340,13 +7462,32 @@ enseñar config? hablar de la configuración mínima?
 Verificación de la integración
 \end_layout
 
-\begin_layout Subsection
-Tests proporcionados 
+\begin_layout Standard
+Llegados a este punto tenemos una integración de mbedTLS que compila en
+ el sistema, y cuyas funciones pueden ser usadas desde las distintas tareas,
+ siempre y cuando se incluyan los archivos de cabecera al inicio del código
+ fuente de la tarea.
+ A continuación comprobaremos que la biblioteca se comporta de la manera
+ esperada, y que sus funciones producen una respuesta adecuada.
+ Para ello, usaremos los programas de test de los que hablamos en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:mbedTLS-test-programs"
+
+\end_inset
+
+.
+ Una vez que llevemos a cabo este proceso de autoverificación, pasaremos
+ a realizar un test funcional, que consistirá en realizar una petición HTTPS.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
-unitarios?
+Mencionar que estos dos tests han sido, en realidad, dos versiones del firmware:
+ dos proyectos distintos, que parten del mismo proyecto.
 \end_layout
 
 \end_inset
@@ -7354,23 +7495,144 @@ unitarios?
 
 \end_layout
 
-\begin_layout Standard
-para comprobar que los módulos de cifrado y tal funcionan correctamente.
- qué configuración se usan? tamaño de claves, etc.
-\end_layout
-
-\begin_layout Subsection
-Test funcional
+\begin_layout Subsubsection
+Tests unitarios: 
+\family typewriter
+selftest.c
 \end_layout
 
 \begin_layout Standard
-Se consigue crear comunicación cifrada entre un servidor sencillo basado
- en OpenSSL y un programa de ejemplo.
+Hemos usado el fichero selftest.c, localizado en el directorio programs/test,
+ como base para verificar el correcto funcionamiento de los módulos en la
+ integración.
+ Este programa cuenta el número de módulos comprobados en las variables
+ 
+\family typewriter
+suites_tested
+\family default
+, cuando la comprobación se ha realizado con éxito, y 
+\family typewriter
+suites_failed
+\family default
+, en caso contrario.
+\end_layout
+
+\begin_layout Standard
+Puesto que este fichero está diseñado para ejecutarse de forma independiente
+ y no como parte de un programa más grande, hemos tenido que cambiar el
+ nombre de la rutina 
+\family typewriter
+main()
+\family default
+ por 
+\family typewriter
+self_test()
+\family default
+, ya que el primero está reservado como punto de entrada del programa principal.
+ En este, se ejecutan los siguientes pasos:
+\end_layout
+
+\begin_layout Enumerate
+Inicialización del sistema, a través de la inicialización de las 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE APPs
+\end_layout
+
+\end_inset
+
+ mediante la función 
+\family typewriter
+DAVE_Init()
+\family default
+.
+ Se inicializan tanto módulos hardware como componentes software, como las
+ variables de CMSIS-RTOS.
+\end_layout
+
+\begin_layout Enumerate
+Configuración de mbedTLS para usar el RTC.
+\end_layout
+
+\begin_layout Enumerate
+Creación de una tarea de una única ejecución, que llamará a la función 
+\family typewriter
+self_test()
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+OS kernel start instruction 
+\family typewriter
+osKernelStart()
+\family default
+;
+\end_layout
+
+\begin_layout Standard
+Gracias a la interfaz de depuración hemos podido observar la ejecución del
+ programa y la evolución de las variables 
+\family typewriter
+suites_tested
+\family default
+ y 
+\family typewriter
+suites_failed
+\family default
+.
+ Gracias a Prometeo, hemos podido comprobar que la totalidad de los tests
+ han sido superados con éxito, por lo que todos los módulos funcionan correctame
+nte.
+\end_layout
+
+\begin_layout Subsubsection
+Test funcional: cliente HTTPS sencillo
+\end_layout
+
+\begin_layout Standard
+Para comprobar que mbedTLS funciona en su conjunto y que es posible establecer
+ comunicacion con el exterior, hemos probado el programa de ejemplo ssl_client1.c.
+ Este programa, que se encuentra en el directorio programs/ssl, establece
+ conexión con un servidor TLS y realiza una petición HTTP GET, imprimiendo
+ la respuesta del servidor si todo ha ido bien.
+\end_layout
+
+\begin_layout Standard
+Tal y como hemos hecho con el test anterior, hemos modificado este programa
+ de ejemplo para que funcione como una tarea en RTOS.
+ También hemos tenido que ajustar algunas líneas de ssl_client1.c, en concreto,
+ hemos redefinido SERVER_NAME para que tuviera el valor 
+\begin_inset Quotes fld
+\end_inset
+
+https://www.wikipedia.org
+\begin_inset Quotes frd
+\end_inset
+
+.
+ Esta vez hemos tenido que conectar el miniGW a Internet.
+ Esto lo hemos hecho poniendo un ordenador con GNU/Linux en medio, redireccionan
+do paquetes entre el puerto Ethernet y WiFi, de forma que pudiéramos ver
+ los paquetes con Wireshark #ref#.
+ Hemos tenido que configurar lwIP y la interfaz Ethernet del computador
+ convenientemente para que estuvieran en la misma subred y para que el segundo
+ fuera la pasarela del primero.
+\end_layout
+
+\begin_layout Standard
+Al ejecutar el programa, hemos podido ver la respuesta del servidor, que
+ ha aceptado nuestra petición devolviendo un 200 OK #ref:HTTP#.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Explicar montaje en el laboratorio: miniGW, router, PC, Inet
@@ -7415,18 +7677,103 @@ En cada paso se imprime por el puerto serial información útil.
 Resolución de problemas
 \end_layout
 
+\begin_layout Standard
+En la sección anterior hemos presentado los resultados obtenidos al verificar
+ la integración de mbedTLS.
+ Como hemos comentado, tras ajustar los programas hemos conseguido que la
+ biblioteca funcione correctamente.
+ Sin embargo, hemos tenido algunas dificultades en la integración que han
+ ido más allá de las configuraciones lógicas que había que hacer.
+ En esta sección presentamos estos problemas y la forma en que los hemos
+ solucionado.
+\end_layout
+
 \begin_layout Subsubsection
-lwIP (Actualización de lwIP)
+Configuración de CMSIS-RTOS
 \end_layout
 
 \begin_layout Standard
-Versión de lwIP en DAVE.
- Versión requerida.
- Proceso de actualización (parches con git)
+Como mencionamos en ###, las funciones criptográficas suelen ser computacionalme
+nte costosas, por lo que no solo requieren numerosos ciclos de reloj, sino
+ que también hacen un uso intensivo de la memoria.
+ Por este motivo, para hacer que mbedTLS funcionara en nuestro sistema,
+ hemos tenido que aumentar la memoria disponible para las tareas en RTOS
+ hasta 10kB.
+ Debe tenerse en cuenta que este valor se refiere exclusivamente a la pila,
+ es decir, variables declaradas de forma estática en las funciones que de
+ mbedTLS y en los programas de ejemplo.
+ No tenemos una forma directa de saber cuánto heap está siendo usado por
+ las funciones criptográficas, pero podemos presumir que mucho.
 \end_layout
 
 \begin_layout Standard
-Se han usado parches y mucho git.
+Otra configuración que hemos tenido que realizar en este punto ha sido increment
+ar el número máximo de tareas que pueden ejecutarse en paralelo, ya que
+ lwIP requiere de varias.
+\end_layout
+
+\begin_layout Subsubsection
+lwIP (Actualización)
+\end_layout
+
+\begin_layout Standard
+Cuál era el problema? Qué versión de lwIP en DAVE?
+\end_layout
+
+\begin_layout Standard
+Hemos actualizado lwIP en el proyecto.
+ Esto no es trivial, ya que lwIP trabaja directamente con el hardware Ethernet
+ y estaba importado en el proyecto como una 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE APP
+\end_layout
+
+\end_inset
+
+.
+ El proceso de actualización ha requerido analizar la APP en busca del código
+ fuente de lwIP y de los ficheros de configuración, sustituir el directorio
+ donde se encuentra el código fuente de lwIP por el de la versión estable
+ más reciente (2.0.0), y finalmente aplicar una serie de cambios a la biblioteca
+ y a la configuración proporcionada por la APP para hacerla compatible con
+ el sistema.
+\end_layout
+
+\begin_layout Standard
+La metodología de trabajo en este caso ha pasado por analizar los mensajes
+ de error que arrojaba el compilador y realizar las correcciones pertinentes
+ en el código.
+ Puesto que esta actualización debe ser realizada y comprendida posteriormente
+ por la empresa, hemos desarrollado un script que lleva a cabo la actualización
+ de forma automática.
+ Este script no hace más que copiar los ficheros de lwIP
+\begin_inset space ~
+\end_inset
+
+2.0.0 al directorio correspondiente y aplicar un parche tanto a la biblioteca
+ como a la APP.
+ Este parche ha sido generado usando el comando git
+\begin_inset space ~
+\end_inset
+
+diff, para recoger las diferencias entre la versión del proyecto con lwIP
+ recién copiado a la versión 2.0.0, y con lwIP funcional después de ajustar
+ la APP.
+ Este script tiene que ejecutarse cada vez que se modifica la configuración
+ de las DAVE APPs, ya que al generar el código de las mismas se revierten
+ los cambios realizados manualmente al código fuente de la APP de lwIP.
+\end_layout
+
+\begin_layout Standard
+Entre los cambios recogidos en este parche, cabe destacar la inclusión de
+ los nuevos archivos de cabecera y el renombramiento de algunos tipos y
+ símbolos.
 \end_layout
 
 \begin_layout Subsubsection
@@ -7434,12 +7781,20 @@ Configuración de mbedTLS
 \end_layout
 
 \begin_layout Standard
-Habilitación de más ciphersuites y RSA para conectar con servidor HTTPS.
- Además:
-\end_layout
-
-\begin_layout Description
-
+La configuración de mbedTLS expuesta anteriormente es la mínima requerida
+ para tener suite B de la NSA funcionando en nuestro sistema.
+ Con esta configuración, el proyecto compila y podemos verificar que los
+ módulos de mbedTLS funcionan correctamente.
+ Sin embargo, hemos tenido que realizar algunas modificaciones para poder
+ realizar el test funcional y conectarnos con el servidor HTTPS.
+ En concreto, hemos tenido que habilitar RSA como método para criptografía
+ de clave pública e intercambio de claves.
+ También hemos tenido que eliminar muchas de las opciones para reducir el
+ uso de memoria, ya que estas limitaban las ciphersuites disponibles y el
+ tamaño de las claves criptográficas.
+ Finalmente, hemos tenido que incrementar el tamaño de los búferes de recepción
+ a 2048 bytes, pues los paquetes de respuesta del servidor superaban el
+ tamaño del búfer (
 \family typewriter
 MBEDTLS_SSL_MAX_CONTENT_LEN
 \begin_inset space \quad{}
@@ -7447,7 +7802,7 @@ MBEDTLS_SSL_MAX_CONTENT_LEN
 
 2048
 \family default
- permite que la longitud de un paquete TLS sea de hasta 2048 bytes.
+).
 \end_layout
 
 \begin_layout Chapter
@@ -7851,6 +8206,19 @@ Configuración de AWS IoT SDK
 \begin_layout Standard
 Como se vio en #(AWS IoT) es necesario que el dispositivo tenga algunos
  parámetros de AWS.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Configuracion llevada a cabo en conjunto con la consola de AWS IoT.
+ Para el test realizado, se ha considerado que el miniGW es un dispositivo
+ (normalmente no sería así, sino que cada sensor sría un dispositivo)
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7891,7 +8259,7 @@ Certificado digital del dispositivo
 \end_layout
 
 \begin_layout Standard
-Copiar certificado en un fichero .c (hardcoded) en formato .pem? .der?.
+Copiar certificado en un fichero .c (hardcoded) en formato .pem, por simplicidad.
  
 \end_layout
 
