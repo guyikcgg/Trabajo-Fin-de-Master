@@ -1501,6 +1501,248 @@ Tendremos que definir al menos un dispositivo de prueba para el GW, con
 \end_layout
 
 \begin_layout Standard
+Desde el panel inicial de AWS
+\begin_inset space ~
+\end_inset
+
+IoT (figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Bienvenida-AWS-IoT"
+
+\end_inset
+
+), nos dirigiremos a la pestaña 
+\family sans
+\lang english
+Manage
+\family default
+\lang spanish
+, y ahí seleccionaremos 
+\family sans
+\lang english
+Things
+\family default
+\lang spanish
+.
+ Nos encontraremos con la pantalla de la figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Manage-Things"
+
+\end_inset
+
+, en la que pincharemos el botón 
+\family sans
+\lang english
+Register
+\begin_inset space ~
+\end_inset
+
+a
+\begin_inset space ~
+\end_inset
+
+thing
+\family default
+\lang spanish
+.
+\end_layout
+
+\begin_layout Standard
+Seleccionaremos 
+\family sans
+\lang english
+Create
+\begin_inset space ~
+\end_inset
+
+a
+\begin_inset space ~
+\end_inset
+
+single
+\begin_inset space ~
+\end_inset
+
+thing
+\family default
+\lang spanish
+ (figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Register-a-thing"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Ahora podremos empezar a definir los distintos parámetros de nuestro dispositivo
+ (figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:form:thing-parameters"
+
+\end_inset
+
+).
+ Para empezar, tendremos que darle un nombre a nuestro dispositivo.
+ Anotaremos este parámetro (
+\family typewriter
+\series bold
+\size small
+\color brown
+thingName
+\family default
+\series default
+\size default
+\color inherit
+) para su posterior uso.
+\end_layout
+
+\begin_layout Standard
+Aunque este es el único campo requerido, también podríamos definir algunos
+ atributos, como la versión del 
+\lang english
+firmware
+\lang spanish
+ o los sensores que implementa el dispositivo.
+ Recordemos que estos atributos sirven para describir el dispositivo, y
+ no deben confundirse con el estado del mismo (sección
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Esquema-de-funcionamiento"
+
+\end_inset
+
+).
+ De forma alternativa, nuestro dispositivo podría heredar los atributos
+ de un tipo que hayamos definido previamente.
+\end_layout
+
+\begin_layout Standard
+Una vez concluida la definición de nuestro dispositivo, pulsaremos el botón
+ 
+\family sans
+\lang english
+Next
+\family default
+\lang spanish
+.
+\end_layout
+
+\begin_layout Standard
+Desde el menú lateral, podemos acceder a pestaña 
+\family sans
+\lang english
+Manage
+\family default
+\lang spanish
+, donde ahora se mostrará nuestro recién definido dispositivo (figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Manage-Things-(with-device)"
+
+\end_inset
+
+).
+ Haciendo click en el mismo, podremos acceder a sus detalles, donde encontraremo
+s algunos datos de interés, organizados en distintas pestañas.
+\end_layout
+
+\begin_layout Standard
+En la pestaña 
+\family sans
+\lang english
+Interact
+\family default
+\lang spanish
+ (figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Thing-properties"
+
+\end_inset
+
+) Anotaremos para su posterior uso los valores de 
+\family typewriter
+\series bold
+\size small
+\color brown
+identifer
+\family default
+\series default
+\size default
+\color inherit
+ (
+\family typewriter
+a3aa6mposshpif
+\family default
+ en la figura) y 
+\family typewriter
+\series bold
+\size small
+\color brown
+region
+\family default
+\series default
+\size default
+\color inherit
+ (
+\family typewriter
+us-west-2
+\family default
+ en la figura).
+\end_layout
+
+\begin_layout Standard
+Llegados a este punto, habremos terminado de configurar la plataforma.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+—_—'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Ahora que hemos estudiado la estructura de AWS
 \begin_inset space ~
 \end_inset
@@ -7871,6 +8113,72 @@ name "chap:Implementación-AWS-IoT"
 Integración de AWS IoT Device SDK
 \end_layout
 
+\begin_layout Standard
+Amazon Web Services proporciona un SDK oficial para conectarse con AWS-IoT
+ desde cualquier dispositivo.
+ Este kit de desarrollo, denominado 
+\family sans
+AWS
+\begin_inset space ~
+\end_inset
+
+IoT
+\begin_inset space ~
+\end_inset
+
+Device
+\begin_inset space ~
+\end_inset
+
+SDK
+\family default
+, está escrito en el lenguaje de programación
+\begin_inset space ~
+\end_inset
+
+C y puede portarse a cualquier tipo de dispositivo.
+ Además, su código fuente está disponible en GitHub (
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/aws/aws-iot-device-sdk-embedded-C
+\end_layout
+
+\end_inset
+
+), de donde podemos descargarlo.
+ Toda la información acerca de 
+\family sans
+AWS
+\begin_inset space ~
+\end_inset
+
+IoT
+\begin_inset space ~
+\end_inset
+
+Device
+\begin_inset space ~
+\end_inset
+
+SDK
+\family default
+ está disponible en 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://aws.amazon.com/iot/sdk/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 Detalles de la biblioteca
 \end_layout
@@ -7900,6 +8208,12 @@ key "AWS-IoT-SDK"
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Estructura-ficheros-AWS-IoT"
+
+\end_inset
+
 Estructura de ficheros
 \end_layout
 
@@ -7943,7 +8257,7 @@ external_libs
  código fuente de las bibliotecas de las que depende el Device SDK: mbedTLS
  y jsmn
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Jsmn (pronunciado como 'jasmine') es una biblioteca para dar soporte a JSON
@@ -8095,7 +8409,11 @@ thread-safe
 .
  Aunque el cliente MQTT utiliza una máquina de estados para controlar las
  operaciones un un entorno multi-hebra, requiere la implementación de los
- mutexes para garantizar la seguridad de las hebras (thread safety).
+ mutexes para garantizar la seguridad de las hebras (
+\lang english
+thread safety
+\lang spanish
+).
  Esto no es necesario en los casos en que la seguridad de las hebras no
  es importante, por lo que está deshabilitado por defecto.
 \end_layout
@@ -8251,7 +8569,7 @@ threads_platform.h
 \family default
 , ambos en el directorio 
 \family typewriter
-platform/DAVE4_CMSIS_RTO/pthreads
+platform/DAVE4_CMSIS_RTOS/pthreads
 \family default
 .
  En esta ocasión, usaremos los mutexes proporcionados por CMSIS-RTOS para
@@ -8277,8 +8595,136 @@ er.c, en concreto, la función iot_tls_init(), para hacer que no cargue los
  en variables directamente.
 \end_layout
 
+\begin_layout Subsubsection
+\noindent
+
+\family typewriter
+aws_iot_config.h
+\end_layout
+
+\begin_layout Standard
+El Device SDK de AWS IoT requiere de un archivo de configuración nombrado
+ 
+\family typewriter
+aws_iot_config.h
+\family default
+ y que sea accesible al compilador.
+ Este fichero, que contiene tanto información sobre la conexión como configuraci
+ones de los módulos, se incluye en algunas de las cabeceras de estos mismos
+ módulos.
+ Por ello, deberemos importar este fichero en nuestro proyecto, copiándolo
+ de cualquiera de los ejemplos que se proveen (por ejemplo, en 
+\family typewriter
+samples/linux/shadow_sample
+\family default
+).
+\end_layout
+
 \begin_layout Subsection
 Configuración de AWS IoT SDK
+\end_layout
+
+\begin_layout Standard
+Llegados a este punto tenemos una integración de AWS IoT Device SDK que
+ compila en el sistema, y cuyas funciones pueden ser usadas desde las distintas
+ tareas, siempre y cuando se incluyan los archivos de cabecera al inicio
+ del código fuente de la tarea.
+ A continuación llevaremos a cabo algunas configuraciones que serán necesarias
+ para establecer una comunicación con la nube de Amazon.
+\end_layout
+
+\begin_layout Subsubsection
+Certificados digitales y clave del dispositivo
+\end_layout
+
+\begin_layout Standard
+Como explicamos en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Estructura-ficheros-AWS-IoT"
+
+\end_inset
+
+, existe un directorio destinado a albergar los certificados y claves que
+ el dispositivo necesita para llevar a cabo la autenticación mutua con el
+ servidor.
+ Normalmente, estos certificados se almacenarían como ficheros en formato
+ 
+\family typewriter
+.pem
+\family default
+ o 
+\family typewriter
+.der
+\family default
+, que serían abiertos por mbedTLS accediendo al sistema de ficheros.
+ Sin embargo, nuestro sistema no cuenta con dicho sistema de ficheros, por
+ lo que almacenaremos los certificados y la clave en unas constantes, que
+ se definirán en un fichero 
+\family typewriter
+.c
+\family default
+.
+ De esta forma, los certificados y claves permanecerán almacenados directamente
+ en el firmware (
+\lang english
+hardcoded
+\lang spanish
+) por lo que será imposible acceder a ellos si no se dispone de una interfaz
+ de depuración
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Aun con el hardware necesario para la depuración, existen formas de proteger
+ el código contra lectura, de forma que la clave privada sea realmente inaccesib
+le #ref#.
+\end_layout
+
+\end_inset
+
+.
+ Por simplicidad, las constantes de este fichero no serán más que cadenas
+ de caracteres ASCII con el contenido literal de los certificados y de la
+ clave privada en formato PEM (formalmente, PKIX Textual Encodings, tal
+ y como se define en el RFC7468 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rfc4648-Base64-encoding,rfc7468-PKIX-Encoding"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Este fichero, que llamaremos 
+\family typewriter
+certificate.c
+\family default
+, será el reponsable de almacenar el certificado del cliente (
+\family typewriter
+client_cert
+\family default
+), su clave privada (
+\family typewriter
+client_key
+\family default
+) y la autoridad certificadora con la que se verificará la autenticidad
+ del servidor (
+\family typewriter
+ca_root
+\family default
+).
+ Estas constantes serán usadas posteriormente por el programa de ejemplo
+ a la hora de establecer la conexión con el servidor.
+\end_layout
+
+\begin_layout Subsubsection
+\noindent
+
+\family typewriter
+aws_iot_config.h
 \end_layout
 
 \begin_layout Standard
@@ -8300,8 +8746,13 @@ Configuracion llevada a cabo en conjunto con la consola de AWS IoT.
 \end_layout
 
 \begin_layout Standard
-Open the aws_iot_config.h file and, in the //Get from console section, update
- the values for the following:
+\noindent
+Una vez integrada la biblioteca, tendremso que configurar algunos parámetros
+ para conectarnos con los servidores de AWS.
+ En concreto, necesitaremos los siguientes elementos para llevar a cabo
+ la conexión.
+ Estos elementos serán modificados en aws_iot_config.h, fichero que se importará
+ al proyecto a partir del programa
 \end_layout
 
 \begin_layout Standard
@@ -8332,26 +8783,281 @@ Your certificate.
 Your private key.
 \end_layout
 
-\begin_layout Subsubsection
-Certificado digital del dispositivo
+\begin_layout Standard
+\noindent
+usaremos el ejemplo incluido en la misma para conectarnos con AWS.
+ Para ello, tendremos que utilizar los siguientes parámetros, que debemos
+ haber anotado previamente.
+\end_layout
+
+\begin_layout LyX-Code
+\noindent
+iotClient.setAWSRegion("
+\series bold
+\size small
+\color brown
+region
+\series default
+\size default
+\color inherit
+");
+\end_layout
+
+\begin_layout LyX-Code
+\noindent
+iotClient.setAWSEndpoint("amazonaws.com");
+\end_layout
+
+\begin_layout LyX-Code
+\noindent
+iotClient.setAWSDomain("
+\series bold
+\size small
+\color brown
+identifier
+\series default
+\size default
+\color inherit
+.iot.
+\series bold
+\size small
+\color brown
+region
+\series default
+\size default
+\color inherit
+.amazonaws.com");
+\end_layout
+
+\begin_layout LyX-Code
+\noindent
+iotClient.setAWSPath("/things/
+\series bold
+\size small
+\color brown
+thingName
+\series default
+\size default
+\color inherit
+/shadow");
+\end_layout
+
+\begin_layout LyX-Code
+\noindent
+iotClient.setAWSKeyID("
+\family typewriter
+\series bold
+\size small
+\color brown
+accessKeyId
+\family default
+\series default
+\size default
+\color inherit
+");
+\end_layout
+
+\begin_layout LyX-Code
+\noindent
+iotClient.setAWSSecretKey("
+\family typewriter
+\series bold
+\size small
+\color brown
+secretAccessKey
+\family default
+\series default
+\size default
+\color inherit
+");
 \end_layout
 
 \begin_layout Standard
-Copiar certificado en un fichero .c (hardcoded) en formato .pem, por simplicidad.
+A continuación se muestra un ejemplo con los parámetros sustituidos por
+ sus valores correspondientes a nuestro caso.
+\end_layout
+
+\begin_layout Section
+Verificación de la integración
+\end_layout
+
+\begin_layout Subsubsection
+Configuración de prueba
+\end_layout
+
+\begin_layout Standard
+Explicar entorno de test: recibiendo los datos en AWS IoT console.
+\end_layout
+
+\begin_layout Standard
+miniGW conectado a Internet a través de PC, para poder visualizar los paquetes
+ con wireshark.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/test-setup-final.eps
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuración de prueba final.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Añadir debugger en el esquema!! Poner este esquema en el capítulo anterior?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Test funcional
+\end_layout
+
+\begin_layout Standard
+Comprobando que el handshake tiene lugar, que los paquetes se envían encriptados
+, que se ven los datos enviados en AWS IoT Console.
+\end_layout
+
+\begin_layout Standard
+Ahora podemos ir a la consola de AWS
+\begin_inset space ~
+\end_inset
+
+IoT y ver que efectivamente se está produciendo una comunicación.
+ Para ello, nos dirigiremos a la pestaña 
+\family sans
+\lang english
+Activity
+\family default
+\lang spanish
+, donde podremos ver las sucesivas actualizaciones de la sombra (figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Thing-properties-1"
+
+\end_inset
+
+).
  
 \end_layout
 
-\begin_layout Subsubsection
-Certificado digital para validar Amazon
-\end_layout
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
 
-\begin_layout Subsubsection
-URL de 
-\begin_inset Quotes fld
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../../../Internet-de-las-Cosas/doc/img/platform-10-shadow.png
+	lyxscale 50
+	width 100text%
+
 \end_inset
 
-la sombra?
-\begin_inset Quotes frd
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Thing-properties-2"
+
+\end_inset
+
+Propiedades del dispositivo registrado.
+ Pestaña 
+\family sans
+\lang english
+Shadow
+\family default
+\lang spanish
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para observar el estado actual del dispositivo, podemos consultar su sombra
+ en la pestaña 
+\family sans
+\lang english
+Shadow
+\family default
+\lang spanish
+ (figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Thing-properties-2"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Con esto habremos logrado conectar nuestro dispositivo a la plataforma con
+ éxito.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Imágenes? Capturas de pantalla???
+\end_layout
+
 \end_inset
 
 

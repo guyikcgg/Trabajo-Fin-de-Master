@@ -54,7 +54,7 @@
 % ********************************************************************
 \newcommand{\myTitle}{Seguridad de los Datos en Sistemas Empotrados\xspace}
 \newcommand{\myDegree}{Máster Universitario Oficial en Ciencia de Datos e Ingeniería de Computadores\xspace}
-\newcommand{\myName}{Cristian G. Guerrero\xspace}
+\newcommand{\myName}{Cristian González Guerrero\xspace}
 \newcommand{\myPassport}{53741253M\xspace}
 \newcommand{\myProf}{Antonio Francisco Díaz García\xspace}
 \newcommand{\myOtherProf}{Diego Pedro Morales Santos\xspace}
