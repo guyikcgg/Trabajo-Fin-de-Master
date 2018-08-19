@@ -77,6 +77,74 @@ Conclusiones y trabajo futuro
 \end_layout
 
 \begin_layout Chapter
+Resultados
+\end_layout
+
+\begin_layout Section
+Integración de la seguridad
+\end_layout
+
+\begin_layout Standard
+Hemos podido comprobar que tenemos seguridad.
+ Con los tests explicados en ## hemos visto que podemos realizar conexiones
+ seguras.
+ Estas conexiones se han visualizado usando Wireshark, pudiendo comprobar
+ que la conexión está realmente encriptada.
+\end_layout
+
+\begin_layout Standard
+Tenemos un sistema donde puede configurarse la seguridad en tiempo de compilació
+n: distintas ciphersuites.
+ Para la aplicación estudiada (SmartHome gateway con AWS IoT) hemos dejado
+ las configuraciones que la plataforma recomienda.
+ Sin embargo, la integración realizada tiene mucho más potencial.
+\end_layout
+
+\begin_layout Standard
+En cuanto a uso de memoria, hemos comprobado que necesitamos 10kB de stack,
+ y probablemente mucho heap.
+ El uso de heap en un sistema embebido es difícil de medir.
+ Sin embargo, hemos comprobado en Valgrind el ejemplo ssl_cliente con las
+ mismas opciones y hemos llegado a un uso de ##### (sistema GNU/Linux).
+\end_layout
+
+\begin_layout Standard
+Sin lugar a dudas, 1MB de RAM como tiene el XMC4500 es suficiente para llevar
+ a cabo transacciones seguras.
+ Las empresas deberían tomarse esto en serio a la hora de diseñar dispositivos
+ para IoT -> conclusión!
+\end_layout
+
+\begin_layout Section
+Integración de AWS IoT SDK
+\end_layout
+
+\begin_layout Standard
+En este trabajo presentamos un ejemplo de conexión de un dispositivo sensor
+ a la plataforma de Amazon AWS
+\begin_inset space ~
+\end_inset
+
+IoT, al tratarse esta de una de las más usadas por las empresas que actualmente
+ intentan abrirse mercado en el paradigma IoT.
+\end_layout
+
+\begin_layout Standard
+Nuestro dispositivo se conectará a la nube de Amazon Web Services para IoT
+ (
+\emph on
+AWS
+\begin_inset space ~
+\end_inset
+
+IoT
+\emph default
+).
+ La comunicación entre el dispositivo y la nube se llevará a cabo a través
+ del protocolo MQTT, tras haber establecido un canal seguro mediante TLS.
+\end_layout
+
+\begin_layout Chapter
 Conclusiones y trabajo futuro
 \end_layout
 

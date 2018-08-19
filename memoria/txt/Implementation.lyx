@@ -7924,6 +7924,19 @@ Al ejecutar el programa, hemos podido ver la respuesta del servidor, que
 
 \begin_layout Standard
 \begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+EXPLICAR UN POCO EL PROGRAMA DE EJEMPLO: QUÉ SE HACE DENTRO? #REF#
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
 status collapsed
 
 \begin_layout Plain Layout
@@ -8620,6 +8633,10 @@ samples/linux/shadow_sample
 ).
 \end_layout
 
+\begin_layout Standard
+Configuración de AWS IoT Console
+\end_layout
+
 \begin_layout Subsection
 Configuración de AWS IoT SDK
 \end_layout
@@ -8720,6 +8737,11 @@ ca_root
  a la hora de establecer la conexión con el servidor.
 \end_layout
 
+\begin_layout Standard
+El contenido de estas constantes se obtendrá de la consola de AWS IoT, como
+ se explicará en la siguiente sección.
+\end_layout
+
 \begin_layout Subsubsection
 \noindent
 
@@ -8728,9 +8750,6 @@ aws_iot_config.h
 \end_layout
 
 \begin_layout Standard
-Como se vio en #(AWS IoT) es necesario que el dispositivo tenga algunos
- parámetros de AWS.
- 
 \begin_inset Note Note
 status open
 
@@ -8747,151 +8766,234 @@ Configuracion llevada a cabo en conjunto con la consola de AWS IoT.
 
 \begin_layout Standard
 \noindent
-Una vez integrada la biblioteca, tendremso que configurar algunos parámetros
+Una vez integrada la biblioteca, tendremos que configurar algunos parámetros
  para conectarnos con los servidores de AWS.
  En concreto, necesitaremos los siguientes elementos para llevar a cabo
  la conexión.
- Estos elementos serán modificados en aws_iot_config.h, fichero que se importará
- al proyecto a partir del programa
+ Estos elementos serán modificados en el fichero 
+\family typewriter
+aws_iot_config.h
+\family default
+, el cuál contiene se importará al proyecto a partir del programa de ejemplo
+ 
+\family typewriter
+subscribe_publish_sample
+\family default
+ (o de cualquier otro, porque todos los ficheros de configuración son iguales).
 \end_layout
 
 \begin_layout Standard
+Como se vio en #(AWS IoT) es necesario que el dispositivo tenga algunos
+ parámetros de AWS.
+ Modificaremos las siguientes línas de aws_iot_config.h con los parámetros
+ de conexión obtenidos de la consola de AWS IoT.
+ Más detalles en la obtención de estos parámetros se explicarán en la sección
+ ###.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
 AWS_IOT_MQTT_HOST
-\end_layout
-
-\begin_layout Standard
-Your personal endpoint.
- AWS_IOT_MY_THING_NAME
-\end_layout
-
-\begin_layout Standard
-Your thing name.
- AWS_IOT_ROOT_CA_FILENAME
-\end_layout
-
-\begin_layout Standard
-Your root CA certificate.
- AWS_IOT_CERTIFICATE_FILENAME
-\end_layout
-
-\begin_layout Standard
-Your certificate.
- AWS_IOT_PRIVATE_KEY_FILENAME
-\end_layout
-
-\begin_layout Standard
-Your private key.
-\end_layout
-
-\begin_layout Standard
-\noindent
-usaremos el ejemplo incluido en la misma para conectarnos con AWS.
- Para ello, tendremos que utilizar los siguientes parámetros, que debemos
- haber anotado previamente.
-\end_layout
-
-\begin_layout LyX-Code
-\noindent
-iotClient.setAWSRegion("
-\series bold
-\size small
-\color brown
-region
-\series default
-\size default
-\color inherit
-");
-\end_layout
-
-\begin_layout LyX-Code
-\noindent
-iotClient.setAWSEndpoint("amazonaws.com");
-\end_layout
-
-\begin_layout LyX-Code
-\noindent
-iotClient.setAWSDomain("
-\series bold
-\size small
-\color brown
-identifier
-\series default
-\size default
-\color inherit
-.iot.
-\series bold
-\size small
-\color brown
-region
-\series default
-\size default
-\color inherit
-.amazonaws.com");
-\end_layout
-
-\begin_layout LyX-Code
-\noindent
-iotClient.setAWSPath("/things/
-\series bold
-\size small
-\color brown
-thingName
-\series default
-\size default
-\color inherit
-/shadow");
-\end_layout
-
-\begin_layout LyX-Code
-\noindent
-iotClient.setAWSKeyID("
-\family typewriter
-\series bold
-\size small
-\color brown
-accessKeyId
 \family default
-\series default
-\size default
-\color inherit
-");
+ URL
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+uri?
 \end_layout
 
-\begin_layout LyX-Code
-\noindent
-iotClient.setAWSSecretKey("
+\end_inset
+
+ del personal endpoint asociado a AWS IoT.
+ Puede encontrarse en la pestaña Settings de la consola, y tiene el formato
+ 
 \family typewriter
-\series bold
-\size small
-\color brown
-secretAccessKey
+xxxxxxx.region-key.amazonaws.com
 \family default
-\series default
-\size default
-\color inherit
-");
+.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+AWS_IOT_MQTT_PORT
+\family default
+ puerto para la conexión MQTT.
+ Dejaremos el valor por defecto: 8883.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+AWS_IOT_MQTT_CLIENT_ID
+\family default
+ ID del cliente MQTT, que deberá ser distinto para cada dispositivo.
+ Este ID será una cadena alfanumérica definida en producción.
+ Puesto que en nuestro test solo tendremos un dispositivo, podemos dejarlo
+ en su valor por defecto.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+AWS_IOT_MY_THING_NAME
+\family default
+ nombre del dispositivo virtual definido en la plataforma.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+AWS_IOT_ROOT_CA_FILENAME
+\family default
+ variable o constante donde se almacena el certificado digital de la autoridad
+ certificadora, con la que el dispositivo autenticará a los servidores de
+ AWS IoT.
+ Nótese que por los cambios realizados en la biblioteca, aquí no se indicará
+ un nombre de archivo, sino el contenido del mismo.
+ En este caso, será la constante 
+\family typewriter
+ca_root
+\family default
+, definida en la sección anterior.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+AWS_IOT_CERTIFICATE_FILENAME
+\family default
+ variable o constante donde se almacena el certificado digital del dispositivo.
+ Este certificado estará asociado al dispositivo virtual definido en la
+ consola.
+ Nótese que por los cambios realizados en la biblioteca, aquí no se indicará
+ un nombre de archivo, sino el contenido del mismo.
+ En este caso, será la constante 
+\family typewriter
+client_cert
+\family default
+, definida en la sección anterior.
+\end_layout
+
+\begin_layout Description
+
+\family typewriter
+AWS_IOT_PRIVATE_KEY_FILENAME
+\family default
+ variable o constante donde se almacena la clave privada del dispositivo.
+ Nótese que por los cambios realizados en la biblioteca, aquí no se indicará
+ un nombre de archivo, sino el contenido del mismo.
+ En este caso, será la constante 
+\family typewriter
+client_key
+\family default
+, definida en la sección anterior.
 \end_layout
 
 \begin_layout Standard
-A continuación se muestra un ejemplo con los parámetros sustituidos por
- sus valores correspondientes a nuestro caso.
+El resto de parámetros definidos en el fichero se han dejado intactos, con
+ sus valores por defecto.
+ Estos parámetros controlan la configuración de búferes, uso de la sombra
+ y otros parámetros de conexión.
+\end_layout
+
+\begin_layout Standard
+Además, incluiremos las constantes de los certificados digitales como extern,
+ para que las mismas puedan ser usadas donde se requiera.
 \end_layout
 
 \begin_layout Section
 Verificación de la integración
 \end_layout
 
+\begin_layout Standard
+A continuación comprobaremos que la integración de AWS IoT Device SDK se
+ comporta de la manera esperada, realizando una conexión con AWS IoT y comproban
+do que existe una transmisión de datos.
+ Para ello, será necesario establecer un escenario de prueba, que definiremos
+ a continuación.
+ Solo llevaremos a cabo dos tests funcionales: subscribe_publish y shadow.
+ Estos tests requerirán de la configuración conjunta de la plataforma y
+ del dispositivo.
+ En esta sección explicamos las configuraciones llevadas a cabo para estos
+ tests en particular (no se han contado antes porque en la sección anterior
+ se habla de configuraciones que hacen referencia exclusivamente al SDK
+ y que serán necesarias en cualquier setup, por lo que el fichero de configuraci
+ón del SDK ya queda presentado).
+\end_layout
+
+\begin_layout Standard
+El test funcional requiere tener configurado correctamente tanto el miniGW
+ como el servicio AWS IoT.
+ Estas configuraciones deben ser coherentes entre sí.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+En esta sección sólo hablaremos de configuración.
+ Los resultados se expondrán en el capítulo #Resultados#.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
-Configuración de prueba
+Disposición de los elementos de prueba
 \end_layout
 
 \begin_layout Standard
-Explicar entorno de test: recibiendo los datos en AWS IoT console.
+La configuración de prueba que llevaremos a cabo es la que podemos ver,
+ de forma esquemática, en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Configuración-de-prueba-AWS-IoT"
+
+\end_inset
+
+.
+ Como vemos, conectaremos el miniGW a Internet a través de un computador
+ que funcionará de puerta de enlace realizando IP forwarding #ref?#.
+ Esta conexión será monitorizada con Wireshark, donde veremos los paquetes
+ transmitidos en ambas direcciones (útil para ver si se lleva a cabo la
+ conexión, en qué punto falla, si hay paquetes erróneos, en qué capa).
+ En este mismo computador tendremos una terminal serial para visualizar
+ la salida del firmware.
+ Esta salida se usa para comprobar que se realizan todos los pasos correctamente
+ (inicialización del OS, inicialización de los módulos, distintos pasos
+ de la conexión), pero no está configurada para interactuar con el miniGW.
 \end_layout
 
 \begin_layout Standard
-miniGW conectado a Internet a través de PC, para poder visualizar los paquetes
- con wireshark.
+Por otro lado, tendremos un computador con la interfaz de depuración de
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+, con la que cargaremos el firmware cada vez que hagamos cambios y podremos
+ usar las herramientas de depuración, como puntos de ruptura (
+\lang english
+breakpoints
+\lang spanish
+), para analizar mejor los problemas.
+ En este computador también tendremos abierta la consola de AWS IoT, desde
+ la que veremos si la conexión se ha establecido y podremos analizar el
+ intercambio de mensajes MQTT.
 \end_layout
 
 \begin_layout Standard
@@ -8916,6 +9018,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Configuración-de-prueba-AWS-IoT"
+
+\end_inset
+
 Configuración de prueba final.
 \begin_inset Note Note
 status open
@@ -8940,21 +9048,274 @@ Añadir debugger en el esquema!! Poner este esquema en el capítulo anterior?
 \end_layout
 
 \begin_layout Subsubsection
-Test funcional
+Configuración conjunta de la consola de AWS IoT y del Device SDK
 \end_layout
 
 \begin_layout Standard
-Comprobando que el handshake tiene lugar, que los paquetes se envían encriptados
-, que se ven los datos enviados en AWS IoT Console.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+En esta sección trataremos la creación y configuración de un dispositivo
+ en AWS IoT Console.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Ahora podemos ir a la consola de AWS
+Como se ha indicado en el epígrafe
 \begin_inset space ~
 \end_inset
 
-IoT y ver que efectivamente se está produciendo una comunicación.
- Para ello, nos dirigiremos a la pestaña 
+###, para conectar el dispositivo tendremos que definirlo en la plataforma.
+ También tendremos que asignarle un certificado digital y una política de
+ acceso.
+ 
+\end_layout
+
+\begin_layout Standard
+En primer lugar, tendremos que crear el dispositivo.
+ Tendremos que definir los distintos parámetros de nuestro dispositivo,
+ como el nombre, que será fundamental para conectarnos al mismo (
+\family typewriter
+AWS_IOT_MQTT_CLIENT_ID
+\family default
+).
+ Este es, en realidad, el único campo requerido.
+ Sin embargo, podemos definir algunos atributos, como la versión del 
+\lang english
+firmware
+\lang spanish
+ o los sensores que implementa el dispositivo.
+ Recordemos que estos atributos sirven para describir el dispositivo, y
+ no deben confundirse con el estado del mismo.
+ De forma alternativa, nuestro dispositivo podría heredar los atributos
+ de un tipo que hayamos definido previamente.
+\end_layout
+
+\begin_layout Standard
+El siguiente paso será crear un certificado.
+ Es imprescindible que al crear el certificado se descargue la clave privada
+ del mismo, ya que será la única oportunidad que tendremos (esta clave se
+ elimina después de cerrar el diálogo).
+ También tendremos que descargar el CA root, disponible desde la misma pestaña.
+\end_layout
+
+\begin_layout Standard
+A continuación, tendremos que asociar este certificado con el dispositivo
+ y con una política de acceso.
+ Como se trata de un test, definiremos una política de acceso bastante laxa,
+ en la que el dispositivo podrá interactuar libremente con todos los elementos
+ IoT, añadiendo a la política la acción 
+\family typewriter
+iot:*
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+En la pestaña 
+\family sans
+\lang english
+Manage
+\family default
+\lang spanish
+ del dispositivo ahora se mostrará nuestro recién definido dispositivo (figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Manage-Things-(with-device)"
+
+\end_inset
+
+).
+ Haciendo click en el mismo, podremos acceder a sus detalles, donde encontraremo
+s algunos datos de interés, organizados en distintas pestañas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../../../Internet-de-las-Cosas/doc/img/platform-08-interact.png
+	lyxscale 50
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Thing-properties-1"
+
+\end_inset
+
+Propiedades del dispositivo registrado.
+ Pestaña 
+\family sans
+\lang english
+Interact
+\family default
+\lang spanish
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En la pestaña 
+\family sans
+\lang english
+Interact
+\family default
+\lang spanish
+ del dispositivo (figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Thing-properties-1"
+
+\end_inset
+
+) se mostrará la información que tendremos que copiar para configurar #fichero_c
+onfig_aws#.
+ Anotaremos para su posterior uso el valor de los valores de 
+\family typewriter
+\series bold
+\size small
+\color brown
+endpoint
+\family default
+\series default
+\size default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+Llegados a este punto, habremos terminado de configurar la plataforma.
+\end_layout
+
+\begin_layout Subsubsection
+Verificación de la conexión
+\end_layout
+
+\begin_layout Standard
+Al igual que hicimos con mbedTLS, usaremos los programas de ejemplo del
+ Device SDK de AWS IoT para comprobar que el funcionamiento es el esperado.
+ En concreto, usaremos los ejemplos 
+\family typewriter
+subscribe_publish_sample
+\family default
+ y 
+\family typewriter
+shadow_sample
+\family default
+.
+ Al igual que hicimos con mbedTLS, modificaremos el ejemplo para que su
+ código se ejecute dentro de una tarea de RTOS.
+ 
+\end_layout
+
+\begin_layout Standard
+En este caso, los pasos seguidos por el firmware en su ejecución son los
+ siguientes: 
+\end_layout
+
+\begin_layout Enumerate
+Inicialización del sistema, a través de la inicialización de las 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE APPs
+\end_layout
+
+\end_inset
+
+ mediante la función 
+\family typewriter
+DAVE_Init()
+\family default
+.
+ Se inicializan tanto módulos hardware como componentes software, como las
+ variables de CMSIS-RTOS.
+\end_layout
+
+\begin_layout Enumerate
+Configuración de mbedTLS para usar el RTC.
+\end_layout
+
+\begin_layout Enumerate
+Creación de una tarea de una única ejecución, que llamará a la función 
+\family typewriter
+shadow_sample()
+\family default
+.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Explicar el ejemplo, o hacer referencia a la explicación!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+OS kernel start instruction 
+\family typewriter
+osKernelStart()
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+La ejecución de este programa tiene como resultado el intercambio de mensajes.
+ En primer lugar se lleva a cabo la ejecución de un handshake TLS correcto,
+ que hemos comprobado en Wireshark.
+ Tras el handshake, los datos se envían encriptados, por lo que no podemos
+ ver su contenido.
+ En cambio, podemos comprobar que los mensajes llegan a AWS IoT Console.
+ En la consola de AWS
+\begin_inset space ~
+\end_inset
+
+IoT, para ver que efectivamente se está produciendo una comunicación, nos
+ dirigiremos a la pestaña 
 \family sans
 \lang english
 Activity
@@ -8967,12 +9328,11 @@ Activity
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Thing-properties-1"
+reference "fig:Thing-properties"
 
 \end_inset
 
 ).
- 
 \end_layout
 
 \begin_layout Standard
@@ -8999,7 +9359,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Thing-properties-2"
+name "fig:Thing-properties"
 
 \end_inset
 
@@ -9011,6 +9371,18 @@ Shadow
 \family default
 \lang spanish
 .
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Sustituir por imagen con el contenido real del miniGW.
+ COHERENCIA DE IMÁGENES!
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9038,7 +9410,7 @@ Shadow
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Thing-properties-2"
+reference "fig:Thing-properties"
 
 \end_inset
 
@@ -9046,8 +9418,8 @@ reference "fig:Thing-properties-2"
 \end_layout
 
 \begin_layout Standard
-Con esto habremos logrado conectar nuestro dispositivo a la plataforma con
- éxito.
+Como podemos comprobar, tras este proceso de integración, el miniGW puede
+ comunicarse con los servidores AWS IoT, que será nuestra plataforma.
 \end_layout
 
 \begin_layout Standard
@@ -9068,13 +9440,11 @@ Resolución de problemas
 \end_layout
 
 \begin_layout Standard
-Configuración de RTOS y opciones de compilación
-\end_layout
-
-\begin_layout Standard
-Ciphersuites - configurados en config.h de mbedTLS para tener una versión
- compatible.
- o venía ya hecho?
+Como no podía ser de otra manera, la integración del device SDK ha supuesto
+ resolver algunos conflictos.
+ La mayoría de ellos tienen que ver con el uso de memoria, ya que trabajamos
+ en un entorno con recursos muy reducidos.
+ A continuación los exponemos con detalle.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9082,7 +9452,32 @@ Configuración de CMSIS-RTOS
 \end_layout
 
 \begin_layout Standard
-Más heap!
+De nuevo, hemos necesitado más memoria para CMIS-RTOS.
+ Esto se debe a que en esta ocasión estamos verificando un certificado
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+seguro que es por esto?
+\end_layout
+
+\end_inset
+
+ y estamos autenticando al dispositivo de cara al servidor 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+de nuevo: seguro?
+\end_layout
+
+\end_inset
+
+.
+ Estas operaciones requieren de mucha memoria, por lo que tendremos que
+ incrementar el tamaño de la pila a 17kB.
+ De nuevo, mencionamos que este valor no tiene nada que ver con el heap,
+ solo la pila se está aumentando aquí.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9090,12 +9485,98 @@ Modificación del mapa de memoria
 \end_layout
 
 \begin_layout Standard
-Se usa heap, ya que no es un sistema crítico.
- Hemos tenido que aumentar el tamaño del heap en el linkerscript
+En mbedTLS, el uso de enteros de precisión múltiple (MPI), también conocidos
+ como BigNum, hace uso de la memoria dinámica
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+También se puede configurar mbedTLS para usar pools de memoria reservados
+ de forma estática.
+ En el caso que nos ocupa, al no tratarse de un sistema crítico, hemos preferido
+ usar el heap gestionado por newlib y el linker script #ref#.
+\end_layout
+
+\end_inset
+
+.
+ Sin embargo, el heap presente en el sistema con la configuración predefinida
+ es demasiado pequeño 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+para la verificación de certificado con claves de clave asimétrica tan largas
+\end_layout
+
+\end_inset
+
+.
+ Para que las aplicaciones probadas se ejecuten correctamente, es necesario
+ un heap de al menos 35kB.
+ Esta heap será necesario para el proceso de validación del certificado
+ y el proceso de firma (en la autenticación mutua 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+copiado del report ;)
+\end_layout
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
-BigNum (aka MPI) 
+Por defecto, el heap definido en el proyecto usa la memoria restante en
+ uno de los tres módulos RAM presentes en el XMC (ver 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:XMC-block-diagram"
+
+\end_inset
+
+).
+ Para expandir la memoria usada por el heap, ha sido necesario modificar
+ el comportamiento de 
+\family typewriter
+malloc()
+\family default
+.
+ En concreto, se ha modificado la función 
+\family typewriter
+_sbrk()
+\family default
+ del fichero 
+\family typewriter
+syscalls.c
+\family default
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(de qué biblioteca es esto?)
+\end_layout
+
+\end_inset
+
+, para permitirle reservar memoria en cualquiera de los tres bancos disponibles.
+ Este fichero depende de las variables 
+\family typewriter
+Heap_BankX_Start
+\family default
+ y 
+\family typewriter
+Heap_BankX_End
+\family default
+, que han tenido que definirse en el linker script.
+ La definición de estas variables ha sido directa, a partir de la definición
+ del primer bloque de heap.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -9113,14 +9594,8 @@ es el culpable! -> Certificados con muchos bits! era eso, no?
 status open
 
 \begin_layout Plain Layout
-Cómo era el linkerscript original? Bancos de memoria 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:XMC-block-diagram"
-
-\end_inset
-
-, cuánto espacio para qué cosa...
+Cómo era el linkerscript original? Bancos de memoria , cuánto espacio para
+ qué cosa...
 \end_layout
 
 \begin_layout Plain Layout
@@ -9140,6 +9615,36 @@ Sockets BSD
 en aws_iot_mqtt_client.h: #undef connect #undef read #undef write (se deben
  usar ¿los de lwIP?, pero estos están definidos en algún otro sitio y producen
  conflicto, no?)
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+INVESTIGAR BIEN!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Ciphersuites?
+\end_layout
+
+\begin_layout Standard
+configurados en config.h de mbedTLS para tener una versión compatible.
+ o venía ya hecho?
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+REVISAR QUE LOS CIPHERSUITES DEFINIDOS EN NSA SUITE B SEAN LOS RECOMENDADOS
+ POR AWS
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
