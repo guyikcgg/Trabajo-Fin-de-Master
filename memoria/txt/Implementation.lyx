@@ -649,6 +649,23 @@ El dispositivo con el que trabajaremos será el miniGW introducido en la
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ademas de la descripción técnica, asegurarnos de que comentamos las funciones:
+ pasar mensajes de un lado a otro de forma reliable (sin perder ningún mensaje)
+ y eficiente (lo más rápido posible).
+ Características deseabes: bajo consumo, alto throughput, alto alcance en
+ la red inalámbrica.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Como puede comprobarse en la 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1472,8 +1489,43 @@ El servicio AWS IoT se encarga de almacenar los datos de los sensores, haciendo
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+deberíamos mencionar las ventajas que tiene esta nube? qué funcionalidad?
+ -> almacenamiento de datos recogidos de los sensores, retransmisión de
+ datos a la App móvil (y desde la App a los actuadores), servicio siempre
+ disponible (puerta de los usuarios a sus datos), seguridad de los datos...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+En los otros hemos dado especificaciones técnicas.
+ Dar especificaciones técnicas de AWS IoT otra vez (algunos detalles de
+ la web)? referenciar capítulo?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 La nube contendrá dispositivos virtuales, uno por cada sensor/actuador físico,
  que tendrá que asociarse al usuario.
+ La definición de estos dispositivos en producción está fuera del alcance
+ de esta memoria.
+ En ### se definira al menos un dispositivo de prueba para el GW, con su
+ certificado y todas esas cosas.
 \end_layout
 
 \begin_layout Standard
@@ -1493,293 +1545,6 @@ Brevemente, ya ha sido descrita en cap 2
 
 \color red
 Identificar elementos físicos con nombres de Amazon
-\end_layout
-
-\begin_layout Standard
-Tendremos que definir al menos un dispositivo de prueba para el GW, con
- su certificado y todas esas cosas.
-\end_layout
-
-\begin_layout Standard
-Desde el panel inicial de AWS
-\begin_inset space ~
-\end_inset
-
-IoT (figura
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Bienvenida-AWS-IoT"
-
-\end_inset
-
-), nos dirigiremos a la pestaña 
-\family sans
-\lang english
-Manage
-\family default
-\lang spanish
-, y ahí seleccionaremos 
-\family sans
-\lang english
-Things
-\family default
-\lang spanish
-.
- Nos encontraremos con la pantalla de la figura
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Manage-Things"
-
-\end_inset
-
-, en la que pincharemos el botón 
-\family sans
-\lang english
-Register
-\begin_inset space ~
-\end_inset
-
-a
-\begin_inset space ~
-\end_inset
-
-thing
-\family default
-\lang spanish
-.
-\end_layout
-
-\begin_layout Standard
-Seleccionaremos 
-\family sans
-\lang english
-Create
-\begin_inset space ~
-\end_inset
-
-a
-\begin_inset space ~
-\end_inset
-
-single
-\begin_inset space ~
-\end_inset
-
-thing
-\family default
-\lang spanish
- (figura
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Register-a-thing"
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-Ahora podremos empezar a definir los distintos parámetros de nuestro dispositivo
- (figura
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:form:thing-parameters"
-
-\end_inset
-
-).
- Para empezar, tendremos que darle un nombre a nuestro dispositivo.
- Anotaremos este parámetro (
-\family typewriter
-\series bold
-\size small
-\color brown
-thingName
-\family default
-\series default
-\size default
-\color inherit
-) para su posterior uso.
-\end_layout
-
-\begin_layout Standard
-Aunque este es el único campo requerido, también podríamos definir algunos
- atributos, como la versión del 
-\lang english
-firmware
-\lang spanish
- o los sensores que implementa el dispositivo.
- Recordemos que estos atributos sirven para describir el dispositivo, y
- no deben confundirse con el estado del mismo (sección
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Esquema-de-funcionamiento"
-
-\end_inset
-
-).
- De forma alternativa, nuestro dispositivo podría heredar los atributos
- de un tipo que hayamos definido previamente.
-\end_layout
-
-\begin_layout Standard
-Una vez concluida la definición de nuestro dispositivo, pulsaremos el botón
- 
-\family sans
-\lang english
-Next
-\family default
-\lang spanish
-.
-\end_layout
-
-\begin_layout Standard
-Desde el menú lateral, podemos acceder a pestaña 
-\family sans
-\lang english
-Manage
-\family default
-\lang spanish
-, donde ahora se mostrará nuestro recién definido dispositivo (figura
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Manage-Things-(with-device)"
-
-\end_inset
-
-).
- Haciendo click en el mismo, podremos acceder a sus detalles, donde encontraremo
-s algunos datos de interés, organizados en distintas pestañas.
-\end_layout
-
-\begin_layout Standard
-En la pestaña 
-\family sans
-\lang english
-Interact
-\family default
-\lang spanish
- (figura
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Thing-properties"
-
-\end_inset
-
-) Anotaremos para su posterior uso los valores de 
-\family typewriter
-\series bold
-\size small
-\color brown
-identifer
-\family default
-\series default
-\size default
-\color inherit
- (
-\family typewriter
-a3aa6mposshpif
-\family default
- en la figura) y 
-\family typewriter
-\series bold
-\size small
-\color brown
-region
-\family default
-\series default
-\size default
-\color inherit
- (
-\family typewriter
-us-west-2
-\family default
- en la figura).
-\end_layout
-
-\begin_layout Standard
-Llegados a este punto, habremos terminado de configurar la plataforma.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-—_—'
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Ahora que hemos estudiado la estructura de AWS
-\begin_inset space ~
-\end_inset
-
-IoT, vamos a poner nuestros conocimientos en práctica conectando un dispositivo
- a la nube.
- Este dispositivo enviará mensajes periódicamente, que contendrán los valores
- de distancia medidos.
- Para llevar a cabo este proceso, tendremos que ocuparnos de dos tareas
- principales.
- 
-\end_layout
-
-\begin_layout Standard
-En primer lugar, nos ocuparemos de definir un nuevo dispositivo en la nube
- de Amazon.
- Para ello, será necesario crear una cuenta en AWS y acceder a la consola
- del servicio AWS
-\begin_inset space ~
-\end_inset
-
-IoT
-\begin_inset space ~
-\end_inset
-
-Core.
- 
-\end_layout
-
-\begin_layout Standard
-Una vez configurado nuestro dispositovo virtual, pasaremos a escribir el
- programa que se ejecutará en el módulo ESP8266.
- Este programa será el responsable de establecer la conexión con AWS
-\begin_inset space ~
-\end_inset
-
-IoT.
 \end_layout
 
 \begin_layout Section
