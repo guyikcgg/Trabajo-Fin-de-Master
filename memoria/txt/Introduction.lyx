@@ -806,7 +806,14 @@ name "fig:P-box,S-box"
 
 \end_inset
 
-Elementos básicos del cifrado por bloques.
+Elementos básicos del cifrado por bloques 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
  (a)
 \begin_inset space ~
 \end_inset
@@ -822,14 +829,6 @@ S-box.
 \end_inset
 
 Producto.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Tanenbaum-Computer-Networks"
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -847,7 +846,7 @@ key "Tanenbaum-Computer-Networks"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Comment
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -1077,16 +1076,20 @@ al de los módulos provistos al diseñador del dispositivo.
 \end_layout
 
 \begin_layout Standard
-Por otro lado, 
-\color red
+Por otro lado,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
 Dado que no tenemos un OS ni un stack que nos proporcione la seguridad,
  tendremos que estudiar los requisitos generales de seguridad y ver cuáles
  son aplicables a nuestro sistema.
 \end_layout
 
-\begin_layout Standard
-
-\color red
+\begin_layout Plain Layout
 A pesar de estas diferencias y de los intereses de las distintas partes,
  existe una serie de 
 \emph on
@@ -1096,6 +1099,11 @@ requisitos generales
  En este capítulo expondremos estos requisitos generales de seguridad, y
  estudiaremos algunas soluciones que dan respuesta a estas necesidades.
  
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1414,7 +1422,7 @@ Proteger la identidad de las entidades que establecen la comunicación.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Comment
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -1712,23 +1720,6 @@ io (sujeto del certificado) y sobre la firma digital de la entidad
 \end_layout
 
 \begin_layout Standard
-\begin_inset Graphics
-	filename img/cert-digital.gif
-	width 50col%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename img/chain-of-trust.png
-	width 50text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Esto se cosigue gracias a un documento electrónico (fichero), el propio
  certificado, el cuál contiene información sobre la identidad del usuario/entida
 d certificada y su clave pública.
@@ -1818,6 +1809,15 @@ El protocolo TLS
 \end_layout
 
 \begin_layout Standard
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+TLS
+\end_layout
+
+\end_inset
+
 En este capítulo, presentamos una introducción al protocolo TLS, en el que
  se revisarán las características principales del mismo.
 \end_layout
@@ -2062,6 +2062,15 @@ TLS Record Protocol
 \end_layout
 
 \begin_layout Standard
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+TLS Record Protocol
+\end_layout
+
+\end_inset
+
 Como hemos explicado anteriormente, el 
 \emph on
 TLS Record Protocol
@@ -2284,6 +2293,16 @@ TLS Handshak Protocol
 \end_layout
 
 \begin_layout Standard
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+TLS Handshake Protocol
+\end_layout
+
+\end_inset
+
+
 \begin_inset Note Note
 status open
 
@@ -2396,7 +2415,11 @@ Intercambio de los parámetros criptográficos necesarios para permitir que
 \emph on
 pre-maestra
 \emph default
-.
+ (
+\lang english
+pre-master secret
+\lang spanish
+).
 \end_layout
 
 \begin_layout Itemize
@@ -2405,8 +2428,11 @@ Intercambio de los certificados e información criptográfica para permitir
 \end_layout
 
 \begin_layout Itemize
-Generación de una clave maestra (master secret) a partir de la clave pre-maestra
- e intercambiar valores aleatorios.
+Generación de una clave maestra (
+\lang english
+master secret
+\lang spanish
+) a partir de la clave pre-maestra e intercambiar valores aleatorios.
 \end_layout
 
 \begin_layout Itemize
@@ -2420,8 +2446,18 @@ Permitir que cliente y servidor verifiquen que el otro extremo ha calculado
 \end_layout
 
 \begin_layout Standard
-La figura_# muestra los pasos llevados a cabo en el establecimiento de la
- conexión llevada a cabo por el Handshake Protocol.
+La 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+figura_#
+\end_layout
+
+\end_inset
+
+ muestra los pasos llevados a cabo en el establecimiento de la conexión
+ TLS, de la que se encarga el Handshake Protocol.
 \end_layout
 
 \begin_layout Standard
@@ -2450,7 +2486,17 @@ Resumen
 \end_layout
 
 \begin_layout Standard
-TLS permite conexiones seguras a nivel de la capa de aplicación.
+TLS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+TLS
+\end_layout
+
+\end_inset
+
+ permite conexiones seguras a nivel de la capa de aplicación.
  El establecimiento de la conexión se lleva a cabo de forma segura, usando
  criptografía asimétrica para el intercambio de las claves compartidas,
  que serán usadas en el cifrado de los mensajes de aplicación.
@@ -2545,6 +2591,25 @@ Los nodos pueden cambiar los parámetros de seguridad en cualquier momento.
 \end_layout
 
 \end_deeper
+\begin_layout Enumerate
+Terminación de la sesisión
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+Eventualmente, cualquiera de los extremos puede terminar la sesión.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Note Note
 status open
@@ -2559,9 +2624,18 @@ QUE QUEDE CLARO LA PARTE INVESTIGADORA AQUI (bibliografia!!)
 \end_layout
 
 \begin_layout Standard
-Este protocolo (TLS) ha inspirado a otros, como DTLS [#ref], que no requiere
- una comunicacion reliable, sino que puede operar sobre protocolos como
- UDP.
+Este protocolo (TLS) ha inspirado a otros, como DTLS 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+, que no requiere una comunicacion reliable, sino que puede operar sobre
+ protocolos como UDP.
  (INTRODUCIR DTLS SI NO SE HA HECHO ANTES).
 \end_layout
 
@@ -2616,6 +2690,16 @@ name "chap:X509"
 \end_inset
 
 Certificados digitales X.509
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+certificado digital
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2639,7 +2723,17 @@ Certificados muy estándar (X.509 v3).
 \end_layout
 
 \begin_layout Standard
-ITU-T Standard!
+ITU-T Standard
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+X.509
+\end_layout
+
+\end_inset
+
+!
 \end_layout
 
 \begin_layout Section
@@ -2657,6 +2751,12 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/cert-digital.gif
+	width 50col%
+
+\end_inset
+
 
 \end_layout
 
@@ -2664,7 +2764,17 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Campos de los certificados X.509.
+Campos de los certificados X.509 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -2683,6 +2793,69 @@ Campos de los certificados X.509.
 
 \begin_layout Section
 Cadena de confianza
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+cadena de confianza
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+trust chain
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/chain-of-trust.png
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cadena de confianza en certificados X.509 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2701,7 +2874,17 @@ Estructura y tipos de fichero
 Los campos de los certificados X.509 se transmiten como ficheros, que pueden
  presentar distintos formatos.
  A pesar de esto, todos estos ficheros parten de X.690, un estándar de ITU-T
- que especifica diversos formatos ASN.1 #ref#.
+ que especifica diversos formatos ASN.1 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -2733,6 +2916,10 @@ https://stackoverflow.com/questions/22743415/what-are-the-differences-between-pe
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
 DER (Distinguished Encoding Rules) is the method of encoding the data that
  makes up the certificate.
  DER itself could represent any kind of data, but usually it describes an
@@ -2742,7 +2929,7 @@ DER (Distinguished Encoding Rules) is the method of encoding the data that
  BER and DER are binary encoding methods for data described by ASN.1.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 PEM is a method of encoding binary data as a string (ASCII armor).
  It contains a header and a footer line (specifying the type of data that
  is encoded and showing begin/end if the data is chained together) and the
@@ -2751,6 +2938,11 @@ PEM is a method of encoding binary data as a string (ASCII armor).
  64 encoding of the DER certificate.
  PEM stands for Privacy Enhanced Mail; mail cannot contain unencoded binary
  values such as DER directly.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -2769,7 +2961,26 @@ En esta sección describimos la arquitectura de la plataforma de Amazon para
 \begin_inset space ~
 \end_inset
 
-IoT), explorando su potencial y las particularidades que presenta.
+IoT
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+AWS IoT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+), explorando su potencial y las particularidades que presenta.
 \end_layout
 
 \begin_layout Standard
@@ -2913,15 +3124,14 @@ Principales componentes de AWS
 \begin_inset space ~
 \end_inset
 
-IoT.
- 
+IoT 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "AWS-IoT-Alexa-Blog"
 
 \end_inset
 
-
+.
 \end_layout
 
 \end_inset
@@ -3145,7 +3355,27 @@ Device
 
 shadow
 \lang spanish
-) documento JSON utilizado para
+)
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+sombra del dispositivo
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+device shadow
+\end_layout
+
+\end_inset
+
+ documento JSON utilizado para
 \begin_inset Note Note
 status open
 
@@ -3311,6 +3541,26 @@ Cabe destacar que los Atributos estáticos sirven para describir al dispositivo
 
 \begin_layout Subsection
 Sombra del dispositivo
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+sombra del dispositivo
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+device shadow
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout LyX-Code
@@ -3376,7 +3626,7 @@ reported
 \lang english
 desired
 \lang spanish
-, como puede verse en 
+, como puede verse en el 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "alg:Ejemplo-de-sombra"
@@ -3451,8 +3701,17 @@ name "fig:Flujo-de-mensajes-sombra"
 \end_inset
 
 Flujo de mensajes en la interacción entre el dispositivo y una aplicación
- a través de la sombra.
- REF#
+ a través de la sombra 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -3592,6 +3851,26 @@ topic
 
 \begin_layout Subsubsection
 Actualización de la sombra
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+sombra del dispositivo
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+device shadow
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

@@ -15,8 +15,9 @@
 \usepackage{listings}
 \usepackage{xspace}
 
-\usepackage[table]{xcolor}
-\usepackage{sectsty}       
+%\usepackage[table]{xcolor}
+\PassOptionsToPackage{table}{xcolor}
+\usepackage{sectsty}
 \definecolor{grey-blue}{rgb}{0.27,0.33,0.415}  
 \definecolor{blue-grey}{rgb}{0.192,0.278,0.4}  
 \definecolor{cool-green}{rgb}{0.25,0.5,0.5}  
@@ -297,6 +298,7 @@ numbers=left
 \suppress_date false
 \justification true
 \use_refstyle 0
+\notefontcolor #cc0000
 \boxbgcolor #faf583
 \index Índice
 \shortcut idx
@@ -408,7 +410,20 @@ figureautorefname}{figura}
 
 \begin_layout Plain Layout
 
+%
+\backslash
+renewcommand{
+\backslash
+algorithmautorefname}{algoritmo}
+\end_layout
+
+\begin_layout Plain Layout
+
 }
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -464,6 +479,17 @@ renewcommand{
 figref}[1]{
 \backslash
 autoref{fig:#1}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+algref}[1]{
+\backslash
+autoref{alg:#1}}
 \end_layout
 
 \begin_layout Plain Layout
