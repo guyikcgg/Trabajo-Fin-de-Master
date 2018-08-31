@@ -649,10 +649,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename img/relacion-plain-cipher.eps
 	lyxscale 80
-	width 100col%
+	width 86col%
 
 \end_inset
 
@@ -688,9 +689,9 @@ Relación entre el texto plano y el texto cifrado.
 
 \begin_layout Standard
 Aunque existe una multitud de algoritmos de encriptación y desencriptación
- disponibles, todos ellos caen en las categorías de criptografía de clave
- simétrica y criptografía de clave pública.
- Estas dos categorías se expondrán con detalle a continuación.
+ disponibles, todos ellos caen en alguna de estas dos categorías: criptografía
+ de clave simétrica y criptografía de clave pública.
+ Estos dos tipos de cifrado se expondrán con detalle en los siguientes epígrafes.
 \end_layout
 
 \begin_layout Section
@@ -704,45 +705,58 @@ clave simétrica
 \emph default
  son llamados así porque usan la misma clave en la encriptación y en la
  desencriptación.
- En primer lugar, presentaremos el 
+ Algunos de los algoritmos criptográficos de clave simétrica más conocidos
+ son DES (Data Encription Standard, en desuso) y AES (Advanced Encription
+ Standard).
+ A continuación presentaremos los fundamentos de los algoritmos de 
 \emph on
 cifrado por bloques
 \emph default
-, que opera sobre bloques de un número 
+, que consiste en encriptar el texto plano dividiéndolo en bloques de 
 \begin_inset Formula $n$
 \end_inset
 
- de bits de texto plano, produciendo el criptograma en bloques de la misma
- longitud.
+ bits, produciendo así el criptograma en bloques de la misma longitud.
+ 
 \end_layout
 
 \begin_layout Standard
-Los algoritmos criptográficos pueden implementarse en hardware (mayor velocidad)
- o en software (mayor flexibilidad).
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Los algoritmos de cifrado por bloques pueden implementarse en hardware (para
+ mayor velocidad) o en software (mayor flexibilidad).
  A continuación tratamos algunos aspectos de implementación en hardware
  para ilustrar los principios del cifrado por bloques.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-Cualquier método de cifrado por bloques puede descomponerse en una sucesión
- de 
+Para ilustrar los principios del cifrado por bloques, recurriremos a algunos
+ aspectos de su implementación en hardware.
+ De este modo, podemos decir que que cualquier método de cifrado por bloques
+ puede descomponerse en una sucesión de dos elementos hardware muy sencillos:
+ las 
 \emph on
 cajas de permutación
 \emph default
- (P-box) y 
+ (P-box) y las 
 \emph on
 cajas de sustitución
 \emph default
- (S-box).
- El número de cajas de cada tipo y su disposición vendrán determinados por
- el algoritmo de cifrado, mientras que su configuración específica vendrá
- dada por la clave.
- Tanto la permutación como la sustitución pueden implementarse con circuitos
- sencillos, como queda ilustrado en la figura
-\begin_inset space ~
+ (S-box), que se ilustran en la 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:P-box,S-box"
+
 \end_inset
 
-#.
+.
 \end_layout
 
 \begin_layout Standard
@@ -761,7 +775,75 @@ Las cajas de permutación producen una reordenación entre los bits de su
 \end_layout
 
 \begin_layout Standard
-Por otro lado, las cajas de sustitución 
+Por otro lado, las cajas de sustitución cuentan con tres etapas.
+ La primera de ellas es un decodificador, que 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/block-ciphers.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:P-box,S-box"
+
+\end_inset
+
+Elementos básicos del cifrado por bloques.
+ (a)
+\begin_inset space ~
+\end_inset
+
+P-box.
+ (b)
+\begin_inset space ~
+\end_inset
+
+S-box.
+ (c)
+\begin_inset space ~
+\end_inset
+
+Producto.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -813,6 +895,48 @@ Dentro de esta categoría podemos distinguir dos estrategias: por un lado,
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Modos de cifrado
+\end_layout
+
+\begin_layout Subsubsection
+Modo Electronic Code Book (ECB)
+\end_layout
+
+\begin_layout Standard
+Cualquier método de cifrado por bloques, sin importar lo complejo que sea,
+ puede verse como un diccionario que relaciona de forma única todas las
+ posibles combinaciones de 
+\begin_inset Formula $n$
+\end_inset
+
+ bits de texto plano con otra combinación (normalmente distinta) del mismo
+ número de bits en el criptograma.
+ De este modo, podemos decir que cualquier cifrado por bloques actúa como
+ un diccionario que permite 
+\begin_inset Quotes fld
+\end_inset
+
+traducir
+\begin_inset Quotes frd
+\end_inset
+
+, en función de la clave utilizada, cualquier bloque de texto plano a otro
+ bloque de la misma longitud del criptograma.
+\end_layout
+
+\begin_layout Standard
+Este modo de cifrado es conocido como Electronic Code Book y es el más directo
+ y el más eficiente en su implementación.
+ Sin embargo, presenta una vulnerabilidad, que se hace más importante cuanto
+ menor es tamaño del bloque.
+ Puesto que 
+\end_layout
+
+\begin_layout Subsubsection
+Modo Cipher Block Chaining (CBC)
 \end_layout
 
 \begin_layout Section
@@ -904,7 +1028,7 @@ te usado en la red y debería ser suficiente (en términos de seguridad y
 \end_layout
 
 \begin_layout Standard
-La seguridad suele estar relacionada con operaciones computacionalmente
+La ciberseguridad suele estar relacionada con operaciones computacionalmente
  costosas.
  Sin embargo, los sistemas empotrados
 \begin_inset Note Note
@@ -917,9 +1041,10 @@ s IoT,
 
 \end_inset
 
- suelen tener unas fuertes limitaciones en los recursos, que van desde limitacio
-nes computacionales (microcontroladores) hasta limitaciones energéticas
- (batería)
+ suelen suelen disponer de recursos muy limitados.
+ Esta escasez de recursos impondrá una serie de limitaciones, que van desde
+ limitaciones computacionales (baja frecuencia de la CPU, escasa memoria)
+ hasta limitaciones energéticas (sistemas autónomos alimentados por baterías)
 \begin_inset Note Note
 status open
 
@@ -930,18 +1055,22 @@ status open
 \end_inset
 
 .
- Esto hace que la seguridad en sistemas empotrados se trate de un modo algo
- especial.
+ Esto hace que la seguridad en sistemas empotrados deba ser tratada de un
+ modo especial.
  
 \end_layout
 
 \begin_layout Standard
-Para empezar, recordemos que la seguridad es un término que abarca muchos
- ámbitos (y muy variados).
+Para empezar, será conveniente recordar que la seguridad es un término que
+ abarca ámbitos muy variados.
  En el caso de los sistemas empotrados, tendremos diversos actores que se
- preocuparán de la seguridad de formas muy diferentes: El usuario estará
- interesado en mantener la confidencialidad y la integridad de los datos
- que almacena o transmite haciendo uso del sistema.
+ preocuparán de la seguridad de formas muy diferentes:
+\end_layout
+
+\begin_layout Standard
+El usuario, por su parte, estará interesado en mantener la confidencialidad
+ y la integridad de los datos que almacena o transmite haciendo uso del
+ sistema.
  El proveedor de hardware, en cambio, tratará de proteger la propiedad intelectu
 al de los módulos provistos al diseñador del dispositivo.
  
@@ -964,13 +1093,48 @@ A pesar de estas diferencias y de los intereses de las distintas partes,
 requisitos generales
 \emph default
  que deben tenerse en cuenta a la hora de diseñar la seguridad del sistema.
+ En este capítulo expondremos estos requisitos generales de seguridad, y
+ estudiaremos algunas soluciones que dan respuesta a estas necesidades.
+ 
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename img/actores-implicados-seguridad.png
 	lyxscale 10
-	width 80col%
+	width 55col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Actores implicados y requisitos de seguridad de un terminal móvil.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ravi2004security"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -2609,24 +2773,13 @@ IoT), explorando su potencial y las particularidades que presenta.
 \end_layout
 
 \begin_layout Standard
-Como se describe en la documentación oficial (
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html
-\end_layout
-
-\end_inset
-
-), AWS
+Como se describe en la documentación oficial, AWS
 \begin_inset space ~
 \end_inset
 
 IoT proporciona una
 \emph on
-comunicación bidireccional segura
+ comunicación bidireccional segura
 \emph default
  entre dispositivos conectados a Internet (ya sean sensores, actuadores,
  microcontroladores, electrodomésticos inteligentes, etc.) y la nube de Amazon
@@ -2638,17 +2791,24 @@ AWS
 
 Cloud
 \emph default
-).
+) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-What-is-AWS-IoT"
+
+\end_inset
+
+.
  Esto nos permite recoger, almacenar y analizar datos de una gran variedad
  de dispositivos.
  Del mismo modo, nos permite crear aplicaciones para controlar estos dispositivo
 s a través de un
 \emph on
-smartphone
+ smartphone
 \emph default
  o
 \emph on
-tablet
+ tablet
 \emph default
 .
 \end_layout
@@ -2665,6 +2825,10 @@ IoT actúa como una pasarela a la cuál pueden conectarse tanto dispositivos
  Este modo de operación hace que Amazon haya concentrado sus esfuerzos en
  una plataforma robusta y segura, dando soporte a empresas que desean construir
  aplicaciones complejas y escalables.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
  Por este motivo, AWS
 \begin_inset space ~
 \end_inset
@@ -2673,15 +2837,11 @@ IoT cuenta con un panel de control relativamente complejo, que nos permitirá
  gestionar una multitud de opciones.
  No obstante, esta plataforma no proporciona por sí misma herramientas para
  representar los datos obtenidos.
- Usaremos una aplicación web basada en
-\emph on
-Charts.js
-\emph default
- y
-\emph on
-Bootstrap
-\emph default
- como alternativa.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2707,8 +2867,18 @@ proporcionar todas sus funcionalidades
 .
  Con el fin de hacer un uso eficaz de la plataforma, conviene tener una
  imagen global de su arquitectura.
- Solo de este modo entenderemos el significado de las configuraciones llevadas
- a cabo en la siguiente sección.
+ 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+Solo de este modo entenderemos el significado de las configuraciones llevadas
+ a cabo en la siguiente sección
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2744,7 +2914,14 @@ Principales componentes de AWS
 \end_inset
 
 IoT.
- REF#
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-Alexa-Blog"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2774,22 +2951,29 @@ IoT.
  propiamente dicha.
  Fuera del recuadro quedan los
 \emph on
-dispositivos
+ dispositivos
 \emph default
 , las
 \emph on
-aplicaciones
+ aplicaciones
 \emph default
  y los
 \emph on
-servicios
+ servicios
 \emph default
 , tanto los de AWS como los de terceras partes.
  A continuación describimos los principales componentes de AWS
 \begin_inset space ~
 \end_inset
 
-IoT.
+IoT 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-What-is-AWS-IoT"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Description
@@ -2815,7 +2999,7 @@ gateway
 \lang spanish
 ) se encarga de establecer la comunicación entre la nube de Amazon y cada
  dispositivo.
- El
+ El 
 \lang english
 Device
 \begin_inset space ~
@@ -2882,7 +3066,7 @@ engine
 \lang spanish
 ) proporciona funciones de procesamiento de mensajes y de integración con
  otros sevicios de la nube de Amazon.
- También permite usar el
+ También permite usar el 
 \lang english
 Message
 \begin_inset space ~
@@ -2990,7 +3174,7 @@ IoT dispone de otros componentes y servicios con los que el desarrollador
 \begin_layout Standard
 Cabe mencionar que tanto el agente de mensajes como el motor de reglas utilizan
  las características de seguridad de AWS.
- De este modo, los dispositivos y aplicaciones convenientemente autorizados
+ De este modo, solo los dispositivos y aplicaciones convenientemente autorizados
  pueden establecer una comunicación con AWS
 \begin_inset space ~
 \end_inset
@@ -3020,17 +3204,19 @@ un poco de blabla: ahora que conocemos los elementos básicos de la plataforma,
 
 \end_inset
 
-El esquema general de funcionamiento de AWS
+En esta sección describiremos el esquema general de funcionamiento de AWS
 \begin_inset space ~
 \end_inset
 
-IoT es el siguiente.
+IoT.
+ Será aquí donde desarrollaremos la relación entre los distintos elementos
+ definidos anteriormente, así como su interacción con el mundo exterior.
 \end_layout
 
 \begin_layout Standard
-Por un lado, tendremos un dispositivo físico ejecutando el
+Por un lado, tendremos dispositivos físicos ejecutando el
 \emph on
-kit de desarrollo de software del dispositivo
+ kit de desarrollo de software del dispositivo
 \emph default
  (
 \lang english
@@ -3049,69 +3235,78 @@ Device
 SDK
 \lang spanish
 ).
- Este dispositivo debe disponer de unas credenciales con las que se identificará
- y se autenticará ante la Nube.
+ Cada uno de estos dispositivos debe disponer de unas credenciales con las
+ que se identificará y se autenticará ante la Nube.
  En general, estas credenciales vienen dadas por un certificado digital
  único para cada dispositivo.
- De forma dicional, el dispositivo debe incluir el certificado raíz de autoridad
- certificadora (
+ De forma adicional, el dispositivo debe incluir el certificado raíz de
+ autoridad certificadora (
 \lang english
 CA root certificate
 \lang spanish
-) para autenticar los servidores de Amazon.
+), de modo que pueda autenticar a los servidores de Amazon.
 \end_layout
 
 \begin_layout Standard
-Por otro lado, tendremos que definir el dispositivo en la plataforma, usando
- el Servicio de registro (
+Por otro lado, tendremos que definir estos dispositivos en la plataforma,
+ usando el Servicio de registro (
 \lang english
 Registry
 \lang spanish
 ) anteriormente descrito.
- Este dispositivo virtual dispondrá de un
+ Cada uno de estos dispositivos virtuales dispondrá de un
 \emph on
-nombre único
+ nombre único
 \emph default
 , que servirá para identificarlo, y de unos
 \emph on
-atributos estáticos
+ atributos estáticos
 \emph default
  a modo de descripción.
- De forma adicional, el dispositivo puede ser de un tipo determinado que
- hayamos definido previamente y puede tener un certificado asociado.
- En general, el dispositivo virtual tendrá asociado el mismo certificado
- digital que instalemos en el dispositivo físico, de forma que AWS
+ Estos atributos estáticos pueden ser compartidos por dispositivos del mismo
+ 
+\emph on
+tipo
+\emph default
+, por lo que AWS
+\begin_inset space ~
+\end_inset
+
+IoT proporciona esta unidad de organización a tal efecto.
+ De forma adicional, el dispositivo puede tener uno o varios certificados
+ asociados.
+ En general, cada dispositivo virtual tendrá asociado el mismo certificado
+ digital que instalemos en el dispositivo físico correspondiente, de forma
+ que AWS
 \begin_inset space ~
 \end_inset
 
 IoT pueda autenticarlo.
- Este certificado digital puede tener asociada una o varias Políticas de
- uso (
+ Los certificados digitales definidos en la consola pueden tener asociadas
+ una o varias Políticas de uso (
 \lang english
 Policies
 \lang spanish
 ).
  Gracias a estas políticas de uso, distintos dispositivos tendrán permisos
- para realizar distintas acciones, como puede ser publicar o suscribirse
- en determinados topics, actualizar su sombra, etc.
+ para realizar diferentes acciones, como puede ser publicar o suscribirse
+ en determinados 
+\lang english
+topics
+\lang spanish
+, actualizar su sombra, etc.
 \end_layout
 
 \begin_layout Standard
-Cabe destacar que los Atributos estáticos sirven para describir los dispositivos
-, y su función no debe confundirse con la de la Sombra del dispositivo (
-\lang english
-device shadow
-\lang spanish
-).
- Estos atributos se almacenan de forma estática en el Registro.
- Algunos ejemplos de atributos son: número de serie, versión de firmware
- y descripción del sensor.
- Los valores de sensores y de actuadores se almacenan en un documento dinámico
- denominado
-\emph on
- sombra del dispositivo
-\emph default
-.
+Cabe destacar que los Atributos estáticos sirven para describir al dispositivo
+ en sí, por lo que su función no debe confundirse con aquélla de la Sombra
+ del dispositivo.
+ Mientras que estos atributos se almacenan de forma estática en el Registro,
+ la sombra es un documento dinámico que contiene los valores de los sensores
+ y el estado de los actuadores.
+ Ejemplos de atributos estáticos son el número de serie, la versión de firmware,
+ una breve descripción del dispositivo, etc.
+ El siguiente epígrafe está dedicado a la sombra del dispositivo.
 \end_layout
 
 \begin_layout Subsection
@@ -3141,7 +3336,14 @@ name "alg:Ejemplo-de-sombra"
 
 \end_inset
 
-Ejemplo de sombra de dispositivo.
+Ejemplo de sombra de dispositivo 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-Shadow-MQTT-Topics"
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -3162,27 +3364,63 @@ device shadow
 \lang spanish
 ).
  La sombra del dispositivo actúa como un intermediario entre dispositivos
- y aplicaciones, permitiendo que ambas partes tengan acceso el estado del
- dispositivo, pudiendo actualizarlo.
+ y aplicaciones, permitiendo que ambas partes tengan acceso al estado del
+ dispositivo, pudiendo actualizarlo en ambos sentidos.
  Para que el estado del dispositivo pueda ser modificado por las aplicaciones,
- cada parámetro definido en la sombra podrá estar bajo una de las siguientes
- categorías:
+ cada parámetro definido en la sombra podrá estar bajo una de las categorías
+ 
+\lang english
+reported
+\lang spanish
+ y 
+\lang english
+desired
+\lang spanish
+, como puede verse en 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:Ejemplo-de-sombra"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-Shadow-Syntax"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Bajo la categoría reported tendremos un informe del estado confeccionado
- por el dispositivo.
+Bajo la categoría 
+\lang english
+reported
+\lang spanish
+ tendremos un informe del estado confeccionado por el dispositivo.
  De este modo, podemos decir que los parámetros encontrados en esta categoría
  tienen un significado informativo del estado del dispositivo, y solo el
  dispositivo debería escribir en ellos.
- Es en esta sección donde encontraremos los valores de los sensores.
+ Es en esta sección donde encontraremos los valores de los sensores y el
+ estado de los actuadores reportado por el dispositivo.
 \end_layout
 
 \begin_layout Standard
-En la categoría desired, en cambio, tendremo instrucciones para el dispositivo,
- como el cambio de color de un LED o el accionamiento de un motor.
- Como puede intuirse ya, esta categoría es confeccionada por la aplicación,
+En la categoría 
+\lang english
+desired
+\lang spanish
+, en cambio, tendremos instrucciones para el dispositivo, como el cambio
+ de color de un LED o el accionamiento de un motor.
+ Como puede intuirse, esta categoría es confeccionada por la aplicación,
  debiendo ser revisada por el dispositivo para ejecutar las acciones solicitadas.
+ Una vez completada la acción, el dispositivo actualizará el estado del
+ actuador en el apartado 
+\lang english
+reported
+\lang spanish
+.
 \end_layout
 
 \begin_layout Standard
@@ -3212,7 +3450,7 @@ name "fig:Flujo-de-mensajes-sombra"
 
 \end_inset
 
-Flujo de mensajes en la iinteracción entre el dispositivo y una aplicación
+Flujo de mensajes en la interacción entre el dispositivo y una aplicación
  a través de la sombra.
  REF#
 \end_layout
@@ -3237,6 +3475,27 @@ reference "fig:Flujo-de-mensajes-sombra"
 
  muestra el flujo de mensajes intercambiados entre el dispositivo y la aplicació
 n, usando la sombra de intermediario.
+ Como puede comprobarse, el estado publicado por el dispositivo (1) se almacena
+ en un fichero JSON, la sombra del dispositivo, en la nube de Amazon (2).
+ Este fichero será proporcionado a la aplicación cuando ésta realice una
+ petición del estado del dispositivo (3).
+ Cada vez que el usuario solicite un cambio de estado a través de la aplicación
+ (4), estos cambios se almacenarán en el fichero JSON, hasta que el dispositivo
+ se conecte a la Nube y ejecute una actualización de su estado (5).
+ Será entonces cuando el dispositivo recibirá la acción solicitada bajo
+ el apartado 
+\lang english
+desired
+\lang spanish
+ de la sombra.
+ Una vez realizada la acción, con éxito o no, el dispositivo reportará su
+ nuevo estado en el apartado 
+\lang english
+reported
+\lang spanish
+ (6).
+ La aplicación será informada de inmediato, siempre y cuando esté en línea
+ (7).
 \end_layout
 
 \begin_layout Standard
@@ -3246,27 +3505,23 @@ Una ventaja de la existencia de la sombra del dispositivo con respecto a
  Evidentemente, en este caso no contaremos con el estado actualizado, pero
  podremos visualizar el último estado registrado.
  Además, la sombra cuenta con una serie de metadatos, en los que se incluye
- un sello temporal con la última actualización en cada una de las direcciones.
+ un sello temporal (
+\lang english
+timestamp
+\lang spanish
+) con la última actualización en cada uno de los sentidos de la comunicación.
  Del mismo modo, será posible enviar instrucciones a nuestro dispositivo
- sea cual sea su conectividad.
+ independientemente de su conectividad.
 \end_layout
 
 \begin_layout Standard
-El algoritmo
-\begin_inset space ~
-\end_inset
-
-
+El 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "alg:Ejemplo-de-sombra"
 
 \end_inset
 
-
-\color red
-##
-\color inherit
  muestra un ejemplo sencillo de sombra de dispositivo, en el que la aplicación
  requiere un cambio de color en el LED del dispositivo.
 \end_layout
@@ -3288,12 +3543,12 @@ IoT, la comunicación se lleva a cabo a través del protocolo MQTT, sobre
 \end_layout
 
 \begin_layout Standard
-En primer lugar, el dispositivo inicia una comunicación segura TLS con el
- servidor de AWS
+En primer lugar, el dispositivo, que tendrá el rol de cliente, inicia una
+ comunicación segura TLS con el servidor de AWS
 \begin_inset space ~
 \end_inset
 
-IoT, asumiendo el rol de cliente.
+IoT.
  En esta primera comunicación servidor y cliente intercambian y verifican
  el certificado digital de la otra parte.
  De esta forma, la plataforma identifica y autentica el dispositivo, y el
@@ -3305,22 +3560,30 @@ IoT, asumiendo el rol de cliente.
 \begin_layout Standard
 Una vez establecida la comunicación segura, el dispositivo puede publicar
  mensajes siguiendo el protocolo MQTT.
- Cuando el dispositivo trata de publicar un mensaje en un
+ Cuando el dispositivo trata de publicar un mensaje en un 
 \lang english
 topic
 \lang spanish
-, la plataforma verifica si este tiene permiso para publicar en dicho
+, la plataforma verifica si este tiene permiso para publicar en dicho 
 \lang english
 topic
 \lang spanish
 .
- En caso afirmativo, el message
+ En caso afirmativo, el 
+\lang english
+message
 \begin_inset space ~
 \end_inset
 
-broker retransmite este mensaje a cualquier elemento de la red suscrito
- a este topic.
- Del mismo modo, el dispositivo puede suscribirse a cualquier
+broker 
+\lang spanish
+retransmite este mensaje a cualquier elemento de la red suscrito a este
+ 
+\lang english
+topic
+\lang spanish
+.
+ Del mismo modo, el dispositivo puede suscribirse a cualquier 
 \lang english
 topic
 \lang spanish
@@ -3334,14 +3597,21 @@ Actualización de la sombra
 \begin_layout Standard
 La actualización de la sombra se lleva a cabo publicando mensajes en unos
  topics especiales, destinados a este fin.
- En concreto, están definidos los siguientes
+ En concreto, están definidos los siguientes 
 \lang english
 topics
 \lang spanish
-, donde el dispositivo queda identificado por la variable
+, donde el dispositivo queda identificado por la variable 
 \family typewriter
 thingName
 \family default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-Shadow-MQTT-Topics"
+
+\end_inset
+
 .
 \end_layout
 
@@ -3351,7 +3621,7 @@ thingName
 $aws/things/thingName/shadow/update
 \family default
  Tanto las aplicaciones como los dispositivos pueden publicar mensajes a
- este
+ este 
 \lang english
 topic
 \lang spanish
@@ -3367,7 +3637,7 @@ $aws/things/thingName/update/accepted
 \begin_inset space ~
 \end_inset
 
-IoT publica un mensaje en este
+IoT publica un mensaje en este 
 \lang english
 topic
 \lang spanish
@@ -3383,7 +3653,7 @@ $aws/things/thingName/update/rejected
 \begin_inset space ~
 \end_inset
 
-IoT publica un mensaje en este
+IoT publica un mensaje en este 
 \lang english
 topic
 \lang spanish
@@ -3412,7 +3682,7 @@ $aws/things/thingName/get/accepted
 \begin_inset space ~
 \end_inset
 
-IoT publica un mensaje en este
+IoT publica un mensaje en este 
 \lang english
 topic
 \lang spanish
@@ -3428,7 +3698,7 @@ $aws/things/thingName/get/rejected
 \begin_inset space ~
 \end_inset
 
-IoT publica un mensaje de error en este
+IoT publica un mensaje de error en este 
 \lang english
 topic
 \lang spanish
@@ -3436,7 +3706,7 @@ topic
 \end_layout
 
 \begin_layout Standard
-De forma adicional, existen otros
+De forma adicional, existen otros 
 \lang english
 topics
 \lang spanish
@@ -3461,7 +3731,14 @@ IoT dispone de una API RESTful para permitir que las aplicaciones puedan
 \begin_inset space ~
 \end_inset
 
-clave) en vez de un certificado.
+clave) en vez de un certificado 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-Shadow-RESTful-API"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -3469,18 +3746,19 @@ Disparadores y reglas
 \end_layout
 
 \begin_layout Standard
-AWS
+Aunque no se han usado en la consecución de este proyecto, destacamos que
+ AWS
 \begin_inset space ~
 \end_inset
 
 IoT permite definir reglas con las que pueden realizarse diversas acciones
  al detectar eventos determinados.
- De este modo, es posible redireccionar mensajes entre distintos
+ De este modo, es posible redireccionar mensajes entre distintos 
 \lang english
 topics
 \lang spanish
  MQTT, detectar la superación de un umbral en un determinado parámetro,
- detectar la aparición de un mensaje concreto en un
+ detectar la aparición de un mensaje concreto en un 
 \lang english
 topic
 \lang spanish
@@ -3488,7 +3766,7 @@ topic
  Las acciones que pueden asociarse a un evento son muy variopintas, pero
  siempre implican una interacción con otros servicios de la nube de Amazon.
  Así, por ejemplo, es posible insertar un nuevo registro en una base de
- datos
+ datos 
 \emph on
 AWS
 \begin_inset space ~
@@ -3496,7 +3774,7 @@ AWS
 
 DynamoDB
 \emph default
-, invocar una función
+, invocar una función 
 \emph on
 AWS
 \begin_inset space ~
@@ -3504,7 +3782,7 @@ AWS
 
 Lambda
 \emph default
- o enviar mensajes específicos a
+ o enviar mensajes específicos a 
 \emph on
 AWS
 \begin_inset space ~
@@ -3512,7 +3790,7 @@ AWS
 
 Salesforce
 \emph default
-.
+ .
 \end_layout
 
 \begin_layout Section
@@ -3559,6 +3837,13 @@ https://aws.amazon.com/free/
 
 \end_inset
 
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-Free"
+
+\end_inset
+
 .
 \end_layout
 
@@ -3599,15 +3884,31 @@ https://aws.amazon.com/education/
 
 \end_inset
 
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-Education"
+
+\end_inset
+
 .
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Nosotros hemos optado por esta segunda opción.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
