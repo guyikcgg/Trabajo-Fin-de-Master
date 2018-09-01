@@ -1673,47 +1673,24 @@ Seguridad en sistemas empotrados
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-La seguridad siempre depende de a quien nos enfrentemos.
- No es lo mismo enfrentarse a un estudiante o un cracker, que tienen una
- motivacion personal, que a un govierno o grupo terrorista.
- No siempre es mejor tener la máxima seguridad, ya que puede ser computacionalme
-nte muy costoso, y su desarrollo e implementación también puede ser costoso.
- La seguridad de este sistema viene dictada por Amazon, en quien confiamos
- estas consideraciones.
- La implementación realizada supone el uso de un estándar de seguridad ampliamen
-te usado en la red y debería ser suficiente (en términos de seguridad y
- en términos de coste de desarroolo).
-\end_layout
+Como hemos visto en el 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:Principios-seguridad"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-La ciberseguridad suele estar relacionada con operaciones computacionalmente
- costosas.
- Sin embargo, los sistemas empotrados
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-, como los usados en los nodos finales y en las pasarelas de las infraestructura
-s IoT,
-\end_layout
-
-\end_inset
-
- suelen suelen disponer de recursos muy limitados.
+, una parte importante de la ciberseguirdad depende del uso de funciones
+ y algoritmos complejos, que suelen estar relacionados con operaciones computaci
+onalmente muy costosas.
+ Sin embargo, los sistemas empotrados, como los usados en los nodos finales
+ y en las pasarelas de las infraestructuras IoT, suelen disponer de recursos
+ muy limitados.
  Esta escasez de recursos impondrá una serie de limitaciones, que van desde
  limitaciones computacionales (baja frecuencia de la CPU, escasa memoria)
  hasta limitaciones energéticas (sistemas autónomos alimentados por baterías)
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 , que a su vez se traduce en limitaciones en el tiempo de cómputo empleable
@@ -1722,51 +1699,67 @@ status open
 \end_inset
 
 .
- Esto hace que la seguridad en sistemas empotrados deba ser tratada de un
- modo especial.
- 
+ Por otro lado, los sistemas embebidos son responsables, en numerosas ocasiones,
+ de llevar a cabo funciones críticas, que podrían poner en peligro la integridad
+ física del usuario en caso de fallo.
+ Debido a estos factores, la seguridad en sistemas empotrados debe ser tratada
+ de un modo especial.
 \end_layout
 
 \begin_layout Standard
-Para empezar, será conveniente recordar que la seguridad es un término que
- abarca ámbitos muy variados.
- En el caso de los sistemas empotrados, tendremos diversos actores que se
- preocuparán de la seguridad de formas muy diferentes:
-\end_layout
+Aunque a continuación hablaremos de requisitos generales de seguridad, conviene
+ mencionar que son muchas las entidades involucradas en la cadena de diseño,
+ fabricación y uso de un sistema embebido típico.
+ Los requisitos de seguridad dependerán de la perspectiva que consideremos,
+ tal y como ilustra la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Actores-implicados-requisitos-seguridad"
 
-\begin_layout Standard
-El usuario, por su parte, estará interesado en mantener la confidencialidad
+\end_inset
+
+, con el ejemplo de un teléfono móvil.
+ En el ejemplo, el usuario estará interesado en mantener la confidencialidad
  y la integridad de los datos que almacena o transmite haciendo uso del
  sistema.
- El proveedor de hardware, en cambio, tratará de proteger la propiedad intelectu
-al de los módulos provistos al diseñador del dispositivo.
- 
+ El proveedor de hardware, por su parte, tratará de proteger la propiedad
+ intelectual de los módulos provistos al diseñador del dispositivo.
+ El proveedor de contenidos, en cambio, tratará de evitar la copia ilegal
+ de los contenidos multimedia ofrecidos al usuario.
+ De esta forma, las entidades no confiables (potencialmente maliciosas)
+ también variarán dependiendo de la perspectiva considerada 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ravi2004security"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Por otro lado,
+En las siguientes secciones daremos una definición para los sistemas empotrados
+ y estudiaremos sus características más relevantes.
+ También presentaremos algunos de los requisitos de seguridad fundamentales
+ en cualquier sistema informático.
+ Finalmente, introduciremos las soluciones de seguridad con las que se abordan
+ estos requisitos.
+ Con esto habremos dado las primeras pinceladas en la definición de los
+ requisitos de seguridad de nuestro sistema.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Dado que no tenemos un OS ni un stack que nos proporcione la seguridad,
- tendremos que estudiar los requisitos generales de seguridad y ver cuáles
- son aplicables a nuestro sistema.
+unas pinceladas con las que empezaremos a comprender cuáles serán los requisitos
+ de seguridad de nuestro sistema.
 \end_layout
 
 \begin_layout Plain Layout
-A pesar de estas diferencias y de los intereses de las distintas partes,
- existe una serie de 
-\emph on
-requisitos generales
-\emph default
- que deben tenerse en cuenta a la hora de diseñar la seguridad del sistema.
- En este capítulo expondremos estos requisitos generales de seguridad, y
- estudiaremos algunas soluciones que dan respuesta a estas necesidades.
- 
+pretendemos ofrecer una imagen más definida de los que serán los requisitos
+ de seguridad de nuestro sistema.
 \end_layout
 
 \end_inset
@@ -1796,6 +1789,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Actores-implicados-requisitos-seguridad"
+
+\end_inset
+
 Actores implicados y requisitos de seguridad de un terminal móvil 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1821,15 +1820,12 @@ Particularidades de los sistemas empotrados
 \end_layout
 
 \begin_layout Standard
-Como hemos introducido anteriormente, los sistemas empotrados presentan
- varias particularidades.
- 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
-Un sistema empotrado se define porque resuelve una tarea específica, a pesar
- de hacerlo con un microcontrolador
+Como hemos introducido anteriormente, los sistemas empotrados presentan
+ varias particularidades que nos harán .
 \end_layout
 
 \end_inset
@@ -1838,38 +1834,66 @@ Un sistema empotrado se define porque resuelve una tarea específica, a pesar
 \end_layout
 
 \begin_layout Standard
-Los sistemas empotrados (también conocidos como sistemas embebidos o 
+Los sistemas empotrados
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+sistema empotrado
+\end_layout
+
+\end_inset
+
+ (también conocidos como sistemas embebidos
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+sistema embebido
+\end_layout
+
+\end_inset
+
+ o 
 \emph on
 embedded system
 \emph default
-s) son sistemas basados en un computador y que están diseñados para realizar
+s
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+embedded system
+\end_layout
+
+\end_inset
+
+) son sistemas basados en computador y que están diseñados para realizar
  una función concreta.
  Muchos sistemas empotrados llevan a cabo tareas a tiempo real, siendo frecuente
  su uso en el control de sistemas mecánicos, como ascensores o cadenas de
- montaje.
- 
+ montaje 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "EmbeddedSysDesign"
 
 \end_inset
 
- 
+.
 \end_layout
 
 \begin_layout Standard
 Además, estos sistemas están presentes en muchos electrodomésticos, como
  hornos microondas, lavadoras o reproductores de música.
  En este contexto, también los encontramos en el núcleo de muchos dispositivos
- cotidianos, como la calculadora, la cámara de fotos o el marcapasos.
- 
+ cotidianos, como la calculadora, la cámara de fotos o el marcapasos 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Tanenbaum-ModernOS"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -1878,8 +1902,11 @@ Podría discutirse si algunos dispositivos como los
 smartpohnes
 \emph default
  o las videoconsolas de última generación son también sistemas empotrados.
- No obstante, estos dispositivos cuentan con un sistema operativo (OS) que
- les permite ejecutar aplicaciones de terceros bajo demanda del usuario.
+ No obstante, estos dispositivos cuentan con un sistema operativo (
+\lang english
+OS
+\lang spanish
+) que les permite ejecutar aplicaciones de terceros bajo demanda del usuario.
  Por este motivo, estos dispositivos serán considerados en este trabajo
  como computadores de propósito general, a pesar de compartir algunas caracterís
 ticas con los sistemas empotrados.
@@ -1887,7 +1914,17 @@ ticas con los sistemas empotrados.
 
 \begin_layout Standard
 Estas son las principales características que consideraremos para decir
- que un sistema es empotrado:
+ que un sistema es empotrado 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Itemize
@@ -1913,36 +1950,11 @@ El sistema puede ser el núcleo de un dispositivo autónomo (como un mando
  unidades de control electrónico de un automóvil).
 \end_layout
 
-\begin_layout Itemize
-Los recursos computacionales suelen ser muy limitados, con el objetivo de
- abaratar costes.
- Este hecho, junto con el 
-\begin_inset Quotes fld
-\end_inset
-
-propósito no general
-\begin_inset Quotes frd
-\end_inset
-
- de estos sistemas, hace que no tengan sistema operativo (como mucho 
-\lang english
-scheduler
-\lang spanish
- o RTOS
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Definir RTOS
-\end_layout
-
-\end_inset
-
-)
-\end_layout
-
 \begin_layout Standard
-En numerosas ocasiones, las tareas deben ser realizadas en tiempo real,
+En aras de la exhaustividad, y aunque no es un problema que afecte directamente
+ a este proyecto, destacaremos los requisitos temporales de algunos sistemas
+ empotrados.
+ En numerosas ocasiones, las tareas deben ser realizadas en tiempo real,
  proporcionando respuestas a ciertos eventos en un intervalo de tiempo controlad
 o y reducido.
  Esto tiene gran relación con la tendencia a usar sistemas empotrados en
@@ -1956,6 +1968,56 @@ o y reducido.
 
 \begin_layout Section
 Requisitos generales de seguridad
+\end_layout
+
+\begin_layout Standard
+Como hemos mencionado anteriormente, los recursos computacionales de los
+ sistemas empotrados suelen ser muy limitados.
+ Esto supone un abaratamiento de costes que se hace muy relevante en la
+ producción en masa de los dispositivos.
+ Sin embargo, esta escasez de recursos, junto al 
+\begin_inset Quotes fld
+\end_inset
+
+propósito no general
+\begin_inset Quotes frd
+\end_inset
+
+ de estos sistemas, hace que estos carezcan de un sistema operativo propiamente
+ dicho, con todas las consecuencias que esto conlleva.
+\end_layout
+
+\begin_layout Standard
+En los sistemas empotrados más complejos es frecuente el uso de un planificado
+ de tareas (
+\lang english
+scheduler
+\lang spanish
+) sencillo, o de un sistema operativo de tiempo real (
+\lang english
+real-time operating system
+\lang spanish
+, RTOS), con los que se facilita el desarrollo y ejecución de procesos concurren
+tes.
+ Estas herramientas suelen permitir una buena gestión de las tareas de tiempo
+ real, sin embargo no cuentan con los servicios proporcionados por un sistema
+ operativo, como una pila de red, un sistema de ficheros, o la posibilidad
+ de ejecutar software de terceros.
+ Por este motivo, tendremos que estudiar cuidadosamente los requisitos de
+ seguridad del sistema, ya que todos ellos deberán ser implementados por
+ el equipo de desarrollo del mismo.
+\end_layout
+
+\begin_layout Standard
+A continuación presentamos los requisitos de seguridad más relevantes en
+ cualquier sistema informático 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ravi2004security"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1982,7 +2044,7 @@ Se trata del proceso de validar a los usuarios antes de permitirles usar
  Este requisito es fundamental cuando el sistema proporciona el acceso a
  datos sensibles (como los valores de sensores en un
 \emph on
-SmartHome
+ SmartHome
 \emph default
 ), a servicios restringidos (como llamadas telefónicas) o permite el control
  de otro sistema (como una cerradura electrónica o la calefacción).
@@ -1994,21 +2056,6 @@ La identificación de usuarios es especialmente importante cuando el sistema
  como son aquellos que están conectados a Internet.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-relevante en SmartHome (datos de sensores, cerraduras electrónicas) o cualquier
- aplicación que tenga datos sensibles o que permita el control remoto de
- algún cacharro.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Acceso seguro a la red
 \end_layout
@@ -2017,32 +2064,9 @@ Acceso seguro a la red
 Consiste en proporcionar acceso a una conexión de red o a un servicio solo
  si el dispositivo está autorizado.
  Por ejemplo, un router doméstico no debería permitir el acceso a ningún
- dispositivo que haya sido autorizado a usar la red.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ejemplo con IoT?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-provides a network connection or service access only if the device is authorized.
- -> esto es interesante para las empresas, también en los routers (que no
- se conecte cualquiera)
-\end_layout
-
-\end_inset
-
-
+ dispositivo que no haya sido autorizado a usar la red.
+ Del mismo modo, una pasarela IoT no deberá retransmitir datos de una red
+ de sensores ajena.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2050,71 +2074,112 @@ Comunicación segura
 \end_layout
 
 \begin_layout Standard
-La comunicación segura incluye varias funciones:
+La comunicación segura incluye varias funciones, que se listan a continuación.
+ También proporcionamos explicaciones con ejemplos concernientes al presente
+ proyecto.
 \end_layout
 
 \begin_layout Enumerate
-Autenticar las partes a los extremos de la comunicación, ya sean personas
- o sistemas informáticos.
-\end_layout
-
-\begin_layout Enumerate
-Garantizar la confidencialidad de los datos comunicados, evitando que puedan
- ser leídos por entidades no autorizadas.
-\end_layout
-
-\begin_layout Enumerate
-Garantizar la integridad de los datos comunicados, evitando que puedan ser
- modificados por entidades no autorizadas.
-\end_layout
-
-\begin_layout Enumerate
-Evitar el repudio de transacciones, como puede ser una transferencia bancaria.
- 
-\begin_inset Note Note
-status open
+Autenticar
+\begin_inset Index idx
+status collapsed
 
 \begin_layout Plain Layout
-hablar de transacciones bancarias? de cambios de domicilio? de pedidos de
- pizza? patentes airbnb?
+autenticación
 \end_layout
 
 \end_inset
 
-
+ las partes a los extremos de la comunicación, ya sean personas o sistemas
+ informáticos.
 \end_layout
 
-\begin_layout Enumerate
-Proteger la identidad de las entidades que establecen la comunicación.
-\end_layout
-
+\begin_deeper
 \begin_layout Standard
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-Tal vez este es el primer requisito que se nos viene a la cabeza cuando
- hablamos de seguridad.
+En el caso que nos ocupa, necesitaremos un mecanismo para verificar la identidad
+ de los nodos de la red.
+ Solo así podremos asegurarnos que los datos mostrados en la terminal son,
+ efectivamente, los medidos por nuestros dispositivos.
 \end_layout
 
+\end_deeper
+\begin_layout Enumerate
+Garantizar la confidencialidad
+\begin_inset Index idx
+status collapsed
+
 \begin_layout Plain Layout
-functions include authenticating communicating peers, ensuring confidentiality
- and integrity of communicated data, preventing repudiation of a communication
- transaction, and protecting the identity of communicating entities.
- -> es lo más evidente: los cacharros deberán identificarse y autenticarse,
- los mensajes intercambiados deben ser confidenciales (por ejemplo, los
- datos de un sensor pueden informarnos de si hay alguien en casa o no),
- integridad de los mensajes (para que nadie nos ponga la calefacción a 200ºC
- si interceptan un mensaje) y el no repudio (si le hemos dicho al banco
- que haga una transferencia - tarjeta bancaria, o le hemos enviado un SMS
- al gato)
+confidencialidad
 \end_layout
 
 \end_inset
 
-
+ de los datos comunicados, evitando que puedan ser leídos por entidades
+ no autorizadas.
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+En un 
+\lang english
+SmartHome
+\lang spanish
+, la disponibilidad de los datos de temperatura o de presencia de personas
+ podrían ser usados para atentar contra la propiedad privada.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Garantizar la integridad
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+integridad
+\end_layout
+
+\end_inset
+
+ de los datos comunicados, evitando que puedan ser modificados por entidades
+ no autorizadas.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Un posible atacante podría causar severas molestias, e incluso sembrar el
+ terror en el hogar, enviando comandos aleatorios a las lámparas o a la
+ caldera.
+ A pesar de que el atacante no entendería el contenido de los mensajes,
+ los habitantes de la casa podrían creerse víctimas de un 
+\emph on
+poltergeist
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Evitar el repudio
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+no repudio
+\end_layout
+
+\end_inset
+
+ de transacciones ejecutadas de forma efectiva, como puede ser una transferencia
+ bancaria.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Como puede ser, también, el pedido de víveres efectuado de forma autónoma
+ por un frigorífico inteligente correctamente configurado.
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection
 Almacenamiento seguro de datos
 \end_layout
@@ -2122,6 +2187,10 @@ Almacenamiento seguro de datos
 \begin_layout Standard
 Consiste en asegurar la confidencialidad y la integridad de la información
  sensible almacenada en el sistema.
+ Esta información solo podrá ser leída por usuarios o dispositivos autorizados
+ a ello.
+ Del mismo modo, solo los usuarios o dispositivos autorizados podrán modificar
+ determinados datos.
  Por ejemplo, en el caso de una tarjeta bancaria, solo el usuario debería
  poder modificar la clave, y solo el banco debería poder modificar el saldo.
  
@@ -2134,23 +2203,9 @@ Ejemplo IoT!!
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-mandates confidentiality and integrity of sensitive information stored in
- the system.
- -> en el caso de la tarjeta bancaria/DNIe, nadie debería poder acceder
- a las claves que la identifican o al saldo almacenado (en su caso)
-\end_layout
-
-\end_inset
-
-
+ En el caso que nos ocupa, solo el usuario del sistema podrá leer la información
+ de los sensores almacenada en la Nube, y solo los sensores podrán actualizar
+ dicha información.
 \end_layout
 
 \begin_layout Subsubsection

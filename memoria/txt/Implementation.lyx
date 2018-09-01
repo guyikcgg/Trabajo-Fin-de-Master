@@ -505,6 +505,28 @@ reference "fig:Arquitectura-del-sistema"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+La seguridad siempre depende de a quien nos enfrentemos.
+ No es lo mismo enfrentarse a un estudiante o un cracker, que tienen una
+ motivacion personal, que a un govierno o grupo terrorista.
+ No siempre es mejor tener la máxima seguridad, ya que puede ser computacionalme
+nte muy costoso, y su desarrollo e implementación también puede ser costoso.
+ La seguridad de este sistema viene dictada por Amazon, en quien confiamos
+ estas consideraciones.
+ La implementación realizada supone el uso de un estándar de seguridad ampliamen
+te usado en la red y debería ser suficiente (en términos de seguridad y
+ en términos de coste de desarroolo).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
