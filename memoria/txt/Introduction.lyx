@@ -501,6 +501,25 @@ desencriptación
 \emph on
 descifrado
 \emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Por su similitud al idioma anglosajón, preferiremos los términos encriptación
+ (
+\lang english
+encryption
+\lang spanish
+) y desencriptación (
+\lang english
+decryption
+\lang spanish
+), a pesar de la disonancia de los mismos.
+\end_layout
+
+\end_inset
+
 .
  Al contrario de lo que nos dice la intuición, uno de los fundamentos de
  la criptografía moderna, el principio de Kerckhoff, afirma que los algoritmos
@@ -706,8 +725,15 @@ clave simétrica
  son llamados así porque usan la misma clave en la encriptación y en la
  desencriptación.
  Algunos de los algoritmos criptográficos de clave simétrica más conocidos
- son DES (Data Encription Standard, en desuso) y AES (Advanced Encription
- Standard).
+ son DES (
+\lang english
+Data Encription Standard
+\lang spanish
+, en desuso) y AES (
+\lang english
+Advanced Encription Standard
+\lang spanish
+).
  A continuación presentaremos los fundamentos de los algoritmos de 
 \emph on
 cifrado por bloques
@@ -938,16 +964,268 @@ Este modo de cifrado es conocido como Electronic Code Book y es el más directo
 Modo Cipher Block Chaining (CBC)
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+To thwart this type of attack, all block ciphers can be chained in various
+ ways so that replacing a block the way Leslie did will cause the plaintext
+ decrypted starting at the replaced block to be garbage.
+ One way of chaining is cipher block chaining.
+ In this method, shown in Fig.
+ 8-12, each plaintext block is XORed with the previous ciphertext block
+ before being encrypted.
+ Consequently, the same plaintext block no longer maps onto the same ciphertext
+ block, and the encryption is no longer a big monoalphabetic substitution
+ cipher.
+ The first block is XORed with a randomly chosen IV (Initialization Vector),
+ which is transmitted (in plain- text) along with the ciphertext.
+\end_layout
+
+\begin_layout Plain Layout
+We can see how cipher block chaining mode works by examining the example
+ of Fig.
+ 8-12.
+ We start out by computing C 0 = E(P 0 XOR IV).
+ Then we compute C 1 = E(P 1 XOR C 0 ), and so on.
+ Decryption also uses XOR to reverse the proc- ess, with P 0 = IV XOR D(C
+ 0 ), and so on.
+ Note that the encryption of block i is a function of all the plaintext
+ in blocks 0 through 
+\begin_inset Formula $i-1$
+\end_inset
+
+, so the same plaintext gener- ates different ciphertext depending on where
+ it occurs.
+ A transformation of the type Leslie made will result in nonsense for two
+ blocks starting at Leslie’s bonus field.
+ To an astute security officer, this peculiarity might suggest where to
+ start the ensuing investigation.
+\end_layout
+
+\begin_layout Plain Layout
+Cipher block chaining also has the advantage that the same plaintext block
+ will not result in the same ciphertext block, making cryptanalysis more
+ difficult.
+ In fact, this is the main reason it is used.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/CBC-mode-tanenbaum.eps
+	width 85col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modo de encriptación Cipher Block Chaining 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
+ (a) Encriptación.
+ (b) Desencriptación.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Criptografía de clave pública
 \end_layout
 
-\begin_layout Section
-\begin_inset Note Note
+\begin_layout Standard
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
-Funciones unidireccionales
+Historically, distributing the keys has always been the weakest link in
+ most cryptosystems.
+ No matter how strong a cryptosystem was, if an intruder could steal the
+ key, the system was worthless.
+ Cryptologists always took for granted that the encryption key and decryption
+ key were the same (or easily derived from one another).
+ But the key had to be distributed to all users of the system.
+ Thus, it seemed as if there was an inherent problem.
+ Keys had to be protected from theft, but they also had to be distributed,
+ so they could not be locked in a bank vault.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+In 1976, two researchers at Stanford University, Diffie and Hellman (1976),
+ proposed a radically new kind of cryptosystem, one in which the encryption
+ and decryption keys were so different that the decryption key could not
+ feasibly be derived from the encryption key.
+ In their proposal, the (keyed) encryption algo- rithm, E, and the (keyed)
+ decryption algorithm, D, had to meet three requirements.
+ These requirements can be stated simply as follows:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $D\left(E\left(P\right)\right)=P$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Es extremadamente difícil deducir 
+\begin_inset Formula $D$
+\end_inset
+
+ a partir de 
+\begin_inset Formula $E$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $E$
+\end_inset
+
+ debe resistir ataques de texto plano escogido (
+\lang english
+chosen-plaintext attack
+\lang spanish
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+The first requirement says that if we apply D to an encrypted message, E(P),
+ we get the original plaintext message, P, back.
+ Without this property, the legitimate receiver could not decrypt the ciphertext.
+ The second requirement speaks for it- self.
+ The third requirement is needed because, as we shall see in a moment, in-
+ truders may experiment with the algorithm to their hearts’ content.
+ Under these conditions, there is no reason that the encryption key cannot
+ be made public.
+\end_layout
+
+\begin_layout Plain Layout
+The method works like this.
+ A person, say, Alice, who wants to receive secret messages, first devises
+ two algorithms meeting the above requirements.
+ The en- cryption algorithm and Alice’s key are then made public, hence
+ the name public- key cryptography.
+ Alice might put her public key on her home page on the Web, for example.
+ We will use the notation E A to mean the encryption algorithm parameterized
+ by Alice’s public key.
+ Similarly, the (secret) decryption algorithm parameterized by Alice’s private
+ key is D A .
+ Bob does the same thing, publicizing E B but keeping D B secret.
+\end_layout
+
+\begin_layout Plain Layout
+Now let us see if we can solve the problem of establishing a secure channel
+ between Alice and Bob, who have never had any previous contact.
+ Both Alice’s encryption key, E A , and Bob’s encryption key, E B , are
+ assumed to be in publicly readable files.
+ Now Alice takes her first message, P, computes E B (P), and sends it to
+ Bob.
+ Bob then decrypts it by applying his secret key D B [i.e., he computes D
+ B (E B (P)) = P].
+ No one else can read the encrypted message, E B (P), because the encryption
+ system is assumed to be strong and because it is too difficult to derive
+ D B from the publicly known E B .
+ To send a reply, R, Bob transmits E A (R).
+ Alice and Bob can now communicate securely.
+\end_layout
+
+\begin_layout Plain Layout
+A note on terminology is perhaps useful here.
+ Public-key cryptography re- quires each user to have two keys: a public
+ key, used by the entire world for en- crypting messages to be sent to that
+ user, and a private key, which the user needs for decrypting messages.
+ We will consistently refer to these keys as the public and private keys,
+ respectively, and distinguish them from the secret keys used for conventional
+ symmetric-key cryptography.
+\end_layout
+
+\begin_layout Plain Layout
+RSA
+\end_layout
+
+\begin_layout Plain Layout
+The only catch is that we need to find algorithms that indeed satisfy all
+ three requirements.
+ Due to the potential advantages of public-key cryptography, many researchers
+ are hard at work, and some algorithms have already been published.
+ One good method was discovered by a group at M.I.T.
+ (Rivest et al., 1978).
+ It is known by the initials of the three discoverers (Rivest, Shamir, Adleman):
+ RSA.
+ It has survived all attempts to break it for more than 30 years and is
+ considered very strong.
+ Much practical security is based on it.
+ For this reason, Rivest, Shamir, and Adleman were given the 2002 ACM Turing
+ Award.
+ Its major disadvantage is that it requires keys of at least 1024 bits for
+ good security (versus 128 bits for symmetric-key algorithms), which makes
+ it quite slow.
+\end_layout
+
+\begin_layout Plain Layout
+Other Public-Key Algorithms
+\end_layout
+
+\begin_layout Plain Layout
+Other public-key schemes are based on the difficulty of computing discrete
+ logarithms.
+ Algorithms that use this principle have been invented by El Gamal (1985)
+ and Schnorr (1991).
+\end_layout
+
+\begin_layout Plain Layout
+A few other schemes exist, such as those based on elliptic curves (Menezes
+ and Vanstone, 1993), but the two major categories are those based on the
+ diffi- culty of factoring large numbers and computing discrete logarithms
+ modulo a large prime.
+ These problems are thought to be genuinely difficult to solve— mathematicians
+ have been working on them for many years without any great breakthroughs.
 \end_layout
 
 \end_inset
@@ -957,6 +1235,51 @@ Funciones unidireccionales
 
 \begin_layout Section
 Firmas digitales
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+firma digital
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+digital signature
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+The authenticity of many legal, financial, and other documents is determined
+ by the presence or absence of an authorized handwritten signature.
+ And photocopies do not count.
+ For computerized message systems to replace the physical transport of paper-and
+-ink documents, a method must be found to allow documents to be signed in
+ an unforgeable way.
+\end_layout
+
+\begin_layout Plain Layout
+The problem of devising a replacement for handwritten signatures is a diffi-
+ cult one.
+ Basically, what is needed is a system by which one party can send a signed
+ message to another party in such a way that the following conditions hold:
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -979,6 +1302,44 @@ The receiver cannot possibly have concocted the message himself.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+The first requirement is needed, for example, in financial systems.
+ When a customer’s computer orders a bank’s computer to buy a ton of gold,
+ the bank’s computer needs to be able to make sure that the computer giving
+ the order really belongs to the customer whose account is to be debited.
+ In other words, the bank has to authenticate the customer (and the customer
+ has to authenticate the bank).
+\end_layout
+
+\begin_layout Plain Layout
+The second requirement is needed to protect the bank against fraud.
+ Suppose that the bank buys the ton of gold, and immediately thereafter
+ the price of gold drops sharply.
+ A dishonest customer might then proceed to sue the bank, claiming that
+ he never issued any order to buy gold.
+ When the bank produces the message in court, the customer may deny having
+ sent it.
+ The property that no party to a contract can later deny having signed it
+ is called nonrepudiation.
+ The digital sig- nature schemes that we will now study help provide it.
+\end_layout
+
+\begin_layout Plain Layout
+The third requirement is needed to protect the customer in the event that
+ the price of gold shoots up and the bank tries to construct a signed message
+ in which the customer asked for one bar of gold instead of one ton.
+ In this fraud scenario, the bank just keeps the rest of the gold for itself.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Estos problemas son de gran importancia con las transacciones bancarias,
  etc.
  Sin embargo, cuando nos movemos al mundo digital, tenemos un puñado de
@@ -992,6 +1353,313 @@ Estos problemas son de gran importancia con las transacciones bancarias,
 
 \begin_layout Subsection
 Firmas digitales de clave pública
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+A structural problem with using symmetric-key cryptography for digital sig-
+ natures is that everyone has to agree to trust Big Brother.
+ Furthermore, Big Brother gets to read all signed messages.
+ The most logical candidates for running the Big Brother server are the
+ government, the banks, the accountants, and the lawyers.
+ Unfortunately, none of these inspire total confidence in all citizens.
+ Hence, it would be nice if signing documents did not require a trusted
+ authority.
+\end_layout
+
+\begin_layout Plain Layout
+Fortunately, public-key cryptography can make an important contribution
+ in this area.
+ Let us assume that the public-key encryption and decryption algorithms
+ have the property that E(D(P)) = P, in addition, of course, to the usual
+ property that D(E(P)) = P.
+ (RSA has this property, so the assumption is not unrea- sonable.) Assuming
+ that this is the case, Alice can send a signed plaintext mes- sage, P,
+ to Bob by transmitting E B (D A (P)).
+ Note carefully that Alice knows her own (private) key, D A , as well as
+ Bob’s public key, E B , so constructing this mes- sage is something Alice
+ can do.
+\end_layout
+
+\begin_layout Plain Layout
+When Bob receives the message, he transforms it using his private key, as
+ usual, yielding D A (P), as shown in Fig.
+ 8-19.
+ He stores this text in a safe place and then applies E A to get the original
+ plaintext.
+\end_layout
+
+\begin_layout Plain Layout
+To see how the signature property works, suppose that Alice subsequently
+ denies having sent the message P to Bob.
+ When the case comes up in court, Bob can produce both P and D A (P).
+ The judge can easily verify that Bob indeed has a valid message encrypted
+ by D A by simply applying E A to it.
+ Since Bob does not know what Alice’s private key is, the only way Bob could
+ have acquired a mes- sage encrypted by it is if Alice did indeed send it.
+ While in jail for perjury and fraud, Alice will have much time to devise
+ interesting new public-key algorithms.
+\end_layout
+
+\begin_layout Plain Layout
+Although using public-key cryptography for digital signatures is an elegant
+ scheme, there are problems that are related to the environment in which
+ they oper- ate rather than to the basic algorithm.
+ For one thing, Bob can prove that a mes- sage was sent by Alice only as
+ long as D A remains secret.
+ If Alice discloses her secret key, the argument no longer holds, because
+ anyone could have sent the message, including Bob himself.
+\end_layout
+
+\begin_layout Plain Layout
+The problem might arise, for example, if Bob is Alice’s stockbroker.
+ Suppose that Alice tells Bob to buy a certain stock or bond.
+ Immediately thereafter, the price drops sharply.
+ To repudiate her message to Bob, Alice runs to the police claiming that
+ her home was burglarized and the PC holding her key was stolen.
+ Depending on the laws in her state or country, she may or may not be legally
+ liable, especially if she claims not to have discovered the break-in until
+ getting home from work, several hours after it allegedly happened.
+\end_layout
+
+\begin_layout Plain Layout
+Another problem with the signature scheme is what happens if Alice decides
+ to change her key.
+ Doing so is clearly legal, and it is probably a good idea to do so periodically.
+ If a court case later arises, as described above, the judge will apply
+ the current E A to D A (P) and discover that it does not produce P.
+ Bob will look pretty stupid at this point.
+\end_layout
+
+\begin_layout Plain Layout
+In principle, any public-key algorithm can be used for digital signatures.
+ The de facto industry standard is the RSA algorithm.
+ Many security products use it.
+ However, in 1991, NIST proposed using a variant of the El Gamal public-key
+ al- gorithm for its new Digital Signature Standard (DSS).
+ El Gamal gets its securi- ty from the difficulty of computing discrete
+ logarithms, rather than from the diffi- culty of factoring large numbers.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El proceso explicado también puede llevarse a cabo empleando un hash del
+ mensaje, en vez del mensaje completo.
+ Este método tiene dos ventajas: por un lado, el hash será más corto que
+ el mensaje, por lo que será más eficiente de (des)cifrar; por otro lado,
+ separamos los pasos/funciones de autenticación y confidencialidad.
+\end_layout
+
+\begin_layout Section
+Funciones hash criptográficas
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hash
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+message digest
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+One criticism of signature methods is that they often couple two distinct
+ func- tions: authentication and secrecy.
+ Often, authentication is needed but secrecy is not always needed.
+ Also, getting an export license is often easier if the system in question
+ provides only authentication but not secrecy.
+ Below we will describe an authentication scheme that does not require encryptin
+g the entire message.
+\end_layout
+
+\begin_layout Plain Layout
+This scheme is based on the idea of a one-way hash function that takes an
+ arbitrarily long piece of plaintext and from it computes a fixed-length
+ bit string.
+ This hash function, MD, often called a message digest, has four important
+ proper- ties:
+\end_layout
+
+\begin_layout Enumerate
+Given P, it is easy to compute MD(P).
+ 
+\end_layout
+
+\begin_layout Enumerate
+Given MD(P), it is effectively impossible to find P.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Given P, no one can find P' such that MD (P') = MD(P).
+ 
+\end_layout
+
+\begin_layout Enumerate
+A change to the input of even 1 bit produces a very different output.
+\end_layout
+
+\begin_layout Plain Layout
+To meet criterion 3, the hash should be at least 128 bits long, preferably
+ more.
+ To meet criterion 4, the hash must mangle the bits very thoroughly, not
+ unlike the symmetric-key encryption algorithms we have seen.
+\end_layout
+
+\begin_layout Plain Layout
+Computing a message digest from a piece of plaintext is much faster than
+ en- crypting that plaintext with a public-key algorithm, so message digests
+ can be used to speed up digital signature algorithms.
+ To see how this works, consider the signature protocol of Fig.
+ 8-18 again.
+ Instead, of signing P with K BB (A, t, P), BB now computes the message
+ digest by applying MD to P, yielding MD(P).
+ BB then encloses K BB (A, t, MD(P)) as the fifth item in the list encrypted
+ with K B that is sent to Bob, instead of K BB (A, t, P).
+\end_layout
+
+\begin_layout Plain Layout
+If a dispute arises, Bob can produce both P and K BB (A, t, MD(P)).
+ After Big Brother has decrypted it for the judge, Bob has MD(P), which
+ is guaranteed to be genuine, and the alleged P.
+ However, since it is effectively impossible for Bob to find any other message
+ that gives this hash, the judge will easily be convinced that Bob is telling
+ the truth.
+ Using message digests in this way saves both encryption time and message
+ transport costs.
+\end_layout
+
+\begin_layout Plain Layout
+Message digests work in public-key cryptosystems, too, as shown in Fig.
+ 8- 20.
+ Here, Alice first computes the message digest of her plaintext.
+ She then signs the message digest and sends both the signed digest and
+ the plaintext to Bob.
+ If Trudy replaces P along the way, Bob will see this when he computes MD(P).
+\end_layout
+
+\begin_layout Plain Layout
+SHA-1 y SHA-2
+\end_layout
+
+\begin_layout Plain Layout
+A variety of message digest functions have been proposed.
+ One of the most widely used functions is SHA-1 (Secure Hash Algorithm 1)
+ (NIST, 1993).
+ Like all message digests, it operates by mangling bits in a sufficiently
+ complicated way that every output bit is affected by every input bit.
+ SHA-1 was developed by NSA and blessed by NIST in FIPS 180-1.
+ It processes input data in 512-bit blocks, and it generates a 160-bit message
+ digest.
+ A typical way for Alice to send a nonsecret but signed message to Bob is
+ illustrated in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Uso-de-SHA-1"
+
+\end_inset
+
+.
+ Here, her plaintext message is fed into the SHA-1 algorithm to get a 160-bit
+ SHA-1 hash.
+ Alice then signs the hash with her RSA private key and sends both the plaintext
+ message and the signed hash to Bob.
+\end_layout
+
+\begin_layout Plain Layout
+After receiving the message, Bob computes the SHA-1 hash himself and also
+ applies Alice’s public key to the signed hash to get the original hash,
+ H.
+ If the two agree, the message is considered valid.
+ Since there is no way for Trudy to modify the (plaintext) message while
+ it is in transit and produce a new one that hashes to H, Bob can easily
+ detect any changes Trudy has made to the message.
+ For messages whose integrity is important but whose contents are not secret,
+ the scheme of Fig.
+ 8-21 is widely used.
+ For a relatively small cost in computation, it guarantees that any modification
+s made to the plaintext message in transit can be detected with very high
+ probability.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/sha1-tanenbaum.eps
+	width 85col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Uso-de-SHA-1"
+
+\end_inset
+
+Uso de SHA-1 y RSA para la firma de un documento no confidencial 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -1128,15 +1796,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Actores implicados y requisitos de seguridad de un terminal móvil.
- 
+Actores implicados y requisitos de seguridad de un terminal móvil 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ravi2004security"
 
 \end_inset
 
-
+.
 \end_layout
 
 \end_inset
@@ -2703,6 +3370,183 @@ certificado digital
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+Public-key cryptography makes it possible for people who do not share a
+ common key in advance to nevertheless communicate securely.
+ It also makes signing messages possible without the presence of a trusted
+ third party.
+ Finally, signed message digests make it possible for the recipient to verify
+ the integrity of received messages easily and securely.
+ However, there is one problem that we have glossed over a bit too quickly:
+ if Alice and Bob do not know each other, how do they get each other’s public
+ keys to start the communication process? The obvious solution—put your
+ public key on your Web site—does not work, for the following reason.
+ Suppose that Alice wants to look up Bob’s public key on his Web site.
+ How does she do it? She starts by typing in Bob’s URL.
+ Her browser then looks up the DNS address of Bob’s home page and sends
+ it a GET request, as shown in Fig.
+ 8-23.
+ Unfortunate- ly, Trudy intercepts the request and replies with a fake home
+ page, probably a copy of Bob’s home page except for the replacement of
+ Bob’s public key with Trudy’s public key.
+ When Alice now encrypts her first message with E T , Trudy decrypts it,
+ reads it, re-encrypts it with Bob’s public key, and sends it to Bob, who
+ is none the wiser that Trudy is reading his incoming messages.
+ Worse yet, Trudy could modify the messages before reencrypting them for
+ Bob.
+ Clearly, some mechanism is needed to make sure that public keys can be
+ exchanged securely.
+\end_layout
+
+\begin_layout Plain Layout
+As a first attempt at distributing public keys securely, we could imagine
+ a KDC key distribution center available online 24 hours a day to provide
+ public keys on demand.
+ One of the many problems with this solution is that it is not scalable,
+ and the key distribution center would rapidly become a bottleneck.
+ Also, if it ever went down, Internet security would suddenly grind to a
+ halt.
+ For these reasons, people have developed a different solution, one that
+ does not require the key distribution center to be online all the time.
+ In fact, it does not have to be online at all.
+ Instead, what it does is certify the public keys belonging to people, companies
+, and other organizations.
+ An organization that certifies pub- lic keys is now called a CA (Certification
+ Authority).
+ As an example, suppose that Bob wants to allow Alice and other people he
+ does not know to communicate with him securely.
+ He can go to the CA with his public key along with his passport or driver’s
+ license and ask to be certified.
+ The CA then issues a certificate similar to the one in Fig.
+ 8-24 and signs its SHA-1
+\end_layout
+
+\begin_layout Plain Layout
+hash with the CA’s private key.
+ Bob then pays the CA’s fee and gets a CD-ROM containing the certificate
+ and its signed hash.
+\end_layout
+
+\begin_layout Plain Layout
+The fundamental job of a certificate is to bind a public key to the name
+ of a principal (individual, company, etc.).
+ Certificates themselves are not secret or protected.
+ Bob might, for example, decide to put his new certificate on his Web site,
+ with a link on the main page saying: Click here for my public-key certificate.
+ The resulting click would return both the certificate and the signature
+ block (the signed SHA-1 hash of the certificate).
+ Now let us run through the scenario of Fig.
+ 8-23 again.
+ When Trudy inter- cepts Alice’s request for Bob’s home page, what can she
+ do? She can put her own certificate and signature block on the fake page,
+ but when Alice reads the contents of the certificate she will immediately
+ see that she is not talking to Bob because Bob’s name is not in it.
+ Trudy can modify Bob’s home page on the fly, replacing Bob’s public key
+ with her own.
+ However, when Alice runs the SHA-1 algorithm on the certificate, she will
+ get a hash that does not agree with the one she gets when she applies the
+ CA’s well-known public key to the signature block.
+ Since Trudy does not have the CA’s private key, she has no way of generating
+ a signa- ture block that contains the hash of the modified Web page with
+ her public key on it.
+ In this way, Alice can be sure she has Bob’s public key and not Trudy’s
+ or someone else’s.
+ And as we promised, this scheme does not require the CA to be online for
+ verification, thus eliminating a potential bottleneck.
+ While the standard function of a certificate is to bind a public key to
+ a princi- pal, a certificate can also be used to bind a public key to an
+ attribute.
+ For ex- ample, a certificate could say: ‘‘This public key belongs to someone
+ over 18.’’ It could be used to prove that the owner of the private key was
+ not a minor and thus allowed to access material not suitable for children,
+ and so on, but without dis- closing the owner’s identity.
+ Typically, the person holding the certificate would send it to the Web
+ site, principal, or process that cared about age.
+ That site, prin- cipal, or process would then generate a random number
+ and encrypt it with the public key in the certificate.
+ If the owner were able to decrypt it and send it back,
+\end_layout
+
+\begin_layout Plain Layout
+that would be proof that the owner indeed had the attribute stated in the
+ certifi- cate.
+ Alternatively, the random number could be used to generate a session key
+ for the ensuing conversation.
+ Another example of where a certificate might contain an attribute is in
+ an ob- ject-oriented distributed system.
+ Each object normally has multiple methods.
+ The owner of the object could provide each customer with a certificate
+ giving a bit map of which methods the customer is allowed to invoke and
+ binding the bit map to a public key using a signed certificate.
+ Again, if the certificate holder can prove possession of the corresponding
+ private key, he will be allowed to perform the methods in the bit map.
+ This approach has the property that the owner’s iden- tity need not be
+ known, a property useful in situations where privacy is important.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+If everybody who wanted something signed went to the CA with a different
+ kind of certificate, managing all the different formats would soon become
+ a prob- lem.
+ To solve this problem, a standard for certificates has been devised and
+ approved by ITU.
+ The standard is called X.509 and is in widespread use on the Internet.
+ It has gone through three versions since the initial standardization in
+ 1988.
+ We will discuss V3.
+ X.509 has been heavily influenced by the OSI world, borrowing some of its
+ worst features (e.g., naming and encoding).
+ Surprisingly, IETF went along with X.509, even though in nearly every other
+ area, from machine addresses to tran- sport protocols to email formats,
+ IETF generally ignored OSI and tried to do it right.
+ The IETF version of X.509 is described in RFC 5280.
+ At its core, X.509 is a way to describe certificates.
+ The primary fields in a certificate are listed in Fig.
+ 8-25.
+ The descriptions given there should provide a general idea of what the
+ fields do.
+ For additional information, please consult the standard itself or RFC 2459.
+ For example, if Bob works in the loan department of the Money Bank, his
+ X.500 address might be
+\end_layout
+
+\begin_layout Plain Layout
+/C=US/O=MoneyBank/OU=Loan/CN=Bob/ 
+\end_layout
+
+\begin_layout Plain Layout
+where C is for country, O is for organization, OU is for organizational
+ unit, and CN is for common name.
+ CAs and other entities are named in a similar way.
+ A substantial problem with X.500 names is that if Alice is trying to contact
+ bob@moneybank.com and is given a certificate with an X.500 name, it may not
+ be obvious to her that the certificate refers to the Bob she wants.
+ Fortunately, start- ing with version 3, DNS names are now permitted instead
+ of X.500 names, so this problem may eventually vanish.
+ Certificates are encoded using OSI ASN.1 (Abstract Syntax Notation 1), which
+ is sort of like a struct in C, except with a extremely peculiar and verbose
+ notation.
+ More information about X.509 is given by Ford and Baum (2000).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -2808,6 +3652,112 @@ status open
 
 \begin_layout Plain Layout
 trust chain
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+Having a single CA to issue all the world’s certificates obviously would
+ not work.
+ It would collapse under the load and be a central point of failure as well.
+ A possible solution might be to have multiple CAs, all run by the same
+ organization and all using the same private key to sign certificates.
+ While this would solve the load and failure problems, it introduces a new
+ problem: key leakage.
+ If there were dozens of servers spread around the world, all holding the
+ CA’s private key, the chance of the private key being stolen or otherwise
+ leaking out would be greatly increased.
+ Since the compromise of this key would ruin the world’s elec- tronic security
+ infrastructure, having a single central CA is very risky.
+ In addition, which organization would operate the CA? It is hard to imagine
+ any authority that would be accepted worldwide as legitimate and trustworthy.
+ In some countries, people would insist that it be a government, while in
+ other coun- tries they would insist that it not be a government.
+ For these reasons, a different way for certifying public keys has evolved.
+ It goes under the general name of PKI (Public Key Infrastructure).
+ In this sec- tion, we will summarize how it works in general, although
+ there have been many proposals, so the details will probably evolve in
+ time.
+ A PKI has multiple components, including users, CAs, certificates, and
+ direc- tories.
+ What the PKI does is provide a way of structuring these components and
+ define standards for the various documents and protocols.
+ A particularly simple form of PKI is a hierarchy of CAs, as depicted in
+ Fig.
+ 8-26.
+ In this example we have shown three levels, but in practice there might
+ be fewer or more.
+ The top- level CA, the root, certifies second-level CAs, which we here
+ call RAs (Regional Authorities) because they might cover some geographic
+ region, such as a country or continent.
+ This term is not standard, though; in fact, no term is really standard
+ for the different levels of the tree.
+ These in turn certify the real CAs, which issue the X.509 certificates to
+ organizations and individuals.
+ When the root authorizes a new RA, it generates an X.509 certificate stating
+ that it has approved the RA, in- cludes the new RA’s public key in it,
+ signs it, and hands it to the RA.
+ Similarly, when an RA approves a new CA, it produces and signs a certificate
+ stating its approval and containing the CA’s public key.
+\end_layout
+
+\begin_layout Plain Layout
+Our PKI works like this.
+ Suppose that Alice needs Bob’s public key in order to communicate with
+ him, so she looks for and finds a certificate containing it, signed by
+ CA 5.
+ But Alice has never heard of CA 5.
+ For all she knows, CA 5 might be Bob’s 10-year-old daughter.
+ She could go to CA 5 and say: ‘‘Prove your legitimacy.’’ CA 5 will respond
+ with the certificate it got from RA 2, which con- tains CA 5’s public key.
+ Now armed with CA 5’s public key, she can verify that Bob’s certificate
+ was indeed signed by CA 5 and is thus legal.
+ Unless RA 2 is Bob’s 12-year-old son.
+ So, the next step is for her to ask RA 2 to prove it is legitimate.
+ The response to her query is a certificate signed by the root and containing
+ RA 2’s public key.
+ Now Alice is sure she has Bob’s public key.
+ But how does Alice find the root’s public key? Magic.
+ It is assumed that everyone knows the root’s public key.
+ For example, her browser might have been shipped with the root’s public
+ key built in.
+ Bob is a friendly sort of guy and does not want to cause Alice a lot of
+ work.
+ He knows that she is going to have to check out CA 5 and RA 2, so to save
+ her some trouble, he collects the two needed certificates and gives her
+ the two certifi- cates along with his.
+ Now she can use her own knowledge of the root’s public key to verify the
+ top-level certificate and the public key contained therein to ver- ify
+ the second one.
+ Alice does not need to contact anyone to do the verification.
+\end_layout
+
+\begin_layout Plain Layout
+Because the certificates are all signed, she can easily detect any attempts
+ to tam- per with their contents.
+ A chain of certificates going back to the root like this is sometimes called
+ a chain of trust or a certification path.
+ The technique is wide- ly used in practice.
+ Of course, we still have the problem of who is going to run the root.
+ The solution is not to have a single root, but to have many roots, each
+ with its own RAs and CAs.
+ In fact, modern browsers come preloaded with the public keys for over 100
+ roots, sometimes referred to as trust anchors.
+ In this way, having a sin- gle worldwide trusted authority can be avoided.
+ But there is now the issue of how the browser vendor decides which purported
+ trust anchors are reliable and which are sleazy.
+ It all comes down to the user trusting the browser vendor to make wise
+ choices and not simply approve all trust anchors willing to pay its inclusion
+ fee.
+ Most browsers allow users to inspect the root keys (usually in the form
+ of certificates signed by the root) and delete any that seem shady.
 \end_layout
 
 \end_inset
