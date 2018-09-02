@@ -729,10 +729,30 @@ clave simétrica
 \lang english
 Data Encription Standard
 \lang spanish
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Data Encription Standard (DES)
+\end_layout
+
+\end_inset
+
 , en desuso) y AES (
 \lang english
 Advanced Encription Standard
 \lang spanish
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Advanced Encription Standard (AES)
+\end_layout
+
+\end_inset
+
 ).
  A continuación presentaremos los fundamentos de los algoritmos de 
 \emph on
@@ -2733,6 +2753,11 @@ QUE QUEDE CLARO LA PARTE INVESTIGADORA AQUI (bibliografia!!)
 
 \end_layout
 
+\begin_layout Standard
+En el siguiente capítulo, introduciremos el protocolo TLS, y revisaremos
+ las características principales del mismo.
+\end_layout
+
 \begin_layout Chapter
 \begin_inset CommandInset label
 LatexCommand label
@@ -2744,23 +2769,55 @@ El protocolo TLS
 \end_layout
 
 \begin_layout Standard
-\begin_inset Index idx
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-TLS
+Revisar notación:
+\end_layout
+
+\begin_layout Plain Layout
+traducir TLS Record Protocol y TLS Handshake Protocol?
+\end_layout
+
+\begin_layout Plain Layout
+usar siempre TLS Record Protocol? (es Record Protocol admisible)?
+\end_layout
+
+\begin_layout Plain Layout
+revisar cursivas
+\end_layout
+
+\begin_layout Plain Layout
+queda claro el cálculo de MAC?
+\end_layout
+
+\begin_layout Plain Layout
+uso de la 1a pers plural?
 \end_layout
 
 \end_inset
 
-En este capítulo, presentamos una introducción al protocolo TLS, en el que
- se revisarán las características principales del mismo.
+
 \end_layout
 
 \begin_layout Standard
-Transport Layer Security (TLS) es un protocolo de red cuyo principal objetivo
- es establecer una comunicación segura entre dos nodos de una red que no
- tiene por qué ser segura
+
+\lang english
+Transport Layer Security
+\lang spanish
+ (TLS)
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Transport Layer Security (TLS)
+\end_layout
+
+\end_inset
+
+ es un protocolo de red cuyo principal objetivo es establecer una comunicación
+ segura entre dos nodos de una red que no tiene por qué ser segura
 \begin_inset Note Note
 status open
 
@@ -2775,8 +2832,11 @@ aunque sí reliable
 \end_inset
 
 .
- Es el sucesor de Secure Sockets Layer, por lo que comparte muchas característic
-as con el mismo.
+ Es el sucesor de 
+\lang english
+Secure Sockets Layer
+\lang spanish
+ (SSL), por lo que comparte muchas características con el mismo.
 \end_layout
 
 \begin_layout Standard
@@ -2784,6 +2844,16 @@ El protocolo se compone de dos capas, denominadas
 \emph on
 TLS Record Protocol
 \emph default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+TLS Record Protocol
+\end_layout
+
+\end_inset
+
  y 
 \emph on
 TLS Handshake Protocol
@@ -2840,11 +2910,31 @@ La conexión es confiable
 \series default
 .
  El transporte de mensajes incluye una comprobación de la integridad del
- mensaje, que se basa en un código MAC (
+ mensaje, que se basa en un código MAC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+message authentication code (MAC)
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+ (
 \emph on
 Message Authentication Code
 \emph default
-).
+)
+\end_layout
+
+\end_inset
+
+.
  El cálculo del código MAC se lleva a cabo haciendo uso de funciones de
  hash seguras (como SHA).
  Aunque no es común, el 
@@ -2902,14 +2992,15 @@ key "rfc4279-TLS+PSK,rfc4285-TLS+PSK-NULL"
 \end_layout
 
 \begin_layout Itemize
-La negociación de una clave secreta es segura: la clave simétrica negociada
- no puede ser interceptada, ni siquiera por un atacante que se coloque entre
- los nodos y escuche toda la comunicación.
+Garantiza la seguridad en la negociación de una clave secreta.
+ La clave simétrica negociada no puede ser interceptada, ni siquiera por
+ un atacante que se coloque entre los nodos y escuche toda la comunicación.
 \end_layout
 
 \begin_layout Itemize
-La negociación es confiable, de forma que ningún atacante puede modificar
- la negociación sin ser detectado por los nodos.
+Garantiza la integridad de la negociación, que será confiable, de forma
+ que ningún atacante puede modificar la negociación sin ser detectado por
+ los nodos.
 \end_layout
 
 \begin_layout Standard
@@ -2939,11 +3030,15 @@ dos en una capa de red inferior.
 \end_layout
 
 \begin_layout Section
-Criterios de diseño
+Criterios de diseño del protocolo
 \end_layout
 
 \begin_layout Standard
-De acuerdo a las especificaciones del protocolo TLS v1.2 
+De acuerdo a las especificaciones del protocolo TLS
+\begin_inset space ~
+\end_inset
+
+v1.2 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "rfc5246-TLSv1.2"
@@ -3006,7 +3101,17 @@ TLS Record Protocol
 
 \end_inset
 
-Como hemos explicado anteriormente, el 
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Como hemos explicado anteriormente, e
+\end_layout
+
+\end_inset
+
+El 
 \emph on
 TLS Record Protocol
 \emph default
@@ -3018,7 +3123,7 @@ TLS Record Protocol
 \emph default
  en los siguientes pasos: los mensajes son fragmentados en bloques de un
  tamaño manejable, luego estos bloques pueden ser comprimidos, al resultado
- se le aplica un código MAC antes de ser encriptado, quedando listo para
+ se le aplica un código MAC y finalmente es encriptado, quedando listo para
  la transmisión.
  En el otro extremo, los datos recibidos son desencriptados, verificados,
  descomprimidos (si procede), reagrupados en los bloques originales y entregados
@@ -3030,7 +3135,7 @@ Existen cuatro protocolos que hacen uso inmediato del
 \emph on
 TLS Record Protocol
 \emph default
-, que se presentan a continuación.
+, y se presentan a continuación.
  Destacaremos que aunque estos son los protocolos definidos en la actualidad,
  el 
 \emph on
@@ -3175,52 +3280,6 @@ Record Layer
 .
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Greyedout
-status collapsed
-
-\begin_layout Plain Layout
-6.2.
- Record Layer
-\end_layout
-
-\begin_layout Plain Layout
-The TLS record layer receives uninterpreted data from higher layers in non-empty
- blocks of arbitrary size.
-\end_layout
-
-\begin_layout Plain Layout
-6.2.1.
- Fragmentation
-\end_layout
-
-\begin_layout Plain Layout
-The record layer fragments information blocks into TLSPlaintext records
- carrying data in chunks of 2^14 bytes or less.
- Client message boundaries are not preserved in the record layer (i.e., multiple
- client messages of the same ContentType MAY be coalesced into a single
- TLSPlaintext record, or a single message MAY be fragmented across several
- records).
-\end_layout
-
-\begin_layout Plain Layout
-6.2.3.
- Record Payload Protection
-\end_layout
-
-\begin_layout Plain Layout
-The encryption and MAC functions translate a TLSCompressed structure into
- a TLSCiphertext.
- The decryption functions reverse the process.
- The MAC of the record also includes a sequence number so that missing,
- extra, or repeated messages are detectable.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 El 
 \emph on
@@ -3269,7 +3328,7 @@ session
 \begin_inset space ~
 \end_inset
 
-identifier Una secuencia de bytes arbitrarios elegidos por el servidor para
+identifier secuencia de bytes arbitrarios elegidos por el servidor para
  identificar la sesión activa.
 \end_layout
 
@@ -3278,8 +3337,8 @@ peer
 \begin_inset space ~
 \end_inset
 
-certificate Certificado del cliente o del servidor, definido por el estándar
- X509v3.
+certificate certificado del cliente o del servidor, definido por el estándar
+ X.509v3.
  Este elemento puede no estar presente.
 \end_layout
 
@@ -3288,7 +3347,7 @@ compression
 \begin_inset space ~
 \end_inset
 
-method El algoritmo utilizado para comprimir datos antes de la encriptación.
+method algoritmo utilizado para comprimir datos antes de la encriptación.
 \end_layout
 
 \begin_layout Description
@@ -3296,9 +3355,12 @@ cipher
 \begin_inset space ~
 \end_inset
 
-spec Especifica la función pseudo-aleatoria (pseudorandom function PRF)
- que se usará para usar las claves, el algoritmo de encriptación simétrica
- (como AES, etc.) y el algoritmo de MAC (como HMAC-SHA1).
+spec especifica la función pseudo-aleatoria (
+\lang english
+pseudorandom function
+\lang spanish
+, PRF) que se usará para generar las claves, el algoritmo de encriptación
+ simétrica (como AES, etc.) y el algoritmo de MAC (como HMAC-SHA1).
  También define los atributos criptográficos como la longitud de MAC, entre
  otros.
 \end_layout
@@ -3308,7 +3370,7 @@ master
 \begin_inset space ~
 \end_inset
 
-secret Clave de 48 bytes compartido entre el cliente y el servidor.
+secret clave de 48 bytes compartida entre el cliente y el servidor.
 \end_layout
 
 \begin_layout Standard
@@ -3381,13 +3443,65 @@ Permitir que cliente y servidor verifiquen que el otro extremo ha calculado
 \end_layout
 
 \begin_layout Standard
-La 
-\begin_inset Note Greyedout
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-figura_#
+\align center
+\begin_inset Graphics
+	filename img/tls+handshake.jpg
+	lyxscale 60
+	width 80col%
+
+\end_inset
+
+
 \end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:TLS-Handshake"
+
+\end_inset
+
+Establecimiento de la conexión por el TLS Handshake Protocol 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:TLS-Handshake"
 
 \end_inset
 
@@ -3426,7 +3540,7 @@ TLS
 status open
 
 \begin_layout Plain Layout
-TLS
+Transport Layer Security (TLS)
 \end_layout
 
 \end_inset
@@ -3559,7 +3673,12 @@ QUE QUEDE CLARO LA PARTE INVESTIGADORA AQUI (bibliografia!!)
 \end_layout
 
 \begin_layout Standard
-Este protocolo (TLS) ha inspirado a otros, como DTLS 
+TLS se ha convertido en una referencia en cuanto a protocolos de seguridad,
+ llegando a inspirar a otros protocolos, como 
+\lang english
+Datagram Transport Layer Security
+\lang spanish
+ (DTLS) 
 \begin_inset Note Greyedout
 status open
 
@@ -3569,12 +3688,19 @@ status open
 
 \end_inset
 
-, que no requiere una comunicacion reliable, sino que puede operar sobre
- protocolos como UDP.
- (INTRODUCIR DTLS SI NO SE HA HECHO ANTES).
+.
+ DTLS tiene la ventaja de que puede operar a pesar de que se pierdan algunos
+ paquetes en la conexión, por lo que no requiere un canal de comunicación
+ confiable.
+ Esta característica lo hace ideal para proporcionar seguridad a las aplicacione
+s que hacen uso del protocolo UDP.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
 En los siguientes capítulos hablaremos de distintas implementaciones de
  TLS.
  Cabe destacar aquí que una buena implementación del estándar debe cumplir
@@ -3582,6 +3708,10 @@ En los siguientes capítulos hablaremos de distintas implementaciones de
  Sin embargo, no tiene por qué abarcar el amplio abanico de parámetros de
  seguridad disponibles.
  Por este motivo, hablaremos de ciphersuites
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Index idx
 status collapsed
 
@@ -3591,25 +3721,14 @@ ciphersuite
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
  para referirnos al conjunto de parámetros de seguridad (funciones de encriptaci
 ón/desencriptación, algoritmos de encriptación, funciones de hash...) disponibles
  en una implementación determinada.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Record layer VS Handshake
-\end_layout
-
-\begin_layout Plain Layout
-Ciphersuites
-\end_layout
-
-\begin_layout Plain Layout
-Criptografía asimétrica
 \end_layout
 
 \end_inset
