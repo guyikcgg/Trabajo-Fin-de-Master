@@ -97,16 +97,26 @@ Breve introducción de la Parte II
 \end_inset
 
  Una vez revisados los fundamentos teóricos y las tecnologías usadas en
- la realización de este trabajo, pasaremos a 
+ este proyecto, pasaremos a describir el trabajo realizado durante la consecució
+n del mismo.
+ En los próximos cuatro capítulos presentaremos el sistema con el que trabajarem
+os y los requisitos que deberá satisfacer, analizaremos las diferentes implement
+aciones de TLS disponibles, y finalmente repasaremos el proceso de integración
+ de la implementación escogida, así como el proceso de integración del AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK.
 \end_layout
 
 \begin_layout Standard
-En este capítulo describiremos con detalle el funcionamiento general del
- sistema y cada uno de los elementos que lo forman.
+Este capítulo está dedicado a la descripción detallada del sistema, reparando
+ en el funcionamiento general del mismo y en cada uno de los elementos que
+ lo forman.
  En primer lugar, presentaremos la estructura general del sistema, profundizando
  en la función llevada a cabo por cada uno de los elementos que lo forman.
- A continuación, describiremos estos elementos en mayor profundidad, a fin
- de comprender mejor los detalles de la posterior implementación.
+ Pasaremos entonces a describir estos elementos en mayor profundidad, a
+ fin de comprender mejor los detalles de la posterior integración.
 \end_layout
 
 \begin_layout Standard
@@ -123,8 +133,12 @@ dave
 
 \end_inset
 
-, el entorno de desarrollo integrado (IDE) proporcionado por Infineon para
- trabajar con sus microcontroladores 
+, el entorno de desarrollo integrado (
+\lang english
+integrated development environment
+\lang spanish
+, IDE) proporcionado por Infineon para trabajar con sus microcontroladores
+ 
 \begin_inset ERT
 status open
 
@@ -200,8 +214,8 @@ Trabajar con microcontroladores supone editar código fuente, compilarlo
  a la plataforma de destino, cargar el firmware en el dispositivo y depurar
  el programa en tiempo de ejecución.
  Esto puede hacerse de diferentes formas, usando distintos flujos de trabajo.
- Una de las más populares es usar un entorno de desarrollo integrado (IDE),
- que reúna las herramientas necesarias para llevar a cabo estas tareas.
+ Una de las más populares es usar un entorno de desarrollo integrado, que
+ reúna las herramientas necesarias para llevar a cabo estas tareas.
  En la realización de este trabajo, hemos usado 
 \begin_inset ERT
 status open
@@ -232,8 +246,11 @@ DAVE
 \end_inset
 
  es un IDE profesional y gratuito con el cuál podemos llevar a cabo todo
- el proceso de desarrollo, desde la evaluación hasta la producción (E2P)
- 
+ el proceso de desarrollo, desde la evaluación hasta la producción (
+\lang english
+evaluation to production
+\lang spanish
+, E2P) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "infineon:DAVE"
@@ -255,9 +272,12 @@ DAVE
 \end_inset
 
  está basado en el conocido IDE de código abierto Eclipse, e incluye el
- compilador de C de GNU (GCC), interfaz de depuración, repositorio de código
- completo, plug-in de generación de código y administración de recursos
- de hardware.
+ compilador de C de GNU (
+\lang english
+GNU C compiler
+\lang spanish
+, GCC), interfaz de depuración, repositorio de código completo, plug-in
+ de generación de código y administración de recursos de hardware.
 \end_layout
 
 \begin_layout Standard
@@ -269,13 +289,17 @@ status open
 
 
 \backslash
-DAVE
+DAVE APPs
 \end_layout
 
 \end_inset
 
- APPs, que son componentes software orientados a aplicación que pueden configura
-rse a través de una interfaz gráfica de usuario (GUI).
+, que son componentes software orientados a aplicación que pueden configurarse
+ a través de una interfaz gráfica de usuario (
+\lang english
+graphical user interface
+\lang spanish
+, GUI).
  Gracias a las mismas, es posible usar muchos de los módulos del microcontrolado
 r de forma sencilla y eficiente.
  Al añadir una de estas APPs al proyecto, 
@@ -491,6 +515,37 @@ DAVE
 
 \begin_layout Section
 Objetivo perseguido y arquitectura propuesta
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Mencionar: de dónde venimo y adónde vamos!
+\end_layout
+
+\begin_layout Plain Layout
+Esta sección está muy relacionada con la sección 1.2 (Presentación del proyecto
+ -> Objetivos) Allí se habla de que hay una empresa que está desarrollando
+ unos productos para IoT-SmartHome, que esta empresa se preocupa por la
+ seguridad, y que el sistema deberán funcionar con AWS IoT, por lo que les
+ falta la seguridad.
+ Allí se habla de que hay una red de sensores que envía los datos a un gateway.
+\end_layout
+
+\begin_layout Plain Layout
+Aquí se habla de que tenemos un GW y una red de sensores, que la comunicación
+ ya está hecha, y que la conexión con Inet es posible: NTP, pequeño servidor
+ web (tareas en RTOS).
+ Aquí se habla de que tendremos que integrar 1.
+ TLS, 2.
+ AWS IoT SDK.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
