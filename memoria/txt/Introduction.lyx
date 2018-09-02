@@ -1068,6 +1068,19 @@ Criptografía de clave pública
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+USADA PARA INTERCAMBIAR CLAVES PARA CRIPTOGRAFÍA SIMÉTRICA, QUE ES MÁS EFICIENTE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Greyedout
 status open
 
@@ -2193,16 +2206,6 @@ Consiste en asegurar la confidencialidad y la integridad de la información
  determinados datos.
  Por ejemplo, en el caso de una tarjeta bancaria, solo el usuario debería
  poder modificar la clave, y solo el banco debería poder modificar el saldo.
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Ejemplo IoT!!
-\end_layout
-
-\end_inset
-
  En el caso que nos ocupa, solo el usuario del sistema podrá leer la información
  de los sensores almacenada en la Nube, y solo los sensores podrán actualizar
  dicha información.
@@ -2215,11 +2218,13 @@ Disponibilidad
 \begin_layout Standard
 Debe garantizarse que el sistema pueda realizar la función para la que fue
  diseñado y dar servicio a los usuarios legítimos en todo momento, no interrumpi
-éndose a causa de ataques de denegación de servicio (DoS).
+éndose a causa de ataques de denegación de servicio (Denial of Service,
+ DoS).
+ 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Comment
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -2235,40 +2240,13 @@ ensures that the system can perform its intended function and service legitimate
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ravi2004security"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-PERO TAMBIÉN...
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-\begin_inset Note Note
-status collapsed
-
 \begin_layout Subsubsection
 Resistencia a la manipulación
 \emph on
-(Tamper resistance)
+ (Tamper resistance)
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 Los ataques perpetrados contra los sistemas empotrados pueden explotar vulneravi
 lidades a distintos niveles, incluyendo aquellas presentes en el sistema
  operativo y las aplicaciones.
@@ -2277,29 +2255,6 @@ lidades a distintos niveles, incluyendo aquellas presentes en el sistema
  o denegar el acceso a los recursos del sistema (ataques a la disponibilidad).
  Por tanto, es necesario desarrollar y desplegar diversas medidas contra
  estos ataques, tanto a nivel software como a nivel hardware.
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-attacks can exploit vul- nerabilities in the operating system (OS) or applicatio
-n software.
- attacks manipulate sensitive data or processes (integrity attacks), disclose
- confidential information (privacy attacks), and/or deny access to system
- re- sources (availability attacks), it is necessary to develop and deploy
- various HW/SW countermeasures against these attacks.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection
@@ -2366,8 +2321,8 @@ Usando las técnicas explicadas en el cap 2, se pueden elaborar soluciones
 
 \begin_layout Standard
 Existen múltiples técnicas con las que se trata de satisfacer los requisitos
- de seguridad presentados en la sección anterior.
- A continuación se presentan algunos de ellos, prestando especial atención
+ de seguridad definidos en la sección anterior.
+ A continuación presentamos algunos de ellos, prestando especial atención
  a los que tienen más relevancia en la realización de este trabajo.
 \end_layout
 
@@ -2376,11 +2331,44 @@ Protocolos de seguridad
 \end_layout
 
 \begin_layout Standard
-Los protocolos de seguridad proporcionan formas de establecer canales de
- comunicación seguros entre dispositivos.
- Esto se consigue cifrando los datos a transmitir, estableciendo mecanismos
- para asegurar la integridad de los mensajes y autenticando cada uno de
- los extremos de la comunicación.
+Los protocolos de seguridad
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+protocolo de seguridad
+\end_layout
+
+\end_inset
+
+ proporcionan formas de establecer canales de comunicación seguros entre
+ dispositivos.
+ Esto se consigue estableciendo mecanismos para asegurar la confidencialidad
+ y la integridad de los mensajes, y autenticando cada uno de los extremos
+ de la comunicación.
+ La confidencialidad suele implicar el cifrado de los datos previa transmisión,
+ normalmente con técnicas de criptografía simétrica.
+ Por su parte, la integridad de los mensajes, que es esencial para evitar
+ la manipulación de los mismos por un posible atacante, se consigue añadiendo
+ un código de autenticación de mensaje (
+\lang english
+Message Authentication Code
+\lang spanish
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+message authentication code (MAC)
+\end_layout
+
+\end_inset
+
+, MAC) a cada mensaje transmitido.
+ Los códigos MAC se calculan mediante la aplicación de una función hash
+ criptográfica al mensaje, y cifrando el resultado con una clave privada.
+ La verificación de la autentidad de los dispositivos puede conseguirse
+ con el uso de certificados digitales.
  De esta forma, dos dispositivos pueden comunicarse de forma segura a través
  de una red 
 \emph on
@@ -2390,18 +2378,73 @@ no segura.
 \end_layout
 
 \begin_layout Standard
-Tal vez los protocolos de seguridad más conocidos sean IPSec y TLS (antes
- SSL), cuyo uso está muy extendido: el primero, en el despliegue de redes
- privadas virtuales (VPN), el segundo, en la realización de transacciones
- web seguras.
- Estos protocolos son prácticamente transparentes para las capas de comunicación
- superiores.
+Tal vez los protocolos de seguridad más conocidos sean 
+\lang english
+Internet Protocol Security
+\lang spanish
+ (IPSec) y 
+\lang english
+Transport Layer Security
+\lang spanish
+ (TLS), este último sucesor de 
+\lang english
+Secure Sockets Layer
+\lang spanish
+ (SSL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Secure Sockets Layer SSL
+\end_layout
+
+\end_inset
+
+).
+ El uso de estos protocolos está muy extendido: el primero, en el despliegue
+ de redes privadas virtuales (
+\lang english
+Virtual Private Networks
+\lang spanish
+, VPN), el segundo, en 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+la realización de transacciones web seguras [en realidad eso es HTTPS, buscar
+ otro ejemplo!]
+\end_layout
+
+\end_inset
+
+.
+ Estos protocolos son 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+prácticamente
+\end_layout
+
+\end_inset
+
+ transparentes para las capas de comunicación superiores.
  De este modo, una aplicación que se comunica en red de forma no segura
- puede pasar a establecer una comunicación segura con pocas modificaciones,
- sin necesidad de ser rediseñada desde cero.
+ puede pasar a establecer una comunicación segura con pocas modificaciones
+ 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+¿o ninguna?
+\end_layout
+
+\end_inset
+
+, sin necesidad de ser rediseñada desde cero.
  No obstante, los requisitos computacionales que supone el uso de estos
  protocolos pueden comprometer la capacidad computacional del sistema con
- gran facilidad.
+ gran facilidad, en especial cuando se trata de sistemas empotrados.
 \end_layout
 
 \begin_layout Standard
@@ -2426,40 +2469,105 @@ reference "chap:TLS"
 
 \end_inset
 
- presentamos las características principales del protocolo TLS.
+ presentamos las características principales del protocolo TLS, por su relevanci
+a en el presente proyecto.
 \end_layout
 
 \begin_layout Subsubsection
-Certificados digitales
+Certificados digitales de clave pública
 \end_layout
 
 \begin_layout Standard
-Los certificados digitales proporcionan formas de asociar una identidad
- digital con una entidad física, basándose en criptografía asimétrica.
- Se trata de un fichero usado para validar la propiedad de una clave pública.
- El certificado incluye información sobre la clave, la identidad de su propietar
-io (sujeto del certificado) y sobre la firma digital de la entidad
+Estos certificados digitales
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+certificado digital
 \end_layout
 
-\begin_layout Standard
-Esto se cosigue gracias a un documento electrónico (fichero), el propio
- certificado, el cuál contiene información sobre la identidad del usuario/entida
-d certificada y su clave pública.
- Este certificado también contiene una firma, emitida por la entidad certificado
-ra.
- Se establece una cadena de confianza.
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Dada la importancia de los certificados digitales en este proyecto, dedicaremos
- el 
+, de los que hablaremos más a fondo en el 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:X509"
 
 \end_inset
 
- a estudiarlos más a fondo.
+, proporcionan formas de asociar una identidad digital con una entidad física,
+ basándose en criptografía asimétrica.
+ Esto se consigue a través de un fichero, con el que es posible validar
+ que la entidad física posee una determinada clave pública, gracias a la
+ confianza depositada en una 
+\emph on
+autoridad certificadora
+\emph default
+ y en su 
+\emph on
+cadena de confianza
+\emph default
+.
+ El certificado incluye información sobre la clave, la identidad de su propietar
+io (sujeto del certificado) y sobre la firma digital de la entidad.
+\end_layout
+
+\begin_layout Subsubsection
+Gestión de derechos digitales
+\end_layout
+
+\begin_layout Standard
+Las herramientas de gestión de derechos digitales (
+\lang english
+Digital Right Management
+\lang spanish
+, DRM) proporcionan entornos seguros para proteger contenidos digitales
+ de un uso no autorizado.
+ De esta forma, es posible evitar la copia de música con derechos de autor,
+ así como la retransmisión pública de películas protegidas por las leyes
+ de propiedad intelectual.
+ Algunas herramientas de gestión de derechos digitales son los protocolos
+ OpenIPMP
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+, MPEG
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+, ISMA
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+, y MOSES
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2467,44 +2575,149 @@ Almacenamiento y ejecución seguros
 \end_layout
 
 \begin_layout Standard
-Requieren que la arquitectura del sistema sea diseñada teniendo en cuenta
- la seguridad.
- Ejemplos de soluciones de ejecución segura incluyen 
-\end_layout
+Estas soluciones requieren que el sistema haya sido diseñado teniendo en
+ cuenta las consideraciones de seguridad.
+ Algunos ejemplos sencillos son el uso de hardware para monitorizar las
+ transacciones en un bus, bloqueando acceso ilegales a zonas protegidas
+ de la memoria 
+\begin_inset Note Greyedout
+status open
 
-\begin_layout Standard
-el uso de hardware para monitorizar transacciones en un bus, bloqueando
- accesos ilegales a regiones de memoria protegidas.
+\begin_layout Plain Layout
+#ref:Discretix#
 \end_layout
-
-\begin_layout Standard
-autenticación del firmware que se ejecuta en el sistema.
-\end_layout
-
-\begin_layout Standard
-aislamiento de aplicaciones con el fin de mantener la privacidad y la integridad
- de las instrucciones y de los datos.
-\end_layout
-
-\begin_layout Standard
-ejecución de código encriptado
-\end_layout
-
-\begin_layout Standard
-En embebidos: Algunas arquitecturas hardware están diseñadas para la ejecución
- segura [#ref ARM-TrustZone#].
- Existen sistemas operativos de tiempo real diseñados para esta ejecución
- segura #ref!!#.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ravi2004security"
 
 \end_inset
 
+, la autenticación del firmware que se ejecuta en el sistema, o el aislamiento
+ de aplicaciones para preservar la privacidad e integridad tanto del código
+ como de los datos asociados a cada proceso 
+\begin_inset Note Greyedout
+status open
 
+\begin_layout Plain Layout
+#ref:Lie et al.
+ 2000#
+\end_layout
+
+\end_inset
+
+.
+ Destacaremos aquí el hecho de que algunos procesadores comerciales están
+ diseñados para la ejecución segura, como es el caso de algunos ARM
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref:ARM-TrustZone#
+\end_layout
+
+\end_inset
+
+, y que existen sistemas operativos de tiempo real diseñados para este fin
+ 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Verificación del software
+\end_layout
+
+\begin_layout Standard
+Existe un gran abanico de verificaciones a las que se puede someter un software
+ para comprobar que lleva a cabo la función para la que fue diseñado en
+ todo momento.
+ Esto puede hacerse de diversas formas.
+ La verificación formal, por su parte, supone la comprobación (matemática)
+ de que el software realiza su función sin importar las condiciones a las
+ que es sometido.
+ Este método de verificación es el más estricto de todos, siendo también
+ el más fiable.
+ Sin embargo, la verificación formal es muy costosa, por su dificultad y
+ por el gran tiempo que conlleva.
+ Otro método es el análisis estático, que supone la revisión del código
+ fuente (o del código objeto) sin llevar a cabo la ejecución del programa.
+ De esta forma es posible detectar muchos errores y algunas prácticas comunes
+ que suponen un riesgo para la integridad de la ejecución, 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+como es el uso de punteros sin tipo
+\end_layout
+
+\end_inset
+
+.
+ Por último, mencionamos el análisis dinámico, que requiere la ejecución
+ del programa en ambientes diversos, idealmente con todos los posibles valores
+ en los parámetros de entrada de cada función.
+\end_layout
+
+\begin_layout Standard
+Existen diversos estándares que especifican requisitos en la verificación
+ de software.
+ También podemos encontrar directrices que nos ayudan a escribir código
+ libre de errores.
+ Los siguientes son ejemplos de estos estándares y directrices.
+\end_layout
+
+\begin_layout Description
+FIPS-140 estándares de seguridad informática del gobierno de los Estados
+ Unidos, que especifican requisitos para módulos criptográficos.
+\end_layout
+
+\begin_layout Description
+Evaluation
+\begin_inset space ~
+\end_inset
+
+Assurance
+\begin_inset space ~
+\end_inset
+
+Level
+\begin_inset space ~
+\end_inset
+
+(EAL) certificaciones para seguridad informática por niveles definidos por
+ el estándar 
+\emph on
+Common Criteria for Information Technology Security Evaluation
+\emph default
+ (ISO/IEC
+\begin_inset space ~
+\end_inset
+
+15408).
+\end_layout
+
+\begin_layout Description
+MISRA
+\begin_inset space ~
+\end_inset
+
+C conjunto de directrices para el desarrollo de software en el lenguaje
+ de programación C, desarrollado por la 
+\emph on
+Motor Industry Software Reliability Association
+\emph default
+ (MISRA) y usada ampliamente en la industria de la automoción.
+\end_layout
+
+\begin_layout Standard
+Puesto que la verificación de un programa completo suele ser muy costosa,
+ es común que se verifiquen solo algunas partes del mismo, por ejemplo,
+ algún módulo crítico.
 \end_layout
 
 \begin_layout Standard
