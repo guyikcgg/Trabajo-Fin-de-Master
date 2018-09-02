@@ -3697,21 +3697,25 @@ s que hacen uso del protocolo UDP.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
-status open
+En el 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Análisis-implementacions-TLS"
 
-\begin_layout Plain Layout
-En los siguientes capítulos hablaremos de distintas implementaciones de
- TLS.
+\end_inset
+
+ hablaremos de distintas implementaciones de TLS.
  Cabe destacar aquí que una buena implementación del estándar debe cumplir
  con todos los requisitos definidos en el mismo.
- Sin embargo, no tiene por qué abarcar el amplio abanico de parámetros de
- seguridad disponibles.
- Por este motivo, hablaremos de ciphersuites
-\begin_inset Note Note
-status open
+ Sin embargo, no todas las implementaciones de TLS abarcan el amplio abanico
+ de parámetros de seguridad disponibles, tales como funciones de cifrado
+ simétrico, algoritmos de clave pública, funciones de hash, etc.
+ Por este motivo, hablaremos de los conjuntos de funciones criptográficas,
+ o 
+\lang english
+ciphersuites
+\lang spanish
 
-\begin_layout Plain Layout
 \begin_inset Index idx
 status collapsed
 
@@ -3721,19 +3725,27 @@ ciphersuite
 
 \end_inset
 
+, para referirnos al conjunto de parámetros de seguridad disponibles en
+ una implementación determinada
+\begin_inset Foot
+status collapsed
 
+\begin_layout Plain Layout
+Algunas implementaciones de TLS disponen de un gran conjunto de funciones
+ criptográficas, pero permiten elegir un subconjunto de las mismas en tiempo
+ de compilación.
+ Esta forma de elegir el 
+\lang english
+ciphersuite
+\lang spanish
+ en tiempo de compilación será muy conveniente a la hora de integrar una
+ implementación de TLS en un sistema empotrado, pues reduce el uso de recursos
+ computacionales sin comprometer sin comprometer la versatilidad del protocolo.
 \end_layout
 
 \end_inset
 
- para referirnos al conjunto de parámetros de seguridad (funciones de encriptaci
-ón/desencriptación, algoritmos de encriptación, funciones de hash...) disponibles
- en una implementación determinada.
-\end_layout
-
-\end_inset
-
-
+.
 \end_layout
 
 \begin_layout Chapter
