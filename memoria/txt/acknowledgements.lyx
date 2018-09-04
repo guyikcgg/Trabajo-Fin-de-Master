@@ -100,28 +100,47 @@ thispagestyle{empty}
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
 Este trabajo es el resultado de ....
  que no habría sido posible sin la ayuda incansable de las personas que
  ...
  En especial, quiero dar las gracias
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 A mis tutores, Antonio Díaz García y Diego Pedro Morales Santos, por la
  confianza y apoyo que me han brindado.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 A Francisco Cruz # y Antonio David #, por 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 A la Universidad de Granada.
  A eesy-innovation.
 \end_layout
 
-\begin_layout Standard
-A Hilda Palencia por sus comentarios y su paciencia (apoyo incondicional).
+\begin_layout Plain Layout
+A Hilda Palencia por sus comentarios y su paciencia
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ (apoyo incondicional)
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \end_body

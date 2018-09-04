@@ -271,8 +271,11 @@ DAVE
 
 \end_inset
 
- está basado en el conocido IDE de código abierto Eclipse, e incluye el
- compilador de C de GNU (
+ está basado en el conocido entorno de desarrollo de código abierto Eclipse
+\begin_inset space ~
+\end_inset
+
+IDE, e incluye el compilador de C de GNU (
 \lang english
 GNU C compiler
 \lang spanish
@@ -465,10 +468,29 @@ DAVE
 
  se encarga de gestionar el proceso de compilación, usando GCC con los parámetro
 s definidos en la configuración del proyecto.
- Como Eclipse, permite excluir algunos directorios o ficheros del proceso
- de compilación.
+ Como Eclipse
+\begin_inset space ~
+\end_inset
+
+IDE, permite excluir algunos directorios o ficheros del proceso de compilación.
  Al final de este proceso, se genera un archivo binario con la extensión
- .bin #! que se ajusta a las regiones de memoria definidas en el linker script.
+ 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+.bin
+\end_layout
+
+\end_inset
+
+ que se ajusta a las regiones de memoria definidas en el 
+\lang english
+linker script
+\lang spanish
+.
  Para concluir el proceso, 
 \begin_inset ERT
 status open
@@ -495,7 +517,17 @@ XMC
 
 \end_inset
 
- conectándose al mismo a través de un programador con el bus JTAG.
+ conectándose al mismo por USB, a través de un programador 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+con el bus
+\end_layout
+
+\end_inset
+
+ JTAG.
  El firmware cargado puede depurarse haciendo uso de la interfaz gráfica
  de depuración de 
 \begin_inset ERT
@@ -518,77 +550,58 @@ Objetivo perseguido y arquitectura propuesta
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Mencionar: de dónde venimo y adónde vamos!
-\end_layout
-
-\begin_layout Plain Layout
-Esta sección está muy relacionada con la sección 1.2 (Presentación del proyecto
- -> Objetivos) Allí se habla de que hay una empresa que está desarrollando
- unos productos para IoT-SmartHome, que esta empresa se preocupa por la
- seguridad, y que el sistema deberán funcionar con AWS IoT, por lo que les
- falta la seguridad.
- Allí se habla de que hay una red de sensores que envía los datos a un gateway.
-\end_layout
-
-\begin_layout Plain Layout
-Aquí se habla de que tenemos un GW y una red de sensores, que la comunicación
- ya está hecha, y que la conexión con Inet es posible: NTP, pequeño servidor
- web (tareas en RTOS).
- Aquí se habla de que tendremos que integrar 1.
- TLS, 2.
- AWS IoT SDK.
-\end_layout
+Como hemos introducido en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Objetivos"
 
 \end_inset
 
+, el sistema con el que trabajaremos es una pasarela (miniGW) que permitirá
+ la interconexión de una red de sensores, instalada en un SmartHome, con
+ la nube de Amazon ASW
+\begin_inset space ~
+\end_inset
 
+IoT.
+ En su versión actual, el miniGW es capaz de comunicarse con los sensores,
+ almacenar los datos recibidos en memoria, mostrar los datos a través de
+ una interfaz web sencilla, y actualizar la hora del sistema a través del
+ protocolo NTP.
+ Todos estos procesos están implementados como tareas en un sistema operativo
+ de tiempo real denominado CMSIS-RTOS.
+ El primer objetivo de este trabajo será integrar una biblioteca TLS con
+ un 
+\lang english
+ciphersuite
+\lang spanish
+ que permita la conexión con AWS
+\begin_inset space ~
+\end_inset
+
+IoT.
+ Seguidamente, tendremos que integrar el AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK, que proporcionará los mecanismos necesarios para establecer
+ una conexión segura con la Nube y permitir la comunicación bidireccional.
+ Esta comunicación, que en este caso se llevará a cabo a través del protocolo
+ MQTT, permitirá enviar los datos de los sensores y recibir comandos para
+ los actuadores.
 \end_layout
 
 \begin_layout Standard
-Producto final: SmartHome products.
- It enables the user to remotely control, manage and monitor connected devices
- at home.
- Para ello 
-\end_layout
-
-\begin_layout Standard
-Se pretende conectar una red de sensores a un gateway, y de ahí a AWS a
- través del protocolo MQTT con la capa segura TLS.
- El gw y AWS deberán autenticarse con certificados digitales.
- 
+A continuación presentaremos los distintos elementos que componen la arquitectur
+a básica del sistema, la cuál se ilustra en la 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:Arquitectura-del-sistema"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-La seguridad siempre depende de a quien nos enfrentemos.
- No es lo mismo enfrentarse a un estudiante o un cracker, que tienen una
- motivacion personal, que a un govierno o grupo terrorista.
- No siempre es mejor tener la máxima seguridad, ya que puede ser computacionalme
-nte muy costoso, y su desarrollo e implementación también puede ser costoso.
- La seguridad de este sistema viene dictada por Amazon, en quien confiamos
- estas consideraciones.
- La implementación realizada supone el uso de un estándar de seguridad ampliamen
-te usado en la red y debería ser suficiente (en términos de seguridad y
- en términos de coste de desarroolo).
-\end_layout
-
-\end_inset
-
-
+.
+ Describiremos estos elementos con mayor profundidad en las siguientes secciones.
 \end_layout
 
 \begin_layout Standard
@@ -696,7 +709,11 @@ red de sensores
 \begin_layout Description
 Nube se trata de un servicio on-line que permite el almacenamiento y gestión
  de los datos producidos por la red de sensores.
- En este caso, se usará el servicio AWS IoT para tal fin.
+ En el presente proyecto, usaremos el servicio AWS
+\begin_inset space ~
+\end_inset
+
+IoT para tal fin.
 \end_layout
 
 \begin_layout Description
@@ -761,11 +778,11 @@ reference "fig:miniGW-foto-hardware"
 \end_inset
 
 , el miniGW no es más que un pequeño circuito impreso, cuyas dimensiones
- no exceden los 10x10x4
+ no exceden los 5x5x2
 \begin_inset space ~
 \end_inset
 
-cm #!.
+cm.
  Se trata de un dispositivo basado en microcontrolador, en el que un XMC4500
  hace las veces de cerebro, encargándose de la lógica y de la coordinación
  de las distintas interfaces.
@@ -835,7 +852,7 @@ reference "fig:miniGW-Arquitectura-hardware"
 
 \end_inset
 
-, permiten que miniGW se comunique con el mundo exterior:
+, permiten que el miniGW se comunique con el mundo exterior:
 \end_layout
 
 \begin_layout Description
@@ -1053,33 +1070,37 @@ Bancos de memoria integrados
 
 \begin_deeper
 \begin_layout Itemize
-
+16 KB 
 \lang english
-16 KB on-chip boot ROM
+on-chip boot ROM.
 \end_layout
 
 \begin_layout Itemize
-
+64 KB 
 \lang english
-64 KB on-chip high-speed program memory 
+on-chip high-speed program memory.
 \end_layout
 
 \begin_layout Itemize
-
+64 KB 
 \lang english
-64 KB on-chip high speed data memory 
+on-chip high speed data memory.
 \end_layout
 
 \begin_layout Itemize
-
+32 KB 
 \lang english
-32 KB on-chip high-speed communication 
+on-chip high-speed communication.
 \end_layout
 
 \begin_layout Itemize
-
+1024 KB 
 \lang english
-1024 KB on-chip Flash Memory with 4 KB instruction cache
+on-chip Flash Memory 
+\lang spanish
+con
+\lang english
+ 4 KB instruction cache.
 \end_layout
 
 \end_deeper
@@ -1093,7 +1114,11 @@ Módulo Ethernet MAC compatible con las tasas de transmisión 10/100 Mbit/s.
 \end_layout
 
 \begin_layout Itemize
-Universal Serial Bus, USB 2.0 host.
+Universal Serial Bus, USB 2.0 
+\lang english
+host
+\lang spanish
+.
 \end_layout
 
 \begin_layout Itemize
@@ -1227,8 +1252,12 @@ Este módulo será el encargado de comunicar el miniGW con la red de sensores,
 
 \begin_layout Standard
 La comunicación con los sensores y actuadores de la red de sensores se lleva
- a cabo a través de un protocolo propietario, que usa AES en su modo Cipher-Bloc
-k Chaining (AES-CBC) para garantizar la seguridad.
+ a cabo a través de un protocolo propietario, que usa cifrado por bloques
+ AES en modo 
+\lang english
+Counter Mode
+\lang spanish
+ (AES-CTR) para garantizar la seguridad.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1241,10 +1270,22 @@ La lógica del XMC4500 debe garantizar que el miniGW realiza todas las funciones
  En este firmware se incluyen diversas tareas que deberán ejecutarse en
  paralelo, como la recepción de paquetes de datos de los sensores o la continua
  actualización de la fecha y hora a través del protocolo NTP.
- La estructura del firmware es muy compleja y escapa a los objetivos de
- esta memoria.
- Sin embargo, la finalidad de este proyecto es demostrar el uso de AWS IoT
- SDK
+ 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+La estructura del firmware es muy compleja y escapa a los objetivos de esta
+ memoria.
+\end_layout
+
+\end_inset
+
+ Sin embargo, la finalidad de este proyecto es demostrar el uso de AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK
 \begin_inset Note Note
 status open
 
@@ -1371,7 +1412,7 @@ CMSIS-RTOS
 \begin_inset space ~
 \end_inset
 
-(vX.Y)
+(vX.Y#!)
 \begin_inset Note Note
 status open
 
@@ -1407,7 +1448,7 @@ lwip
 \begin_inset space ~
 \end_inset
 
-(vX.Y)
+(vX.Y#!)
 \begin_inset Note Note
 status open
 
@@ -1459,6 +1500,8 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+#missing image#
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -1518,11 +1561,11 @@ La red de sensores se encarga de monitorizar variables de interés para el
  La gama de productos H2 de eesy-innovation incluye una multitud de sensores
  y actuadores, como sensores de presencia, estación meteorológica, enchufe
  inteligente (SmartPlug), etc.
- Todos estos nodos se comunican con el miniGW a través de un protocolo propietar
-io, que usa AES en su modo Cipher-Block Chaining (AES-CBC) para garantizar
- la seguridad.
- Además, cada uno de estos sensores y actuadores tiene un UID que lo identifica
- de forma única, no solo en la red local, sino en toda la Internet.
+ Todos estos nodos se comunican con el miniGW de forma segura a través de
+ un protocolo propietario.
+ Además, cada uno de estos sensores y actuadores tiene un número de identificaci
+ón único (unique identity, UID) que lo identifica de forma única, no solo
+ en la red local, sino en toda la Internet.
 \begin_inset Note Note
 status open
 
@@ -1572,7 +1615,14 @@ El servicio AWS IoT se encarga de almacenar los datos de los sensores, haciendo
  que permanezcan disponibles para que el usuario pueda consultarlos cuando
  desee.
  Esto se consigue gracias a la sombra del dispositivo descrita con mas detalle
- en el cap 2#ref#.
+ en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Esquema-de-funcionamiento"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1607,12 +1657,24 @@ En los otros hemos dado especificaciones técnicas.
 \end_layout
 
 \begin_layout Standard
-La nube contendrá dispositivos virtuales, uno por cada sensor/actuador físico,
- que tendrá que asociarse al usuario.
+La nube contendrá dispositivos virtuales, uno por cada dispositivo físico
+ (sensor o actuador), que tendrá que asociarse al usuario.
  La definición de estos dispositivos en producción está fuera del alcance
  de esta memoria.
- En ### se definira al menos un dispositivo de prueba para el GW, con su
- certificado y todas esas cosas.
+ En la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:AWS-IoT-Verificacion-integracion"
+
+\end_inset
+
+ se definirá un dispositivo de prueba para la propia pasarela haciendo uso
+ de la consola de AWS
+\begin_inset space ~
+\end_inset
+
+IoT, de forma que podamos verificar la comunicación entre el miniGW y la
+ Nube.
 \end_layout
 
 \begin_layout Standard
@@ -1631,7 +1693,18 @@ Brevemente, ya ha sido descrita en cap 2
 \begin_layout Standard
 
 \color red
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\color red
 Identificar elementos físicos con nombres de Amazon
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1641,13 +1714,27 @@ App móvil
 \begin_layout Standard
 La App se conecta a la nube de Amazon a través de las APIs pertinentes,
  permitiendo al usuario visualizar los datos.
- Esta App queda fuera del alcance de este documento.
+ Esta App queda fuera del alcance de este proyecto, por lo que usaremos
+ la consola de AWS
+\begin_inset space ~
+\end_inset
+
+IoT para verificar el intercambio de mensajes.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Sin embargo, para comprobar que la conexión entre el miniGW y la nube de
  Amazon se establece correctamente, se ha usado la consola de AWS IoT, como
  se describirá en el capítulo ###.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -1765,7 +1852,11 @@ key "wiki:tls-implementations"
 
 \end_inset
 
-, los repositorios de Github y el foro de desarrolladores Stackexchange.
+, los repositorios de Github y el foro de desarrolladores Stack
+\begin_inset space ~
+\end_inset
+
+Exchange.
  Esta búsqueda, en cambio, ha prescindido de bases de datos académicas,
  ya que se solo hemos considerado implementaciones comerciales o que se
  encuentren en producción.
@@ -1775,34 +1866,58 @@ key "wiki:tls-implementations"
 En nuestra búsqueda, solo hemos considerado aquellas implementaciones de
  TLS que se ajustaran a sistemas embebidos.
  Este criterio supone que las bibliotecas deben estar programadas en lenguaje
- C estándar, y que deben presentar el mínimo número de dependencias.
- Estas características son muy deseables a la hora de integrar una biblioteca
+\begin_inset space ~
+\end_inset
+
+C estándar, y que deben presentar el mínimo número de dependencias.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Estas características son muy deseables a la hora de integrar una biblioteca
  en un sistema embebido.
+\end_layout
+
+\end_inset
+
  Idealmente, la biblioteca seleccionada presentará ciertas facilidades para
  la integración con el sistema objetivo, como la compilación nativa en CMSIS-RTO
 S o compatibilidad con la pila de lwIP.
 \end_layout
 
 \begin_layout Standard
-Además de la compatibilidad con el sistema, 
+Además de la compatibilidad con el sistema, será necesario que la implementación
+ seleccionada cumpla con los siguientes criterios:
 \end_layout
 
 \begin_layout Itemize
-activas (en continuo desarrollo): requisito de seguridad, por si se encuentran
- vulnerabilidades - presencia en redes sociales / foros y actividad de la
- comunidad.
+Biblioteca en continuo desarrollo: se trata de un requisito de seguridad,
+ ya que es frecuente encontrar vulnerabilidades en las implementaciones,
+ y estas deben solventarse.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+ - presencia en redes sociales / foros y actividad de la comunidad.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-ciphersuite compatible con AWS
+Ciphersuite compatible con AWS
 \begin_inset space ~
 \end_inset
 
-IoT (TLS
+IoT.
+ Se requiere TLS
 \begin_inset space ~
 \end_inset
 
-1.2) 
+1.2, con alguno de los ciphersuites listados en 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "AWS-IoT-Security-and-Identity"
@@ -1810,16 +1925,16 @@ key "AWS-IoT-Security-and-Identity"
 \end_inset
 
 .
- Se recomiendan:
+ En especial, se recomiendan:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-ECDHE-ECDSA-AES128-GCM-SHA256 (recommended)
+ECDHE-ECDSA-AES128-GCM-SHA256
 \end_layout
 
 \begin_layout Itemize
-ECDHE-RSA-AES128-GCM-SHA256 (recommended)
+ECDHE-RSA-AES128-GCM-SHA256
 \end_layout
 
 \end_deeper
@@ -1848,27 +1963,26 @@ Además de los requisitos mencionados anteriormente, se evaluarán positivamente
 \end_layout
 
 \begin_layout Itemize
-Documentation availability – indispensable to check the available features
- and their use, as well as comparing the library’s API and suitability 
+Disponibilidad de documentación: será indispensable una buena documentación
+ para comprobar la disponibilidad de características y el uso de las distintas
+ funciones definidas en la API.
 \end_layout
 
 \begin_layout Itemize
-Support for engineers – very convenient in the case support is needed during
- the implementation 
+Soporte para ingenieros: será conveniente en el caso en que se necesite
+ soporte durante la implementación.
 \end_layout
 
 \begin_layout Itemize
-Source code availability – helps with the task of finding features, makes
- possible the evaluation of the implementation; in the case of open repository
- (like github), the development can be watched closely 
+Disponibilidad del código fuente: se valorará positivamente la disponibilidad
+ del código fuente previa adquisición de la licencia, de forma que podamos
+ indagar en el mismo para evaluar la implementación.
+ Además, tener el código fuente abierto a la comunidad disminuye el riesgo
+ de que contenga errores o puertas traseras #ref#.
 \end_layout
 
 \begin_layout Itemize
-Licencias compatibles con la actividad a realizar
-\end_layout
-
-\begin_layout Itemize
-Precios razonables
+Licencias compatibles con la actividad a realizar, con precios razonables.
 \end_layout
 
 \begin_layout Section
@@ -1916,18 +2030,33 @@ Lanzada en 2006 bajo la denominación de CyaSSL, da soporte a los protocolos
 \end_layout
 
 \begin_layout Standard
-Esta implementación es conocida por su uso en MySQL #REF!!!####, por lo
- que ha adquirido una presencia considerable.
+Esta implementación es conocida por su uso en MySQL 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+, por lo que ha adquirido una presencia considerable.
  Por último, una de las versiones de la biblioteca criptográfica wolfCrypt
- tiene una 
-\color red
-certificación FIPS
+ dispone de un certificado de verificación FIPS
 \begin_inset space ~
 \end_inset
 
-140-2
-\color inherit
- #REF# (Certificate #2425).
+140-2 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+ (Certificate #2425).
 \end_layout
 
 \begin_layout Subsubsection
@@ -1937,9 +2066,26 @@ MatrixSSL
 \begin_layout Standard
 Lanzada en 2004, da soporte a los protocolos y configuraciones de TLS más
  usados.
- De acuerdo con la web oficial, su footprint puede ser reducido hasta ~50KB,
- incluyendo biblioteca de criptografía y certificados, o hasta ~10KB en
- su Tiny version, que solo soporta PSK #REF#.
+ De acuerdo con la web oficial, su 
+\lang english
+footprint
+\lang spanish
+ puede ser reducido hasta ~50KB, incluyendo biblioteca de criptografía y
+ certificados, o hasta ~10KB en su 
+\emph on
+Tiny version
+\emph default
+, que solo soporta PSK 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
  Se distribuye bajo la licencia de software libre GPLv2, aunque también
  existe una licencia comercial (precio no disponible en la web oficial).
 \end_layout
@@ -1952,8 +2098,17 @@ cryptlib
 Lanzada inicialmente en 1995, da soporte a los protocolos y configuraciones
  de TLS más usados.
  Tiene un modelo de doble licencia, incluyendo una licencia Open Source
- y otra comercial, que puede adquirirse por USD $5000.
- #REF#
+ y otra comercial, que puede adquirirse por USD $5000 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1966,10 +2121,29 @@ e dedicada a IoT.
  La compañía también distribuye soluciones para HTTPS, MQTT y SMQ, entre
  otras.
  De acuerdo con la web, SharkSSL puede compilarse en menos de 38KB ROM,
- necesitando solo 13KB RAM en tiempo de ejecución #ref#.
+ necesitando solo 13KB RAM en tiempo de ejecución 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
  Se distribuye bajo una licencia privada, cuyo precio no está disponible
- en la web.
- #ref#
+ en la web 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -1979,7 +2153,7 @@ Análisis comparativo
 \begin_layout Standard
 La 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "tab:Comparación-general"
 
 \end_inset
@@ -4069,8 +4243,28 @@ Soporte para la suite
 \begin_inset space ~
 \end_inset
 
-B definida por la agencia nacional de seguridad de los EEUU (NSA), que incluye
- #ref#
+B definida por la agencia nacional de seguridad de los EEUU (National Security
+ Agency, NSA
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+National Security Agency (NSA)
+\end_layout
+
+\end_inset
+
+), que incluye 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4111,10 +4305,13 @@ reference "chap:Descripción-del-sistema"
 
 \end_inset
 
-, el sistema objetivo está basado en un procesador de la familia ARM Cortex
- M4, en el que se ejecuta CMSIS-RTOS como sistema operativo de tiempo real
- y se usa light-weight IP (lwIP) para implementar la pila de protocolos
- TCP/IP y UDP/IP.
+, el sistema objetivo está basado en un procesador de la familia ARM Cortex-M4,
+ en el que se ejecuta CMSIS-RTOS como sistema operativo de tiempo real y
+ se usa light-weight
+\begin_inset space ~
+\end_inset
+
+IP (lwIP) para implementar la pila de protocolos TCP/IP y UDP/IP.
 \end_layout
 
 \begin_layout Standard
@@ -5383,11 +5580,59 @@ Elección de la biblioteca
 \end_layout
 
 \begin_layout Standard
-Having a look at the tables above, it is evident that WolfSSL and mbed TLS
- are the most suitable options.
- For this reason, they have been further analyzed.
- A closer comparison is presented below.
- 
+Al contemplar las tablas 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Comparación-general"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Comparación-doc+compatib"
+
+\end_inset
+
+ es evidente que WolfSSL y mbedTLS son las opciones más adecuadas.
+ Por esta razón las hemos analizado más a fondo.
+ La 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:Comparación-WolfSSL-mbedTLS"
+
+\end_inset
+
+ muestra una comparación en mayor profundidad de estas dos bibliotecas.
+ Como podemos comprobar, ambas tienen características muy parecidas.
+ Finalmente, nos hemos decantado por mbedTLS por los motivos siguientes:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+El precio de la licencia es menor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK funciona con mbedTLS de forma nativa.
+ Este es un argumento de peso, ya que facilitará enormemente la integración
+ del SDK de AWS
+\begin_inset space ~
+\end_inset
+
+IoT.
 \end_layout
 
 \begin_layout Standard
@@ -6018,6 +6263,12 @@ Sí
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Comparación-WolfSSL-mbedTLS"
+
+\end_inset
+
 Comparación de WolfSSL y mbedTLS: características de compilación y configuración
  de la biblioteca
 \end_layout
@@ -6033,6 +6284,18 @@ Comparación de WolfSSL y mbedTLS: características de compilación y configurac
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Having a look at the tables above, it is evident that WolfSSL and mbed TLS
+ are the most suitable options.
+ For this reason, they have been further analyzed.
+ A closer comparison is presented below.
+ 
+\end_layout
+
+\begin_layout Plain Layout
 A series of different TLS implementations have been analyzed and compared.
  Both open source and privative implementations have been considered.
  Among all the compared alternatives, WolfSSL and mbed TLS appear to be
@@ -6049,7 +6312,7 @@ A series of different TLS implementations have been analyzed and compared.
  
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Tras valorar estas opciones, decidimos mbedTLS por los siguientes motivos:
  
 \end_layout
@@ -6068,6 +6331,29 @@ AWS IoT Device SDK funciona con mbedTLS de forma nativa
 
 \begin_layout Itemize
 #
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con esta elección le ponemos fin a este capítulo, en el que hemos analizado
+ y comparado una serie de implentaciones TLS, tanto de código abierto como
+ privativas.
+ Destacaremos que de entre las alternativas comparadas, WolfSSL y mbedTLS
+ parecen ser las más desarrolladas, tanto desde el punto de vista tecnológico
+ como a la disponibilidad de documentación, presencia en las redes sociales
+ y comunidad.
+ Tras revisar la información disponible en los sitios web de WolfSSL y mbedTLS,
+ resultan tener características muy similares.
+ El principal motivo de la elección de mbedTLS ha sido su excelente compatibilid
+ad con AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK, puesto que este último la integra por defecto.
 \end_layout
 
 \begin_layout Chapter
@@ -6139,7 +6425,7 @@ Suite
 
 B
 \emph default
- de la Agencia Nacional de Seguridad estadounidense (NSA) 
+ de la NSA 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "rfc6379-NSA-Suite-B"
@@ -6163,8 +6449,13 @@ El código fuente de la biblioteca está estructurado de la forma que se present
 \family typewriter
 /
 \family default
- en el directorio raíz se encuentran los ficheros que podemos encontrar
- en la mayoría de los proyectos, como 
+ 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+en el directorio raíz se encuentran los ficheros que podemos encontrar en
+ la mayoría de los proyectos, como 
 \family typewriter
 Makefile
 \family default
@@ -6177,6 +6468,11 @@ README
 LICENSE
 \family default
 , etc.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6295,7 +6591,7 @@ Dado que muy pocos sistemas requieren de todos los algoritmos criptográficos
 
 C, que contiene una lista exhaustiva de definiciones con su correspondiente
  documentación.
- De esta forma, el dearrollador puede activar o desactivar cualquiera de
+ De esta forma, el desarrollador puede activar o desactivar cualquiera de
  las opciones.
  El fichero de configuración es referenciado por cada uno de los otros ficheros
  de cabecera, consiguiendo que la configuración se haga efectiva en tiempo
@@ -6941,19 +7237,34 @@ Integración de mbedTLS en el miniGW
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Portar a XMC con CMSIS-RTOS, vamos
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Hablar del montaje en el laboratorio (PC como bridge, switch, intranet,
  Internet)
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-Partiremos de un proyecto inicial en el que están presentes CMSIS-RTOS y
- lwIP.
+Para llevar a cabo la integracion de mbedTLS en el miniGW, partiremos de
+ un proyecto inicial en el que están presentes CMSIS-RTOS y lwIP.
  Este proyecto de partida no realiza ninguna función en especial, pero tiene
- una pila IP funcional, y se le puede hacer ping.
+ una pila IP funcional, gracias a la cuál pueden establecerse conexiones
+ TCP con gran facilidad.
+ Además, lwIP responde a los 
+\lang english
+pings
+\lang spanish
+ de ICMP por defecto, lo cuál es muy útil para comprobar la conectividad.
 \end_layout
 
 \begin_layout Subsection
@@ -7085,20 +7396,37 @@ Adaptación de la biblioteca a la plataforma
 
 \begin_layout Standard
 Una vez importado el código de la biblioteca y configurada la compilación,
- pasaremos a realizar los cambios necesarios para que la esta pueda compilarse
+ pasaremos a realizar los cambios necesarios para que esta pueda compilarse
  y ser funcional en la nueva plataforma.
  Puesto que mbedTLS selecciona la plataforma a través de directivas condicionale
-s del preprocesador de C (#if #else), tendremos que modificar cada uno de
- los ficheros dependientes de la plataforma.
- Como explicamos en 
+s del preprocesador de C (es decir, a través de 
+\family typewriter
+#if
+\family default
+ 
+\family typewriter
+#else
+\family default
+), tendremos que modificar cada uno de los ficheros dependientes de la plataform
+a.
+ Como explicamos en la 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "subsec:Portabilidad-mbedTLS"
 
 \end_inset
 
-, los módulos dependientes de la plataforma y que deben ser portados son
- el módulo de red y la fuente de entropía.
+, los módulos dependientes de la plataforma 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+y que deben ser portados 
+\end_layout
+
+\end_inset
+
+son el módulo de red y la fuente de entropía.
  A continuación describimos los cambios realizados en cada uno de estos
  módulos.
 \end_layout
@@ -7109,8 +7437,18 @@ Módulo de red
 
 \begin_layout Standard
 Con respecto a las capacidades de red, mbedTLS se basa en los sockets BSD
- estándar, que es la interfaz de red predeterminada en muchos sistemas tipo
- Unix, así como lo es en Windows.
+ estándar 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+, que es la interfaz de red predeterminada en muchos sistemas tipo Unix,
+ así como lo es en Windows.
  Las versiones recientes de lwIP proporcionan esta interfaz de sockets estándar,
  por lo que se puede utilizar como la pila de red para el sistema.
 \end_layout
@@ -7134,22 +7472,25 @@ Windows, incluyendo directivas
 \family typewriter
 #if
 \family default
- al comiendo del fichero.
+ al comienzo del fichero.
 \end_layout
 
 \begin_layout Itemize
-Uso de la lwIP como la pila de red, incluyendo los ficheros de cabecera
- al comienzo de net_sockets.c.
- Bajo 
+Uso de lwIP como la pila de red, incluyendo los ficheros de cabecera al
+ comienzo de net_sockets.c, bajo la condicional 
 \family typewriter
 #ifdef DAVE
 \family default
-.
+, donde DAVE es el símbolo definido anteriormente.
 \end_layout
 
 \begin_layout Itemize
-Deshabilitar IPv6 cuando esté definido el símbolo DAVE, ya que esta versión
- del protocolo aún no está soportado por lwIP.
+Deshabilitar IPv6 cuando esté definido el símbolo 
+\family typewriter
+DAVE
+\family default
+, ya que esta versión del protocolo no está soportado por lwIP en la fecha
+ de realizar esta integración.
 \end_layout
 
 \begin_layout Itemize
@@ -7157,12 +7498,20 @@ Uso de la implementación de la función
 \family typewriter
 fcntl()
 \family default
- provista por el kit de herrameintas arm-none-eabi.
-\begin_inset Note Note
+ 
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
-seguro que es arm-none-eabi?? no es newlib?
+provista por la biblioteca 
+\lang english
+newlib
+\lang spanish
+ provista con el kit de herrameintas de compilación 
+\emph on
+arm-none-eabi
+\emph default
+.
 \end_layout
 
 \end_inset
@@ -7175,11 +7524,11 @@ Fuentes de entropía
 \end_layout
 
 \begin_layout Standard
-Una buena entropía es la base fundamental para criptografía TLS robusta.
+Una buena entropía es la base fundamental para una criptografía robusta.
  Esta entropía puede obtenerse de diversas maneras.
  Los módulos de hardware que proporcionan entropía, como los módulos de
- generación de números (pseudo-) aleatorios (PRNG) está presente en muchos
- microcontroladores.
+ generación de números (pseudo-)aleatorios (pseudo-random number generator,
+ PRNG) está presente en muchos microcontroladores.
  El microcontrolador XMC4500 incluye uno de estos módulos PRNG como parte
  de los generadores de señal del módulo DAC.
  Utilizaremos este módulo como fuente principal de entropía en este proyecto.
@@ -7249,7 +7598,8 @@ reference "fig:XMC-PRNG-block-diagram"
 \emph on
 registro de desplazamiento de realimentación lineal
 \emph default
- (LFSR) de 20 bits que funciona a la frecuencia de reloj del sistema.
+ (linear-feedback shift register, LFSR) de 20 bits que funciona a la frecuencia
+ de reloj del sistema.
  Al recibir una señal de 
 \emph on
 trigger
@@ -7294,8 +7644,7 @@ El PRNG forma parte del módulo DAC del microcontrolador, por lo que será
 mbedTLS toma estos números aleatorios como una fuente de entropía, para
  luego combinarla con otras fuentes en el recolector de entropía.
  Esto se hace con la finalidad de asegurar una generación de números lo
- más aleatorios posibles.
- 
+ más aleatorios posibles 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "mbedTLS-add-entropy"
@@ -7306,7 +7655,7 @@ key "mbedTLS-add-entropy"
 \end_layout
 
 \begin_layout Standard
-El uso del PRNG en el proyecto se ha llevado a cabo mediante el uso de diversad
+El uso del PRNG en el proyecto se ha llevado a cabo mediante el uso de diversas
  
 \begin_inset ERT
 status open
@@ -7333,12 +7682,31 @@ entropy_poll.c
 , que contine las funciones de entropía definidas por el usuario para cada
  plataforma.
  En este fichero, hemos añadido una sección específica para la plataforma
- DAVE.
+ 
+\family typewriter
+DAVE
+\family default
+.
  En esta sección, simplemente hemos completado la función 
 \family typewriter
 mbedtls_hardware_poll()
 \family default
  para que lea números aleatorios a partir del ADC.
+ Esto último se consigue haciendo uso de las APIs correspondientes de la
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE APP
+\end_layout
+
+\end_inset
+
+ del ADC.
 \end_layout
 
 \begin_layout Subsubsection
@@ -7347,7 +7715,8 @@ Módulo de temporización
 
 \begin_layout Standard
 Aunque este módulo no es un requisito para el funcionamiento de la biblioteca,
- será necesario a la hora de verificar la validez del certificado de AWS.
+ será necesario a la hora de verificar la validez del certificado de los
+ servidores de AWS.
  Para integrar el RTC con mbedTLS, hemos creados los fichero 
 \family typewriter
 platform_DAVE.c
@@ -7395,7 +7764,8 @@ DAVE APP
 \begin_layout Standard
 La fecha y hora del RTC serán ajustadas gracias a un cliente NTP sencillo,
  que actualizará la hora periódicamente basándose en una lista de servidores.
- El código fuente de este cliente ha sido proporcionado por la empresa.
+ El código fuente de este cliente ha sido proporcionado por el equipo de
+ desarrollo de eesy-innovation.
 \end_layout
 
 \begin_layout Subsection
@@ -7405,24 +7775,30 @@ Configuración de mbedTLS
 \begin_layout Standard
 Una vez integrados los diferentes módulos con la plataforma, será necesario
  configurar mbedTLS para que pueda compilar.
-\end_layout
-
-\begin_layout Standard
-La configuración de mbedTLS se lleva a cabo modificando el fichero 
+ La configuración de mbedTLS se lleva a cabo modificando el fichero 
 \family typewriter
 config.h
 \family default
 .
  La biblioteca incluye varios de estos ficheros para ejemplificar algunas
  configuraciones comunes.
- Para llevar a cabo esta configuración, hemos partido del fichero 
+ Para llevar a cabo la configuración necesaria, hemos partido del fichero
+ 
 \family typewriter
 config-suite-b.h
 \family default
-, que presenta una configuración mínima para la TLS Suite B definida por
- la NSA.
+, que presenta una configuración mínima para la Suite
+\begin_inset space ~
+\end_inset
+
+B definida por la NSA.
  Esta configuración trata de minimizar el de RAM y usa únicamente criptografía
- de curva elíptica (ECC) como algoritmos de clave pública.
+ de curva elíptica (ECC) como algoritmos de clave pública, satisfaciendo
+ los requisitos de AWS
+\begin_inset space ~
+\end_inset
+
+IoT en cuanto a la ciphersuite.
 \end_layout
 
 \begin_layout Standard
@@ -7519,7 +7895,14 @@ Además de estos nuevos símbolos, el fichero de configuración incluye opciones
  específicos de la comunicación con el servidor, ya que la reducción del
  uso de memoria consiste, en muchos casos, en limitar los ciphersuites disponibl
 es y el tamaño de las operaciones.
- A continuación destacamos alguna de estas opciones:
+ A continuación destacamos alguna de estas opciones 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mbedTLS-reduce-footprint"
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Description
@@ -7561,18 +7944,9 @@ MBEDTLS_SSL_CIPHERSUITES
 
 \begin_layout Standard
 Con esta configuración, hemos podido compilar el código de la biblioteca
- y llamar a sus funciones desde las distintas tareas.
- En la siguiente sección hablamos de la verificación de la integración.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand cite
-key "mbedTLS-reduce-footprint"
-
-\end_inset
-
-
+ y llamar a sus funciones desde las distintas tareas del RTOS.
+ En la siguiente sección hablamos de la verificación de la integración llevada
+ a cabo.
 \end_layout
 
 \begin_layout Standard
@@ -7646,9 +8020,16 @@ selftest.c
 \end_layout
 
 \begin_layout Standard
-Hemos usado el fichero selftest.c, localizado en el directorio programs/test,
- como base para verificar el correcto funcionamiento de los módulos en la
- integración.
+Hemos usado el fichero 
+\family typewriter
+selftest.c
+\family default
+, localizado en el directorio 
+\family typewriter
+programs/test
+\family default
+, como base para verificar el correcto funcionamiento de los módulos en
+ la integración.
  Este programa cuenta el número de módulos comprobados en las variables
  
 \family typewriter
@@ -7712,11 +8093,11 @@ self_test()
 \end_layout
 
 \begin_layout Enumerate
-OS kernel start instruction 
+inicialización del kernel del RTOS, mediante la función 
 \family typewriter
 osKernelStart()
 \family default
-;
+.
 \end_layout
 
 \begin_layout Standard
@@ -7730,9 +8111,18 @@ suites_tested
 suites_failed
 \family default
 .
- Gracias a Prometeo, hemos podido comprobar que la totalidad de los tests
- han sido superados con éxito, por lo que todos los módulos funcionan correctame
-nte.
+ 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+Gracias a Prometeo,
+\end_layout
+
+\end_inset
+
+ hemos podido comprobar que la totalidad de los tests han sido superados
+ con éxito, por lo que todos los módulos funcionan correctamente.
 \end_layout
 
 \begin_layout Subsubsection
@@ -7741,17 +8131,35 @@ Test funcional: cliente HTTPS sencillo
 
 \begin_layout Standard
 Para comprobar que mbedTLS funciona en su conjunto y que es posible establecer
- comunicacion con el exterior, hemos probado el programa de ejemplo ssl_client1.c.
+ comunicacion con el exterior, hemos probado el programa de ejemplo 
+\family typewriter
+ssl_client1.c
+\family default
+.
  Este programa, que se encuentra en el directorio programs/ssl, establece
- conexión con un servidor TLS y realiza una petición HTTP GET, imprimiendo
- la respuesta del servidor si todo ha ido bien.
+ conexión con un servidor TLS y realiza una petición 
+\family typewriter
+HTTP
+\begin_inset space ~
+\end_inset
+
+GET
+\family default
+, imprimiendo la respuesta del servidor si todo ha ido bien.
 \end_layout
 
 \begin_layout Standard
 Tal y como hemos hecho con el test anterior, hemos modificado este programa
  de ejemplo para que funcione como una tarea en RTOS.
- También hemos tenido que ajustar algunas líneas de ssl_client1.c, en concreto,
- hemos redefinido SERVER_NAME para que tuviera el valor 
+ También hemos tenido que ajustar algunas líneas de 
+\family typewriter
+ssl_client1.c
+\family default
+, en concreto, hemos redefinido 
+\family typewriter
+SERVER_NAME
+\family default
+ para que tuviera el valor 
 \begin_inset Quotes fld
 \end_inset
 
@@ -8757,6 +9165,12 @@ Además, incluiremos las constantes de los certificados digitales como extern,
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:AWS-IoT-Verificacion-integracion"
+
+\end_inset
+
 Verificación de la integración
 \end_layout
 

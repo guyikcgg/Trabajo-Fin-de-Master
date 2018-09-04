@@ -318,6 +318,12 @@ buscar otros
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Objetivos"
+
+\end_inset
+
 Objetivos
 \end_layout
 
@@ -403,7 +409,7 @@ El objetivo principal del presente trabajo es interconectar los dispositivos
 
 IoT).
  Esto se llevará a cabo a través de un dispositivo especial que se incluye
- dentro de la gama de productos, denominado H2 miniGateway.
+ dentro de la gama de productos, denominado H2 miniGateway (miniGW).
  Como su nombre indica, este dispositivo no es más que una puerta de enlace
  que interconecta la red de sensores y actuadores con la Nube.
  La elección de la nube de Amazon ha sido realizada por la empresa tras
@@ -2582,11 +2588,9 @@ Debe garantizarse que el sistema pueda realizar la función para la que fue
 status open
 
 \begin_layout Plain Layout
-ensures that the system can perform its intended function and service legitimate
- users at all times, without being disrupted by denial-of- service attacks.
- -> el sistema que le da de comer al gato no debe quedarse colgado, y la
- camarita debe funcionar y estar disponible en todo momento (un DoS sería
- desastroso en este caso)
+el sistema que le da de comer al gato no debe quedarse colgado, y la camarita
+ debe funcionar y estar disponible en todo momento (un DoS sería desastroso
+ en este caso)
 \end_layout
 
 \end_inset
@@ -3137,9 +3141,9 @@ uso de la 1a pers plural?
 
 \begin_layout Standard
 
-\lang english
+\emph on
 Transport Layer Security
-\lang spanish
+\emph default
  (TLS)
 \begin_inset Index idx
 status open
@@ -3167,14 +3171,28 @@ aunque sí reliable
 
 .
  Es el sucesor de 
-\lang english
+\emph on
 Secure Sockets Layer
-\lang spanish
+\emph default
  (SSL), por lo que comparte muchas características con el mismo.
 \end_layout
 
 \begin_layout Standard
-El protocolo se compone de dos capas, denominadas 
+El protocolo
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+, cuya versión más reciente es TLS
+\begin_inset space ~
+\end_inset
+
+1.2
+\end_layout
+
+\end_inset
+
+, se compone de dos capas, denominadas 
 \emph on
 TLS Record Protocol
 \emph default

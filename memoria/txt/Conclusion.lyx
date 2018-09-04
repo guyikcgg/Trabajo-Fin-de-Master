@@ -87,6 +87,19 @@ Conclusiones y trabajo futuro
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+LAS CONCLUSIONES ESTÁN SIN ACABAR
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -183,6 +196,10 @@ IoT
 ).
  La comunicación entre el dispositivo y la nube se llevará a cabo a través
  del protocolo MQTT, tras haber establecido un canal seguro mediante TLS.
+\end_layout
+
+\begin_layout Section
+Trabajo futuro
 \end_layout
 
 \end_body
