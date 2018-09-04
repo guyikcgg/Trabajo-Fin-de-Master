@@ -109,16 +109,190 @@ Describe the problem • State your contributions
 \end_layout
 
 \begin_layout Standard
-De entre todas las revoluciones de Internet, el Internet de las Cosas (Internet
- of Things, IoT) es probablemente la que tiene mayor impacto en la actualidad.
- 
-\end_layout
+\begin_inset Note Note
+status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 IoT es muy guay, y está creciendo mucho -> Referencias académicas aquí!
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
+De entre todas las revoluciones de Internet, el Internet de las Cosas (Internet
+ of Things, IoT) es probablemente la que tiene mayor impacto en la actualidad
+ #ref#.
+ Este nuevo paradigma, que consiste en la conexión masiva de dispositivos
+ de uso cotidiano a Internet #ref#, posibilita la creación de nuevos servicios
+ y propuestas de valor, como los SmartHomes, SmartCities o la Industria
+ 4.0 #ref#.
+ Muchas empresas ven nuevas oportunidades de negocio fundamentadas en
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+/que hacen uso de
+\end_layout
+
+\end_inset
+
+ esta tecnología.
+ Así, por ejemplo, Google, IBM y Amazon tienen disponibles sus plataformas
+ de computación en la nube específicas para IoT.
+ Estas plataformas habilitan el desarrollo de productos y servicios que
+ proporcionan valor al usuario final, como pueden ser las lámparas inteligentes
+ de Phillips 
+\begin_inset Quotes fld
+\end_inset
+
+Hue
+\begin_inset Quotes frd
+\end_inset
+
+ #ref# o el kit para SmartHome de eesy-innovation 
+\begin_inset Quotes fld
+\end_inset
+
+H2
+\begin_inset Quotes frd
+\end_inset
+
+ #ref#.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Del mismo modo, muchas otras empresas, tanto grandes (como Phillips) como
+ startups (como eesy-innovation), están desarrollando productos finales
+ que hacen uso de estas tecnologías habilitadoras.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sin embargo, el hecho de que los dispositivos estén conectados a la Internet,
+ hace que estos sean potencialmente vulnerables a los ciberataques, que
+ podrían ser perpetrados por un atacante conectado desde cualquier lugar
+ del mundo #ref#.
+ Estas potenciales vulnerabilidades
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+, que podrían afectar directamente a los servicios, o incluso podrían usar
+ los nuevos dispositivos para perpetrar un ataque de denegación de servicio
+ 
+\begin_inset Quotes fld
+\end_inset
+
+masivo
+\begin_inset Quotes frd
+\end_inset
+
+, hacen que la seguridad
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Aunque el término seguridad es muy amplio y tiene diferentes acepciones
+ cuando se usa en términos informáticos, en el presente trabajo lo usaremos
+ para referirnos a ciberseguridad, a menos que se indique lo contrario.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Definir ciberseguridad?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ juegue un rol imprescindible en todos los sistemas IoT.
+ 
+\end_layout
+
+\end_inset
+
+ podrían afectar directamente a los servicios ofrecidos a los usuarios,
+ pudiendo llegar a incurrir en daños materiales o incluso personales.
+ Un escenario pesimista frecuentemente citado en la literatura es el uso
+ de la nueva masa de dispositivos para llevar a cabo ataques de denegación
+ de servicio distribuidos (distributed denial-of-service, DDoS), con las
+ nefastas consecuencias que esto conllevaría #ref#.
+ Por este motivo, la seguridad
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Aunque el término seguridad es muy amplio y tiene diferentes acepciones
+ cuando se usa en términos informáticos, en el presente trabajo lo usaremos
+ para referirnos a ciberseguridad, a menos que se indique lo contrario.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Definir ciberseguridad?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ juega un rol fundamental en todos los sistemas IoT, por lo que deberá considera
+rse desde el diseño inicial del sistema.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Enlazar con objetivos y hablar de sistemas empotrados.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Muchos productos IoT son pequeños dispositivos que se basan en sistemas
+ empotrados.
+ Los sistemas emptrados tienen unas importantes limitaciones computacionales
+ y suelen funcionar de forma independiente.
+ Tal vez por esto tradicionalmente no se ha considerado la seguridad en
+ términos de proteger el sistema de ataques externos.
+ Sin embargo, con el nuevo paradigma IoT, muchas son las empresas que requieren
+ seguridad en sus dispositivos.
+ En muchas ocasiones, esto viene impuesto por los proveedores de servicios
+ de computación en la nube, como Amazon Web Services, que exigen unos niveles
+ de seguridad importantes en la conexión, ya que solo de esta forma es posible
+ tener un sistema robusto y seguro.
+ Por su parte, las empresas desarrolladoras de productos finales que deseen
+ proporcionar un servicio IoT de calidad tendrán que ajustarse a los estándares
+ impuestos por estos proveedores de servicio.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Algunas empresas se lo toman en serio.
  Uno de los referentes, AWS 
 \begin_inset Note Note
@@ -131,11 +305,16 @@ buscar otros
 \end_inset
 
 , no permite conexiones no seguras.
- Esto fuerza a las empresas que quieren trabajar con estos proveedores de
+ Esto fuerza a las empresas que quieran trabajar con estos proveedores de
  servicio profesionales/robustos, que quieren hacer un buen producto, a
  integrar seguridad en sus sistemas.
  Es el ejemplo de eesy innovation, que tiene una gama de productos SmartHome
  (H2) usando tecnología IoT.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -143,19 +322,111 @@ Objetivos
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+se habla de que hay una empresa (eesy) que está desarrollando unos productos
+ para IoT-SmartHome usando tecnología de Infineon (porque son partners),
+ que esta empresa se preocupa por la seguridad, y que el sistema deberán
+ funcionar con AWS IoT (que se ha elegido por ser una plataforma segura
+ y escalable), por lo que tendremos que integrar esta plataforma y cuidar
+ la seguridad de la forma que AWS especifica.
+ Allí se habla de que hay una red de sensores que envía los datos a un gateway.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Este trabajo fin de máster ha sido realizado en relación a un contrato concedido
+ por la empresa eesy-innovation.
+ Eesy-innovation es una empresa alemana, con sede en Múnich, que ofrece
+ servicios de ingeniería a sus numerosos socios en la industria #ref#.
+ Gracias a su fuerte departamento de I+D y a su dilatada experiencia en
+ electrónica y telecomunicaciones, eesy-innovation ha colaborado en proyectos
+ nacionales y europeos, como TreuFunk #ref# y NexGen #ref#.
+ En la actualidad, la empresa ofrece una solución 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+tecnológica
+\end_layout
+
+\end_inset
+
+ para la automatización del hogar (SmartHome).
+ Su gama de productos H2 permitirá al usuario controlar, gestionar y monitorizar
+ los dispositivos conectados en casa de forma remota, haciendo uso de tecnología
+s IoT.
+ Desde un punto de vista tecnológico, los productos H2 son sistemas embebidos
+ basados en los microcontroladores 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+XMC
+\end_layout
+
+\end_inset
+
+ de Infineon (multinacional alemana con la que eesy-innovation ha colaborado
+ de forma continuada).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
 El presente trabajo tiene como objetivo interconectar los productos de IoT
  de una empresa (eesy) con una plataforma bien conocida de IoT (AWS).
  Para ello, sera necesario integrar seguridad y conectividad a la plataforma.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-El objetivo principal de este proyecto es integrar una implementación existente
- del protocolo TLS en un dispositivo IoT basado en microcontrolador.
- Este dispositivo es, en realidad, un pasarela (gateway) que permite la
- conexión entre una red local de sensores/actuadores instalada en una Smarthome
- e Internet.
- De este modo, conseguiremos que la transmisión de datos entre la red local
- y la nube se lleve a cabo de forma segura
+El objetivo principal del presente trabajo es interconectar los dispositivos
+ H2 con la nube de Amazon (Amazon Web Services IoT, AWS
+\begin_inset space ~
+\end_inset
+
+IoT).
+ Esto se llevará a cabo a través de un dispositivo especial que se incluye
+ dentro de la gama de productos, denominado H2 miniGateway.
+ Como su nombre indica, este dispositivo no es más que una puerta de enlace
+ que interconecta la red de sensores y actuadores con la Nube.
+ La elección de la nube de Amazon ha sido realizada por la empresa tras
+ considerar una serie de factores estratégicos y tecnológicos, entre los
+ que se encuentra la seguridad y la escalabilidad del sistema.
+ Tras la consecución del proyecto, se espera que el miniGateway sea integre
+ las características necesarias para comunicarse con AWS
+\begin_inset space ~
+\end_inset
+
+IoT, con el nivel de seguiridad que esta plataforma exige.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+integrar una implementación existente del protocolo TLS en la pasarela (gateway)
+ que interconecta los sensores y actuadores de H2 con Internet.
+ De este modo, conseguiremos que la transmisión de datos entre la red de
+ sensores y la nube se lleve a cabo de forma segura
 \begin_inset Note Note
 status open
 
@@ -166,6 +437,18 @@ status open
 \end_inset
 
 .
+ Como objetivo adicional, planteamos la interconexión de la pasarela con
+ la nube de Amazon para IoT (Amazon Web Services IoT, AWS
+\begin_inset space ~
+\end_inset
+
+IoT).
+ De esta forma, que 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -175,49 +458,95 @@ De forma más concreta, los objetivos perseguidos en este trabajo fin de
 
 \begin_layout Enumerate
 Estudio de los conceptos de seguridad en redes, en especial los que aplican
- a sistemas empotrados y al nuevo paradigma IoT.
+ a sistemas empotrados y al nuevo paradigma de IoT.
  Breve presentación de TLS.
 \end_layout
 
 \begin_layout Enumerate
-Análisis de las implementaciones TLS para sistemas empotrados.
- Elección de una de estas implementaciones.
+Análisis de las implementaciones TLS para sistemas empotrados y elección
+ de una de ellas.
 \end_layout
 
 \begin_layout Enumerate
-Integración de la biblioteca TLS seleccionada en el sistema objetivo.
+Integración de la biblioteca TLS seleccionada en el sistema objetivo (H2
+\begin_inset space ~
+\end_inset
+
+miniGateway).
 \end_layout
 
 \begin_layout Enumerate
-Estudio y presentación de la nube Amazon AWS.
+Estudio y presentación de la nube AWS
+\begin_inset space ~
+\end_inset
+
+IoT.
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
  Breve presentación de MQTT.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Enumerate
-Integración del AWS IoT SDK en el sistema objetivo.
- Prueba de concepto.
+Integración del AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK en el sistema objetivo.
+ Realización de una prueba de concepto.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
 La pasarela está diseñada entorno a un microcontrolador XMC4500 de Infineon,
  que a su vez está basado en un núcleo ARM Cortex-M3.
  Esta pasarela deberá comunicarse con la nube de Amazon AWS IoT, con la
  que intercambiará mensajes mediante el protocolo MQTT.
 \end_layout
 
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
 \begin_layout Section
 Metodología de trabajo
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Mencionar que se ha ido entregando el trabajo en entregables, y que el objetivo
+ es tener una demo, y un manual para facilitar la integración en el sistema
+ final
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 primero pc y luego microcontrolador
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Tests a cada paso
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 El proyecto ha sido puesto bajo control de versiones, usando Git.
  Los sistemas de control de versiones permiten conservar un registro histórico
  de las acciones realizadas, pudiendo volver a estados pasados cuando se
@@ -250,7 +579,7 @@ Fácil integración con el resto del código del gateway: Diseño modular +
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 IDE: DAVE (ver 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -261,13 +590,18 @@ reference "sec:Entorno-de-trabajo"
 )
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
 Decir que se han entregado reports y código a la empresa de forma periódica,
  que el trabajo se ha realizado bajo su supervisión.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
