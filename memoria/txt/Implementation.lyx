@@ -6367,8 +6367,8 @@ Integración de mbedTLS
 \end_layout
 
 \begin_layout Standard
-Tras elegir la implementación TLS que integremos en el sistema, hemos llevado
- a cabo una evaluación en profundidad de la misma.
+Tras elegir la implementación TLS que integraremos en el sistema, hemos
+ llevado a cabo una evaluación en profundidad de la misma.
  Esta se ha basado principalmente en la documentación oficial de mbedTLS,
  disponible en su página web 
 \begin_inset CommandInset citation
@@ -7115,11 +7115,16 @@ Configurar el contexto TLS con
 mbedtls_ssl_config_defaults()
 \family default
 .
- En este paso deben definirse algunos parámetros de configuración de TLS,
- 
-\color red
-como la versión o las ciphersuites
-\color inherit
+ En este paso deben definirse algunos parámetros de configuración de TLS
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+, como la versión o las ciphersuites
+\end_layout
+
+\end_inset
+
 .
 \end_layout
 
@@ -7285,7 +7290,24 @@ Para integrar cualquier biblioteca, lo primero que tendremos que hacer es
  Sin embargo, esta aproximación presenta algunos inconvenientes, sobre todo
  cuando se trata de usar una misma biblioteca que está sujeta a cambios
  en distintos proyectos.
- En este caso, DAVE nos ofrece una alternativa, que hereda de Eclipse IDE.
+ En este caso, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ nos ofrece una alternativa, que hereda de Eclipse
+\begin_inset space ~
+\end_inset
+
+IDE.
  La alternativa consiste en 
 \begin_inset Quotes fld
 \end_inset
@@ -7346,8 +7368,12 @@ DAVE
 
 \end_inset
 
-, como en Eclipse IDE, puede hacerse de forma gráfica accediendo a las propiedad
-es de compilación del proyecto.
+, al igual que en Eclipse
+\begin_inset space ~
+\end_inset
+
+IDE, puede hacerse de forma gráfica accediendo a las propiedades de compilación
+ del proyecto.
  En el caso que nos ocupa, definiremos un símbolo 
 \family typewriter
 DAVE
@@ -7360,7 +7386,11 @@ DAVE
 \family default
 '.
  También tendremos que indicar al compilador que busque archivos de cabecera
- contenidos en mbedtls/include añadiendo esta ruta con el flag '
+ contenidos en 
+\family typewriter
+mbedtls/include
+\family default
+ añadiendo esta ruta con el flag '
 \family typewriter
 -I
 \family default
@@ -7395,11 +7425,15 @@ Adaptación de la biblioteca a la plataforma
 \end_layout
 
 \begin_layout Standard
-Una vez importado el código de la biblioteca y configurada la compilación,
- pasaremos a realizar los cambios necesarios para que esta pueda compilarse
- y ser funcional en la nueva plataforma.
+Una vez importado el código de la biblioteca y establecidos los parámetros
+ de compilación, pasaremos a realizar los cambios necesarios en la biblioteca
+ para que esta pueda compilarse y ser funcional en la nueva plataforma.
  Puesto que mbedTLS selecciona la plataforma a través de directivas condicionale
-s del preprocesador de C (es decir, a través de 
+s del preprocesador de
+\begin_inset space ~
+\end_inset
+
+C (es decir, a través de 
 \family typewriter
 #if
 \family default
@@ -7448,7 +7482,11 @@ status open
 \end_inset
 
 , que es la interfaz de red predeterminada en muchos sistemas tipo Unix,
- así como lo es en Windows.
+ así como lo es en MS
+\begin_inset space ~
+\end_inset
+
+Windows.
  Las versiones recientes de lwIP proporcionan esta interfaz de sockets estándar,
  por lo que se puede utilizar como la pila de red para el sistema.
 \end_layout
@@ -7481,7 +7519,11 @@ Uso de lwIP como la pila de red, incluyendo los ficheros de cabecera al
 \family typewriter
 #ifdef DAVE
 \family default
-, donde DAVE es el símbolo definido anteriormente.
+, donde 
+\family typewriter
+DAVE
+\family default
+ es el símbolo definido anteriormente.
 \end_layout
 
 \begin_layout Itemize
@@ -7594,12 +7636,12 @@ reference "fig:XMC-PRNG-block-diagram"
 \end_inset
 
  genera números pseudoaleatorios de 12 bits.
- Para ello, utiliza un 
-\emph on
-registro de desplazamiento de realimentación lineal
-\emph default
- (linear-feedback shift register, LFSR) de 20 bits que funciona a la frecuencia
- de reloj del sistema.
+ Para ello, utiliza un registro de desplazamiento de realimentación lineal
+ (
+\lang english
+linear-feedback shift register
+\lang spanish
+, LFSR) de 20 bits que funciona a la frecuencia de reloj del sistema.
  Al recibir una señal de 
 \emph on
 trigger
@@ -7634,10 +7676,24 @@ El PRNG forma parte del módulo DAC del microcontrolador, por lo que será
  a través de un ADC.
  Esta lectura está sujeta a pequeñas variaciones, pues la señal analógica
  generada se verá afectada por distintos ruidos, siempre presentes en los
- circuitos electrónicos #ref#.
+ circuitos electrónicos 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "design-of-digital-integrated-circuits"
+
+\end_inset
+
+.
  Además, usaremos una frecuencia relativamente alta en la generación de
  números aleatorios, de forma que el ADC no llegue a estabilizarse en la
- lectura y siempre cometa un error #ref:ADC necesita reposo#.
+ lectura y siempre cometa un error 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SedraSmith"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -7792,9 +7848,9 @@ config-suite-b.h
 \end_inset
 
 B definida por la NSA.
- Esta configuración trata de minimizar el de RAM y usa únicamente criptografía
- de curva elíptica (ECC) como algoritmos de clave pública, satisfaciendo
- los requisitos de AWS
+ Esta configuración trata de minimizar el uso de RAM y emplea únicamente
+ criptografía de curva elíptica (ECC) como algoritmos de clave pública,
+ satisfaciendo los requisitos de AWS
 \begin_inset space ~
 \end_inset
 
@@ -7843,7 +7899,15 @@ MBEDTLS_SELF_TEST
 MBEDTLS_PLATFORM_C
 \family default
  habilita la capa de abstracción de plataforma que permite reasignar funciones
- como calloc(), printf(), etc.
+ como 
+\family typewriter
+calloc()
+\family default
+, 
+\family typewriter
+printf()
+\family default
+, etc.
  Es necesaria para reasignar las funciones de lectura del RTC.
 \end_layout
 
@@ -7927,7 +7991,11 @@ MBEDTLS_ECP_MAX_BITS
 \family typewriter
 MBEDTLS_MPI_MAX_SIZE
 \family default
- limita el tamaño máximo de los enteros de precisión múltiple (MPI).
+ limita el tamaño máximo de los enteros de precisión múltiple (
+\lang english
+multiple-precision integers
+\lang spanish
+, MPI).
  El uso de esta opción requiere conocer cuáles son los requisitos de la
  comunicación.
 \end_layout
@@ -7938,8 +8006,9 @@ MBEDTLS_MPI_MAX_SIZE
 MBEDTLS_SSL_CIPHERSUITES
 \family default
  permite definir las ciphersuites que serán requeridas.
- Solo estas estarán disponibles, evitando que mbedTLS incluya código de
- otras en su compilación y reduciendo por tanto el tamaño del programa.
+ Solo estas estarán disponibles en tiempo de ejecución, evitando que mbedTLS
+ incluya código de otras en su compilación y reduciendo por tanto el tamaño
+ del programa.
 \end_layout
 
 \begin_layout Standard
@@ -8054,7 +8123,7 @@ main()
 self_test()
 \family default
 , ya que el primero está reservado como punto de entrada del programa principal.
- En este, se ejecutan los siguientes pasos:
+ El firmware resultante se ejecuta en los siguientes pasos:
 \end_layout
 
 \begin_layout Enumerate
@@ -8085,7 +8154,7 @@ Configuración de mbedTLS para usar el RTC.
 \end_layout
 
 \begin_layout Enumerate
-Creación de una tarea de una única ejecución, que llamará a la función 
+Creación de una tarea de ejecución única, que llamará a la función 
 \family typewriter
 self_test()
 \family default
@@ -8093,7 +8162,7 @@ self_test()
 \end_layout
 
 \begin_layout Enumerate
-inicialización del kernel del RTOS, mediante la función 
+Inicialización del núcleo del RTOS, mediante la función 
 \family typewriter
 osKernelStart()
 \family default
@@ -8126,18 +8195,23 @@ Gracias a Prometeo,
 \end_layout
 
 \begin_layout Subsubsection
-Test funcional: cliente HTTPS sencillo
+Test funcional: 
+\emph on
+cliente HTTPS sencillo
 \end_layout
 
 \begin_layout Standard
 Para comprobar que mbedTLS funciona en su conjunto y que es posible establecer
- comunicacion con el exterior, hemos probado el programa de ejemplo 
+ comunicación con el exterior, hemos probado el programa de ejemplo 
 \family typewriter
 ssl_client1.c
 \family default
 .
- Este programa, que se encuentra en el directorio programs/ssl, establece
- conexión con un servidor TLS y realiza una petición 
+ Este programa, que se encuentra en el directorio 
+\family typewriter
+programs/ssl
+\family default
+, establece conexión con un servidor TLS y realiza una petición 
 \family typewriter
 HTTP
 \begin_inset space ~
@@ -8155,7 +8229,8 @@ Tal y como hemos hecho con el test anterior, hemos modificado este programa
 \family typewriter
 ssl_client1.c
 \family default
-, en concreto, hemos redefinido 
+.
+ En concreto, hemos redefinido 
 \family typewriter
 SERVER_NAME
 \family default
@@ -8168,18 +8243,34 @@ https://www.wikipedia.org
 \end_inset
 
 .
- Esta vez hemos tenido que conectar el miniGW a Internet.
- Esto lo hemos hecho poniendo un ordenador con GNU/Linux en medio, redireccionan
-do paquetes entre el puerto Ethernet y WiFi, de forma que pudiéramos ver
- los paquetes con Wireshark #ref#.
- Hemos tenido que configurar lwIP y la interfaz Ethernet del computador
- convenientemente para que estuvieran en la misma subred y para que el segundo
- fuera la pasarela del primero.
 \end_layout
 
 \begin_layout Standard
-Al ejecutar el programa, hemos podido ver la respuesta del servidor, que
- ha aceptado nuestra petición devolviendo un 200 OK #ref:HTTP#.
+Para completar este test, hemos tenido que conectar el miniGW a Internet.
+ Esto lo hemos llevado a cabo haciendo uso de un ordenador con GNU/Linux,
+ que ha sido configurado para redireccionar el tráfico de red entre el puerto
+ Ethernet y WiFi, de forma que pudiéramos ver los paquetes de datos con
+ Wireshark 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
+ Una vez hecho esto, hemos tenido que configurar lwIP y la interfaz Ethernet
+ del computador convenientemente, a fin de que las interfaces de ambos dispositi
+vos se encuentren en la misma subred IP y para que el computador se use
+ como pasarela de red del miniGW.
+\end_layout
+
+\begin_layout Standard
+Al ejecutar el programa y analizar algunas variables con el depurador, hemos
+ podido ver la respuesta del servidor, que ha aceptado nuestra petición
+ devolviendo un mensaje 200 OK #ref:HTTP#.
 \end_layout
 
 \begin_layout Standard
@@ -8245,11 +8336,11 @@ Resolución de problemas
 \begin_layout Standard
 En la sección anterior hemos presentado los resultados obtenidos al verificar
  la integración de mbedTLS.
- Como hemos comentado, tras ajustar los programas hemos conseguido que la
- biblioteca funcione correctamente.
+ Como hemos comentado, tras ajustar los programas de ejemplo e integrarlos
+ en el sistema hemos conseguido que la biblioteca funcione correctamente.
  Sin embargo, hemos tenido algunas dificultades en la integración que han
- ido más allá de las configuraciones lógicas que había que hacer.
- En esta sección presentamos estos problemas y la forma en que los hemos
+ ido más allá de las configuraciones expuestas anteriormente.
+ En esta sección presentaremos estos problemas y la forma en que los hemos
  solucionado.
 \end_layout
 
@@ -8258,37 +8349,69 @@ Configuración de CMSIS-RTOS
 \end_layout
 
 \begin_layout Standard
-Como mencionamos en ###, las funciones criptográficas suelen ser computacionalme
-nte costosas, por lo que no solo requieren numerosos ciclos de reloj, sino
- que también hacen un uso intensivo de la memoria.
- Por este motivo, para hacer que mbedTLS funcionara en nuestro sistema,
- hemos tenido que aumentar la memoria disponible para las tareas en RTOS
- hasta 10kB.
+Como mencionamos en el 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Seguridad-en-sist-empotrados"
+
+\end_inset
+
+, las funciones criptográficas suelen ser computacionalmente costosas, por
+ lo que no solo requieren numerosos ciclos de reloj, sino que también hacen
+ un uso intensivo de la memoria.
+ Por este motivo, para hacer que mbedTLS funcione en nuestro sistema, hemos
+ tenido que aumentar la memoria disponible para las tareas en RTOS hasta
+ 10kB.
  Debe tenerse en cuenta que este valor se refiere exclusivamente a la pila,
  es decir, variables declaradas de forma estática en las funciones que de
  mbedTLS y en los programas de ejemplo.
  No tenemos una forma directa de saber cuánto heap está siendo usado por
- las funciones criptográficas, pero podemos presumir que mucho.
+ las funciones criptográficas, aunque podemos presumir que algo más.
 \end_layout
 
 \begin_layout Standard
 Otra configuración que hemos tenido que realizar en este punto ha sido increment
-ar el número máximo de tareas que pueden ejecutarse en paralelo, ya que
- lwIP requiere de varias.
+ar el número máximo de tareas definidas por el usuario que pueden ejecutarse
+ en paralelo, para dar cabida a la tarea de test y a las requeridas por
+ lwIP.
 \end_layout
 
 \begin_layout Subsubsection
-lwIP (Actualización)
+Actualización de lwIP
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Cuál era el problema? Qué versión de lwIP en DAVE?
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-Hemos actualizado lwIP en el proyecto.
- Esto no es trivial, ya que lwIP trabaja directamente con el hardware Ethernet
- y estaba importado en el proyecto como una 
+Al tratar de compilar la integración de mbedTLS en 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+, encontramos numerosos errores de compilación.
+ Estos errores hacían referencia a funciones inexistentes y tipos de variable
+ desconocidos, todos relacionados con la pila de protocolos IP.
+ Tras analizar detenidamente el problema, nos dimos cuenta de que la versión
+ de lwIP que se incluye con la 
 \begin_inset ERT
 status open
 
@@ -8301,13 +8424,67 @@ DAVE APP
 
 \end_inset
 
-.
- El proceso de actualización ha requerido analizar la APP en busca del código
- fuente de lwIP y de los ficheros de configuración, sustituir el directorio
- donde se encuentra el código fuente de lwIP por el de la versión estable
- más reciente (2.0.0), y finalmente aplicar una serie de cambios a la biblioteca
- y a la configuración proporcionada por la APP para hacerla compatible con
- el sistema.
+ (vXX.YY) #! estaba obsoleta, por lo que fue necesario llevar a cabo una
+ actualización.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+Hemos actualizado lwIP en el proyecto.
+ Esto no es trivial, ya que lwIP trabaja directamente con el hardware Ethernet
+ y estaba importado en el proyecto como una
+\end_layout
+
+\end_inset
+
+ El proceso de actualización ha requerido analizar la 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+APP
+\end_layout
+
+\end_inset
+
+ en busca del código fuente de lwIP y de los ficheros de configuración y
+ sustituir el directorio donde se encuentra el código fuente de lwIP.
+ En este caso, hemos usado la versión
+\begin_inset space ~
+\end_inset
+
+2.0.0, por ser la versión estable más reciente en el momento de realizar este
+ trabajo.
+ Finalmente, hemos tenido que aplicar una serie de cambios a la biblioteca
+ y a la configuración proporcionada por la 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+APP
+\end_layout
+
+\end_inset
+
+, para hacerla compatible con el sistema.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Estos cambios han consistido en modificar algunas definiciones de tipos,
+ incluir algunos ficheros de cabecera y resolver conflictos con tipos y
+ funciones ya definidos en otros lugares del proyecto.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8322,27 +8499,75 @@ La metodología de trabajo en este caso ha pasado por analizar los mensajes
 \end_inset
 
 2.0.0 al directorio correspondiente y aplicar un parche tanto a la biblioteca
- como a la APP.
- Este parche ha sido generado usando el comando git
+ como a la 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+APP
+\end_layout
+
+\end_inset
+
+.
+ Este parche ha sido generado usando el comando 
+\family typewriter
+git
 \begin_inset space ~
 \end_inset
 
-diff, para recoger las diferencias entre la versión del proyecto con lwIP
- recién copiado a la versión 2.0.0, y con lwIP funcional después de ajustar
- la APP.
+diff
+\family default
+, para recoger las diferencias entre, por un lado, la versión del proyecto
+ con lwIP recién copiado a la versión 2.0.0, y por otro, con lwIP funcional
+ después de ajustar la 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+APP
+\end_layout
+
+\end_inset
+
+.
  Este script tiene que ejecutarse cada vez que se modifica la configuración
- de las DAVE APPs, ya que al generar el código de las mismas se revierten
- los cambios realizados manualmente al código fuente de la APP de lwIP.
+ de las 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE APPs
+\end_layout
+
+\end_inset
+
+, ya que al generar el código de las mismas se revierten los cambios realizados
+ manualmente al código fuente de la estas, y, en concreto, se revierten
+ los cambios realizados en la 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+APP
+\end_layout
+
+\end_inset
+
+ de lwIP.
 \end_layout
 
 \begin_layout Standard
 Entre los cambios recogidos en este parche, cabe destacar la inclusión de
  los nuevos archivos de cabecera y el renombramiento de algunos tipos y
  símbolos.
-\end_layout
-
-\begin_layout Standard
-Después de aplicar los cambios mencionados, hemos tenido que actualizar
+ Además, después de aplicar los cambios mencionados, hemos tenido que actualizar
  las propiedades de compilación para incluir algunas rutas de archivos de
  cabecera, que se encuentran en dististos directorios ahora.
 \end_layout
@@ -8352,8 +8577,33 @@ Configuración de mbedTLS
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Suite
+\begin_inset space ~
+\end_inset
+
+B VS suite
+\begin_inset space ~
+\end_inset
+
+B
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 La configuración de mbedTLS expuesta anteriormente es la mínima requerida
- para tener suite B de la NSA funcionando en nuestro sistema.
+ para tener la suite
+\begin_inset space ~
+\end_inset
+
+B de la NSA funcionando en nuestro sistema.
  Con esta configuración, el proyecto compila y podemos verificar que los
  módulos de mbedTLS funcionan correctamente.
  Sin embargo, hemos tenido que realizar algunas modificaciones para poder
@@ -8457,18 +8707,36 @@ Detalles de la biblioteca
 \end_layout
 
 \begin_layout Standard
-El Device SDK de AWS IoT para C embebido es una colección de ficheros C
- diseñada para conectar aplicaciones embebidas a la nube de AWS IoT de forma
- segura.
- El SDK incluye clientes de la capa de transporte, implementaciones TLS
- y ejemplos de su uso.
- También da soporte a características específicas de AWS IoT, como una API
- para acceder al 
+El Device SDK de AWS
+\begin_inset space ~
+\end_inset
+
+IoT para
+\begin_inset space ~
+\end_inset
+
+C
+\begin_inset space ~
+\end_inset
+
+embebido es una colección de ficheros
+\begin_inset space ~
+\end_inset
+
+C diseñada para conectar aplicaciones embebidas a la nube de AWS IoT de
+ forma segura.
+ El SDK incluye clientes de la capa de transporte, una implementación de
+ TLS (mbedTLS) y ejemplos de uso.
+ También da soporte a características específicas de AWS
+\begin_inset space ~
+\end_inset
+
+IoT, como una API para acceder al 
 \lang english
 Device Shadow service
 \lang spanish
 .
- Se distribuye en la forma de código fuente, de forma que deberá compilarse
+ Se distribuye en la forma de código fuente, de modo que deberá compilarse
  junto con la aplicación deseada, permitiendo la existencia de otras bibliotecas
  y RTOS 
 \begin_inset CommandInset citation
@@ -8491,8 +8759,19 @@ Estructura de ficheros
 \end_layout
 
 \begin_layout Standard
-A continuación se presenta la estructura de ficheros del Device SDK para
- C embebido 
+A continuación se presenta la estructura de ficheros del AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device
+\begin_inset space ~
+\end_inset
+
+SDK para C
+\begin_inset space ~
+\end_inset
+
+embebido 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "AWS-IoT-SDK-porting-guide"
@@ -8507,9 +8786,12 @@ key "AWS-IoT-SDK-porting-guide"
 \family typewriter
 certs
 \family default
- este directorio es en el que albergará los certificados digitales necesarios
+ este directorio es el que albergará los certificados digitales necesarios
  para la autenticación mutua entre el dispositivo y los servidores de AWS
- IoT.
+\begin_inset space ~
+\end_inset
+
+IoT.
  Aquí se almacenarán el certificado del cliente, su clave privada y la autoridad
  certificadora con la que se verificará la autenticidad del servidor.
 \end_layout
@@ -8519,7 +8801,7 @@ certs
 \family typewriter
 docs
 \family default
- documentación de la API del Device SDK.
+ documentación de la API del SDK.
 \end_layout
 
 \begin_layout Description
@@ -8527,8 +8809,11 @@ docs
 \family typewriter
 external_libs
 \family default
- código fuente de las bibliotecas de las que depende el Device SDK: mbedTLS
- y jsmn
+ código fuente de las bibliotecas de las que depende el Device
+\begin_inset space ~
+\end_inset
+
+SDK: mbedTLS y jsmn
 \begin_inset Foot
 status collapsed
 
@@ -8561,8 +8846,17 @@ status collapsed
 \family typewriter
 include
 \family default
- este directorio contiene los archivos de cabecera (header files) que las
- aplicaciones deben incluir para hacer uso del Device SDK.
+ este directorio contiene los archivos de cabecera 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(header files) 
+\end_layout
+
+\end_inset
+
+que las aplicaciones deben incluir para hacer uso del SDK.
 \end_layout
 
 \begin_layout Description
@@ -8571,7 +8865,17 @@ include
 src
 \family default
  este directorio contiene el código fuente del SDK, incluyendo la biblioteca
- MQTT, el código de la sombra de dispositivo (device shadow) y otras utilidades.
+ MQTT, el código de la sombra de dispositivo 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(device shadow)
+\end_layout
+
+\end_inset
+
+ y otras utilidades.
 \end_layout
 
 \begin_layout Description
@@ -8585,7 +8889,7 @@ platform
 timers
 \lang spanish
 ), la implementación de TLS y la capa de concurrencia.
- Por defecto, el directorio incluye una implementación para Linux usando
+ Por defecto, el directorio incluye una implementación para GNU/Linux usando
  mbedTLS y pthread.
 \end_layout
 
@@ -8594,11 +8898,20 @@ timers
 \family typewriter
 samples
 \family default
- este directorio contiene algunos programas de ejemplo, así como sus makefiles.
+ este directorio contiene algunos programas de ejemplo, así como sus Makefiles.
  Entre estos programas, caben destacar dos ejemplos: el primero demuestra
  el uso de MQTT, a través de la suscripción y publicación en un canal de
  AWS IoT; el segundo muestra cómo interactuar con la sombra del dispositivo
- (device shadow).
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ (device shadow)
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Description
@@ -8614,8 +8927,12 @@ Portabilidad a otras plataformas
 \end_layout
 
 \begin_layout Standard
-En esta sección, explicaremos los elementos del Device SDK que deben ser
- portados para hacer que este pueda ejecutarse en una nueva plataforma.
+En esta sección, explicaremos los elementos del AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK que deben ser portados para hacer que este pueda ejecutarse
+ en una nueva plataforma.
  Cabe destacar que las interfaces del SDK siguen el modelo de controlador,
  donde solo los prototipos están definidos por el Device SDK, mientras que
  la implementación corre a cargo del usuario del SDK, que deberá ajustarla
@@ -8640,9 +8957,19 @@ Timer Functions [requerido]
 
 \begin_layout Standard
 El SDK necesita una implementación de temporizador para gestionar los tiempos
- de espera de las peticiones MQTT (como connect y subscribe, entre otros
- comandos), así como para el mantenimiento de la conexión (MQTT keep-alive
- pings).
+ de espera de las peticiones MQTT (como 
+\emph on
+connect
+\emph default
+ y 
+\emph on
+subscribe
+\emph default
+, entre otros comandos), así como para el mantenimiento de la conexión (
+\emph on
+MQTT keep-alive pings
+\emph default
+).
  Los temporizadores deberán tener una resolución de milisegundos.
  Puesto que los temporizadores se consultan para comprobar si ha transcurrido
  un determinado intervalo de tiempo, es posible usar un contador de ejecución
@@ -8665,8 +8992,7 @@ Network Functions [requerido]
 Para que la pila de clientes MQTT pueda comunicarse a través de la pila
  de protocolos TCP/IP utilizando una conexión TLS autenticada mutuamente,
  es necesario contar con una implementación de las funciones de red.
- Sin embargo, la biblioteca TLS proporciona generalmente la API para el
- socket TCP subyacente.
+ La biblioteca TLS proporciona generalmente la API para el socket TCP subyacente.
 \end_layout
 
 \begin_layout Subsubsection
@@ -8674,8 +9000,11 @@ Threading Functions
 \end_layout
 
 \begin_layout Standard
-La capa de concurrencia proporciona la implementación de mutexes usados
- para operaciones 
+La capa de concurrencia proporciona la implementación de 
+\emph on
+mutexes
+\emph default
+ usados para operaciones 
 \lang english
 thread-safe
 \lang spanish
@@ -8692,12 +9021,27 @@ thread safety
 \end_layout
 
 \begin_layout Section
-Integración de AWS IoT SDK en el miniGW
+Integración de AWS IoT Device SDK en el miniGW
 \end_layout
 
 \begin_layout Standard
-Partiremos del proyecto con mbedTLS, sin ningún programa de ejemplo.
- Gracias a las ramas de git!
+Para llevar a cabo la integración de AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK, partiremos del proyecto con mbedTLS, sin ningún programa
+ de ejemplo.
+ Esto ha sido posible gracias al uso de diferentes ramas en git.
+ En nuestro caso, hemos separado la rama principal de desarrollo (
+\family typewriter
+dev
+\family default
+) de las ramas en las que hemos integrado una prueba del sistema (
+\family typewriter
+test-
+\family default
+), de modo que ha sido muy fácil revertir los cambios y llevar a cabo distintas
+ líneas de desarrollo y de corrección de errores.
 \end_layout
 
 \begin_layout Subsection
@@ -8734,16 +9078,24 @@ src
 \family typewriter
 external_libs/jsmn
 \family default
-, por lo que tendremos que prescindir del resto.
+, por lo que prescindiremos del resto.
  Como ya hemos importado mbedTLS y hemos añadido las rutas de los archivos
  de cabecera, no será necesario introducir la biblioteca en el directorio
- external_libs, aunque podemos hacerlo para una mejor organización.
+ 
+\family typewriter
+external_libs
+\family default
+, aunque podemos hacerlo para una mejor organización del código fuente.
 \end_layout
 
 \begin_layout Standard
-Para terminar de importar AWS IoT Device SDK y permitir que el compilador
- encuentre los archivos de cabecera referenciados por la biblioteca, será
- necesario añadir algunas rutas en las opciones de compilación.
+Para terminar de importar AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK y permitir que el compilador encuentre los archivos de cabecera
+ referenciados por la biblioteca, será necesario añadir algunas rutas en
+ las opciones de compilación.
  En concreto, hemos añadido las siguientes entradas con el flag '
 \family typewriter
 -I
@@ -8769,10 +9121,11 @@ Definición de una nueva plataforma
 
 \begin_layout Standard
 A diferencia de mbedTLS, el Device SDK de AWS IoT se basa en el modelo de
- controladores para facilitar la portabilidad a otras plataformas.
- Siguiendo este modelo, esta biblioteca incluye un directorio platform,
- donde se colocan los ficheros dependientes de plataforma de forma estructurada.
- De esta forma, es posible definir varias plataformas, usándose solo la
+ controladores, con el que se intenta facilitar la portabilidad a otras
+ plataformas.
+ Siguiendo este modelo, la biblioteca incluye un directorio platform, donde
+ se colocan los ficheros dependientes de plataforma de una forma estructurada.
+ De esta manera, es posible definir varias plataformas, usándose solo la
  que se incluya en las opciones de compilación del proyecto.
  Otra particularidad de este modelo es que las funciones que se encuentran
  en este directorio son, en realidad, envoltorios (
@@ -8808,8 +9161,16 @@ Temporizadores
 \end_layout
 
 \begin_layout Standard
-Estas funciones se encargan de los timeouts.
- Rellenaremos los wrappers encontrados en el fichero 
+Estas funciones se encargan de los 
+\lang english
+timeouts
+\lang spanish
+.
+ Rellenaremos los 
+\lang english
+wrappers
+\lang spanish
+ encontrados en el fichero 
 \family typewriter
 timer.c
 \family default
@@ -8860,12 +9221,26 @@ platform/DAVE4_CMSIS_RTOS/mbedtls
 \family default
  contiene las funciones que se encargan de inicializar los contextos TLS
  y usar los sockets de manera conveniente.
- Puesto que AWS IoT Device SDK usa mbedTLS por defecto, no ha habido que
- realizar grandes cambios aquí.
- Simplemente, hemos tenido que modificar algunas líneas de network_mbedtls_wrapp
-er.c, en concreto, la función iot_tls_init(), para hacer que no cargue los
- certificados a partir de ficheros, sino que parsee certificados contenidos
- en variables directamente.
+ Puesto que AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK usa mbedTLS por defecto, no ha habido que realizar grandes
+ cambios aquí.
+ Simplemente, hemos tenido que modificar algunas líneas de 
+\family typewriter
+network_mbedtls_wrapper.c
+\family default
+, en concreto, la función 
+\family typewriter
+iot_tls_init()
+\family default
+, para hacer que no cargue los certificados a partir de ficheros, sino que
+ 
+\emph on
+parsee
+\emph default
+ certificados contenidos en variables directamente.
 \end_layout
 
 \begin_layout Subsubsection
@@ -8881,20 +9256,16 @@ El Device SDK de AWS IoT requiere de un archivo de configuración nombrado
 \family typewriter
 aws_iot_config.h
 \family default
- y que sea accesible al compilador.
+ que debe ser accesible al compilador.
  Este fichero, que contiene tanto información sobre la conexión como configuraci
 ones de los módulos, se incluye en algunas de las cabeceras de estos mismos
  módulos.
- Por ello, deberemos importar este fichero en nuestro proyecto, copiándolo
+ Por ello, tendremos que importar este fichero en nuestro proyecto, copiándolo
  de cualquiera de los ejemplos que se proveen (por ejemplo, en 
 \family typewriter
 samples/linux/shadow_sample
 \family default
 ).
-\end_layout
-
-\begin_layout Standard
-Configuración de AWS IoT Console
 \end_layout
 
 \begin_layout Subsection
@@ -8905,7 +9276,7 @@ Configuración de AWS IoT SDK
 Llegados a este punto tenemos una integración de AWS IoT Device SDK que
  compila en el sistema, y cuyas funciones pueden ser usadas desde las distintas
  tareas, siempre y cuando se incluyan los archivos de cabecera al inicio
- del código fuente de la tarea.
+ de su código fuente.
  A continuación llevaremos a cabo algunas configuraciones que serán necesarias
  para establecer una comunicación con la nube de Amazon.
 \end_layout
@@ -8934,7 +9305,7 @@ reference "subsec:Estructura-ficheros-AWS-IoT"
 \family typewriter
 .der
 \family default
-, que serían abiertos por mbedTLS accediendo al sistema de ficheros.
+, y serían abiertos por mbedTLS accediendo al sistema de ficheros.
  Sin embargo, nuestro sistema no cuenta con dicho sistema de ficheros, por
  lo que almacenaremos los certificados y la clave en unas constantes, que
  se definirán en un fichero 
@@ -8950,7 +9321,7 @@ hardcoded
 ) por lo que será imposible acceder a ellos si no se dispone de una interfaz
  de depuración
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Aun con el hardware necesario para la depuración, existen formas de proteger
@@ -8963,8 +9334,8 @@ le #ref#.
 .
  Por simplicidad, las constantes de este fichero no serán más que cadenas
  de caracteres ASCII con el contenido literal de los certificados y de la
- clave privada en formato PEM (formalmente, PKIX Textual Encodings, tal
- y como se define en el RFC7468 
+ clave privada en formato PEM (formalmente PKIX Textual Encodings, tal y
+ como se define en el RFC7468 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "rfc4648-Base64-encoding,rfc7468-PKIX-Encoding"
@@ -8995,11 +9366,8 @@ ca_root
 ).
  Estas constantes serán usadas posteriormente por el programa de ejemplo
  a la hora de establecer la conexión con el servidor.
-\end_layout
-
-\begin_layout Standard
-El contenido de estas constantes se obtendrá de la consola de AWS IoT, como
- se explicará en la siguiente sección.
+ El contenido de estas constantes se obtendrá de la consola de AWS IoT,
+ como se explicará en la siguiente sección.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9034,21 +9402,55 @@ Una vez integrada la biblioteca, tendremos que configurar algunos parámetros
 \family typewriter
 aws_iot_config.h
 \family default
-, el cuál contiene se importará al proyecto a partir del programa de ejemplo
- 
+, el cuál se importará al proyecto a partir del programa de ejemplo 
 \family typewriter
 subscribe_publish_sample
 \family default
- (o de cualquier otro, porque todos los ficheros de configuración son iguales).
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+En realidad, los ficheros de configuración de todos los programas de ejemplo
+ son idénticos.
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Como se vio en #(AWS IoT) es necesario que el dispositivo tenga algunos
- parámetros de AWS.
- Modificaremos las siguientes línas de aws_iot_config.h con los parámetros
- de conexión obtenidos de la consola de AWS IoT.
- Más detalles en la obtención de estos parámetros se explicarán en la sección
- ###.
+Como se vio en el 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:AWS-IoT"
+
+\end_inset
+
+, es necesario que el dispositivo tenga algunos parámetros de conexión de
+ los servidores de AWS.
+ Modificaremos las siguientes línas de 
+\family typewriter
+aws_iot_config.h
+\family default
+ con los parámetros obtenidos de la consola de AWS
+\begin_inset space ~
+\end_inset
+
+IoT.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Más detalles en la obtención de estos parámetros se explicarán en la sección
+ ###
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Description
@@ -9056,17 +9458,7 @@ Como se vio en #(AWS IoT) es necesario que el dispositivo tenga algunos
 \family typewriter
 AWS_IOT_MQTT_HOST
 \family default
- URL
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-uri?
-\end_layout
-
-\end_inset
-
- del personal endpoint asociado a AWS IoT.
+ URL del personal endpoint asociado a AWS IoT.
  Puede encontrarse en la pestaña Settings de la consola, y tiene el formato
  
 \family typewriter
@@ -9081,7 +9473,7 @@ xxxxxxx.region-key.amazonaws.com
 AWS_IOT_MQTT_PORT
 \family default
  puerto para la conexión MQTT.
- Dejaremos el valor por defecto: 8883.
+ Dejaremos el valor por defecto (8883).
 \end_layout
 
 \begin_layout Description
@@ -9110,7 +9502,11 @@ AWS_IOT_ROOT_CA_FILENAME
 \family default
  variable o constante donde se almacena el certificado digital de la autoridad
  certificadora, con la que el dispositivo autenticará a los servidores de
- AWS IoT.
+ AWS
+\begin_inset space ~
+\end_inset
+
+IoT.
  Nótese que por los cambios realizados en la biblioteca, aquí no se indicará
  un nombre de archivo, sino el contenido del mismo.
  En este caso, será la constante 
@@ -9157,10 +9553,7 @@ El resto de parámetros definidos en el fichero se han dejado intactos, con
  sus valores por defecto.
  Estos parámetros controlan la configuración de búferes, uso de la sombra
  y otros parámetros de conexión.
-\end_layout
-
-\begin_layout Standard
-Además, incluiremos las constantes de los certificados digitales como extern,
+ Además, incluiremos las constantes de los certificados digitales como extern,
  para que las mismas puedan ser usadas donde se requiera.
 \end_layout
 
@@ -9180,20 +9573,53 @@ A continuación comprobaremos que la integración de AWS IoT Device SDK se
 do que existe una transmisión de datos.
  Para ello, será necesario establecer un escenario de prueba, que definiremos
  a continuación.
- Solo llevaremos a cabo dos tests funcionales: subscribe_publish y shadow.
- Estos tests requerirán de la configuración conjunta de la plataforma y
- del dispositivo.
- En esta sección explicamos las configuraciones llevadas a cabo para estos
- tests en particular (no se han contado antes porque en la sección anterior
- se habla de configuraciones que hacen referencia exclusivamente al SDK
- y que serán necesarias en cualquier setup, por lo que el fichero de configuraci
-ón del SDK ya queda presentado).
+ Solo llevaremos a cabo dos tests funcionales, ejecutando el código de los
+ ejemplos 
+\family typewriter
+subscribe_publish
+\family default
+ y 
+\family typewriter
+shadow
+\family default
+ que se proporcionan en el directorio 
+\family typewriter
+sample
+\family default
+.
+ Estos tests requerirán que confiuguremos de forma conjunta tanto la plataforma
+ y como el dispositivo.
+ En esta sección explicaremos las configuraciones llevadas a cabo para estos
+ tests en particular, que van un poco más allá de las expuestas en el epígrafe
+ anterior.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ (no se han contado antes porque en la sección anterior se habla de configuracio
+nes que hacen referencia exclusivamente al SDK y que serán necesarias en
+ cualquier setup, por lo que el fichero de configuración del SDK ya queda
+ presentado)
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 El test funcional requiere tener configurado correctamente tanto el miniGW
  como el servicio AWS IoT.
  Estas configuraciones deben ser coherentes entre sí.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9224,16 +9650,39 @@ reference "fig:Configuración-de-prueba-AWS-IoT"
 \end_inset
 
 .
- Como vemos, conectaremos el miniGW a Internet a través de un computador
- que funcionará de puerta de enlace realizando IP forwarding #ref?#.
- Esta conexión será monitorizada con Wireshark, donde veremos los paquetes
- transmitidos en ambas direcciones (útil para ver si se lleva a cabo la
- conexión, en qué punto falla, si hay paquetes erróneos, en qué capa).
+ Como podemos ver en la misma, conectaremos el miniGW a Internet a través
+ de un computador GNU/Linux que hará las veces de puerta de enlace, a través
+ del conocido IP forwarding 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
+ Esta conexión será monitorizada con Wireshark 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+, donde veremos los paquetes transmitidos en ambas direcciones.
+ Gracias a este sotfware, podremos comprobar si se lleva a cabo la conexión,
+ en qué puntos se producen errores en la misma, si hay paquetes erróneos,
+ etc.
  En este mismo computador tendremos una terminal serial para visualizar
- la salida del firmware.
- Esta salida se usa para comprobar que se realizan todos los pasos correctamente
- (inicialización del OS, inicialización de los módulos, distintos pasos
- de la conexión), pero no está configurada para interactuar con el miniGW.
+ la salida de las trazas de depuración definidas en el firmware.
+ Esta conexión serial se usa para comprobar que se realizan todos los pasos
+ correctamente (inicialización del RTOS, inicialización de los módulos,
+ distintos pasos de la conexión, envío y recepción de mensajes, etc.), pero
+ no está configurada para interactuar con el miniGW.
 \end_layout
 
 \begin_layout Standard
@@ -9251,12 +9700,26 @@ DAVE
 
 \end_inset
 
-, con la que cargaremos el firmware cada vez que hagamos cambios y podremos
- usar las herramientas de depuración, como puntos de ruptura (
+, con la que cargaremos el firmware cada vez que hagamos cambios.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ también nos permitirá usar las herramientas de depuración, como puntos
+ de ruptura (
 \lang english
 breakpoints
 \lang spanish
-), para analizar mejor los problemas.
+), con las que podremos analizar los problemas con más detalle.
  En este computador también tendremos abierta la consola de AWS IoT, desde
  la que veremos si la conexión se ha establecido y podremos analizar el
  intercambio de mensajes MQTT.
@@ -9332,18 +9795,15 @@ En esta sección trataremos la creación y configuración de un dispositivo
 \end_layout
 
 \begin_layout Standard
-Como se ha indicado en el epígrafe
-\begin_inset space ~
-\end_inset
-
-###, para conectar el dispositivo tendremos que definirlo en la plataforma.
+Como hemos indicado anteriormente, para conectar el dispositivo a la Nube,
+ tendremos que definirlo en la plataforma.
  También tendremos que asignarle un certificado digital y una política de
  acceso.
  
 \end_layout
 
 \begin_layout Standard
-En primer lugar, tendremos que crear el dispositivo.
+En primer lugar, deberemos crear un dispositivo virtual en la plataforma.
  Tendremos que definir los distintos parámetros de nuestro dispositivo,
  como el nombre, que será fundamental para conectarnos al mismo (
 \family typewriter
@@ -9360,49 +9820,6 @@ firmware
  no deben confundirse con el estado del mismo.
  De forma alternativa, nuestro dispositivo podría heredar los atributos
  de un tipo que hayamos definido previamente.
-\end_layout
-
-\begin_layout Standard
-El siguiente paso será crear un certificado.
- Es imprescindible que al crear el certificado se descargue la clave privada
- del mismo, ya que será la única oportunidad que tendremos (esta clave se
- elimina después de cerrar el diálogo).
- También tendremos que descargar el CA root, disponible desde la misma pestaña.
-\end_layout
-
-\begin_layout Standard
-A continuación, tendremos que asociar este certificado con el dispositivo
- y con una política de acceso.
- Como se trata de un test, definiremos una política de acceso bastante laxa,
- en la que el dispositivo podrá interactuar libremente con todos los elementos
- IoT, añadiendo a la política la acción 
-\family typewriter
-iot:*
-\family default
-.
-\end_layout
-
-\begin_layout Standard
-En la pestaña 
-\family sans
-\lang english
-Manage
-\family default
-\lang spanish
- del dispositivo ahora se mostrará nuestro recién definido dispositivo (figura
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Manage-Things-(with-device)"
-
-\end_inset
-
-).
- Haciendo click en el mismo, podremos acceder a sus detalles, donde encontraremo
-s algunos datos de interés, organizados en distintas pestañas.
 \end_layout
 
 \begin_layout Standard
@@ -9471,23 +9888,41 @@ reference "fig:Thing-properties-1"
 
 \end_inset
 
-) se mostrará la información que tendremos que copiar para configurar #fichero_c
-onfig_aws#.
- Anotaremos para su posterior uso el valor de los valores de 
+) se mostrará la información que tendremos que copiar para configurar el
+ fichero 
 \family typewriter
-\series bold
-\size small
-\color brown
-endpoint
+aws_iot_config.h
 \family default
-\series default
-\size default
-\color inherit
+.
+ En concreto, aquí se muestra la información sobre el endpoint, con la que
+ deberá definirse el símbolo 
+\family typewriter
+AWS_IOT_MQTT_HOST
+\family default
 .
 \end_layout
 
 \begin_layout Standard
-Llegados a este punto, habremos terminado de configurar la plataforma.
+El siguiente paso será crear un certificado.
+ Es imprescindible que al crear el certificado se descargue la clave privada
+ del mismo, ya que al cerrar el diálogo de descarga la clave privada será
+ eliminada de la plataforma.
+ También tendremos que descargar el certificado raíz (CA root), disponible
+ desde la misma pestaña.
+\end_layout
+
+\begin_layout Standard
+A continuación, tendremos que asociar este certificado con el dispositivo
+ y con una política de acceso.
+ Como se trata de un test, definiremos una política de acceso bastante laxa,
+ en la que el dispositivo podrá interactuar libremente con todos los elementos
+ IoT.
+ Para ello, añadieremos a la política la acción 
+\family typewriter
+iot:*
+\family default
+.
+ Llegados a este punto, habremos terminado de configurar la plataforma.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9506,14 +9941,10 @@ subscribe_publish_sample
 shadow_sample
 \family default
 .
- Al igual que hicimos con mbedTLS, modificaremos el ejemplo para que su
- código se ejecute dentro de una tarea de RTOS.
- 
-\end_layout
-
-\begin_layout Standard
-En este caso, los pasos seguidos por el firmware en su ejecución son los
- siguientes: 
+ También aquí tendremos que modificar el ejemplo para que su código se ejecute
+ dentro de una tarea de RTOS.
+ En este caso, los pasos seguidos por el firmware en su ejecución son los
+ siguientes:
 \end_layout
 
 \begin_layout Enumerate
@@ -9570,35 +10001,50 @@ osKernelStart()
 \end_layout
 
 \begin_layout Standard
-La ejecución de este programa tiene como resultado el intercambio de mensajes.
- En primer lugar se lleva a cabo la ejecución de un handshake TLS correcto,
- que hemos comprobado en Wireshark.
- Tras el handshake, los datos se envían encriptados, por lo que no podemos
- ver su contenido.
- En cambio, podemos comprobar que los mensajes llegan a AWS IoT Console.
- En la consola de AWS
+La ejecución de este programa tiene como resultado el intercambio de mensajes
+ MQTT entre el miniGW y la Nube.
+ En primer lugar se lleva a cabo la ejecución de un handshake TLS, que hemos
+ podido observar usando Wireshark.
+ Tras el handshake, los datos de aplicación se envían encriptados, por lo
+ que no podemos observar el contenido de los paquetes.
+ En cambio, podemos comprobar que produce una comunicación con la Nube observand
+o los mensajes a través de la consola de AWS
 \begin_inset space ~
 \end_inset
 
-IoT, para ver que efectivamente se está produciendo una comunicación, nos
- dirigiremos a la pestaña 
+IoT.
+ Para ello nos dirigiremos a la pestaña 
 \family sans
 \lang english
 Activity
 \family default
 \lang spanish
-, donde podremos ver las sucesivas actualizaciones de la sombra (figura
-\begin_inset space ~
+, 
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+donde podremos ver las sucesivas actualizaciones de la sombra
+\end_layout
+
 \end_inset
 
-
+ , como se muestra en la #missing-figure#.
+ Para observar el estado actual del dispositivo, podemos consultar su sombra
+ en la pestaña 
+\family sans
+\lang english
+Shadow
+\family default
+\lang spanish
+, tal y como se muestra en la 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "fig:Thing-properties"
 
 \end_inset
 
-).
+.
 \end_layout
 
 \begin_layout Standard
@@ -9662,30 +10108,8 @@ Sustituir por imagen con el contenido real del miniGW.
 \end_layout
 
 \begin_layout Standard
-Para observar el estado actual del dispositivo, podemos consultar su sombra
- en la pestaña 
-\family sans
-\lang english
-Shadow
-\family default
-\lang spanish
- (figura
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Thing-properties"
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
 Como podemos comprobar, tras este proceso de integración, el miniGW puede
- comunicarse con los servidores AWS IoT, que será nuestra plataforma.
+ comunicarse con los servidores AWS IoT.
 \end_layout
 
 \begin_layout Standard
@@ -9720,6 +10144,16 @@ Configuración de CMSIS-RTOS
 \begin_layout Standard
 De nuevo, hemos necesitado más memoria para CMIS-RTOS.
  Esto se debe a que en esta ocasión estamos verificando un certificado
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Con la conexión HTTPS no se verificaba el certificado del servidor #?
+\end_layout
+
+\end_inset
+
+
 \begin_inset Note Note
 status open
 
