@@ -122,13 +122,22 @@ IoT es muy guay, y está creciendo mucho -> Referencias académicas aquí!
 \end_layout
 
 \begin_layout Standard
-De entre todas las revoluciones de Internet, el Internet de las Cosas (Internet
- of Things, IoT) es probablemente la que tiene mayor impacto en la actualidad
- #ref#.
+De entre todas las revoluciones de Internet, el Internet de las Cosas (
+\lang english
+Internet of Things
+\lang spanish
+, IoT) es probablemente la que tiene mayor impacto en la actualidad #ref#.
  Este nuevo paradigma, que consiste en la conexión masiva de dispositivos
  de uso cotidiano a Internet #ref#, posibilita la creación de nuevos servicios
- y propuestas de valor, como los SmartHomes, SmartCities o la Industria
- 4.0 #ref#.
+ y propuestas de valor, como los 
+\lang english
+SmartHomes
+\lang spanish
+, 
+\lang english
+SmartCities
+\lang spanish
+ o la Industria 4.0 #ref#.
  Muchas empresas ven nuevas oportunidades de negocio fundamentadas en
 \begin_inset Note Note
 status open
@@ -228,8 +237,11 @@ Definir ciberseguridad?
  pudiendo llegar a incurrir en daños materiales o incluso personales.
  Un escenario pesimista frecuentemente citado en la literatura es el uso
  de la nueva masa de dispositivos para llevar a cabo ataques de denegación
- de servicio distribuidos (distributed denial-of-service, DDoS), con las
- nefastas consecuencias que esto conllevaría #ref#.
+ de servicio distribuidos (
+\lang english
+distributed denial-of-service
+\lang spanish
+, DDoS), con las nefastas consecuencias que esto conllevaría #ref#.
  Por este motivo, la seguridad
 \begin_inset Foot
 status collapsed
@@ -415,12 +427,12 @@ IoT).
  La elección de la nube de Amazon ha sido realizada por la empresa tras
  considerar una serie de factores estratégicos y tecnológicos, entre los
  que se encuentra la seguridad y la escalabilidad del sistema.
- Tras la consecución del proyecto, se espera que el miniGateway sea integre
- las características necesarias para comunicarse con AWS
+ Tras la consecución del proyecto, se espera que el miniGW sea integre las
+ características necesarias para comunicarse con AWS
 \begin_inset space ~
 \end_inset
 
-IoT, con el nivel de seguiridad que esta plataforma exige.
+IoT, con el nivel de seguridad que esta plataforma exige.
  
 \end_layout
 
@@ -478,7 +490,7 @@ Integración de la biblioteca TLS seleccionada en el sistema objetivo (H2
 \begin_inset space ~
 \end_inset
 
-miniGateway).
+miniGW).
 \end_layout
 
 \begin_layout Enumerate
@@ -2280,7 +2292,14 @@ Como vemos, la criptografía de clave pública requiere que cada usuario tenga
  usuario necesita para descifrar los mensajes.
  Constantemente nos referiremos a estas claves como las claves pública y
  privada, respectivamente, y las distinguiremos de las claves secretas utilizada
-s para la criptografía de clave simétrica convencional.
+s para la criptografía de clave simétrica convencional 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2561,7 +2580,14 @@ The problem of devising a replacement for handwritten signatures is a diffi-
 Las firmas tradicionales se llevan usando mucho tiempo para establecer compromis
 os legales entre dos partes.
  En un esquema de comunicación, esto se traduce en garantizar una serie
- de situaciones:
+ de situaciones 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Enumerate
@@ -2577,7 +2603,7 @@ El receptor no puede haber elaborado el mensaje por sí mismo.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -2647,55 +2673,93 @@ Firmas digitales de clave pública
 \begin_layout Standard
 El problema de las firmas digitales puede resolverse de forma relativamente
  sencilla haciendo uso de la criptografía de clave pública.
- De hecho, este enfoque es el más usado en nuestros días.
+ De hecho, este enfoque es el más usado hoy en día.
 \end_layout
 
 \begin_layout Standard
-Supongamos que los algoritmos de cifrado y descifrado de clave pública tienen
- la propiedad de que 
+Supongamos que los algoritmos de encriptación y desencriptación de clave
+ pública tienen la propiedad de que 
 \begin_inset Formula $E(D(P))=P$
 \end_inset
 
-, además, por supuesto, de la propiedad habitual de que 
+ (además, por supuesto, de la propiedad habitual de que 
 \begin_inset Formula $D(E(P))=P$
 \end_inset
 
-.
- Suponiendo que este sea el caso, Alice puede enviar un mensaje en texto
- plano, firmado, a Bob transmitiendo 
+).
+ En este caso, Alice puede enviar un mensaje 
+\begin_inset Formula $P$
+\end_inset
+
+ firmado a Bob transmitiendo 
 \begin_inset Formula $E_{B}(D_{A}(P))$
 \end_inset
 
 .
- Tenga en cuenta que Alice conoce su propia clave privada, 
+ Puesto que Alice conoce su propia clave privada, 
 \begin_inset Formula $D_{A}$
 \end_inset
 
-, así como la clave pública de Bob, 
+ y la clave pública de Bob, 
 \begin_inset Formula $E_{B}$
 \end_inset
 
-, por lo que construir este mensaje es algo que Alice puede hacer.
-\end_layout
-
-\begin_layout Standard
-Cuando Bob recibe el mensaje, lo transforma usando su clave privada, como
+, construir este mensaje es algo que Alice puede hacer.
+ Cuando Bob recibe el mensaje, lo transforma usando su clave privada, como
  de costumbre, produciendo 
 \begin_inset Formula $D_{A}(P)$
 \end_inset
 
-, como se muestra en la figura 8-19.
- Almacena este texto en un lugar seguro y luego aplica 
+, al que aplica 
 \begin_inset Formula $E_{A}$
 \end_inset
 
- para obtener el texto original.
+ para obtener el texto original 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Para ver cómo funciona la propiedad de la firma, supongamos que posteriormente
- Alicia niega haber enviado el mensaje P a Bob.
- Cuando se presenta el caso en la corte, Bob puede producir P y 
+Alice no podrá negar haber enviado el mensaje 
+\begin_inset Formula $P$
+\end_inset
+
+ a Bob, ya que su clave pública está disponible de forma abierta y por tanto
+ es posible demostrar que 
+\begin_inset Formula $D_{A}(P)$
+\end_inset
+
+ solo puede haber sido generado por ella.
+ Sin embargo, este esquema trae consigo algunos problemas relacionados con
+ la gestión de claves.
+ Algunos de estos problemas son el robo de la clave privada, o el cambio
+ de clave.
+ Algunos de estos problemas pueden ser resueltos con una infraestructura
+ de clave pública (
+\lang english
+public key infrastructure
+\lang spanish
+, PKI), como la que explicaremos en el 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:X509"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Cuando se presenta el caso en la corte, Bob puede producir P y 
 \begin_inset Formula $D_{A}(P)$
 \end_inset
 
@@ -2717,7 +2781,7 @@ Para ver cómo funciona la propiedad de la firma, supongamos que posteriormente
  para idear nuevos e interesantes algoritmos de clave pública.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Si bien el uso de la criptografía de clave pública para firmas digitales
  es un esquema elegante, existen problemas que están relacionados con el
  entorno en el que operan y no con el algoritmo básico.
@@ -2731,7 +2795,7 @@ Si bien el uso de la criptografía de clave pública para firmas digitales
  cualquiera podría haber enviado el mensaje, incluido el propio Bob.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 El problema podría surgir, por ejemplo, si Bob es el corredor de bolsa de
  Alice.
  Supongamos que Alice le dice a Bob que compre una determinada acción o
@@ -2745,7 +2809,7 @@ El problema podría surgir, por ejemplo, si Bob es el corredor de bolsa de
  sucedió.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Otro problema con el esquema de firma es qué sucede si Alice decide cambiar
  su clave.
  Hacerlo es claramente legal, y probablemente sea una buena idea hacerlo
@@ -2767,7 +2831,7 @@ Otro problema con el esquema de firma es qué sucede si Alice decide cambiar
  Bob se verá bastante estúpido en este punto.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 En principio, cualquier algoritmo de clave pública se puede usar para firmas
  digitales.
  El estándar de la industria de facto es el algoritmo RSA.
@@ -2778,8 +2842,13 @@ En principio, cualquier algoritmo de clave pública se puede usar para firmas
 , más que de la dificultad de factorizar grandes números.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status collapsed
 
 \begin_layout Plain Layout
@@ -2872,14 +2941,6 @@ In principle, any public-key algorithm can be used for digital signatures.
 
 \end_layout
 
-\begin_layout Standard
-El proceso explicado también puede llevarse a cabo empleando un hash del
- mensaje, en vez del mensaje completo.
- Este método tiene dos ventajas: por un lado, el hash será más corto que
- el mensaje, por lo que será más eficiente de (des)cifrar; por otro lado,
- separamos los pasos/funciones de autenticación y confidencialidad.
-\end_layout
-
 \begin_layout Section
 Funciones hash criptográficas
 \begin_inset Index idx
@@ -2905,8 +2966,248 @@ message digest
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+El proceso de firma explicado también puede llevarse a cabo empleando un
+ hash del mensaje, en lugar del mensaje completo.
+ Este método tiene dos ventajas.
+ Por un lado, el hash será más corto que el mensaje, por lo que será el
+ proceso de firma más eficiente, tanto en la generación como en la verificación.
+ Por otro lado, separamos las funciones de autenticación y confidencialidad,
+ por lo que no será necesario encriptar un mensaje si lo único que necesitamos
+ es una firma autenticada y no repudiable.
+\end_layout
+
+\begin_layout Standard
+El esquema que exponemos a continuación se basa en la idea de una función
+ hash unidireccional que toma un texto plano de longitud arbitraria calcula
+ una cadena de bits de longitud fija a partir de este.
+ Esta función hash, a menudo denominada 
+\lang english
+message digest
+\lang spanish
+ (MD), debe cumplir cuatro propiedades importantes 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+1.
+ Dado 
+\begin_inset Formula $P$
+\end_inset
+
+, es fácil calcular 
+\begin_inset Formula $MD(P)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+2.
+ Dado 
+\begin_inset Formula $MD(P)$
+\end_inset
+
+, es efectivamente imposible encontrar 
+\begin_inset Formula $P$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+3.
+ Dado 
+\begin_inset Formula $P$
+\end_inset
+
+, es extremadamente difícil encontrar 
+\begin_inset Formula $P'$
+\end_inset
+
+ tal que 
+\begin_inset Formula $MD(P')=MD(P)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+4.
+ Un cambio en la entrada, por pequeño que sea, producirá una salida muy
+ diferente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
 status open
+
+\begin_layout Plain Layout
+Para cumplir el criterio 3, el hash debe tener al menos 128 bits de longitud,
+ preferiblemente más.
+ Para cumplir el criterio 4, el hash debe manipular los bits muy a fondo,
+ a diferencia de los algoritmos de cifrado de clave simétrica que hemos
+ visto.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Computar el hash de un mensaje es mucho más eficiente que encriptarlo con
+ un algoritmo de clave pública, por lo que los 
+\lang english
+message digests
+\lang spanish
+ pueden usarse para acelerar algoritmos de firma digital.
+\end_layout
+
+\begin_layout Standard
+El funcionamiento de este tipo de firmas queda ilustrado en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Uso-de-SHA-1"
+
+\end_inset
+
+.
+ Como puede verse en la misma, el mensaje de Alice 
+\begin_inset Formula $M$
+\end_inset
+
+ se envía sin encriptar, junto a un hash firmado 
+\begin_inset Formula $D_{A}(H)$
+\end_inset
+
+, donde 
+\begin_inset Formula $H=MD(M)$
+\end_inset
+
+ usando el algoritmo de hash seguro SHA-1 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "national1993secure"
+
+\end_inset
+
+.
+ Gracias a las propiedades de las funciones de hash, este esquema permite
+ a Bob verificar la identidad de Alice y la integridad del mensaje en un
+ paso, simplemente comprobando que 
+\begin_inset Formula $E_{A}(D_{A}(H))=MD(M)$
+\end_inset
+
+.
+ En caso de que esto no pueda comprobarse, el mensaje puede haber sido modificad
+o (o haber sido firmado por otra entidad), por lo que deberemos desconfiar
+ del mismo.
+ En cambio, si el resultado coincide, podremos estar seguros de que el mensaje
+ ha sido no ha sido modificado en su transmisión, y que ha sido firmado,
+ en este caso, por Alice.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/sha1-tanenbaum.eps
+	width 85col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Uso-de-SHA-1"
+
+\end_inset
+
+Uso del algoritmo seguro de hash SHA-1 y del algoritmo de clave pública
+ RSA para la firma de un documento no confidencial 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+SHA-1 y SHA-2
+\end_layout
+
+\begin_layout Plain Layout
+Se ha propuesto una variedad de funciones de resumen de mensaje.
+ Una de las funciones más utilizadas es SHA-1 (Secure Hash Algorithm 1)
+ (NIST, 1993).
+ Como todos los resúmenes de mensajes, opera procesando bits de una manera
+ lo suficientemente complicada como para que cada bit de salida se vea afectado
+ por cada bit de entrada.
+ SHA-1 fue desarrollado por NSA y bendecido por NIST en FIPS 180-1.
+ Procesa datos de entrada en bloques de 512 bits y genera un resumen de
+ mensaje de 160 bits.
+ Una forma típica para que Alice envíe un mensaje no secreto pero firmado
+ a Bob se ilustra en [fig: Uso-de-SHA-1].
+ Aquí, su mensaje de texto plano se introduce en el algoritmo SHA-1 para
+ obtener un hash SHA-1 de 160 bits.
+ Luego, Alice firma el hash con su clave privada RSA y envía tanto el mensaje
+ de texto simple como el hash firmado a Bob.
+\end_layout
+
+\begin_layout Plain Layout
+Después de recibir el mensaje, Bob calcula el mismo hash SHA-1 y también
+ aplica la clave pública de Alice al hash firmado para obtener el hash original,
+ H.
+ Si los dos están de acuerdo, el mensaje se considera válido.
+ Como Trudy no puede modificar el mensaje (texto sin formato) mientras está
+ en tránsito y producir uno nuevo que se haya desplazado a H, Bob puede
+ detectar fácilmente cualquier cambio que Trudy haya realizado en el mensaje.
+ Para los mensajes cuya integridad es importante pero cuyos contenidos no
+ son secretos, el esquema de la figura 8-21 es ampliamente utilizado.
+ Por un costo relativamente pequeño en computación, garantiza que cualquier
+ modificación realizada en el mensaje de texto simple en tránsito puede
+ detectarse con muy alta probabilidad.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
 
 \begin_layout Plain Layout
 One criticism of signature methods is that they often couple two distinct
@@ -3033,58 +3334,6 @@ s made to the plaintext message in transit can be detected with very high
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename img/sha1-tanenbaum.eps
-	width 85col%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Uso-de-SHA-1"
-
-\end_inset
-
-Uso de SHA-1 y RSA para la firma de un documento no confidencial 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Tanenbaum-Computer-Networks"
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Chapter
 \begin_inset CommandInset label
 LatexCommand label
@@ -3103,7 +3352,7 @@ reference "chap:Principios-seguridad"
 
 \end_inset
 
-, una parte importante de la ciberseguirdad depende del uso de funciones
+, una parte importante de la ciberseguridad depende del uso de funciones
  y algoritmos complejos, que suelen estar relacionados con operaciones computaci
 onalmente muy costosas.
  Sin embargo, los sistemas empotrados, como los usados en los nodos finales
@@ -3278,10 +3527,10 @@ sistema embebido
 \end_inset
 
  o 
-\emph on
-embedded system
-\emph default
-s
+\lang english
+embedded systems
+\lang spanish
+
 \begin_inset Index idx
 status collapsed
 
@@ -3322,14 +3571,15 @@ key "Tanenbaum-ModernOS"
 \begin_layout Standard
 Podría discutirse si algunos dispositivos como los 
 \emph on
-smartpohnes
+SmartPhones
 \emph default
  o las videoconsolas de última generación son también sistemas empotrados.
  No obstante, estos dispositivos cuentan con un sistema operativo (
 \lang english
-OS
+operating system
 \lang spanish
-) que les permite ejecutar aplicaciones de terceros bajo demanda del usuario.
+, OS) que les permite ejecutar aplicaciones de terceros bajo demanda del
+ usuario.
  Por este motivo, estos dispositivos serán considerados en este trabajo
  como computadores de propósito general, a pesar de compartir algunas caracterís
 ticas con los sistemas empotrados.
@@ -3463,7 +3713,7 @@ Identificación de usuarios
 
 \begin_layout Standard
 Se trata del proceso de validar a los usuarios antes de permitirles usar
- es sitema.
+ es sistema.
  Este requisito es fundamental cuando el sistema proporciona el acceso a
  datos sensibles (como los valores de sensores en un
 \emph on
@@ -3543,12 +3793,8 @@ confidencialidad
 
 \begin_deeper
 \begin_layout Standard
-En un 
-\lang english
-SmartHome
-\lang spanish
-, la disponibilidad de los datos de temperatura o de presencia de personas
- podrían ser usados para atentar contra la propiedad privada.
+En un SmartHome, la disponibilidad de los datos de temperatura o de presencia
+ de personas podrían ser usados para atentar contra la propiedad privada.
 \end_layout
 
 \end_deeper
@@ -3628,8 +3874,11 @@ Disponibilidad
 \begin_layout Standard
 Debe garantizarse que el sistema pueda realizar la función para la que fue
  diseñado y dar servicio a los usuarios legítimos en todo momento, no interrumpi
-éndose a causa de ataques de denegación de servicio (Denial of Service,
- DoS).
+éndose a causa de ataques de denegación de servicio (
+\lang english
+denial of service
+\lang spanish
+, DoS).
  
 \end_layout
 
@@ -3651,11 +3900,14 @@ el sistema que le da de comer al gato no debe quedarse colgado, y la camarita
 \begin_layout Subsubsection
 Resistencia a la manipulación
 \emph on
- (Tamper resistance)
+ 
+\emph default
+\lang english
+(Tamper resistance)
 \end_layout
 
 \begin_layout Standard
-Los ataques perpetrados contra los sistemas empotrados pueden explotar vulneravi
+Los ataques perpetrados contra los sistemas empotrados pueden explotar vulnerabi
 lidades a distintos niveles, incluyendo aquellas presentes en el sistema
  operativo y las aplicaciones.
  Estos ataques pueden manipular datos o procesos sensibles (ataques a la
@@ -3775,7 +4027,7 @@ message authentication code (MAC)
 , MAC) a cada mensaje transmitido.
  Los códigos MAC se calculan mediante la aplicación de una función hash
  criptográfica al mensaje, y cifrando el resultado con una clave privada.
- La verificación de la autentidad de los dispositivos puede conseguirse
+ La verificación de la autenticidad de los dispositivos puede conseguirse
  con el uso de certificados digitales.
  De esta forma, dos dispositivos pueden comunicarse de forma segura a través
  de una red 
@@ -4099,9 +4351,9 @@ Level
 
 (EAL) certificaciones para seguridad informática por niveles definidos por
  el estándar 
-\emph on
+\lang english
 Common Criteria for Information Technology Security Evaluation
-\emph default
+\lang spanish
  (ISO/IEC
 \begin_inset space ~
 \end_inset
@@ -4115,10 +4367,14 @@ MISRA
 \end_inset
 
 C conjunto de directrices para el desarrollo de software en el lenguaje
- de programación C, desarrollado por la 
-\emph on
+ de programación
+\begin_inset space ~
+\end_inset
+
+C, desarrollado por la 
+\lang english
 Motor Industry Software Reliability Association
-\emph default
+\lang spanish
  (MISRA) y usada ampliamente en la industria de la automoción.
 \end_layout
 
@@ -4191,9 +4447,9 @@ uso de la 1a pers plural?
 
 \begin_layout Standard
 
-\emph on
+\lang english
 Transport Layer Security
-\emph default
+\lang spanish
  (TLS)
 \begin_inset Index idx
 status open
@@ -4221,9 +4477,9 @@ aunque sí reliable
 
 .
  Es el sucesor de 
-\emph on
+\lang english
 Secure Sockets Layer
-\emph default
+\lang spanish
  (SSL), por lo que comparte muchas características con el mismo.
 \end_layout
 
@@ -4463,7 +4719,7 @@ Interoperabilidad: Programadores independientes deberían poder desarrollar
 
 \begin_layout Enumerate
 Extensibilidad: TLS busca proveer una infraestructura en la que puedan incorpora
-rse nuevos métodos de encriptación según sea necesrario.
+rse nuevos métodos de encriptación según sea necesario.
  De esta forma, se evita tener que definir nuevos protocolos de seguridad,
  con las consecuencias que esto tiene: la posibilidad de encontrar brechas
  de seguridad en el nuevo protocolo y la necesidad de implementarlo como
@@ -4482,7 +4738,7 @@ status open
 \end_inset
 
 : Las operaciones criptográficas tienden a ser computacionalmente costosas,
- sobre todo cuando se trata de encripación de clave pública.
+ sobre todo cuando se trata de encriptación de clave pública.
  Por este motivo, el protocolo TLS trata de reducir el número de conexiones
  que se establecen desde cero, así como reducir la actividad de red.
 \end_layout
@@ -4514,15 +4770,15 @@ Como hemos explicado anteriormente, e
 \end_inset
 
 El 
-\emph on
+\lang english
 TLS Record Protocol
-\emph default
+\lang spanish
  es la capa más baja del protocolo TLS, y garantiza la comunicación segura
  entre los extremos.
  Los mensajes que van a ser transmitidos son procesados por el 
-\emph on
+\lang english
 TLS Record Protocol
-\emph default
+\lang spanish
  en los siguientes pasos: los mensajes son fragmentados en bloques de un
  tamaño manejable, luego estos bloques pueden ser comprimidos, al resultado
  se le aplica un código MAC y finalmente es encriptado, quedando listo para
@@ -4534,9 +4790,9 @@ TLS Record Protocol
 
 \begin_layout Standard
 Existen cuatro protocolos que hacen uso inmediato del 
-\emph on
+\lang english
 TLS Record Protocol
-\emph default
+\lang spanish
 , y se presentan a continuación.
  Destacaremos que aunque estos son los protocolos definidos en la actualidad,
  el 
@@ -4544,9 +4800,9 @@ TLS Record Protocol
 TLS Record Protocol
 \emph default
  puede dar soporte a otros tipos de mensaje (
-\emph on
+\lang english
 content types
-\emph default
+\lang spanish
 ).
 \end_layout
 
@@ -4556,12 +4812,27 @@ Handshake Protocol
 
 \begin_layout Standard
 Los parámetros criptográficos que se usarán en la sesión son acordados mediante
- el Handshake Protocol.
+ el 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Handshake Protocol
+\lang spanish
+.
  Este protocolo implica el intercambio de varios mensajes entre cliente
  y servidor, en los que se establece un secreto compartido, se lleva a cabo
  la autenticación de los nodos y finalmente, si se verifica que no se ha
- producido ningún intento de ataque, se configuran los parámetros del record
- protocol para que pueda comenzar la transmisión de los datos de aplicación.
+ producido ningún intento de ataque, se configuran los parámetros del 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Record Protocol
+\lang spanish
+ para que pueda comenzar la transmisión de los datos de aplicación.
 \end_layout
 
 \begin_layout Standard
@@ -4577,8 +4848,15 @@ el establecimiento de
 
  los parámetros criptográficos que se usarán en la sesión, y dado que el
  uso de estos parámetros requiere que estén disponibles en la implementación
- TLS a usar, dedicaremos una sección completa al Handshake Protocol más
- adelante en este mismo capítulo.
+ TLS a usar, dedicaremos una sección completa al 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Handshake Protocol
+\lang spanish
+ más adelante en este mismo capítulo.
 \end_layout
 
 \begin_layout Standard
@@ -4608,25 +4886,29 @@ Se comentará en más detalle más adelante (cross ref)
 \end_layout
 
 \begin_layout Paragraph
+
+\lang english
 Alert Protocol
 \end_layout
 
 \begin_layout Standard
 Los mensajes de alerta comunican la severidad de una alerta (
-\emph on
+\lang english
 warning
-\emph default
+\lang spanish
  o 
-\emph on
+\lang english
 fatal
-\emph default
+\lang spanish
 ) y su descripción.
  Un mensaje de alerta fatal resulta en la conclusión inmediata de la conexión.
  Como con el resto de protocolos, los mensajes de alerta son encriptados
- y comprimidos sigiuiendo las especificaciones del estado actual de la conexión.
+ y comprimidos siguiendo las especificaciones del estado actual de la conexión.
 \end_layout
 
 \begin_layout Paragraph
+
+\lang english
 Change Cipher Spec Protocol
 \end_layout
 
@@ -4664,27 +4946,37 @@ Para ser más específicos, si un handshake tiene lugar durante una transmisión
 \end_layout
 
 \begin_layout Paragraph
+
+\lang english
 Application Protocol
 \end_layout
 
 \begin_layout Standard
-Los datos de aplicación son transportados directamnete por la 
-\emph on
+Los datos de aplicación son transportados directamente por la 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
 Record Layer
-\emph default
+\lang spanish
 , donde son fragmentados, comprimidos y encriptados atendiendo al estado
  de la conexión y a sus parámetros.
  De esta manera, los mensajes provenientes de la capa de aplicación son
  tratados de forma transparente por la 
-\emph on
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
 Record Layer
-\emph default
+\lang spanish
 .
 \end_layout
 
 \begin_layout Section
 El 
-\emph on
+\lang english
 TLS Handshak Protocol
 \end_layout
 
@@ -4716,50 +5008,79 @@ TLS cuenta con tres subprotocolos que permiten a los nodos negociar los
 \begin_layout Standard
 Como se ha visto anteriormente, TLS tiene tres subprotocolos con los que
  los extremos de la conexión pueden acordar los parámetros de seguridad
- para la record layer, autenticarse e informarse sobre errores producidos
- en la conexión.
+ para la 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Record Layer
+\lang spanish
+, autenticarse e informarse sobre errores producidos en la conexión.
 \end_layout
 
 \begin_layout Standard
-El Handshake Protocol es responsable de negociar la sesión, cuyos principales
- elementos son:
+El 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Handshake Protocol
+\lang spanish
+ es responsable de negociar la sesión, cuyos principales elementos son:
 \end_layout
 
 \begin_layout Description
+
+\lang english
 session
 \begin_inset space ~
 \end_inset
 
-identifier secuencia de bytes arbitrarios elegidos por el servidor para
- identificar la sesión activa.
+identifier
+\lang spanish
+ secuencia de bytes arbitrarios elegidos por el servidor para identificar
+ la sesión activa.
 \end_layout
 
 \begin_layout Description
+
+\lang english
 peer
 \begin_inset space ~
 \end_inset
 
-certificate certificado del cliente o del servidor, definido por el estándar
- X.509v3.
+certificate
+\lang spanish
+ certificado del cliente o del servidor, definido por el estándar X.509 V3.
  Este elemento puede no estar presente.
 \end_layout
 
 \begin_layout Description
+
+\lang english
 compression
 \begin_inset space ~
 \end_inset
 
-method algoritmo utilizado para comprimir datos antes de la encriptación.
+method
+\lang spanish
+ algoritmo utilizado para comprimir datos antes de la encriptación.
 \end_layout
 
 \begin_layout Description
+
+\lang english
 cipher
 \begin_inset space ~
 \end_inset
 
-spec especifica la función pseudo-aleatoria (
+spec
+\lang spanish
+ especifica la función pseudo-aleatoria (
 \lang english
-pseudorandom function
+pseudo-random function
 \lang spanish
 , PRF) que se usará para generar las claves, el algoritmo de encriptación
  simétrica (como AES, etc.) y el algoritmo de MAC (como HMAC-SHA1).
@@ -4768,27 +5089,69 @@ pseudorandom function
 \end_layout
 
 \begin_layout Description
+
+\lang english
 master
 \begin_inset space ~
 \end_inset
 
-secret clave de 48 bytes compartida entre el cliente y el servidor.
+secret
+\lang spanish
+ clave de 48 bytes compartida entre el cliente y el servidor.
 \end_layout
 
 \begin_layout Standard
 Estos elementos son usados para crear los parámetros de seguridad que la
- Record Layer usará para proteger los datos de aplicación.
+ 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Record Layer
+\lang spanish
+ usará para proteger los datos de aplicación.
  Distintas conexiones pueden ser instanciadas usando la misma sesión, gracias
- a la característica de reanudación del protocolo TLS Handshake Protocol.
+ a la característica de reanudación del protocolo 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Handshake Protocol
+\lang spanish
+.
 \end_layout
 
 \begin_layout Paragraph
-Descripción funcinal del Handshake Protocol
+Descripción funcional del 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Handshake Protocol
 \end_layout
 
 \begin_layout Standard
 Los parámetros criptográficos del estado de la sesión son establecidos por
- el TLS Handshake Protocol, el cuál opera sobre la capa TLS record layer.
+ el 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Handshake Protocol
+\lang spanish
+, el cuál opera sobre la capa 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Record Layer
+\lang spanish
+.
  Cuando un cliente y un servidor TLS comienzan a comunicarse por primera
  vez, negocian una versión del protocolo, eligen los algoritmos criptográficos,
  se autentican mutuamente (de forma opcional), y usan técnicas de criptografía
@@ -4796,14 +5159,22 @@ Los parámetros criptográficos del estado de la sesión son establecidos por
 \end_layout
 
 \begin_layout Standard
-El TLS Handshake Protocol implica los siguientes pasos:
+El 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Handshake Protocol
+\lang spanish
+ implica los siguientes pasos:
 \end_layout
 
 \begin_layout Itemize
 Intercambio de mensajes 
-\emph on
+\lang english
 hello
-\emph default
+\lang spanish
  para negociar los algoritmos, intercambiar valores aleatorios y comprobar
  si debe reanudarse una sesión anterior.
 \end_layout
@@ -4835,7 +5206,15 @@ master secret
 \end_layout
 
 \begin_layout Itemize
-Proporcionar parámetros de seguridad para la record layer.
+Proporcionar parámetros de seguridad para la 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Record Layer
+\lang spanish
+.
 \end_layout
 
 \begin_layout Itemize
@@ -4872,7 +5251,15 @@ name "fig:TLS-Handshake"
 
 \end_inset
 
-Establecimiento de la conexión por el TLS Handshake Protocol 
+Establecimiento de la conexión por el 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Handshake Protocol
+\lang spanish
+ 
 \begin_inset Note Note
 status open
 
@@ -4908,7 +5295,15 @@ reference "fig:TLS-Handshake"
 \end_inset
 
  muestra los pasos llevados a cabo en el establecimiento de la conexión
- TLS, de la que se encarga el Handshake Protocol.
+ TLS, de la que se encarga el 
+\lang english
+TLS
+\begin_inset space ~
+\end_inset
+
+Handshake Protocol
+\lang spanish
+.
 \end_layout
 
 \begin_layout Standard
@@ -5042,25 +5437,6 @@ Los nodos pueden cambiar los parámetros de seguridad en cualquier momento.
 \end_layout
 
 \end_deeper
-\begin_layout Enumerate
-Terminación de la sesisión
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-Eventualmente, cualquiera de los extremos puede terminar la sesión.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Standard
 \begin_inset Note Note
 status open
@@ -5175,8 +5551,12 @@ La criptografía de clave pública hace posible que las personas que no comparte
  una clave común de antemano puedan comunicarse de forma segura.
  También hace que la firma de mensajes sea posible sin la presencia de un
  tercero confiable.
- Finalmente, la firma de los message digests hace posible que el destinatario
- verifique la integridad de los mensajes recibidos de forma fácil y segura.
+ Finalmente, la firma de los 
+\lang english
+message digests
+\lang spanish
+ hace posible que el destinatario verifique la integridad de los mensajes
+ recibidos de forma fácil y segura.
  Sin embargo, hay un problema que no hemos resuelto aún.
  Se trata de la verificación de la identidad y de la obtención de la clave
  pública asociada a una entidad.
@@ -5242,13 +5622,17 @@ Copiar de Tanenbaum
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Certificados muy estándar (X.509 v3).
  Son intercambiado durante el handshake de TLS, para verificar la identidad.
  Es interesante conocer el contenido de estos certificados, y cómo funciona
  la verificación de la identidad.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 ITU-T Standard
 \begin_inset Index idx
 status open
@@ -5260,6 +5644,11 @@ X.509
 \end_inset
 
 !
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -5295,88 +5684,132 @@ reference "fig:X509-fields"
 \end_layout
 
 \begin_layout Description
-Version versión de X.509 con la que se ha generado el certificado
+
+\lang english
+Version
+\lang spanish
+ versión de X.509 con la que se ha generado el certificado
 \end_layout
 
 \begin_layout Description
+
+\lang english
 Serial
 \begin_inset space ~
 \end_inset
 
-number este número, junto con el nombre de la CA, identifica el certificado
- de forma unívoca
+number
+\lang spanish
+ este número, junto con el nombre de la CA, identifica el certificado de
+ forma unívoca
 \end_layout
 
 \begin_layout Description
+
+\lang english
 Signature
 \begin_inset space ~
 \end_inset
 
-algorithm el algoritmo usado para firmar el certificado
+algorithm
+\lang spanish
+ el algoritmo usado para firmar el certificado
 \end_layout
 
 \begin_layout Description
-Issuer nombre de la CA (en formado X.500)
+
+\lang english
+Issuer
+\lang spanish
+ nombre de la CA (en formado X.500)
 \end_layout
 
 \begin_layout Description
+
+\lang english
 Validity
 \begin_inset space ~
 \end_inset
 
-period fecha y hora del comienzo y fin de la validez del certificado
+period
+\lang spanish
+ fecha y hora del comienzo y fin de la validez del certificado
 \end_layout
 
 \begin_layout Description
+
+\lang english
 Subject
 \begin_inset space ~
 \end_inset
 
-name la entidad cuya clave está siendo certificada (en formado X.500)
+name
+\lang spanish
+ la entidad cuya clave está siendo certificada (en formado X.500)
 \end_layout
 
 \begin_layout Description
+
+\lang english
 Public
 \begin_inset space ~
 \end_inset
 
-key la clave pública del 
-\emph on
+key
+\lang spanish
+ la clave pública del 
+\lang english
 subject
-\emph default
+\lang spanish
  y la ID del algoritmo que hace uso de la misma 
 \end_layout
 
 \begin_layout Description
+
+\lang english
 Issuer
 \begin_inset space ~
 \end_inset
 
-ID un ID opcional que identifica de forma unívoca al 
-\emph on
+ID
+\lang spanish
+ un ID opcional que identifica de forma unívoca al 
+\lang english
 issuer
-\emph default
+\lang spanish
  del certificado
 \end_layout
 
 \begin_layout Description
+
+\lang english
 Subject
 \begin_inset space ~
 \end_inset
 
-ID un ID opcional que identifica de forma unívoca al 
-\emph on
+ID
+\lang spanish
+ un ID opcional que identifica de forma unívoca al 
+\lang english
 subject
-\emph default
+\lang spanish
  del certificado
 \end_layout
 
 \begin_layout Description
-Extensions extensiones opcionales (existe una gran variedad de ellas)
+
+\lang english
+Extensions
+\lang spanish
+ extensiones opcionales (existe una gran variedad de ellas)
 \end_layout
 
 \begin_layout Description
-Signature firma del certificado (firmado con la clave privada de la CA)
+
+\lang english
+Signature
+\lang spanish
+ firma del certificado (firmado con la clave privada de la CA)
 \end_layout
 
 \begin_layout Standard
@@ -5477,7 +5910,11 @@ ridad mundial, tener una CA central única es muy arriesgado.
  mientras que en otros países insistirían en que no sea un gobierno.
  Por estos motivos, se ha desarrollado una forma diferente de certificar
  claves públicas, que se conoce con el nombre general de infraestructura
- de clave pública (public key infrastructure, PKI).
+ de clave pública (
+\lang english
+public key infrastructure
+\lang spanish
+, PKI).
  
 \begin_inset Note Note
 status collapsed
@@ -5508,7 +5945,11 @@ reference "fig:pki-tanenbaum"
 root CA
 \lang spanish
 ), certifica las CA de segundo nivel, que aquí llamamos autoridades regionales
- (regional authorities, RA) porque podrían cubrir alguna región geográfica.
+ (
+\lang english
+regional authorities
+\lang spanish
+, RA) porque podrían cubrir alguna región geográfica.
 \begin_inset Note Note
 status collapsed
 
@@ -5677,7 +6118,14 @@ name "fig:pki-tanenbaum"
 \end_inset
 
 (a) Ejemplo de infraestructura de clave pública jerárquica.
- (b) Cadena de certificados en esta PKI.
+ (b) Cadena de certificados en esta PKI 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -5742,8 +6190,11 @@ Estructura y tipos de fichero
 \end_layout
 
 \begin_layout Standard
-Los certificados digitales X.509 usan la codificación denominada Abstract
- Syntax Notation 1 (ASN.1), definida por OSI.
+Los certificados digitales X.509 usan la codificación denominada 
+\lang english
+Abstract Syntax Notation
+\lang spanish
+ 1 (ASN.1), definida por OSI.
  Este tipo de codificación es una especie de struct de
 \begin_inset space ~
 \end_inset
@@ -5866,13 +6317,13 @@ IoT proporciona una
  entre dispositivos conectados a Internet (ya sean sensores, actuadores,
  microcontroladores, electrodomésticos inteligentes, etc.) y la nube de Amazon
  (
-\emph on
+\lang english
 AWS
 \begin_inset space ~
 \end_inset
 
 Cloud
-\emph default
+\lang spanish
 ) 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -5886,12 +6337,18 @@ key "AWS-IoT-What-is-AWS-IoT"
  Del mismo modo, nos permite crear aplicaciones para controlar estos dispositivo
 s a través de un
 \emph on
- smartphone
+ 
 \emph default
+\lang english
+smartphone
+\lang spanish
  o
 \emph on
- tablet
+ 
 \emph default
+\lang english
+tablet
+\lang spanish
 .
 \end_layout
 
@@ -6146,7 +6603,7 @@ Rules
 engine
 \lang spanish
 ) proporciona funciones de procesamiento de mensajes y de integración con
- otros sevicios de la nube de Amazon.
+ otros servicios de la nube de Amazon.
  También permite usar el 
 \lang english
 Message
@@ -6167,12 +6624,7 @@ Registro
 \lang english
 Registry
 \lang spanish
-) organiza los recursos asociados a cada dispositivo en la nube de Amazon
- (AWS
-\begin_inset space ~
-\end_inset
-
-Cloud).
+) organiza los recursos asociados a cada dispositivo en la nube de Amazon.
  Es necesario registrar los dispositivos y asociar hasta tres atributos
  personalizados a cada uno.
  Este componente también es responsable de asociar los certificados digitales
@@ -6384,9 +6836,9 @@ IoT proporciona esta unidad de organización a tal efecto.
 
 IoT pueda autenticarlo.
  Los certificados digitales definidos en la consola pueden tener asociadas
- una o varias Políticas de uso (
+ una o varias políticas de uso (
 \lang english
-Policies
+policies
 \lang spanish
 ).
  Gracias a estas políticas de uso, distintos dispositivos tendrán permisos
@@ -6717,7 +7169,7 @@ topic
 \lang english
 topic
 \lang spanish
- simpre y cuando tenga permisos para ello.
+ siempre y cuando tenga permisos para ello.
 \end_layout
 
 \begin_layout Subsubsection
@@ -6746,7 +7198,11 @@ device shadow
 
 \begin_layout Standard
 La actualización de la sombra se lleva a cabo publicando mensajes en unos
- topics especiales, destinados a este fin.
+ 
+\lang english
+topics
+\lang spanish
+ especiales, destinados a este fin.
  En concreto, están definidos los siguientes 
 \lang english
 topics
@@ -6816,7 +7272,7 @@ topic
 $aws/things/thingName/get
 \family default
  Tanto las aplicaciones como los dispositivos pueden publicar un mensaje
- vacío a este
+ vacío a este 
 \lang english
 topic
 \lang spanish
@@ -6872,8 +7328,12 @@ AWS
 \begin_inset space ~
 \end_inset
 
-IoT dispone de una API RESTful para permitir que las aplicaciones puedan
- conectarse e interactuar con la sombra a través del protocolo HTTPS.
+IoT dispone de una API
+\begin_inset space ~
+\end_inset
+
+RESTful para permitir que las aplicaciones puedan conectarse e interactuar
+ con la sombra a través del protocolo HTTPS.
  En este caso, la seguridad es similar a la llevada a cabo en el caso del
  dispositivo.
  La diferencia es que la aplicación puede tener una credencial basada en
@@ -6948,7 +7408,7 @@ Opciones de facturación
 \end_layout
 
 \begin_layout Standard
-Amazon Web Services (AWS) ofrece un amplio abanico de servicios de computación
+Amazon Web Services ofrece un amplio abanico de servicios de computación
  en la nube.
  Para cada servicio, el usuario debe abonar el precio correspondiente a
  los recursos consumidos.
@@ -6958,6 +7418,8 @@ Amazon Web Services (AWS) ofrece un amplio abanico de servicios de computación
 \end_layout
 
 \begin_layout Subsubsection
+
+\lang english
 AWS Free Tier
 \end_layout
 
@@ -6968,7 +7430,9 @@ Amazon establece un período de prueba gratuito para atraer nuevos clientes
  por AWS sin incurrir en gastos.
  No obstante, es necesario configurar un método de pago para comenzar a
  usar los servicios.
- Todos los detalles sobre AWS
+ Todos los detalles sobre 
+\lang english
+AWS
 \begin_inset space ~
 \end_inset
 
@@ -6976,7 +7440,9 @@ Free
 \begin_inset space ~
 \end_inset
 
-Tier están disponibles en 
+Tier
+\lang spanish
+ están disponibles en 
 \begin_inset Flex URL
 status open
 
@@ -6998,16 +7464,22 @@ key "AWS-Free"
 \end_layout
 
 \begin_layout Subsubsection
+
+\lang english
 AWS Educate
 \end_layout
 
 \begin_layout Standard
+
+\lang english
 AWS
 \begin_inset space ~
 \end_inset
 
-Educate proporciona a profesores y alumnos acceso a muchos de los servicios
- de AWS.
+Educate
+\lang spanish
+ proporciona a profesores y alumnos acceso a muchos de los servicios de
+ AWS.
  Además, incluye ventajas como programas de capacitación y rutas profesionales
  en la nube de Amazon.
  Esta modalidad, que está disponible en 47 países, requiere que el usuario
