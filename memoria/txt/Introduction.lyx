@@ -126,10 +126,17 @@ De entre todas las revoluciones de Internet, el Internet de las Cosas (
 \lang english
 Internet of Things
 \lang spanish
-, IoT) es probablemente la que tiene mayor impacto en la actualidad #ref#.
- Este nuevo paradigma, que consiste en la conexión masiva de dispositivos
- de uso cotidiano a Internet #ref#, posibilita la creación de nuevos servicios
- y propuestas de valor, como los 
+, IoT) es probablemente la que tiene mayor impacto en la actualidad 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "plummer2014top,evans2011internet"
+
+\end_inset
+
+.
+ Este nuevo paradigma, que supone la conexión masiva de dispositivos de
+ uso cotidiano a Internet, posibilita la creación de nuevos servicios y
+ propuestas de valor, como los 
 \lang english
 SmartHomes
 \lang spanish
@@ -137,7 +144,18 @@ SmartHomes
 \lang english
 SmartCities
 \lang spanish
- o la Industria 4.0 #ref#.
+ o la Industria
+\begin_inset space ~
+\end_inset
+
+4.0 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "jeschke2017industrial"
+
+\end_inset
+
+.
  Muchas empresas ven nuevas oportunidades de negocio fundamentadas en
 \begin_inset Note Note
 status open
@@ -150,18 +168,36 @@ status open
 
  esta tecnología.
  Así, por ejemplo, Google, IBM y Amazon tienen disponibles sus plataformas
- de computación en la nube específicas para IoT.
+ de computación en la nube específicas para IoT 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "pflanzner2016survey"
+
+\end_inset
+
+.
  Estas plataformas habilitan el desarrollo de productos y servicios que
  proporcionan valor al usuario final, como pueden ser las lámparas inteligentes
  de Phillips 
 \begin_inset Quotes fld
 \end_inset
 
-Hue
+hue
 \begin_inset Quotes frd
 \end_inset
 
- #ref# o el kit para SmartHome de eesy-innovation 
+ (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.meethue.com/
+\end_layout
+
+\end_inset
+
+) o el kit para SmartHome de eesy-innovation 
 \begin_inset Quotes fld
 \end_inset
 
@@ -169,7 +205,18 @@ H2
 \begin_inset Quotes frd
 \end_inset
 
- #ref#.
+ (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.h2-smart.com/
+\end_layout
+
+\end_inset
+
+).
 \begin_inset Note Note
 status collapsed
 
@@ -188,7 +235,7 @@ Del mismo modo, muchas otras empresas, tanto grandes (como Phillips) como
 Sin embargo, el hecho de que los dispositivos estén conectados a la Internet,
  hace que estos sean potencialmente vulnerables a los ciberataques, que
  podrían ser perpetrados por un atacante conectado desde cualquier lugar
- del mundo #ref#.
+ del mundo.
  Estas potenciales vulnerabilidades
 \begin_inset Note Note
 status collapsed
@@ -234,14 +281,31 @@ Definir ciberseguridad?
 \end_inset
 
  podrían afectar directamente a los servicios ofrecidos a los usuarios,
- pudiendo llegar a incurrir en daños materiales o incluso personales.
+ pudiendo llegar a incurrir en daños materiales o incluso personales 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "7167238,6017172"
+
+\end_inset
+
+.
  Un escenario pesimista frecuentemente citado en la literatura es el uso
  de la nueva masa de dispositivos para llevar a cabo ataques de denegación
  de servicio distribuidos (
 \lang english
 distributed denial-of-service
 \lang spanish
-, DDoS), con las nefastas consecuencias que esto conllevaría #ref#.
+, DDoS), con las nefastas consecuencias que esto conllevaría
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+#ref#
+\end_layout
+
+\end_inset
+
+.
  Por este motivo, la seguridad
 \begin_inset Foot
 status collapsed
@@ -249,7 +313,8 @@ status collapsed
 \begin_layout Plain Layout
 Aunque el término seguridad es muy amplio y tiene diferentes acepciones
  cuando se usa en términos informáticos, en el presente trabajo lo usaremos
- para referirnos a ciberseguridad, a menos que se indique lo contrario.
+ para referirnos a la seguridad de los datos (ciberseguridad), a menos que
+ se indique lo contrario.
  
 \begin_inset Note Note
 status open
@@ -265,8 +330,8 @@ Definir ciberseguridad?
 
 \end_inset
 
- juega un rol fundamental en todos los sistemas IoT, por lo que deberá considera
-rse desde el diseño inicial del sistema.
+ juega un rol fundamental en todos los sistemas IoT, y deberá considerarse
+ desde el diseño inicial del sistema.
 \end_layout
 
 \begin_layout Standard
@@ -285,16 +350,23 @@ Enlazar con objetivos y hablar de sistemas empotrados.
 \begin_layout Standard
 Muchos productos IoT son pequeños dispositivos que se basan en sistemas
  empotrados.
- Los sistemas emptrados tienen unas importantes limitaciones computacionales
- y suelen funcionar de forma independiente.
+ Los sistemas empotrados tienen unas importantes limitaciones computacionales
+ y suelen funcionar de forma independiente 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-ModernOS"
+
+\end_inset
+
+.
  Tal vez por esto tradicionalmente no se ha considerado la seguridad en
  términos de proteger el sistema de ataques externos.
  Sin embargo, con el nuevo paradigma IoT, muchas son las empresas que requieren
- seguridad en sus dispositivos.
+ este tipo de seguridad en sus dispositivos.
  En muchas ocasiones, esto viene impuesto por los proveedores de servicios
- de computación en la nube, como Amazon Web Services, que exigen unos niveles
- de seguridad importantes en la conexión, ya que solo de esta forma es posible
- tener un sistema robusto y seguro.
+ de computación en la nube, como Amazon Web Services, que exige unos niveles
+ de seguridad importantes en la conexión, pues solo de esta forma puede
+ el sistema ser robusto y seguro.
  Por su parte, las empresas desarrolladoras de productos finales que deseen
  proporcionar un servicio IoT de calidad tendrán que ajustarse a los estándares
  impuestos por estos proveedores de servicio.
@@ -360,22 +432,34 @@ se habla de que hay una empresa (eesy) que está desarrollando unos productos
 
 \begin_layout Standard
 Este trabajo fin de máster ha sido realizado en relación a un contrato concedido
- por la empresa eesy-innovation.
- Eesy-innovation es una empresa alemana, con sede en Múnich, que ofrece
- servicios de ingeniería a sus numerosos socios en la industria #ref#.
- Gracias a su fuerte departamento de I+D y a su dilatada experiencia en
- electrónica y telecomunicaciones, eesy-innovation ha colaborado en proyectos
- nacionales y europeos, como TreuFunk #ref# y NexGen #ref#.
- En la actualidad, la empresa ofrece una solución 
-\begin_inset Note Greyedout
+ por la empresa eesy-innovation
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-tecnológica
+No usamos mayúsculas para ajustarnos a la imagen corporativa de la empresa.
 \end_layout
 
 \end_inset
 
+.
+ eesy-innovation (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.eesy-innovation.com/
+\end_layout
+
+\end_inset
+
+) es una empresa alemana, con sede en Múnich, que ofrece servicios de ingeniería
+ a sus numerosos socios en la industria.
+ Gracias a su fuerte departamento de I+D y a su dilatada experiencia en
+ electrónica y telecomunicaciones, eesy-innovation ha colaborado en proyectos
+ nacionales y europeos, como TreuFunk y NexGen.
+ En la actualidad, la empresa está desarrollando una solución tecnológica
  para la automatización del hogar (SmartHome).
  Su gama de productos H2 permitirá al usuario controlar, gestionar y monitorizar
  los dispositivos conectados en casa de forma remota, haciendo uso de tecnología
@@ -394,8 +478,8 @@ XMC
 
 \end_inset
 
- de Infineon (multinacional alemana con la que eesy-innovation ha colaborado
- de forma continuada).
+ de la multinacional alemana Infineon, con la que eesy-innovation colabora
+ de forma continuada.
 \end_layout
 
 \begin_layout Standard
@@ -421,19 +505,26 @@ El objetivo principal del presente trabajo es interconectar los dispositivos
 
 IoT).
  Esto se llevará a cabo a través de un dispositivo especial que se incluye
- dentro de la gama de productos, denominado H2 miniGateway (miniGW).
+ dentro de la gama de productos, denominado 
+\emph on
+H2
+\begin_inset space ~
+\end_inset
+
+miniGateway
+\emph default
+ (o simplemente miniGW).
  Como su nombre indica, este dispositivo no es más que una puerta de enlace
  que interconecta la red de sensores y actuadores con la Nube.
  La elección de la nube de Amazon ha sido realizada por la empresa tras
  considerar una serie de factores estratégicos y tecnológicos, entre los
  que se encuentra la seguridad y la escalabilidad del sistema.
- Tras la consecución del proyecto, se espera que el miniGW sea integre las
- características necesarias para comunicarse con AWS
+ Tras la consecución del proyecto, se espera que el miniGW integre las caracterí
+sticas necesarias para comunicarse con AWS
 \begin_inset space ~
 \end_inset
 
 IoT, con el nivel de seguridad que esta plataforma exige.
- 
 \end_layout
 
 \begin_layout Standard
@@ -477,7 +568,7 @@ De forma más concreta, los objetivos perseguidos en este trabajo fin de
 \begin_layout Enumerate
 Estudio de los conceptos de seguridad en redes, en especial los que aplican
  a sistemas empotrados y al nuevo paradigma de IoT.
- Breve presentación de TLS.
+ Breve presentación de TLS y de X.509.
 \end_layout
 
 \begin_layout Enumerate
@@ -486,11 +577,7 @@ Análisis de las implementaciones TLS para sistemas empotrados y elección
 \end_layout
 
 \begin_layout Enumerate
-Integración de la biblioteca TLS seleccionada en el sistema objetivo (H2
-\begin_inset space ~
-\end_inset
-
-miniGW).
+Integración de la biblioteca TLS seleccionada en el sistema objetivo (miniGW).
 \end_layout
 
 \begin_layout Enumerate
@@ -499,7 +586,7 @@ Estudio y presentación de la nube AWS
 \end_inset
 
 IoT.
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -635,7 +722,7 @@ Estructura de la memoria
 La memoria se estructura en tres grandes partes, que describimos a continuación.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Fundamentos teóricos y presentación de la tecnología
 \end_layout
 
@@ -703,7 +790,7 @@ reference "chap:AWS-IoT"
 ).
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Trabajo realizado
 \end_layout
 
@@ -721,8 +808,8 @@ reference "chap:Descripción-del-sistema"
 
 \end_inset
 
-), a la que seguirá el anális de las imprementaciones TLS existentes y se
- justificará la eleción de mbedTLS (
+), a la que seguirá el análisis de las implementaciones TLS existentes y
+ se justificará la elección de mbedTLS (
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:Análisis-implementacions-TLS"
@@ -743,8 +830,13 @@ reference "chap:Implementación-TLS"
 
 ).
  Pondremos fin a esta parte con los detalles de la integración del Kit de
- Desarrollo de Software para dispositivos embebidos programados en C de
- Amazon, AWS
+ Desarrollo de Software para dispositivos embebidos programados en
+\begin_inset space ~
+\end_inset
+
+C de Amazon, 
+\lang english
+AWS
 \begin_inset space ~
 \end_inset
 
@@ -752,7 +844,13 @@ IoT Device
 \begin_inset space ~
 \end_inset
 
-SDK for embedded C (
+SDK for embedded
+\begin_inset space ~
+\end_inset
+
+C
+\lang spanish
+ (
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:Implementación-AWS-IoT"
@@ -765,7 +863,7 @@ reference "chap:Implementación-AWS-IoT"
  que hemos enfrentado.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Conclusiones y trabajo futuro
 \end_layout
 
@@ -1015,6 +1113,7 @@ reference "fig:Relacion-plaintext-ciphertext"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
@@ -1070,14 +1169,21 @@ Criptografía de clave simétrica
 \end_layout
 
 \begin_layout Standard
-Los algoritmos de cifrado de 
+Los algoritmos de cifrado 
 \emph on
-clave simétrica
+de clave simétrica
 \emph default
  son llamados así porque usan la misma clave en la encriptación y en la
  desencriptación.
- Algunos de los algoritmos criptográficos de clave simétrica más conocidos
- son DES (
+ La 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:symmetric-ciphers"
+
+\end_inset
+
+ describe algunas características de los algoritmos criptográficos de clave
+ simétrica más conocidos, entre los que se encuentran DES (
 \lang english
 Data Encription Standard
 \lang spanish
@@ -1091,7 +1197,7 @@ Data Encription Standard (DES)
 
 \end_inset
 
-, en desuso) y AES (
+) y AES (
 \lang english
 Advanced Encription Standard
 \lang spanish
@@ -1105,14 +1211,7 @@ Advanced Encription Standard (AES)
 
 \end_inset
 
-), como se muestra en la 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:symmetric-ciphers"
-
-\end_inset
-
-.
+).
  A continuación presentaremos los fundamentos de los algoritmos de 
 \emph on
 cifrado por bloques
@@ -1126,6 +1225,7 @@ cifrado por bloques
 
 \begin_layout Standard
 \begin_inset Float table
+placement h
 wide false
 sideways false
 status open
@@ -1529,7 +1629,7 @@ cajas de sustitución
 \emph default
  (S-box), que se ilustran en la 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "fig:P-box,S-box"
 
 \end_inset
@@ -2065,9 +2165,12 @@ USADA PARA INTERCAMBIAR CLAVES PARA CRIPTOGRAFÍA SIMÉTRICA, QUE ES MÁS EFICIE
 \end_layout
 
 \begin_layout Standard
-La criptografía de clave pública, también conocida como criptografía asimétrica,
- parte de la idea de tener dos claves distintas para encriptar y para desencript
-ar.
+La criptografía 
+\emph on
+de clave pública
+\emph default
+, también conocida como criptografía asimétrica, parte de la idea de tener
+ dos claves distintas para encriptar y para desencriptar.
  De este modo, tendremos un algoritmo de encriptación 
 \begin_inset Formula $E$
 \end_inset
@@ -2552,7 +2655,7 @@ digital signature
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -2666,7 +2769,7 @@ status open
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Firmas digitales de clave pública
 \end_layout
 
@@ -2746,7 +2849,7 @@ public key infrastructure
 \lang spanish
 , PKI), como la que explicaremos en el 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "chap:X509"
 
 \end_inset
@@ -4745,7 +4848,7 @@ status open
 
 \begin_layout Section
 El 
-\emph on
+\lang english
 TLS Record Protocol
 \end_layout
 
@@ -4977,7 +5080,7 @@ Record Layer
 \begin_layout Section
 El 
 \lang english
-TLS Handshak Protocol
+TLS Handshake Protocol
 \end_layout
 
 \begin_layout Standard
@@ -6100,7 +6203,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename img/pki-tanenbaum.eps
-	width 100col%
+	width 70col%
 
 \end_inset
 

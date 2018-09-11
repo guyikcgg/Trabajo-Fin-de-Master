@@ -82,19 +82,24 @@ ons.
  Among these protocols, TLS (Transport Layer Security) is one of the most
  important Internet security standards.
  Integrating security protocols in embedded systems has an increasingly
- importance, due to the arising of technologies such as Smart Home, Smart
- City, and briefly, an emergent paradigm known as Internet of Things (IoT).
- 
+ importance, due to the arising of technologies such as SmartHome, SmartCity,
+ and briefly, an emergent paradigm known as Internet of Things (IoT).
 \end_layout
 
 \begin_layout Standard
+This work presents the process of integration of a TLS library in an embedded
+ system.
+ This system is a gateway communicating a local sensor network with Amazon
+ Web Services cloud for IoT (AWS
+\begin_inset space ~
+\end_inset
 
-\color red
-The result expected from this contract is a working implementation of TLS
- in a system aimed to IoT.
- More precisely, the purpose is to implement TLS security into a microcontroller
--based device, which plays the role of a gateway between a wireless sensor
- network (WSN) and the Internet.
+IoT).
+ The integration is completed with the addition of AWS
+\begin_inset space ~
+\end_inset
+
+IoT Device SDK to the system, making the communication effective.
 \end_layout
 
 \end_body

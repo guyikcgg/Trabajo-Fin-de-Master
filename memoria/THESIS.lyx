@@ -60,16 +60,16 @@
 \newcommand{\myProf}{Antonio Francisco Díaz García\xspace}
 \newcommand{\myOtherProf}{Diego Pedro Morales Santos\xspace}
 %\newcommand{\mySupervisor}{[NOMBRE DEL SUPERVISOR]\xspace}
-\newcommand{\myFaculty}{Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación\xspace}
-\newcommand{\myFacultyShort}{E.T.S. de Ingenierías Informática y de Telecomunicación\xspace}
+\newcommand{\myFaculty}{Escuela Internacional de Posgrado\xspace}
+\newcommand{\myFacultyShort}{Escuela Internacional de Posgrado\xspace}
 \newcommand{\myDepartment}{Departamento de Arquitectura y Tecnología de Computadores\xspace}
 \newcommand{\myOtherDepartment}{Departamento de Electrónica y Tecnología de Computadores\xspace}
 \newcommand{\myUni}{\protect{Universidad de Granada}\xspace}
 \newcommand{\myLocation}{Granada\xspace}
 \newcommand{\myTime}{\today\xspace}
 \newcommand{\myVersion}{Version 0.2\xspace}
-\newcommand{\monthandyear}{Julio 2018\xspace}
-\newcommand{\finaldate}{1 de julio de 2018\xspace}
+\newcommand{\monthandyear}{Septiembre 2018\xspace}
+\newcommand{\finaldate}{12 de septiembre de 2018\xspace}
 
 \usepackage[colorlinks=true, linkcolor=cool-green-2, urlcolor=blue,citecolor=black,anchorcolor=black,filecolor=black,menucolor=black,runcolor=black]{hyperref}
 \hypersetup{
