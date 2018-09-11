@@ -1645,7 +1645,7 @@ Las cajas de permutación producen una reordenación entre los bits de su
  De esta forma, la operación de permutación solo requiere la propagación
  de la señal, que se lleva a cabo sin coste computacional alguno.
  Una caja de permutación correctamente diseñada será capaz de efectuar cualquier
- permutación deseada, reconfigurando su cableado.
+ permutación deseada reconfigurando su cableado.
  Como puede comprobarse, las cajas de permutación obedecen al principio
  de Kerckhoff: el método utilizado (la permutación de bits) es público,
  lo que se reserva es el orden en que se realiza este cableado, que hará
@@ -1654,17 +1654,19 @@ Las cajas de permutación producen una reordenación entre los bits de su
 
 \begin_layout Standard
 Por otro lado, las cajas de sustitución cuentan con tres etapas.
- La primera de ellas es un decodificador, que 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-COMPLETAR
-\end_layout
-
-\end_inset
-
-
+ La primera de ellas es un decodificador, que en este ejemplo es de 3 bits,
+ por lo que se seleccionará una de las 8 líneas, estableciéndose el valor
+ de esta a 1 y permaneciendo el resto a 0.
+ La segunda etapa es una P-box.
+ La tercera etapa codifica la línea de entrada seleccionada nuevamente a
+ binario.
+ Con el cableado mostrado, la secuencia de entrada compuesta por los números
+ octales 01234567 producirá la secuencia de salida 24506713.
+ De nuevo, mediante el cableado apropiado de la P-box dentro de la S-box,
+ se puede realizar cualquier sustitución.
+ Además, la implementación hardware de este dispositivo requiere muy pocas
+ puertas lógicas, por lo que es posible lograr una gran velocidad, con un
+ tiempo de propagación muy inferior al nanosegundo.
 \end_layout
 
 \begin_layout Standard
@@ -1734,8 +1736,8 @@ Producto.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
-status open
+\begin_inset Note Note
+status collapsed
 
 \begin_layout Plain Layout
 Cualquier método de cifrado por bloques puede verse como un diccionario
@@ -1825,9 +1827,18 @@ Electronic Code Book
  Sin embargo, presenta una vulnerabilidad, que se hace más importante cuanto
  menor es tamaño del bloque.
  Puesto que un bloque de texto plano determinado siempre dará como resultado
- el mismo bloque de criptograma, de manera que la confidencialidad puede
- verse comprometida por ataques basados en criptoanálisis, como se muestra
- en la 
+ el mismo bloque de criptograma, 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+de manera que 
+\end_layout
+
+\end_inset
+
+la confidencialidad puede verse comprometida por ataques basados en criptoanális
+is, como se muestra en la 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:Comparacion-modos-cifrado"
@@ -2000,7 +2011,11 @@ Modo Cipher Block Chaining (CBC)
 \begin_layout Standard
 Para evitar este tipo de ataques, todos los cifrados por bloque se pueden
  encadenar de varias formas.
- Una de estas formas es la conocida como Cipher Block Chaining (CBC).
+ Una de estas formas es la conocida como 
+\lang english
+Cipher Block Chaining
+\lang spanish
+ (CBC).
  Con este método, mostrado en la 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -2014,11 +2029,11 @@ reference "fig:CBC-mode"
  Por consiguiente, un mismo bloque de texto plano ya no se traduce al mismo
  bloque de criptograma, y el cifrado ya no es un diccionario de sustitución
  monoalfabético.
- El primer bloque se mezcla (XOR) con un vector de inicizlización (
+ El primer bloque se mezcla (XOR) con un vector de inicialización (
 \lang english
 initialization vector
 \lang spanish
-, IV) elegido al azar, que se transmite (en texto plano) junto con el texto
+, IV) elegido al azar, que se transmite, en texto plano, junto con el texto
  cifrado.
 \end_layout
 
@@ -2081,18 +2096,18 @@ reference "fig:CBC-mode"
 
 .
  Comenzamos calculando 
-\begin_inset Formula $C_{0}=E(P_{0}\,\mathrm{XOR}\,IV)$
+\begin_inset Formula $C_{0}=E(P_{0}\:\mathrm{XOR}\:IV)$
 \end_inset
 
 .
  Luego calculamos 
-\begin_inset Formula $C_{1}=E(P_{1}\,\mathrm{XOR}\,C_{0})$
+\begin_inset Formula $C_{1}=E(P_{1}\:\mathrm{XOR}\:C_{0})$
 \end_inset
 
 , y así sucesivamente.
  El proceso de desencriptación también usa XOR para revertir el proceso,
  con 
-\begin_inset Formula $P_{0}=IV\,\mathrm{XOR}\,D(C_{0})$
+\begin_inset Formula $P_{0}=IV\:\mathrm{XOR}\:D(C_{0})$
 \end_inset
 
 , y así sucesivamente.
@@ -2108,10 +2123,11 @@ reference "fig:CBC-mode"
 \begin_inset Formula $i-1$
 \end_inset
 
-, por lo que el mismo texto plano genera un criptograma diferente dependiendo
- de dónde se produzca.
+, por lo que el mismo bloque de texto plano genera un criptograma diferente
+ dependiendo de dónde se encuentre en el mensaje.
  En este caso, un ataque que consista en modificar un bloque del criptograma
- producirá un mensaje sin sentido a partir del mismo en su desencriptación.
+ producirá un mensaje sin sentido a partir del bloque modificado cuando
+ el mensaje se desencripte.
  El modo CBC también tiene la ventaja de que el mismo bloque de texto plano
  no dará como resultado el mismo bloque de criptograma, lo que hace que
  el criptoanálisis sea mucho más difícil.
@@ -2188,8 +2204,9 @@ de clave pública
 \end_inset
 
 .
- Las claves deben cumplir ciertas propiedades que garantizan la confidencialidad
- de los mensajes enviados, y que son las que siguen 
+ Los algoritmos criptográficos de clave pública deben cumplir ciertas propiedade
+s para garantizar la confidencialidad de los mensajes enviados, y son las
+ que siguen 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Tanenbaum-Computer-Networks"
@@ -2203,7 +2220,7 @@ key "Tanenbaum-Computer-Networks"
 \begin_inset Formula $D\left(E\left(P\right)\right)=P$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -2308,7 +2325,7 @@ Bob
  para referirnos al algoritmo de encriptación parametrizado por la clave
  pública de Alice.
  De manera similar, el algoritmo de desencriptación (secreto) parametrizado
- por la clave privada de Alicia será denominado 
+ por la clave privada de Alice será denominado 
 \begin_inset Formula $D_{A}$
 \end_inset
 
@@ -2371,11 +2388,11 @@ Ahora veamos si podemos resolver el problema de establecer un canal seguro
 \begin_inset Formula $D_{B}$
 \end_inset
 
- del 
+ a partir de 
 \begin_inset Formula $E_{B}$
 \end_inset
 
- públicamente conocido.
+, que es la única clave de Bob conocida públicamente.
  Para enviar una respuesta, 
 \begin_inset Formula $R$
 \end_inset
@@ -2408,9 +2425,9 @@ key "Tanenbaum-Computer-Networks"
 \begin_layout Standard
 Encontrar algoritmos que satisfagan los tres requisitos mencionados anteriorment
 e no es fácil, pero existen algunos algoritmos publicados con estas propiedades.
- Uno de los más usados hoy en día es RSA, descubierto en el MIT en los años
- 1970, y que toma el nombre de las iniciales de sus tres descubridores:
- Rivest, Shamir y Adleman 
+ Uno de los más conocidos y usados hoy en día es RSA, descubierto en el
+ MIT en los años 1970, y que toma el nombre de las iniciales de sus tres
+ descubridores: Rivest, Shamir y Adleman 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "rivest1978method"
@@ -2425,17 +2442,32 @@ key "rivest1978method"
  Su mayor desventaja es que requiere claves de al menos 1024 bits para una
  buena seguridad (frente a 128 bits para algoritmos de clave simétrica),
  lo que lo hace bastante lento.
- Por este motivo, muchos protocolos de seguridad usan criptografía de clave
- pública para realizar el intercambio seguro de una clave privada, pasando
- luego a comunicarse con criptografía simétrica, a través de un algoritmo
- parametrizado con esta clave.
+ Por este motivo, muchos protocolos de seguridad solo usan criptografía
+ de clave pública para realizar el intercambio seguro de una clave privada,
+ pasando luego a comunicarse con criptografía simétrica, a través de un
+ algoritmo parametrizado con esta clave.
 \end_layout
 
 \begin_layout Standard
 Otros esquemas de clave pública se basan en la dificultad de calcular logaritmos
- discretos.
- Los algoritmos que usan este principio han sido inventados por El Gamal
+ discretos 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "elgamal1985public,schnorr1991efficient"
+
+\end_inset
+
+.
  
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Los algoritmos que usan este principio han sido inventados por El
+\begin_inset space ~
+\end_inset
+
+Gamal 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "elgamal1985public"
@@ -2450,6 +2482,10 @@ key "schnorr1991efficient"
 \end_inset
 
 .
+\end_layout
+
+\end_inset
+
  Existen algunos otros esquemas, como los basados en curvas elípticas 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2457,7 +2493,7 @@ key "menezes1993reducing"
 
 \end_inset
 
-, que están disfrutando de una gran popularidad en nuestros días, gracias
+, que están disfrutando de una gran popularidad en nuestros días gracias
  a su eficiencia relativamente alta, pues son capaces de obtener niveles
  de seguridad equivalentes con claves más cortas.
 \end_layout
@@ -2747,9 +2783,8 @@ The third requirement is needed to protect the customer in the event that
 Si pensamos en transacciones bancarias, por ejemplo, garantizar estas situacione
 s es de gran importancia.
  Sin embargo, en el dominio digital, no tenemos la posibilidad de firmar
- un documento en el sentido tradicional , ya que todos los documentos y
- mensajes están compuestos por un puñado de ceros y unos, todos iguales
- entre sí.
+ un documento en el sentido tradicional, ya que todos los documentos y mensajes
+ están compuestos por un puñado de ceros y unos, todos iguales entre sí.
  Para verificar la autenticidad del documento y dar solución a las situaciones
  listadas anteriormente tendremos que hacer uso de las firmas digitales,
  de las que hablaremos a continuación.
@@ -2839,15 +2874,26 @@ Alice no podrá negar haber enviado el mensaje
 
  solo puede haber sido generado por ella.
  Sin embargo, este esquema trae consigo algunos problemas relacionados con
- la gestión de claves.
- Algunos de estos problemas son el robo de la clave privada, o el cambio
- de clave.
+ la gestión de claves, como
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+.
+ Algunos de estos problemas
+\end_layout
+
+\end_inset
+
+ son el robo de la clave privada, o el cambio de clave.
  Algunos de estos problemas pueden ser resueltos con una infraestructura
  de clave pública (
 \lang english
 public key infrastructure
 \lang spanish
-, PKI), como la que explicaremos en el 
+, PKI).
+ Hablaremos de infraestructuras de clave pública y de certificados digitales
+ en el 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:X509"
@@ -3072,11 +3118,12 @@ message digest
 El proceso de firma explicado también puede llevarse a cabo empleando un
  hash del mensaje, en lugar del mensaje completo.
  Este método tiene dos ventajas.
- Por un lado, el hash será más corto que el mensaje, por lo que será el
- proceso de firma más eficiente, tanto en la generación como en la verificación.
+ Por un lado, el hash será más corto que el mensaje, por lo que el proceso
+ de firma será más eficiente, tanto en la generación como en la verificación.
  Por otro lado, separamos las funciones de autenticación y confidencialidad,
  por lo que no será necesario encriptar un mensaje si lo único que necesitamos
- es una firma autenticada y no repudiable.
+ es garantizar la autenticidad del remitente y evitar el repudio de la transacci
+ón.
 \end_layout
 
 \begin_layout Standard
@@ -3209,11 +3256,11 @@ key "national1993secure"
 
 .
  En caso de que esto no pueda comprobarse, el mensaje puede haber sido modificad
-o (o haber sido firmado por otra entidad), por lo que deberemos desconfiar
+o (o haber sido firmado por otra entidad), por lo que Bob deberá desconfiar
  del mismo.
  En cambio, si el resultado coincide, podremos estar seguros de que el mensaje
- ha sido no ha sido modificado en su transmisión, y que ha sido firmado,
- en este caso, por Alice.
+ no ha sido modificado en su transmisión, y que ha sido firmado, en este
+ caso, por Alice.
 \end_layout
 
 \begin_layout Standard
@@ -3691,12 +3738,9 @@ ticas con los sistemas empotrados.
 \begin_layout Standard
 Estas son las principales características que consideraremos para decir
  que un sistema es empotrado 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-ModernOS"
 
 \end_inset
 
@@ -3986,7 +4030,7 @@ denial of service
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -4549,6 +4593,9 @@ uso de la 1a pers plural?
 \end_layout
 
 \begin_layout Standard
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Transport Layer Security
@@ -4909,7 +4956,9 @@ content types
 ).
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
+
+\lang english
 Handshake Protocol
 \end_layout
 
@@ -4988,7 +5037,7 @@ Se comentará en más detalle más adelante (cross ref)
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 
 \lang english
 Alert Protocol
@@ -5009,7 +5058,7 @@ fatal
  y comprimidos siguiendo las especificaciones del estado actual de la conexión.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 
 \lang english
 Change Cipher Spec Protocol
@@ -5048,7 +5097,7 @@ Para ser más específicos, si un handshake tiene lugar durante una transmisión
  de este deberá atender a los nuevos parámetros y claves de cifrado.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 
 \lang english
 Application Protocol
@@ -5135,6 +5184,9 @@ Handshake Protocol
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 session
@@ -5148,6 +5200,9 @@ identifier
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 peer
@@ -5161,6 +5216,9 @@ certificate
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 compression
@@ -5173,6 +5231,9 @@ method
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 cipher
@@ -5192,6 +5253,9 @@ pseudo-random function
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 master
@@ -5787,6 +5851,9 @@ reference "fig:X509-fields"
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Version
@@ -5795,6 +5862,9 @@ Version
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Serial
@@ -5808,6 +5878,9 @@ number
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Signature
@@ -5816,18 +5889,24 @@ Signature
 
 algorithm
 \lang spanish
- el algoritmo usado para firmar el certificado
+ el algoritmo usado para firmar el certificado.
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Issuer
 \lang spanish
- nombre de la CA (en formado X.500)
+ nombre de la CA (en formado X.500).
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Validity
@@ -5836,10 +5915,13 @@ Validity
 
 period
 \lang spanish
- fecha y hora del comienzo y fin de la validez del certificado
+ fecha y hora del comienzo y fin de la validez del certificado.
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Subject
@@ -5848,10 +5930,13 @@ Subject
 
 name
 \lang spanish
- la entidad cuya clave está siendo certificada (en formado X.500)
+ la entidad cuya clave está siendo certificada (en formado X.500).
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Public
@@ -5864,10 +5949,13 @@ key
 \lang english
 subject
 \lang spanish
- y la ID del algoritmo que hace uso de la misma 
+ y la ID del algoritmo que hace uso de la misma.
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Issuer
@@ -5880,10 +5968,13 @@ ID
 \lang english
 issuer
 \lang spanish
- del certificado
+ del certificado.
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Subject
@@ -5896,23 +5987,29 @@ ID
 \lang english
 subject
 \lang spanish
- del certificado
+ del certificado.
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Extensions
 \lang spanish
- extensiones opcionales (existe una gran variedad de ellas)
+ extensiones opcionales (existe una gran variedad de ellas).
 \end_layout
 
 \begin_layout Description
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 Signature
 \lang spanish
- firma del certificado (firmado con la clave privada de la CA)
+ firma del certificado (firmado con la clave privada de la CA).
 \end_layout
 
 \begin_layout Standard
