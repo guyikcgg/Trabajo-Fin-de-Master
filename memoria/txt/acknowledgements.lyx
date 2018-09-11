@@ -100,7 +100,7 @@ thispagestyle{empty}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -110,37 +110,59 @@ Este trabajo es el resultado de ....
  En especial, quiero dar las gracias
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 A mis tutores, Antonio Díaz García y Diego Pedro Morales Santos, por la
  confianza y apoyo que me han brindado.
 \end_layout
 
-\begin_layout Plain Layout
-A Francisco Cruz # y Antonio David #, por 
+\begin_layout Standard
+A eesy-innovation, por la oportunidad de realizar un trabajo académico con
+ una aplicación industrial directa.
+ En especial, a Antonio David Escobar Molero y a Francisco Cruz Ramírez,
+ por hacer posible esta colaboración, por coordinar las entregas de este
+ trabajo y por proporcionarme una experiencia en la industria altamente
+ enriquecedora.
 \end_layout
 
-\begin_layout Plain Layout
-A la Universidad de Granada.
- A eesy-innovation.
+\begin_layout Standard
+A todo el personal de la Universidad de Granada que ha trabajado en esta
+ labor de transferencia del conocimiento.
+ En especial, a Diego Pedro Morales Santos, que ha coordinado la relación
+ con la empresa, y a Yolanda García Avilés, que me ha guiado en el laberinto
+ de la burocracia.
 \end_layout
 
-\begin_layout Plain Layout
-A Hilda Palencia por sus comentarios y su paciencia
+\begin_layout Standard
+A Javier Ruiz Riquelme y a Hilda Patricia Palencia, por sus comentarios
+ sobre este trabajo pero sobre todo por su paciencia, que se extiende más
+ allá de lo puramente académico o profesional.
 \end_layout
 
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
- (apoyo incondicional)
+\begin_layout Standard
+A todas las personas que me inspiran a seguir avanzando y a ir siempre más
+ allá, en especial a Francisco Javier Romero Maldonado, por contagiarme
+ su afán de superación, a Carlos Sampedro Matarín, por sacarme de mi zona
+ de comfort de forma inesperada, y a Francisco Valderas Jiménez, por mantenerme
+ cuestionándolo todo y mirando desde nuevas perspectivas.
 \end_layout
 
-\end_inset
+\begin_layout Standard
+A los que de forma más o menos directa hacen que sea quien soy, dándome
+ alas para hacer siempre algo nuevo y aprender cosas diferentes: Alfonso
+ Salinas Castillo, Luis Parrilla Roure, Alberto Molina Cabrera, José María
+ González Medina, y los que no menciono aquí por no seguir desgastando su
+ nombre.
+\end_layout
 
-.
+\begin_layout Standard
+Por supuesto, a mi madre, a mi hermano, Érik, y a mi buen amigo Javier Aguilar
+ Sánchez, por estar siempre ahí cuando los necesito y por acompañarme en
+ el camino de la vida.
 \end_layout
 
 \end_body
