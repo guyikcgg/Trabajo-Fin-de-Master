@@ -1093,7 +1093,14 @@ Advanced Encription Standard (AES)
 
 \end_inset
 
-).
+), como se muestra en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:symmetric-ciphers"
+
+\end_inset
+
+.
  A continuación presentaremos los fundamentos de los algoritmos de 
 \emph on
 cifrado por bloques
@@ -1103,7 +1110,380 @@ cifrado por bloques
 \end_inset
 
  bits, produciendo así el criptograma en bloques de la misma longitud.
- 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Algoritmo de cifrado
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Autor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Longitud de clave
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Comentarios
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+DES
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+IBM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+56 bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Vulnerable
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+RC4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Ronald Rivest
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+1-2048 bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Algunas claves vulnerables
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+RC5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Ronald Rivest
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+128-256 bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Bueno, pero patentado
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+AES (Rijndael)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Daemen and Rijmen
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+128-256 bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Mejor elección
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Triple DES
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+IBM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+168 bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Bueno, pero antiguo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Twofish
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Bruce Schneier
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+128-256 bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Muy robusto y usado
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:symmetric-ciphers"
+
+\end_inset
+
+Algunos de los algoritmos de clave simétrica más comunes 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1163,6 +1543,16 @@ Las cajas de permutación producen una reordenación entre los bits de su
 \begin_layout Standard
 Por otro lado, las cajas de sustitución cuentan con tres etapas.
  La primera de ellas es un decodificador, que 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+COMPLETAR
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1300,24 +1690,195 @@ Cualquier método de cifrado por bloques, sin importar lo complejo que sea,
  bits de texto plano con otra combinación (normalmente distinta) del mismo
  número de bits en el criptograma.
  De este modo, podemos decir que cualquier cifrado por bloques actúa como
- un diccionario que permite 
+ un 
 \begin_inset Quotes fld
 \end_inset
 
-traducir
+diccionario
 \begin_inset Quotes frd
 \end_inset
 
-, en función de la clave utilizada, cualquier bloque de texto plano a otro
- bloque de la misma longitud del criptograma.
+ que permite traducir, en función de la clave utilizada, cualquier bloque
+ de texto plano a otro bloque de la misma longitud del criptograma.
 \end_layout
 
 \begin_layout Standard
-Este modo de cifrado es conocido como Electronic Code Book y es el más directo
- y el más eficiente en su implementación.
+Cuando el algoritmo de cifrado actúa del modo descrito diremos que se está
+ usando el modo de cifrado conocido como 
+\lang english
+Electronic Code Book
+\lang spanish
+.
+ Este modo es el más directo y el más eficiente en su implementación.
  Sin embargo, presenta una vulnerabilidad, que se hace más importante cuanto
  menor es tamaño del bloque.
- Puesto que 
+ Puesto que un bloque de texto plano determinado siempre dará como resultado
+ el mismo bloque de criptograma, de manera que la confidencialidad puede
+ verse comprometida por ataques basados en criptoanálisis, como se muestra
+ en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Comparacion-modos-cifrado"
+
+\end_inset
+
+.
+ Además de la confidencialidad, este modo de cifrado puede sufrir de ataques
+ de reproducción (
+\lang english
+replay attacks
+\lang spanish
+) si no se toman medidas para evitarlos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/Tux.jpg
+	width 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/Tux_ecb.jpg
+	width 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/Tux_secure.jpg
+	width 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Comparacion-modos-cifrado"
+
+\end_inset
+
+Comparación entre los modos de cifrado por bloques 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wiki:tux"
+
+\end_inset
+
+.
+ (a) Imagen sin cifrar (texto plano).
+ (b) Imagen encriptada usando el modo ECB (vulnerable a ataques de criptoanálisi
+s).
+ (c) Imagen encriptada usando otro modo de cifrado (se consigue un criptograma
+ pseudo-aleatorio).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1325,55 +1886,28 @@ Modo Cipher Block Chaining (CBC)
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-To thwart this type of attack, all block ciphers can be chained in various
- ways so that replacing a block the way Leslie did will cause the plaintext
- decrypted starting at the replaced block to be garbage.
- One way of chaining is cipher block chaining.
- In this method, shown in Fig.
- 8-12, each plaintext block is XORed with the previous ciphertext block
- before being encrypted.
- Consequently, the same plaintext block no longer maps onto the same ciphertext
- block, and the encryption is no longer a big monoalphabetic substitution
- cipher.
- The first block is XORed with a randomly chosen IV (Initialization Vector),
- which is transmitted (in plain- text) along with the ciphertext.
-\end_layout
-
-\begin_layout Plain Layout
-We can see how cipher block chaining mode works by examining the example
- of Fig.
- 8-12.
- We start out by computing C 0 = E(P 0 XOR IV).
- Then we compute C 1 = E(P 1 XOR C 0 ), and so on.
- Decryption also uses XOR to reverse the proc- ess, with P 0 = IV XOR D(C
- 0 ), and so on.
- Note that the encryption of block i is a function of all the plaintext
- in blocks 0 through 
-\begin_inset Formula $i-1$
-\end_inset
-
-, so the same plaintext gener- ates different ciphertext depending on where
- it occurs.
- A transformation of the type Leslie made will result in nonsense for two
- blocks starting at Leslie’s bonus field.
- To an astute security officer, this peculiarity might suggest where to
- start the ensuing investigation.
-\end_layout
-
-\begin_layout Plain Layout
-Cipher block chaining also has the advantage that the same plaintext block
- will not result in the same ciphertext block, making cryptanalysis more
- difficult.
- In fact, this is the main reason it is used.
-\end_layout
+Para evitar este tipo de ataques, todos los cifrados por bloque se pueden
+ encadenar de varias formas.
+ Una de estas formas es la conocida como Cipher Block Chaining (CBC).
+ Con este método, mostrado en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:CBC-mode"
 
 \end_inset
 
-
+, cada bloque de texto plano es mezclado con el bloque de criptograma anterior
+ antes de ser encriptado.
+ Esto se consigue gracias a la función XOR y sus interesantes propiedades.
+ Por consiguiente, un mismo bloque de texto plano ya no se traduce al mismo
+ bloque de criptograma, y el cifrado ya no es un diccionario de sustitución
+ monoalfabético.
+ El primer bloque se mezcla (XOR) con un vector de inicizlización (
+\lang english
+initialization vector
+\lang spanish
+, IV) elegido al azar, que se transmite (en texto plano) junto con el texto
+ cifrado.
 \end_layout
 
 \begin_layout Standard
@@ -1397,6 +1931,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CBC-mode"
+
+\end_inset
+
 Modo de encriptación Cipher Block Chaining 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1414,8 +1954,80 @@ key "Tanenbaum-Computer-Networks"
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+Podemos ver cómo funciona el modo CBC examinando el ejemplo de la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:CBC-mode"
+
+\end_inset
+
+.
+ Comenzamos calculando 
+\begin_inset Formula $C_{0}=E(P_{0}\,\mathrm{XOR}\,IV)$
+\end_inset
+
+.
+ Luego calculamos 
+\begin_inset Formula $C_{1}=E(P_{1}\,\mathrm{XOR}\,C_{0})$
+\end_inset
+
+, y así sucesivamente.
+ El proceso de desencriptación también usa XOR para revertir el proceso,
+ con 
+\begin_inset Formula $P_{0}=IV\,\mathrm{XOR}\,D(C_{0})$
+\end_inset
+
+, y así sucesivamente.
+ Cabe destacar que el cifrado del bloque 
+\begin_inset Formula $i$
+\end_inset
+
+ es una función de todo el texto plano en los bloques 
+\begin_inset Formula $0$
+\end_inset
+
+ a 
+\begin_inset Formula $i-1$
+\end_inset
+
+, por lo que el mismo texto plano genera un criptograma diferente dependiendo
+ de dónde se produzca.
+ En este caso, un ataque que consista en modificar un bloque del criptograma
+ producirá un mensaje sin sentido a partir del mismo en su desencriptación.
+ El modo CBC también tiene la ventaja de que el mismo bloque de texto plano
+ no dará como resultado el mismo bloque de criptograma, lo que hace que
+ el criptoanálisis sea mucho más difícil.
+\end_layout
+
+\begin_layout Subsubsection
+Otros modos de cifrado
+\end_layout
+
+\begin_layout Standard
+Existen otros modos de cifrado además de los presentados aquí.
+ Todos ellos tienen la ventaja, al igual que CBC, de producir una salida
+ pseudo-aleatoria, que complica el criptoanálisis.
+ Sin embargo, existen diferencias significativas entre ellos.
+ Por ejemplo, el modo de cifrado por contador (CTR) no encadena los bloques
+ de texto plano mezclándolos con el criptograma anterior, sino que usa un
+ IV que se incrementa con cada bloque.
+ De esta forma, CTR produce una salida pseudo-aleatoria, permitiendo el
+ acceso no secuencial a la información, siempre y cuando se disponga de
+ la clave, el IV inicial y el número de secuencia.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Otra alternativa es el cifrado de flujo (stream cipher), que consiste en
+ mezclar el texto plano con una secuencia pseudo-aleatoria conseguida mediante
+ el cifrado en cadena de 
 \end_layout
 
 \end_inset
@@ -1441,36 +2053,35 @@ USADA PARA INTERCAMBIAR CLAVES PARA CRIPTOGRAFÍA SIMÉTRICA, QUE ES MÁS EFICIE
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
-status open
+La criptografía de clave pública, también conocida como criptografía asimétrica,
+ parte de la idea de tener dos claves distintas para encriptar y para desencript
+ar.
+ De este modo, tendremos un algoritmo de encriptación 
+\begin_inset Formula $E$
+\end_inset
 
-\begin_layout Plain Layout
-Historically, distributing the keys has always been the weakest link in
- most cryptosystems.
- No matter how strong a cryptosystem was, if an intruder could steal the
- key, the system was worthless.
- Cryptologists always took for granted that the encryption key and decryption
- key were the same (or easily derived from one another).
- But the key had to be distributed to all users of the system.
- Thus, it seemed as if there was an inherent problem.
- Keys had to be protected from theft, but they also had to be distributed,
- so they could not be locked in a bank vault.
- 
-\end_layout
+, parametrizado con la clave 
+\begin_inset Formula $K_{E}$
+\end_inset
 
-\begin_layout Plain Layout
-In 1976, two researchers at Stanford University, Diffie and Hellman (1976),
- proposed a radically new kind of cryptosystem, one in which the encryption
- and decryption keys were so different that the decryption key could not
- feasibly be derived from the encryption key.
- In their proposal, the (keyed) encryption algo- rithm, E, and the (keyed)
- decryption algorithm, D, had to meet three requirements.
- These requirements can be stated simply as follows:
-\end_layout
+, y un algoritmo de desencriptación 
+\begin_inset Formula $D$
+\end_inset
+
+, parametrizado con la clave 
+\begin_inset Formula $K_{D}$
+\end_inset
+
+.
+ Las claves deben cumplir ciertas propiedades que garantizan la confidencialidad
+ de los mensajes enviados, y que son las que siguen 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
 
 \end_inset
 
-
+:
 \end_layout
 
 \begin_layout Enumerate
@@ -1504,8 +2115,299 @@ chosen-plaintext attack
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
+
+\begin_layout Plain Layout
+El primer requisito dice que si aplicamos 
+\begin_inset Formula $D$
+\end_inset
+
+ a un mensaje encriptado, 
+\begin_inset Formula $E(P)$
+\end_inset
+
+, obtendremos el mensaje en texto plano original, 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ Sin esta propiedad, el receptor legítimo no podría descifrar el criptograma.
+ El segundo requisito habla por sí mismo.
+ El tercer requisito es necesario porque, como veremos en un momento, los
+ intrusos pueden experimentar con el algoritmo al contenido de sus corazones.
+ En estas condiciones, no hay ninguna razón para que la clave de cifrado
+ no pueda hacerse pública.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+El método funciona así.
+ Una persona, por ejemplo, Alice, que quiere recibir mensajes secretos,
+ primero crea dos algoritmos que cumplen los requisitos anteriores.
+ El algoritmo de encriptación y la clave de Alice se hacen públicos
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+, de ahí el nombre de criptografía de clave pública.
+ Alice podría poner su clave pública en su página de inicio en la Web, por
+ ejemplo.
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Veamos cómo funciona la criptografía de clave pública con un ejemplo sencillo.
+ En este ejemplo tendremos dos nodos que nunca han establecido comunicación
+ entre sí, pero que desean comunicarse de forma segura.
+ Como suele hacerse en criptografía, llamaremos 
+\emph on
+Alice
+\emph default
+ al primer nodo, y 
+\emph on
+Bob
+\emph default
+ al segundo.
+ Utilizaremos la notación 
+\begin_inset Formula $E_{A}$
+\end_inset
+
+ para referirnos al algoritmo de encriptación parametrizado por la clave
+ pública de Alice.
+ De manera similar, el algoritmo de desencriptación (secreto) parametrizado
+ por la clave privada de Alicia será denominado 
+\begin_inset Formula $D_{A}$
+\end_inset
+
+.
+ Bob hace lo mismo, publicando 
+\begin_inset Formula $E_{B}$
+\end_inset
+
+ pero manteniendo 
+\begin_inset Formula $D_{B}$
+\end_inset
+
+ en secreto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ahora veamos si podemos resolver el problema de establecer un canal seguro
+ entre Alice y Bob, que nunca tuvieron contacto previo.
+\end_layout
+
+\end_inset
+
+ Se supone que tanto la clave de encriptación de Alice, 
+\begin_inset Formula $E_{A}$
+\end_inset
+
+, como la clave de cifrado de Bob, 
+\begin_inset Formula $E_{B}$
+\end_inset
+
+, se encuentran en archivos de lectura pública.
+ Ahora Alice toma su primer mensaje, 
+\begin_inset Formula $P$
+\end_inset
+
+, calcula 
+\begin_inset Formula $E_{B}(P)$
+\end_inset
+
+ y lo envía a Bob.
+ Bob lo descifra aplicando su clave secreta 
+\begin_inset Formula $D_{B}$
+\end_inset
+
+ (es decir, calcula 
+\begin_inset Formula $D_{B}(E_{B}(P))=P$
+\end_inset
+
+).
+ Nadie más puede leer el mensaje encriptado, 
+\begin_inset Formula $E_{B}(P)$
+\end_inset
+
+, porque se supone que el sistema de cifrado es robusto y porque es demasiado
+ difícil derivar 
+\begin_inset Formula $D_{B}$
+\end_inset
+
+ del 
+\begin_inset Formula $E_{B}$
+\end_inset
+
+ públicamente conocido.
+ Para enviar una respuesta, 
+\begin_inset Formula $R$
+\end_inset
+
+, Bob transmite 
+\begin_inset Formula $E_{A}(R)$
+\end_inset
+
+.
+ Alice y Bob ahora pueden comunicarse de forma segura.
+\end_layout
+
+\begin_layout Standard
+Como vemos, la criptografía de clave pública requiere que cada usuario tenga
+ dos claves: una clave pública, utilizada por todo el mundo para encriptar
+ los mensajes que se enviarán a ese usuario, y una clave privada, que el
+ usuario necesita para descifrar los mensajes.
+ Constantemente nos referiremos a estas claves como las claves pública y
+ privada, respectivamente, y las distinguiremos de las claves secretas utilizada
+s para la criptografía de clave simétrica convencional.
+\end_layout
+
+\begin_layout Standard
+Encontrar algoritmos que satisfagan los tres requisitos mencionados anteriorment
+e no es fácil, pero existen algunos algoritmos publicados con estas propiedades.
+ Uno de los más usados hoy en día es RSA, descubierto en el MIT en los años
+ 1970, y que toma el nombre de las iniciales de sus tres descubridores:
+ Rivest, Shamir y Adleman 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rivest1978method"
+
+\end_inset
+
+.
+ RSA basa su seguridad en la dificultad de factorizar números muy grandes,
+ en especial cuando estos son el producto de números primos elevados.
+ A pesar de todos los intentos de romper su seguridad, RSA ha demostrado
+ ser un algoritmo seguro y robusto durante más de 30 años.
+ Su mayor desventaja es que requiere claves de al menos 1024 bits para una
+ buena seguridad (frente a 128 bits para algoritmos de clave simétrica),
+ lo que lo hace bastante lento.
+ Por este motivo, muchos protocolos de seguridad usan criptografía de clave
+ pública para realizar el intercambio seguro de una clave privada, pasando
+ luego a comunicarse con criptografía simétrica, a través de un algoritmo
+ parametrizado con esta clave.
+\end_layout
+
+\begin_layout Standard
+Otros esquemas de clave pública se basan en la dificultad de calcular logaritmos
+ discretos.
+ Los algoritmos que usan este principio han sido inventados por El Gamal
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "elgamal1985public"
+
+\end_inset
+
+ y Schnorr 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "schnorr1991efficient"
+
+\end_inset
+
+.
+ Existen algunos otros esquemas, como los basados en curvas elípticas 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "menezes1993reducing"
+
+\end_inset
+
+, que están disfrutando de una gran popularidad en nuestros días, gracias
+ a su eficiencia relativamente alta, pues son capaces de obtener niveles
+ de seguridad equivalentes con claves más cortas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+La distribución de claves es un proceso que exige suma precaución, pudiendo
+ llegar a ser el eslabón más débil de un criptosistemas.
+ No importa lo fuerte que sea un algoritmo de cifrado, si un intruso puede
+ robar la clave, el sistema no tiene valor.
+ Tradicionalmente la clave de cifrado y la clave de descifrado son la misma
+ (o pueden derivarse fácilmente una de la otra).
+ Pero la clave tenía que ser distribuida a todos los usuarios del sistema.
+ Por lo tanto, parecía como si hubiera un problema inherente.
+ Las llaves debían protegerse contra el robo, pero también debían distribuirse
+ para que no pudieran encerrarse en la bóveda de un banco.
+\end_layout
+
+\begin_layout Plain Layout
+En 1976, dos investigadores de la Universidad de Stanford, Diffie y Hellman
+ (1976), propusieron un tipo de criptosistema radicalmente nuevo, en el
+ que las claves de cifrado y descifrado eran tan diferentes que la clave
+ de desencriptado no podía derivarse de la clave de cifrado.
+ En su propuesta, el algoritmo de encriptación (con clave), E, y el algoritmo
+ de descifrado (con clave), D, tenían que cumplir tres requisitos.
+ Estos requisitos se pueden expresar de la siguiente manera:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Historically, distributing the keys has always been the weakest link in
+ most cryptosystems.
+ No matter how strong a cryptosystem was, if an intruder could steal the
+ key, the system was worthless.
+ Cryptologists always took for granted that the encryption key and decryption
+ key were the same (or easily derived from one another).
+ But the key had to be distributed to all users of the system.
+ Thus, it seemed as if there was an inherent problem.
+ Keys had to be protected from theft, but they also had to be distributed,
+ so they could not be locked in a bank vault.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+In 1976, two researchers at Stanford University, Diffie and Hellman (1976),
+ proposed a radically new kind of cryptosystem, one in which the encryption
+ and decryption keys were so different that the decryption key could not
+ feasibly be derived from the encryption key.
+ In their proposal, the (keyed) encryption algo- rithm, E, and the (keyed)
+ decryption algorithm, D, had to meet three requirements.
+ These requirements can be stated simply as follows:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
 
 \begin_layout Plain Layout
 The first requirement says that if we apply D to an encrypted message, E(P),
@@ -1656,22 +2558,22 @@ The problem of devising a replacement for handwritten signatures is a diffi-
 \end_layout
 
 \begin_layout Standard
-Las firmas tradicionales se llevan usando mucho tiempo, para resolver los
- problemas:
+Las firmas tradicionales se llevan usando mucho tiempo para establecer compromis
+os legales entre dos partes.
+ En un esquema de comunicación, esto se traduce en garantizar una serie
+ de situaciones:
 \end_layout
 
 \begin_layout Enumerate
-The receiver can verify the claimed identity of the sender.
- 
+El receptor puede verificar la identidad del remitente.
 \end_layout
 
 \begin_layout Enumerate
-The sender cannot later repudiate the contents of the message.
- 
+El remitente no puede repudiar el contenido del mensaje más adelante.
 \end_layout
 
 \begin_layout Enumerate
-The receiver cannot possibly have concocted the message himself.
+El receptor no puede haber elaborado el mensaje por sí mismo.
 \end_layout
 
 \begin_layout Standard
@@ -1713,10 +2615,19 @@ The third requirement is needed to protect the customer in the event that
 \end_layout
 
 \begin_layout Standard
-Estos problemas son de gran importancia con las transacciones bancarias,
- etc.
- Sin embargo, cuando nos movemos al mundo digital, tenemos un puñado de
- ceros y unos.
+Si pensamos en transacciones bancarias, por ejemplo, garantizar estas situacione
+s es de gran importancia.
+ Sin embargo, en el dominio digital, no tenemos la posibilidad de firmar
+ un documento en el sentido tradicional , ya que todos los documentos y
+ mensajes están compuestos por un puñado de ceros y unos, todos iguales
+ entre sí.
+ Para verificar la autenticidad del documento y dar solución a las situaciones
+ listadas anteriormente tendremos que hacer uso de las firmas digitales,
+ de las que hablaremos a continuación.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
  cómo saber si un documento es auténtico? firmas digitales.
  Las firmas digitales resuelven estos problemas (authenticity, non repudiation
  y ...).
@@ -1724,13 +2635,152 @@ Estos problemas son de gran importancia con las transacciones bancarias,
  #ref# es la que se basa en clave pública.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Firmas digitales de clave pública
 \end_layout
 
 \begin_layout Standard
+El problema de las firmas digitales puede resolverse de forma relativamente
+ sencilla haciendo uso de la criptografía de clave pública.
+ De hecho, este enfoque es el más usado en nuestros días.
+\end_layout
+
+\begin_layout Standard
+Supongamos que los algoritmos de cifrado y descifrado de clave pública tienen
+ la propiedad de que 
+\begin_inset Formula $E(D(P))=P$
+\end_inset
+
+, además, por supuesto, de la propiedad habitual de que 
+\begin_inset Formula $D(E(P))=P$
+\end_inset
+
+.
+ Suponiendo que este sea el caso, Alice puede enviar un mensaje en texto
+ plano, firmado, a Bob transmitiendo 
+\begin_inset Formula $E_{B}(D_{A}(P))$
+\end_inset
+
+.
+ Tenga en cuenta que Alice conoce su propia clave privada, 
+\begin_inset Formula $D_{A}$
+\end_inset
+
+, así como la clave pública de Bob, 
+\begin_inset Formula $E_{B}$
+\end_inset
+
+, por lo que construir este mensaje es algo que Alice puede hacer.
+\end_layout
+
+\begin_layout Standard
+Cuando Bob recibe el mensaje, lo transforma usando su clave privada, como
+ de costumbre, produciendo 
+\begin_inset Formula $D_{A}(P)$
+\end_inset
+
+, como se muestra en la figura 8-19.
+ Almacena este texto en un lugar seguro y luego aplica 
+\begin_inset Formula $E_{A}$
+\end_inset
+
+ para obtener el texto original.
+\end_layout
+
+\begin_layout Standard
+Para ver cómo funciona la propiedad de la firma, supongamos que posteriormente
+ Alicia niega haber enviado el mensaje P a Bob.
+ Cuando se presenta el caso en la corte, Bob puede producir P y 
+\begin_inset Formula $D_{A}(P)$
+\end_inset
+
+.
+ El juez puede verificar fácilmente que Bob efectivamente tiene un mensaje
+ válido encriptado por 
+\begin_inset Formula $D_{A}$
+\end_inset
+
+ simplemente aplicando 
+\begin_inset Formula $E_{A}$
+\end_inset
+
+ a él.
+ Como Bob no sabe cuál es la clave privada de Alice, la única forma en que
+ Bob podría haber adquirido un mensaje cifrado es si Alice realmente lo
+ envió.
+ Mientras esté en la cárcel por perjurio y fraude, Alice tendrá mucho tiempo
+ para idear nuevos e interesantes algoritmos de clave pública.
+\end_layout
+
+\begin_layout Standard
+Si bien el uso de la criptografía de clave pública para firmas digitales
+ es un esquema elegante, existen problemas que están relacionados con el
+ entorno en el que operan y no con el algoritmo básico.
+ Por un lado, Bob puede demostrar que Alice envió un mensaje solo mientras
+ 
+\begin_inset Formula $D_{A}$
+\end_inset
+
+ permanezca en secreto.
+ Si Alice revela su clave secreta, el argumento ya no se cumple, porque
+ cualquiera podría haber enviado el mensaje, incluido el propio Bob.
+\end_layout
+
+\begin_layout Standard
+El problema podría surgir, por ejemplo, si Bob es el corredor de bolsa de
+ Alice.
+ Supongamos que Alice le dice a Bob que compre una determinada acción o
+ fianza.
+ Inmediatamente después, el precio cae bruscamente.
+ Para repudiar su mensaje a Bob, Alice corre hacia la policía alegando que
+ su casa fue robada y que le robaron la PC que tenía la clave.
+ Dependiendo de las leyes de su estado o país, puede o no ser legalmente
+ responsable, especialmente si afirma no haber descubierto el robo hasta
+ llegar a casa del trabajo, varias horas después de lo que supuestamente
+ sucedió.
+\end_layout
+
+\begin_layout Standard
+Otro problema con el esquema de firma es qué sucede si Alice decide cambiar
+ su clave.
+ Hacerlo es claramente legal, y probablemente sea una buena idea hacerlo
+ periódicamente.
+ Si luego surge un caso judicial, como se describió anteriormente, el juez
+ aplicará la actual 
+\begin_inset Formula $E_{A}$
+\end_inset
+
+ a 
+\begin_inset Formula $D_{A}(P)$
+\end_inset
+
+ y descubrirá que no produce 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ Bob se verá bastante estúpido en este punto.
+\end_layout
+
+\begin_layout Standard
+En principio, cualquier algoritmo de clave pública se puede usar para firmas
+ digitales.
+ El estándar de la industria de facto es el algoritmo RSA.
+ Muchos productos de seguridad lo usan.
+ Sin embargo, en 1991, el NIST propuso usar una variante del algoritmo de
+ clave pública de El Gamal para su nuevo estándar de firma digital (DSS).
+ El Gamal obtiene su seguridad de la dificultad de calcular logaritmos discretos
+, más que de la dificultad de factorizar grandes números.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Greyedout
-status open
+status collapsed
 
 \begin_layout Plain Layout
 A structural problem with using symmetric-key cryptography for digital sig-
@@ -4121,180 +5171,61 @@ certificado digital
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-Public-key cryptography makes it possible for people who do not share a
- common key in advance to nevertheless communicate securely.
- It also makes signing messages possible without the presence of a trusted
- third party.
- Finally, signed message digests make it possible for the recipient to verify
- the integrity of received messages easily and securely.
- However, there is one problem that we have glossed over a bit too quickly:
- if Alice and Bob do not know each other, how do they get each other’s public
- keys to start the communication process? The obvious solution—put your
- public key on your Web site—does not work, for the following reason.
- Suppose that Alice wants to look up Bob’s public key on his Web site.
- How does she do it? She starts by typing in Bob’s URL.
- Her browser then looks up the DNS address of Bob’s home page and sends
- it a GET request, as shown in Fig.
- 8-23.
- Unfortunate- ly, Trudy intercepts the request and replies with a fake home
- page, probably a copy of Bob’s home page except for the replacement of
- Bob’s public key with Trudy’s public key.
- When Alice now encrypts her first message with E T , Trudy decrypts it,
- reads it, re-encrypts it with Bob’s public key, and sends it to Bob, who
- is none the wiser that Trudy is reading his incoming messages.
- Worse yet, Trudy could modify the messages before reencrypting them for
- Bob.
- Clearly, some mechanism is needed to make sure that public keys can be
- exchanged securely.
-\end_layout
-
-\begin_layout Plain Layout
-As a first attempt at distributing public keys securely, we could imagine
- a KDC key distribution center available online 24 hours a day to provide
- public keys on demand.
- One of the many problems with this solution is that it is not scalable,
- and the key distribution center would rapidly become a bottleneck.
- Also, if it ever went down, Internet security would suddenly grind to a
- halt.
- For these reasons, people have developed a different solution, one that
- does not require the key distribution center to be online all the time.
- In fact, it does not have to be online at all.
- Instead, what it does is certify the public keys belonging to people, companies
-, and other organizations.
- An organization that certifies pub- lic keys is now called a CA (Certification
- Authority).
- As an example, suppose that Bob wants to allow Alice and other people he
- does not know to communicate with him securely.
- He can go to the CA with his public key along with his passport or driver’s
- license and ask to be certified.
- The CA then issues a certificate similar to the one in Fig.
- 8-24 and signs its SHA-1
-\end_layout
-
-\begin_layout Plain Layout
-hash with the CA’s private key.
- Bob then pays the CA’s fee and gets a CD-ROM containing the certificate
- and its signed hash.
-\end_layout
-
-\begin_layout Plain Layout
-The fundamental job of a certificate is to bind a public key to the name
- of a principal (individual, company, etc.).
- Certificates themselves are not secret or protected.
- Bob might, for example, decide to put his new certificate on his Web site,
- with a link on the main page saying: Click here for my public-key certificate.
- The resulting click would return both the certificate and the signature
- block (the signed SHA-1 hash of the certificate).
- Now let us run through the scenario of Fig.
- 8-23 again.
- When Trudy inter- cepts Alice’s request for Bob’s home page, what can she
- do? She can put her own certificate and signature block on the fake page,
- but when Alice reads the contents of the certificate she will immediately
- see that she is not talking to Bob because Bob’s name is not in it.
- Trudy can modify Bob’s home page on the fly, replacing Bob’s public key
- with her own.
- However, when Alice runs the SHA-1 algorithm on the certificate, she will
- get a hash that does not agree with the one she gets when she applies the
- CA’s well-known public key to the signature block.
- Since Trudy does not have the CA’s private key, she has no way of generating
- a signa- ture block that contains the hash of the modified Web page with
- her public key on it.
- In this way, Alice can be sure she has Bob’s public key and not Trudy’s
- or someone else’s.
- And as we promised, this scheme does not require the CA to be online for
- verification, thus eliminating a potential bottleneck.
- While the standard function of a certificate is to bind a public key to
- a princi- pal, a certificate can also be used to bind a public key to an
- attribute.
- For ex- ample, a certificate could say: ‘‘This public key belongs to someone
- over 18.’’ It could be used to prove that the owner of the private key was
- not a minor and thus allowed to access material not suitable for children,
- and so on, but without dis- closing the owner’s identity.
- Typically, the person holding the certificate would send it to the Web
- site, principal, or process that cared about age.
- That site, prin- cipal, or process would then generate a random number
- and encrypt it with the public key in the certificate.
- If the owner were able to decrypt it and send it back,
-\end_layout
-
-\begin_layout Plain Layout
-that would be proof that the owner indeed had the attribute stated in the
- certifi- cate.
- Alternatively, the random number could be used to generate a session key
- for the ensuing conversation.
- Another example of where a certificate might contain an attribute is in
- an ob- ject-oriented distributed system.
- Each object normally has multiple methods.
- The owner of the object could provide each customer with a certificate
- giving a bit map of which methods the customer is allowed to invoke and
- binding the bit map to a public key using a signed certificate.
- Again, if the certificate holder can prove possession of the corresponding
- private key, he will be allowed to perform the methods in the bit map.
- This approach has the property that the owner’s iden- tity need not be
- known, a property useful in situations where privacy is important.
-\end_layout
-
-\end_inset
-
-
+La criptografía de clave pública hace posible que las personas que no comparten
+ una clave común de antemano puedan comunicarse de forma segura.
+ También hace que la firma de mensajes sea posible sin la presencia de un
+ tercero confiable.
+ Finalmente, la firma de los message digests hace posible que el destinatario
+ verifique la integridad de los mensajes recibidos de forma fácil y segura.
+ Sin embargo, hay un problema que no hemos resuelto aún.
+ Se trata de la verificación de la identidad y de la obtención de la clave
+ pública asociada a una entidad.
+ Si fuéramos a intercambiar una clave privada con cualquier persona o entidad,
+ lo primero que necesitaremos es su clave pública.
+ Sin embargo, si esta clave se hace disponible en una web sin más, corremos
+ el riesgo de que un posible atacante intercepte la comunicación con la
+ web y nos haga creer que la clave es otra (la del propio atacante, por
+ ejemplo).
+ De esta forma, el atacante podría interceptar todo el intercambio de claves,
+ quebrando la confidencialidad (y posiblemente la integridad) de la comunicación.
+ Claramente, necesitamos algún mecanismo para garantizar que las claves
+ públicas puedan intercambiarse de forma segura.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-If everybody who wanted something signed went to the CA with a different
- kind of certificate, managing all the different formats would soon become
- a prob- lem.
- To solve this problem, a standard for certificates has been devised and
- approved by ITU.
- The standard is called X.509 and is in widespread use on the Internet.
- It has gone through three versions since the initial standardization in
- 1988.
- We will discuss V3.
- X.509 has been heavily influenced by the OSI world, borrowing some of its
- worst features (e.g., naming and encoding).
- Surprisingly, IETF went along with X.509, even though in nearly every other
- area, from machine addresses to tran- sport protocols to email formats,
- IETF generally ignored OSI and tried to do it right.
- The IETF version of X.509 is described in RFC 5280.
- At its core, X.509 is a way to describe certificates.
- The primary fields in a certificate are listed in Fig.
- 8-25.
- The descriptions given there should provide a general idea of what the
- fields do.
- For additional information, please consult the standard itself or RFC 2459.
- For example, if Bob works in the loan department of the Money Bank, his
- X.500 address might be
+Los certificados digitales de clave pública se fundamentan en la confianza
+ depositada en una organización, la autoridad certificadora (
+\lang english
+certification authority
+\lang spanish
+, CA), de la que conocemos su identidad y clave pública.
+ La CA certificará las claves públicas que pertenecen a personas, empresas
+ y otras organizaciones, de forma que podamos verificar la correspondencia
+ entre entidad y clave pública.
+ El papel de la CA será verificar la identidad de una persona a través de
+ un documento físico oficial (como el pasaporte) y emitir un documento que
+ contendrá los datos del solicitante (principalmente su nombre), su clave
+ pública, y un hash SHA firmado con la clave privada de la CA.
+ Este documento es denominado certificado digital, y como vemos su trabajo
+ fundamental es vincular una clave pública con el nombre de un principal
+ (individuo, empresa, etc.).
+ 
 \end_layout
 
-\begin_layout Plain Layout
-/C=US/O=MoneyBank/OU=Loan/CN=Bob/ 
-\end_layout
-
-\begin_layout Plain Layout
-where C is for country, O is for organization, OU is for organizational
- unit, and CN is for common name.
- CAs and other entities are named in a similar way.
- A substantial problem with X.500 names is that if Alice is trying to contact
- bob@moneybank.com and is given a certificate with an X.500 name, it may not
- be obvious to her that the certificate refers to the Bob she wants.
- Fortunately, start- ing with version 3, DNS names are now permitted instead
- of X.500 names, so this problem may eventually vanish.
- Certificates are encoded using OSI ASN.1 (Abstract Syntax Notation 1), which
- is sort of like a struct in C, except with a extremely peculiar and verbose
- notation.
- More information about X.509 is given by Ford and Baum (2000).
-\end_layout
-
-\end_inset
-
-
+\begin_layout Standard
+Los certificados en sí no son secretos ni están protegidos, pudiendo ser
+ publicados sin riesgo alguno.
+ Si un atacante tratara de modificar un certificado durante su transmisión,
+ nos daríamos cuenta de que la firma no se corresponde con el hash de los
+ campos del certificado.
+ De igual forma, si el atacante introdujera un certificado válido, podríamos
+ comprobar que este no contiene el nombre de la entidad que intentamos autentica
+r.
+ Una ventaja de este esquema es que la CA no tiene por qué estar en línea
+ permanentemente.
+ En cambio, su función se limita a proporcionar la firma de los certificados
+ digitales, lo cuál se lleva a cabo con cada solicitud, tras la verificación
+ de la identidad física de la persona o empresa en cuestión.
 \end_layout
 
 \begin_layout Standard
@@ -4336,7 +5267,116 @@ Contenido de los certificados
 \end_layout
 
 \begin_layout Standard
-Los campos
+El estándar X.509 aprobado por la ITU (
+\lang english
+International Telecommunication Union
+\lang spanish
+) define el formato en el que deben presentarse los certificados digitales.
+ Este estándar, que es usado ampliamente en Internet, ha pasado por tres
+ versiones desde la estandarización inicial en 1988.
+ Discutiremos la versión más reciente del mismo (X.509 V3), tal y como está
+ definido por la IETF 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rfc2459-X509-1999,rfc5280-X509-2008"
+
+\end_inset
+
+.
+ Los campos principales en un certificado se enumeran en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:X509-fields"
+
+\end_inset
+
+.
+ A continuación se describe la función general de cada campo.
+\end_layout
+
+\begin_layout Description
+Version versión de X.509 con la que se ha generado el certificado
+\end_layout
+
+\begin_layout Description
+Serial
+\begin_inset space ~
+\end_inset
+
+number este número, junto con el nombre de la CA, identifica el certificado
+ de forma unívoca
+\end_layout
+
+\begin_layout Description
+Signature
+\begin_inset space ~
+\end_inset
+
+algorithm el algoritmo usado para firmar el certificado
+\end_layout
+
+\begin_layout Description
+Issuer nombre de la CA (en formado X.500)
+\end_layout
+
+\begin_layout Description
+Validity
+\begin_inset space ~
+\end_inset
+
+period fecha y hora del comienzo y fin de la validez del certificado
+\end_layout
+
+\begin_layout Description
+Subject
+\begin_inset space ~
+\end_inset
+
+name la entidad cuya clave está siendo certificada (en formado X.500)
+\end_layout
+
+\begin_layout Description
+Public
+\begin_inset space ~
+\end_inset
+
+key la clave pública del 
+\emph on
+subject
+\emph default
+ y la ID del algoritmo que hace uso de la misma 
+\end_layout
+
+\begin_layout Description
+Issuer
+\begin_inset space ~
+\end_inset
+
+ID un ID opcional que identifica de forma unívoca al 
+\emph on
+issuer
+\emph default
+ del certificado
+\end_layout
+
+\begin_layout Description
+Subject
+\begin_inset space ~
+\end_inset
+
+ID un ID opcional que identifica de forma unívoca al 
+\emph on
+subject
+\emph default
+ del certificado
+\end_layout
+
+\begin_layout Description
+Extensions extensiones opcionales (existe una gran variedad de ellas)
+\end_layout
+
+\begin_layout Description
+Signature firma del certificado (firmado con la clave privada de la CA)
 \end_layout
 
 \begin_layout Standard
@@ -4346,6 +5386,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename img/cert-digital.gif
 	width 50col%
@@ -4359,7 +5400,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Campos de los certificados X.509 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:X509-fields"
+
+\end_inset
+
+Campos principales de los certificados X.509 V3 
 \begin_inset Note Note
 status open
 
@@ -4411,104 +5458,235 @@ trust chain
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+Tener una única CA para emitir todos los certificados del mundo obviamente
+ no funcionaría.
+ Se colapsaría bajo la carga y también sería un punto crítico central.
+ Una posible solución podría ser tener múltiples CA, todas gestionadas por
+ la misma organización y todas usando la misma clave privada para firmar
+ certificados.
+ Si bien esto resolvería los problemas de carga y error, introduce un nuevo
+ problema: la pérdida de la clave.
+ Si hubiera docenas de servidores repartidos por todo el mundo, todos con
+ la clave privada de la CA, la probabilidad de que la llave privada sea
+ robada o se escape sería mucho mayor.
+ Dado que el compromiso de esta clave arruinaría la infraestructura de cibersegu
+ridad mundial, tener una CA central única es muy arriesgado.
+ Además, es difícil imaginar una autoridad que sea aceptada en todo el mundo
+ como legítima y confiable.
+ En algunos países, insistirían en que esta autoridad fuera un gobierno,
+ mientras que en otros países insistirían en que no sea un gobierno.
+ Por estos motivos, se ha desarrollado una forma diferente de certificar
+ claves públicas, que se conoce con el nombre general de infraestructura
+ de clave pública (public key infrastructure, PKI).
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+En esta sección, resumiremos cómo funciona de forma general.
+\end_layout
+
+\end_inset
+
+ Una PKI tiene múltiples componentes, en los que se incluyen usuarios, CA,
+ certificados y directorios.
+ Lo que la PKI hace es proporcionar una forma de estructurar estos componentes
+ y definir estándares para los diversos documentos y protocolos.
+ Una forma particularmente simple de PKI es una jerarquía de CA, como se
+ representa en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:pki-tanenbaum"
+
+\end_inset
+
+.
+ En este ejemplo, se muestran tres niveles, pero en la práctica puede haber
+ menos o más.
+ La CA de nivel superior, denominada raíz (
+\lang english
+root CA
+\lang spanish
+), certifica las CA de segundo nivel, que aquí llamamos autoridades regionales
+ (regional authorities, RA) porque podrían cubrir alguna región geográfica.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+, como un país o continente.
+ Sin embargo, este término no es estándar; de hecho, ningún término es realmente
+ estándar para los diferentes niveles del árbol.
+\end_layout
+
+\end_inset
+
+ Estos a su vez certifican las CA reales, que emiten los certificados X.509
+ a organizaciones y particulares.
+ Cuando la CA raíz autoriza una nueva RA, genera un certificado X.509, en
+ el cual la CA declara que ha aprobado la RA, incluye la nueva clave pública
+ de la RA, la firma y se la entrega a la RA.
+ De forma similar, cuando un RA aprueba una nueva CA, produce y firma un
+ certificado que indica su aprobación y que contiene la clave pública de
+ la CA.
+ A continuación resumimos el funcionamiento de la PKI del ejemplo.
+\end_layout
+
+\begin_layout Standard
+Cuando queremos comunicarnos de forma segura con una organización concreta
+ O, es posible que esta tenga un certificado firmado por, digamos, CA
+\begin_inset space ~
+\end_inset
+
+5.
+ Pero como es muy probable que no tengamos información sobre CA
+\begin_inset space ~
+\end_inset
+
+5, deberemos dirigirnos hacia esta autoridad y solicitar que nos demuestre
+ su legitimidad.
+ La CA
+\begin_inset space ~
+\end_inset
+
+5 responderá con el certificado que recibió de la RA
+\begin_inset space ~
+\end_inset
+
+2, que contiene la clave pública de CA
+\begin_inset space ~
+\end_inset
+
+5.
+ Ahora podremos verificar que el certificado de la organización O gracias
+ a la clave pública de CA
+\begin_inset space ~
+\end_inset
+
+5.
+ Sin embargo, si no tenemos información previa sobre CA
+\begin_inset space ~
+\end_inset
+
+5, nos será difícil confiar en la legitimidad de O, por lo que el siguiente
+ paso será solicitar a la AR
+\begin_inset space ~
+\end_inset
+
+2 que demuestre que CA
+\begin_inset space ~
+\end_inset
+
+5 es legítimo.
+ La respuesta esta consulta es un certificado firmado por la raíz y que
+ contiene la clave pública de RA
+\begin_inset space ~
+\end_inset
+
+2.
+ Ahora podremos estar seguros de que O tiene un certificado legítimo, por
+ lo que podremos confiar en que la comunicación se llevará a cabo con la
+ organización en cuestión y no con un atacante.
+ 
+\end_layout
+
+\begin_layout Standard
+En este ejemplo solo queda una pregunta por responder, y es de dónde obtenemos
+ la clave pública de la CA raíz.
+ Esta es una pregunta difícil de responder, ya que se supone que todos conocen
+ la clave pública de la CA raíz.
+ La forma habitual, cuando se trata de páginas web, es que el navegador
+ incorpore la clave pública de la CA raíz por defecto.
+\end_layout
+
+\begin_layout Standard
+Una forma que tienen las organizaciones de agilizar el proceso de verificación
+ es aportar todos (o alguno) de los certificados necesarios para la misma
+ junto al certificado propio.
+ De esta forma podremos verificar el certificado de la organización sin
+ tener que establecer una nueva conexión con cada una de las CA intermediarias,
+ ya que dispondremos de todos los certificados de la cadena.
+ Además, como todos los certificados están firmados, será posible detectar
+ fácilmente cualquier intento de manipular sus contenidos.
+\end_layout
+
+\begin_layout Standard
+Una cadena de certificados que retrocede hasta la CA raíz, como la del ejemplo,
+ se denomina cadena de confianza (
+\lang english
+trust chain
+\lang spanish
+) o ruta de certificación (
+\lang english
+certification path
+\lang spanish
+).
+ Esta técnica es ampliamente utilizada en la práctica.
+ Por supuesto, todavía tenemos el problema de quién va a gestionar la CA
+ raíz.
+ La solución no es tener una CA raíz única, sino tener muchas CA raíces,
+ cada una con sus propias RA y CA.
+ De hecho, los navegadores modernos vienen preconfigurados con las claves
+ públicas para más de 100 raíces.
+ De esta forma, se puede evitar tener una única autoridad de confianza en
+ todo el mundo.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Pero ahora existe la cuestión de cómo el proveedor del navegador decide
+ qué supuestas anclas de confianza son confiables y cuáles son sórdidas.
+ Todo se reduce a que el usuario confíe en el proveedor del navegador para
+ tomar decisiones acertadas y no simplemente aprobar todos los anclajes
+ de confianza dispuestos a pagar su tarifa de inclusión.
+ 
+\end_layout
+
+\end_inset
+
+Además, la mayoría de los navegadores permiten a los usuarios inspeccionar
+ las claves raíz, pudiendo eliminar las que parecen oscuras o añadiendo
+ claves nuevas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-Having a single CA to issue all the world’s certificates obviously would
- not work.
- It would collapse under the load and be a central point of failure as well.
- A possible solution might be to have multiple CAs, all run by the same
- organization and all using the same private key to sign certificates.
- While this would solve the load and failure problems, it introduces a new
- problem: key leakage.
- If there were dozens of servers spread around the world, all holding the
- CA’s private key, the chance of the private key being stolen or otherwise
- leaking out would be greatly increased.
- Since the compromise of this key would ruin the world’s elec- tronic security
- infrastructure, having a single central CA is very risky.
- In addition, which organization would operate the CA? It is hard to imagine
- any authority that would be accepted worldwide as legitimate and trustworthy.
- In some countries, people would insist that it be a government, while in
- other coun- tries they would insist that it not be a government.
- For these reasons, a different way for certifying public keys has evolved.
- It goes under the general name of PKI (Public Key Infrastructure).
- In this sec- tion, we will summarize how it works in general, although
- there have been many proposals, so the details will probably evolve in
- time.
- A PKI has multiple components, including users, CAs, certificates, and
- direc- tories.
- What the PKI does is provide a way of structuring these components and
- define standards for the various documents and protocols.
- A particularly simple form of PKI is a hierarchy of CAs, as depicted in
- Fig.
- 8-26.
- In this example we have shown three levels, but in practice there might
- be fewer or more.
- The top- level CA, the root, certifies second-level CAs, which we here
- call RAs (Regional Authorities) because they might cover some geographic
- region, such as a country or continent.
- This term is not standard, though; in fact, no term is really standard
- for the different levels of the tree.
- These in turn certify the real CAs, which issue the X.509 certificates to
- organizations and individuals.
- When the root authorizes a new RA, it generates an X.509 certificate stating
- that it has approved the RA, in- cludes the new RA’s public key in it,
- signs it, and hands it to the RA.
- Similarly, when an RA approves a new CA, it produces and signs a certificate
- stating its approval and containing the CA’s public key.
+\align center
+\begin_inset Graphics
+	filename img/pki-tanenbaum.eps
+	width 100col%
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Plain Layout
-Our PKI works like this.
- Suppose that Alice needs Bob’s public key in order to communicate with
- him, so she looks for and finds a certificate containing it, signed by
- CA 5.
- But Alice has never heard of CA 5.
- For all she knows, CA 5 might be Bob’s 10-year-old daughter.
- She could go to CA 5 and say: ‘‘Prove your legitimacy.’’ CA 5 will respond
- with the certificate it got from RA 2, which con- tains CA 5’s public key.
- Now armed with CA 5’s public key, she can verify that Bob’s certificate
- was indeed signed by CA 5 and is thus legal.
- Unless RA 2 is Bob’s 12-year-old son.
- So, the next step is for her to ask RA 2 to prove it is legitimate.
- The response to her query is a certificate signed by the root and containing
- RA 2’s public key.
- Now Alice is sure she has Bob’s public key.
- But how does Alice find the root’s public key? Magic.
- It is assumed that everyone knows the root’s public key.
- For example, her browser might have been shipped with the root’s public
- key built in.
- Bob is a friendly sort of guy and does not want to cause Alice a lot of
- work.
- He knows that she is going to have to check out CA 5 and RA 2, so to save
- her some trouble, he collects the two needed certificates and gives her
- the two certifi- cates along with his.
- Now she can use her own knowledge of the root’s public key to verify the
- top-level certificate and the public key contained therein to ver- ify
- the second one.
- Alice does not need to contact anyone to do the verification.
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pki-tanenbaum"
+
+\end_inset
+
+(a) Ejemplo de infraestructura de clave pública jerárquica.
+ (b) Cadena de certificados en esta PKI.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Plain Layout
-Because the certificates are all signed, she can easily detect any attempts
- to tam- per with their contents.
- A chain of certificates going back to the root like this is sometimes called
- a chain of trust or a certification path.
- The technique is wide- ly used in practice.
- Of course, we still have the problem of who is going to run the root.
- The solution is not to have a single root, but to have many roots, each
- with its own RAs and CAs.
- In fact, modern browsers come preloaded with the public keys for over 100
- roots, sometimes referred to as trust anchors.
- In this way, having a sin- gle worldwide trusted authority can be avoided.
- But there is now the issue of how the browser vendor decides which purported
- trust anchors are reliable and which are sleazy.
- It all comes down to the user trusting the browser vendor to make wise
- choices and not simply approve all trust anchors willing to pay its inclusion
- fee.
- Most browsers allow users to inspect the root keys (usually in the form
- of certificates signed by the root) and delete any that seem shady.
+
 \end_layout
 
 \end_inset
@@ -4536,7 +5714,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cadena de confianza en certificados X.509 
+Cadena de confianza con certificados X.509 
 \begin_inset Note Note
 status open
 
@@ -4559,34 +5737,26 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-PKI
-\end_layout
-
-\begin_layout Standard
-TrustChain
-\end_layout
-
 \begin_layout Section
 Estructura y tipos de fichero
 \end_layout
 
 \begin_layout Standard
-Los campos de los certificados X.509 se transmiten como ficheros, que pueden
- presentar distintos formatos.
- A pesar de esto, todos estos ficheros parten de X.690, un estándar de ITU-T
- que especifica diversos formatos ASN.1 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
-
+Los certificados digitales X.509 usan la codificación denominada Abstract
+ Syntax Notation 1 (ASN.1), definida por OSI.
+ Este tipo de codificación es una especie de struct de
+\begin_inset space ~
 \end_inset
 
-.
- 
+C, salvo porque tiene una notación mucho más verbosa y peculiar.
+ Haciendo uso de esta notación los campos de los certificados se encapsulan
+ en forma de ficheros.
+ Existen dos extensiones comúnmente usadas para estos ficheros, dependiendo
+ de si este se encuentra en formato binario (DER) o con una codificación
+ ASCII adicional (PEM).
+ Esta codificación adicional usa un conjunto de 64 caracteres ASCII con
+ los que se codifica el contenido del binario usando palabras de 6 bits.
+ La ventaja de esto es maximizar la compatibilidad en la transmisión.
 \end_layout
 
 \begin_layout Standard
@@ -4617,7 +5787,7 @@ https://stackoverflow.com/questions/22743415/what-are-the-differences-between-pe
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
