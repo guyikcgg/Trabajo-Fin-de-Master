@@ -3737,14 +3737,7 @@ ticas con los sistemas empotrados.
 
 \begin_layout Standard
 Estas son las principales características que consideraremos para decir
- que un sistema es empotrado 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Tanenbaum-ModernOS"
-
-\end_inset
-
-:
+ que un sistema es empotrado:
 \end_layout
 
 \begin_layout Itemize
@@ -3796,19 +3789,15 @@ Como hemos mencionado anteriormente, los recursos computacionales de los
  Esto supone un abaratamiento de costes que se hace muy relevante en la
  producción en masa de los dispositivos.
  Sin embargo, esta escasez de recursos, junto al 
-\begin_inset Quotes fld
-\end_inset
-
+\emph on
 propósito no general
-\begin_inset Quotes frd
-\end_inset
-
+\emph default
  de estos sistemas, hace que estos carezcan de un sistema operativo propiamente
  dicho, con todas las consecuencias que esto conlleva.
 \end_layout
 
 \begin_layout Standard
-En los sistemas empotrados más complejos es frecuente el uso de un planificado
+En los sistemas empotrados más complejos es frecuente el uso de un planificador
  de tareas (
 \lang english
 scheduler
@@ -3860,7 +3849,7 @@ Identificación de usuarios
 
 \begin_layout Standard
 Se trata del proceso de validar a los usuarios antes de permitirles usar
- es sistema.
+ el sistema.
  Este requisito es fundamental cuando el sistema proporciona el acceso a
  datos sensibles (como los valores de sensores en un
 \emph on
@@ -3910,8 +3899,17 @@ autenticación
 
 \end_inset
 
- las partes a los extremos de la comunicación, ya sean personas o sistemas
- informáticos.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+las partes a
+\end_layout
+
+\end_inset
+
+ los extremos de la comunicación, ya sean personas o sistemas informáticos.
 \end_layout
 
 \begin_deeper
@@ -3940,8 +3938,12 @@ confidencialidad
 
 \begin_deeper
 \begin_layout Standard
-En un SmartHome, la disponibilidad de los datos de temperatura o de presencia
- de personas podrían ser usados para atentar contra la propiedad privada.
+En un 
+\lang english
+SmartHome
+\lang spanish
+, la disponibilidad de los datos de temperatura o de presencia de personas
+ podrían ser usados para atentar contra la propiedad privada.
 \end_layout
 
 \end_deeper
@@ -4159,7 +4161,7 @@ protocolo de seguridad
  la manipulación de los mismos por un posible atacante, se consigue añadiendo
  un código de autenticación de mensaje (
 \lang english
-Message Authentication Code
+message authentication aode
 \lang spanish
 
 \begin_inset Index idx
@@ -4177,9 +4179,9 @@ message authentication code (MAC)
  La verificación de la autenticidad de los dispositivos puede conseguirse
  con el uso de certificados digitales.
  De esta forma, dos dispositivos pueden comunicarse de forma segura a través
- de una red 
+ de una red a priori
 \emph on
-a priori 
+ 
 \emph default
 no segura.
 \end_layout
@@ -4211,44 +4213,15 @@ Secure Sockets Layer SSL
  El uso de estos protocolos está muy extendido: el primero, en el despliegue
  de redes privadas virtuales (
 \lang english
-Virtual Private Networks
+virtual private networks
 \lang spanish
-, VPN), el segundo, en 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-la realización de transacciones web seguras [en realidad eso es HTTPS, buscar
- otro ejemplo!]
-\end_layout
-
-\end_inset
-
-.
- Estos protocolos son 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-prácticamente
-\end_layout
-
-\end_inset
-
- transparentes para las capas de comunicación superiores.
+, VPN), el segundo, en la realización de transacciones de aplicación seguras
+ en Internet.
+ Estos protocolos son prácticamente transparentes para las capas de comunicación
+ superiores.
  De este modo, una aplicación que se comunica en red de forma no segura
- puede pasar a establecer una comunicación segura con pocas modificaciones
- 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-¿o ninguna?
-\end_layout
-
-\end_inset
-
-, sin necesidad de ser rediseñada desde cero.
+ puede pasar a establecer una comunicación segura con pocas modificaciones,
+ sin necesidad de ser rediseñada desde cero.
  No obstante, los requisitos computacionales que supone el uso de estos
  protocolos pueden comprometer la capacidad computacional del sistema con
  gran facilidad, en especial cuando se trata de sistemas empotrados.
@@ -4326,7 +4299,7 @@ Gestión de derechos digitales
 \begin_layout Standard
 Las herramientas de gestión de derechos digitales (
 \lang english
-Digital Right Management
+digital right management
 \lang spanish
 , DRM) proporcionan entornos seguros para proteger contenidos digitales
  de un uso no autorizado.
@@ -4334,43 +4307,10 @@ Digital Right Management
  así como la retransmisión pública de películas protegidas por las leyes
  de propiedad intelectual.
  Algunas herramientas de gestión de derechos digitales son los protocolos
- OpenIPMP
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
-
-\end_inset
-
-, MPEG
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
-
-\end_inset
-
-, ISMA
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
-
-\end_inset
-
-, y MOSES
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
+ OpenIPMP, MPEG, ISMA, y MOSES 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ravi2004security"
 
 \end_inset
 
@@ -4386,53 +4326,25 @@ Estas soluciones requieren que el sistema haya sido diseñado teniendo en
  cuenta las consideraciones de seguridad.
  Algunos ejemplos sencillos son el uso de hardware para monitorizar las
  transacciones en un bus, bloqueando acceso ilegales a zonas protegidas
- de la memoria 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref:Discretix#
-\end_layout
-
-\end_inset
-
-, la autenticación del firmware que se ejecuta en el sistema, o el aislamiento
- de aplicaciones para preservar la privacidad e integridad tanto del código
- como de los datos asociados a cada proceso 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref:Lie et al.
- 2000#
-\end_layout
+ de la memoria, la autenticación del firmware que se ejecuta en el sistema,
+ o el aislamiento de aplicaciones para preservar la privacidad e integridad
+ tanto del código como de los datos asociados a cada proceso 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ravi2004security"
 
 \end_inset
 
 .
  Destacaremos aquí el hecho de que algunos procesadores comerciales están
- diseñados para la ejecución segura, como es el caso de algunos ARM
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref:ARM-TrustZone#
-\end_layout
+ diseñados para la ejecución segura, como es el caso de algunos ARM 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ARM:TrustZone"
 
 \end_inset
 
-, y que existen sistemas operativos de tiempo real diseñados para este fin
- 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
-
-\end_inset
-
-.
+, y que existen sistemas operativos de tiempo real diseñados para este fin.
 \end_layout
 
 \begin_layout Subsubsection
@@ -4454,8 +4366,8 @@ Existe un gran abanico de verificaciones a las que se puede someter un software
  Otro método es el análisis estático, que supone la revisión del código
  fuente (o del código objeto) sin llevar a cabo la ejecución del programa.
  De esta forma es posible detectar muchos errores y algunas prácticas comunes
- que suponen un riesgo para la integridad de la ejecución, 
-\begin_inset Note Greyedout
+ que suponen un riesgo para la integridad de la ejecución
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -4465,7 +4377,7 @@ como es el uso de punteros sin tipo
 \end_inset
 
 .
- Por último, mencionamos el análisis dinámico, que requiere la ejecución
+ Por último, mencionaremos el análisis dinámico, que requiere la ejecución
  del programa en ambientes diversos, idealmente con todos los posibles valores
  en los parámetros de entrada de cada función.
 \end_layout
@@ -4542,11 +4454,6 @@ QUE QUEDE CLARO LA PARTE INVESTIGADORA AQUI (bibliografia!!)
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-En el siguiente capítulo, introduciremos el protocolo TLS, y revisaremos
- las características principales del mismo.
 \end_layout
 
 \begin_layout Chapter
@@ -4634,21 +4541,11 @@ Secure Sockets Layer
 \end_layout
 
 \begin_layout Standard
-El protocolo
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-, cuya versión más reciente es TLS
+El protocolo, cuya versión más reciente es TLS
 \begin_inset space ~
 \end_inset
 
-1.2
-\end_layout
-
-\end_inset
-
-, se compone de dos capas, denominadas 
+1.2, se compone de dos capas principales, denominadas 
 \emph on
 TLS Record Protocol
 \emph default
@@ -4699,7 +4596,7 @@ La conexión es privada
  AES, RC4, etc).
  Las claves usadas en esta encriptación simétrica se generan de forma única
  para cada conexión, a través de una negociación secreta que lleva a cabo
- otro protocolo (como el 
+ otro protocolo (el 
 \emph on
 TLS Handshake Protocol
 \emph default
@@ -4728,23 +4625,9 @@ message authentication code (MAC)
 
 \end_inset
 
-
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
- (
-\emph on
-Message Authentication Code
-\emph default
-)
-\end_layout
-
-\end_inset
-
 .
  El cálculo del código MAC se lleva a cabo haciendo uso de funciones de
- hash seguras (como SHA).
+ hash seguras (como SHA-1).
  Aunque no es común, el 
 \emph on
 TLS Record Protocol
@@ -4827,9 +4710,9 @@ no hablar de biblioteca: mejor algoritmos o protocolos.
 
 que les habilite las capacidades de encriptación y de comunicación segura
  que proporciona este protocolo.
- Esto tiene varias implicaciones: Por un lado, los datos viajarán seguros
- desde la aplicación, sin que exista la posibilidad de que estos sean intercepta
-dos en una capa de red inferior.
+ Esto tiene varias implicaciones.
+ Por un lado, los datos viajarán seguros desde la aplicación, sin que exista
+ la posibilidad de que estos sean interceptados en una capa de red inferior.
  Por otro lado, el establecimiento de la conexión TLS deberá ser gestionado
  por la misma aplicación, no pudiéndose delegar al sistema operativo.
  Una ventaja de TLS es que es un protocolo independiente de la aplicación.
@@ -4846,14 +4729,15 @@ De acuerdo a las especificaciones del protocolo TLS
 \begin_inset space ~
 \end_inset
 
-v1.2 
+v1.2, los objetivos del mismo, en orden de prioridad, son los siguientes
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "rfc5246-TLSv1.2"
 
 \end_inset
 
-, los objetivos del mismo, en orden de prioridad, son los siguientes:
+:
 \end_layout
 
 \begin_layout Enumerate
@@ -4877,18 +4761,8 @@ rse nuevos métodos de encriptación según sea necesario.
 \end_layout
 
 \begin_layout Enumerate
-Eficiencia
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
- relativa
-\end_layout
-
-\end_inset
-
-: Las operaciones criptográficas tienden a ser computacionalmente costosas,
- sobre todo cuando se trata de encriptación de clave pública.
+Eficiencia: Las operaciones criptográficas tienden a ser computacionalmente
+ costosas, sobre todo cuando se trata de encriptación de clave pública.
  Por este motivo, el protocolo TLS trata de reducir el número de conexiones
  que se establecen desde cero, así como reducir la actividad de red.
 \end_layout
@@ -5067,7 +4941,7 @@ Change Cipher Spec Protocol
 \begin_layout Standard
 El 
 \lang english
-Change Cipher Spec Protocol
+TLS Change Cipher Spec Protocol
 \lang spanish
  es usado para notificar un cambio en las estrategias de cifrado.
  El protocolo consiste en un mensaje único, que se comprime y encripta haciendo
@@ -5092,9 +4966,13 @@ CipherSpec
 Para ser más específicos, si un handshake tiene lugar durante una transmisión
  de datos, las partes pueden continuar comunicándose usando los parámetros
  establecidos en la anterior negociación.
- Es el mensaje ChangeCipherSpec el que señala el momento en el que las nuevas
- especificaciones serán usadas, por lo que cualquier mensaje recibido después
- de este deberá atender a los nuevos parámetros y claves de cifrado.
+ Es el mensaje 
+\emph on
+ChangeCipherSpec
+\emph default
+ el que señala el momento en el que las nuevas especificaciones serán usadas,
+ por lo que cualquier mensaje recibido después de este deberá atender a
+ los nuevos parámetros y claves de cifrado.
 \end_layout
 
 \begin_layout Subsubsection
@@ -5290,7 +5168,7 @@ Handshake Protocol
 .
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Descripción funcional del 
 \lang english
 TLS
@@ -5399,9 +5277,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/tls+handshake.jpg
+	filename img/q009930a.gif
 	lyxscale 60
-	width 80col%
+	width 70col%
 
 \end_inset
 
@@ -5427,12 +5305,9 @@ TLS
 Handshake Protocol
 \lang spanish
  
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "IBM:SSL-handshake"
 
 \end_inset
 
@@ -5560,13 +5435,9 @@ Gracias al esquema de criptografía asimétrica, el contenido del propio handsha
 
 \begin_layout Enumerate
 El handshake cuenta con mecanismos de detección de 
-\begin_inset Quotes fld
-\end_inset
-
+\lang english
 tampering
-\begin_inset Quotes frd
-\end_inset
-
+\lang spanish
 , por lo que un ataque sería detectado.
 \end_layout
 
@@ -5624,12 +5495,9 @@ TLS se ha convertido en una referencia en cuanto a protocolos de seguridad,
 Datagram Transport Layer Security
 \lang spanish
  (DTLS) 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rfc6347-dtls,rfc6347-dtls-1.2"
 
 \end_inset
 
@@ -5644,7 +5512,7 @@ s que hacen uso del protocolo UDP.
 \begin_layout Standard
 En el 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "chap:Análisis-implementacions-TLS"
 
 \end_inset
@@ -5736,7 +5604,14 @@ message digests
  De esta forma, el atacante podría interceptar todo el intercambio de claves,
  quebrando la confidencialidad (y posiblemente la integridad) de la comunicación.
  Claramente, necesitamos algún mecanismo para garantizar que las claves
- públicas puedan intercambiarse de forma segura.
+ públicas puedan intercambiarse de forma segura 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -5754,8 +5629,8 @@ certification authority
  contendrá los datos del solicitante (principalmente su nombre), su clave
  pública, y un hash SHA firmado con la clave privada de la CA.
  Este documento es denominado certificado digital, y como vemos su trabajo
- fundamental es vincular una clave pública con el nombre de un principal
- (individuo, empresa, etc.).
+ fundamental es vincular una clave pública con el nombre de un sujeto (individuo
+, empresa, etc.).
  
 \end_layout
 
@@ -5847,7 +5722,14 @@ reference "fig:X509-fields"
 \end_inset
 
 .
- A continuación se describe la función general de cada campo.
+ A continuación se describe la función general de cada campo 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tanenbaum-Computer-Networks"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Description
@@ -5858,7 +5740,7 @@ reference "fig:X509-fields"
 \lang english
 Version
 \lang spanish
- versión de X.509 con la que se ha generado el certificado
+ versión de X.509 con la que se ha generado el certificado.
 \end_layout
 
 \begin_layout Description
@@ -5874,7 +5756,7 @@ Serial
 number
 \lang spanish
  este número, junto con el nombre de la CA, identifica el certificado de
- forma unívoca
+ forma unívoca.
 \end_layout
 
 \begin_layout Description
@@ -5945,11 +5827,7 @@ Public
 
 key
 \lang spanish
- la clave pública del 
-\lang english
-subject
-\lang spanish
- y la ID del algoritmo que hace uso de la misma.
+ la clave pública del sujeto y la ID del algoritmo que hace uso de la misma.
 \end_layout
 
 \begin_layout Description
@@ -5983,11 +5861,7 @@ Subject
 
 ID
 \lang spanish
- un ID opcional que identifica de forma unívoca al 
-\lang english
-subject
-\lang spanish
- del certificado.
+ un ID opcional que identifica de forma unívoca al sujeto del certificado.
 \end_layout
 
 \begin_layout Description
@@ -6040,12 +5914,9 @@ name "fig:X509-fields"
 \end_inset
 
 Campos principales de los certificados X.509 V3 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Microsoft-X509-fields"
 
 \end_inset
 
@@ -6100,7 +5971,7 @@ Tener una única CA para emitir todos los certificados del mundo obviamente
  Si bien esto resolvería los problemas de carga y error, introduce un nuevo
  problema: la pérdida de la clave.
  Si hubiera docenas de servidores repartidos por todo el mundo, todos con
- la clave privada de la CA, la probabilidad de que la llave privada sea
+ la clave privada de la CA, la probabilidad de que la clave privada sea
  robada o se escape sería mucho mayor.
  Dado que el compromiso de esta clave arruinaría la infraestructura de cibersegu
 ridad mundial, tener una CA central única es muy arriesgado.
@@ -6108,7 +5979,11 @@ ridad mundial, tener una CA central única es muy arriesgado.
  como legítima y confiable.
  En algunos países, insistirían en que esta autoridad fuera un gobierno,
  mientras que en otros países insistirían en que no sea un gobierno.
- Por estos motivos, se ha desarrollado una forma diferente de certificar
+ 
+\end_layout
+
+\begin_layout Standard
+Por estos motivos, se ha desarrollado una forma diferente de certificar
  claves públicas, que se conoce con el nombre general de infraestructura
  de clave pública (
 \lang english
@@ -6129,8 +6004,8 @@ En esta sección, resumiremos cómo funciona de forma general.
  certificados y directorios.
  Lo que la PKI hace es proporcionar una forma de estructurar estos componentes
  y definir estándares para los diversos documentos y protocolos.
- Una forma particularmente simple de PKI es una jerarquía de CA, como se
- representa en la 
+ Una forma particularmente simple de PKI es una jerarquía de CA, como la
+ representada en la 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:pki-tanenbaum"
@@ -6209,7 +6084,7 @@ Cuando queremos comunicarnos de forma segura con una organización concreta
 \end_inset
 
 5, nos será difícil confiar en la legitimidad de O, por lo que el siguiente
- paso será solicitar a la AR
+ paso será solicitar a la RA
 \begin_inset space ~
 \end_inset
 
@@ -6349,9 +6224,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename img/chain-of-trust.png
-	width 50text%
+	width 60text%
 
 \end_inset
 
@@ -6363,12 +6239,9 @@ status open
 
 \begin_layout Plain Layout
 Cadena de confianza con certificados X.509 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wiki:chain-of-trust"
 
 \end_inset
 
@@ -6406,8 +6279,17 @@ C, salvo porque tiene una notación mucho más verbosa y peculiar.
  de si este se encuentra en formato binario (DER) o con una codificación
  ASCII adicional (PEM).
  Esta codificación adicional usa un conjunto de 64 caracteres ASCII con
- los que se codifica el contenido del binario usando palabras de 6 bits.
- La ventaja de esto es maximizar la compatibilidad en la transmisión.
+ los que se codifica el contenido del binario usando palabras de 6 bits
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rfc4648-Base64-encoding"
+
+\end_inset
+
+.
+ La idea detrás de este tipo de codificación es maximizar la compatibilidad
+ en el almacenamiento y la transmisión.
 \end_layout
 
 \begin_layout Standard
@@ -6478,8 +6360,8 @@ Amazon Web Services IoT
 \end_layout
 
 \begin_layout Standard
-En esta sección describimos la arquitectura de la plataforma de Amazon para
- Internet de las Cosas (AWS
+En este capítulo describiremos la arquitectura de la plataforma de Amazon
+ para Internet de las Cosas (AWS
 \begin_inset space ~
 \end_inset
 
@@ -6607,17 +6489,17 @@ proporcionar todas sus funcionalidades
  Con el fin de hacer un uso eficaz de la plataforma, conviene tener una
  imagen global de su arquitectura.
  
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
 Solo de este modo entenderemos el significado de las configuraciones llevadas
- a cabo en la siguiente sección
+ a cabo en la siguiente sección.
 \end_layout
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Standard
@@ -6777,6 +6659,13 @@ broker
 \end_inset
 
 IoT publiquen y reciban mensajes entre sí, basándose en el protocolo MQTT
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "iso:mqtt"
+
+\end_inset
+
  o en MQTT sobre WebSocket.
 \end_layout
 
@@ -6920,8 +6809,8 @@ AWS
 IoT dispone de otros componentes y servicios con los que el desarrollador
  puede interactuar para realizar algunas tareas de interés, como actualizar
  el firmware de sus dispositivos de forma remota, por ejemplo.
- No obstante, su uso es más avanzado y queda fuera de los objetivos de este
- documento.
+ No obstante, su uso es más avanzado y quedan fuera de los objetivos de
+ este proyecto.
 \end_layout
 
 \begin_layout Standard
@@ -7051,9 +6940,16 @@ topics
 \end_layout
 
 \begin_layout Standard
-Cabe destacar que los Atributos estáticos sirven para describir al dispositivo
- en sí, por lo que su función no debe confundirse con aquélla de la Sombra
- del dispositivo.
+Cabe destacar que los 
+\emph on
+Atributos estáticos
+\emph default
+ sirven para describir al dispositivo en sí, por lo que su función no debe
+ confundirse con aquélla de la 
+\emph on
+Sombra del dispositivo
+\emph default
+.
  Mientras que estos atributos se almacenan de forma estática en el Registro,
  la sombra es un documento dinámico que contiene los valores de los sensores
  y el estado de los actuadores.
@@ -7086,11 +6982,39 @@ device shadow
 
 \end_layout
 
-\begin_layout LyX-Code
+\begin_layout Standard
+El estado del dispositivo se guarda en un fichero JSON especial denominado
+ sombra del dispositivo (
+\lang english
+device shadow
+\lang spanish
+).
+ La sombra del dispositivo actúa como un intermediario entre dispositivos
+ y aplicaciones, permitiendo que ambas partes tengan acceso al estado del
+ dispositivo, pudiendo actualizarlo en ambos sentidos.
+ Para que el estado del dispositivo pueda ser modificado por las aplicaciones,
+ cada parámetro definido en la sombra podrá estar bajo una de las categorías
+ 
+\lang english
+reported
+\lang spanish
+ y 
+\lang english
+desired
+\lang spanish
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AWS-IoT-Shadow-Syntax"
+
+\end_inset
+
+.
+ 
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset CommandInset include
@@ -7127,43 +7051,6 @@ key "AWS-IoT-Shadow-MQTT-Topics"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-El estado del dispositivo se guarda en un fichero JSON especial denominado
- sombra del dispositivo (
-\lang english
-device shadow
-\lang spanish
-).
- La sombra del dispositivo actúa como un intermediario entre dispositivos
- y aplicaciones, permitiendo que ambas partes tengan acceso al estado del
- dispositivo, pudiendo actualizarlo en ambos sentidos.
- Para que el estado del dispositivo pueda ser modificado por las aplicaciones,
- cada parámetro definido en la sombra podrá estar bajo una de las categorías
- 
-\lang english
-reported
-\lang spanish
- y 
-\lang english
-desired
-\lang spanish
-, como puede verse en el 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "alg:Ejemplo-de-sombra"
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "AWS-IoT-Shadow-Syntax"
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
@@ -7278,6 +7165,15 @@ reported
  (6).
  La aplicación será informada de inmediato, siempre y cuando esté en línea
  (7).
+ El 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:Ejemplo-de-sombra"
+
+\end_inset
+
+ muestra un ejemplo sencillo de sombra de dispositivo, en el que la aplicación
+ requiere un cambio de color en el LED del dispositivo.
 \end_layout
 
 \begin_layout Standard
@@ -7296,18 +7192,6 @@ timestamp
  independientemente de su conectividad.
 \end_layout
 
-\begin_layout Standard
-El 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "alg:Ejemplo-de-sombra"
-
-\end_inset
-
- muestra un ejemplo sencillo de sombra de dispositivo, en el que la aplicación
- requiere un cambio de color en el LED del dispositivo.
-\end_layout
-
 \begin_layout Subsection
 Esquema de conexión
 \end_layout
@@ -7321,7 +7205,7 @@ Como en cualquier esquema IoT, el dispositivo se comunicará con la plataforma
 
 IoT, la comunicación se lleva a cabo a través del protocolo MQTT, sobre
  un canal seguro TLS.
- Esta conexión se produce en varios pasos:
+ Esta conexión se produce en varios pasos.
 \end_layout
 
 \begin_layout Standard
@@ -7618,6 +7502,9 @@ Amazon Web Services ofrece un amplio abanico de servicios de computación
 \end_layout
 
 \begin_layout Subsubsection
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 AWS Free Tier
@@ -7664,12 +7551,18 @@ key "AWS-Free"
 \end_layout
 
 \begin_layout Subsubsection
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 AWS Educate
 \end_layout
 
 \begin_layout Standard
+\begin_inset space ~
+\end_inset
+
 
 \lang english
 AWS
@@ -7730,7 +7623,7 @@ Nosotros hemos optado por esta segunda opción.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
