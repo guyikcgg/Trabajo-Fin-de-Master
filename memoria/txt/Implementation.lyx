@@ -214,7 +214,7 @@ Trabajar con microcontroladores supone editar código fuente, compilarlo
  a la plataforma de destino, cargar el firmware en el dispositivo y depurar
  el programa en tiempo de ejecución.
  Esto puede hacerse de diferentes formas, usando distintos flujos de trabajo.
- Una de las más populares es usar un entorno de desarrollo integrado, que
+ Una de las más populares es usar un entorno de desarrollo integrado que
  reúna las herramientas necesarias para llevar a cabo estas tareas.
  En la realización de este trabajo, hemos usado 
 \begin_inset ERT
@@ -229,7 +229,7 @@ DAVE
 
 \end_inset
 
- en su versión 4.
+ en su versión 4.3.2.
 \end_layout
 
 \begin_layout Standard
@@ -475,18 +475,10 @@ s definidos en la configuración del proyecto.
 IDE, permite excluir algunos directorios o ficheros del proceso de compilación.
  Al final de este proceso, se genera un archivo binario con la extensión
  
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-
 \family typewriter
 .bin
-\end_layout
-
-\end_inset
-
- que se ajusta a las regiones de memoria definidas en el 
+\family default
+ cuyo contenido se ajusta a las regiones de memoria definidas en el 
 \lang english
 linker script
 \lang spanish
@@ -550,16 +542,19 @@ Objetivo perseguido y arquitectura propuesta
 \end_layout
 
 \begin_layout Standard
-Como hemos introducido en la 
+Como hemos introducido en el 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sec:Objetivos"
+reference "chap:Presentación-del-proyecto"
 
 \end_inset
 
 , el sistema con el que trabajaremos es una pasarela (miniGW) que permitirá
- la interconexión de una red de sensores, instalada en un SmartHome, con
- la nube de Amazon ASW
+ la interconexión de una red de sensores, instalada en un 
+\lang english
+SmartHome
+\lang spanish
+, con la nube de Amazon ASW
 \begin_inset space ~
 \end_inset
 
@@ -749,7 +744,8 @@ El dispositivo con el que trabajaremos será el miniGW introducido en la
  sección anterior.
  Como explicamos anteriormente, el miniGW es la pasarela entre la red de
  sensores y la nube de Amazon, por lo que organiza y traduce los mensajes
- de esta red, para transmitirlos a través de la pila de protocolos de Internet.
+ de la red local, para transmitirlos a través de la pila de protocolos de
+ Internet.
 \end_layout
 
 \begin_layout Standard
@@ -1253,11 +1249,7 @@ Este módulo será el encargado de comunicar el miniGW con la red de sensores,
 \begin_layout Standard
 La comunicación con los sensores y actuadores de la red de sensores se lleva
  a cabo a través de un protocolo propietario, que usa cifrado por bloques
- AES en modo 
-\lang english
-Counter Mode
-\lang spanish
- (AES-CTR) para garantizar la seguridad.
+ AES en modo contador (AES-CTR) para garantizar la seguridad.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1270,9 +1262,17 @@ La lógica del XMC4500 debe garantizar que el miniGW realiza todas las funciones
  En este firmware se incluyen diversas tareas que deberán ejecutarse en
  paralelo, como la recepción de paquetes de datos de los sensores o la continua
  actualización de la fecha y hora a través del protocolo NTP.
+ La arquitectura del firmware puede consultarse en la 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Arquitectura-firmware"
+
+\end_inset
+
+.
  
-\begin_inset Note Greyedout
-status open
+\begin_inset Note Note
+status collapsed
 
 \begin_layout Plain Layout
 La estructura del firmware es muy compleja y escapa a los objetivos de esta
@@ -1281,25 +1281,18 @@ La estructura del firmware es muy compleja y escapa a los objetivos de esta
 
 \end_inset
 
- Sin embargo, la finalidad de este proyecto es demostrar el uso de AWS
+ Cabe destacar que la finalidad de este proyecto no es añadir nuevas funcionalid
+ades al firmware desarrollado, sino demostrar el uso de AWS
 \begin_inset space ~
 \end_inset
 
-IoT Device SDK
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-revisar!!
-\end_layout
-
-\end_inset
-
-, a través de una capa de seguridad TLS que deberá permanecer compatible
- con el resto de elementos del firmware.
+IoT Device SDK para que eesy-innovation lleve a cabo la integración final.
+ Como hemos mencionado ya, este SDK requerirá una capa de seguridad TLS,
+ que deberá ser compatible con el resto de elementos del firmware.
  Por este motivo, necesitamos revisar cuáles son los elementos fundamentales
  que estarán incluidos en el sistema final, y que supondrán el marco en
  el cuál deberemos integrar la biblioteca TLS y el AWS IoT SDK.
+ A continuación revisamos los elementos software principales.
 \end_layout
 
 \begin_layout Standard
@@ -1381,15 +1374,6 @@ s indican comunicación entre tareas.
 \end_layout
 
 \begin_layout Standard
-La arquitectura del firmware puede consultarse en la 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:Arquitectura-firmware"
-
-\end_inset
-
-.
- 
 \begin_inset Note Note
 status open
 
@@ -1409,10 +1393,19 @@ Contar un poco la arquitectura: tareas con funcionalidad específica que
 
 \begin_layout Paragraph
 CMSIS-RTOS
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset space ~
 \end_inset
 
 (vX.Y#!)
+\end_layout
+
+\end_inset
+
+
 \begin_inset Note Note
 status open
 
@@ -1438,17 +1431,43 @@ El firmware d
 
  el miniGW está construidas sobre un sistema operativo de tiempo real denominado
  CMSIS-RTOS.
- Este RTOS, diseñado especialmente para dispositivos Cortex-M #ref#, permite
- que las distintas tareas se ejecuten de forma concurrente y proporcionan
- herramientas para la gestión de recursos y de la comunicación entre tareas.
+ Este RTOS, diseñado especialmente para dispositivos Cortex-M
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ #ref#
+\end_layout
+
+\end_inset
+
+, permite que las distintas tareas se ejecuten de forma concurrente y proporcion
+an herramientas para la gestión de recursos y de la comunicación entre tareas.
 \end_layout
 
 \begin_layout Paragraph
-lwip
+lightweight
+\begin_inset space ~
+\end_inset
+
+IP
+\begin_inset space ~
+\end_inset
+
+(lwIP)
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset space ~
 \end_inset
 
 (vX.Y#!)
+\end_layout
+
+\end_inset
+
+
 \begin_inset Note Note
 status open
 
@@ -1464,7 +1483,17 @@ versión del software!
 \begin_layout Standard
 La pila de protocolos de Internet está proporcionada por lwIP.
  Esta biblioteca está diseñada para reducir el uso de recursos, conservando
- todas las funcionalidades de TCP/IP #ref#.
+ todas las funcionalidades de TCP/IP
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ #ref#
+\end_layout
+
+\end_inset
+
+.
  Proporciona una interfaz de sockets tipo BSD estándar.
 \end_layout
 
@@ -1482,8 +1511,12 @@ DAVE
 
 \end_inset
 
- APPs, por lo que han sido añadidas al proyecto usando esta herramienta,
- como muestra la 
+ APPs, por lo que han sido añadidas al proyecto usando esta herramienta.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+, como muestra la 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:DAVE-main"
@@ -1493,7 +1526,16 @@ reference "fig:DAVE-main"
 .
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
@@ -1551,6 +1593,11 @@ DAVE
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Red de sensores
 \end_layout
@@ -1560,12 +1607,20 @@ La red de sensores se encarga de monitorizar variables de interés para el
  usuario, transmitiéndolos al miniGW de forma inalámbrica.
  La gama de productos H2 de eesy-innovation incluye una multitud de sensores
  y actuadores, como sensores de presencia, estación meteorológica, enchufe
- inteligente (SmartPlug), etc.
+ inteligente (
+\lang english
+SmartPlug
+\lang spanish
+), etc.
  Todos estos nodos se comunican con el miniGW de forma segura a través de
  un protocolo propietario.
  Además, cada uno de estos sensores y actuadores tiene un número de identificaci
-ón único (unique identity, UID) que lo identifica de forma única, no solo
- en la red local, sino en toda la Internet.
+ón único (
+\lang english
+unique identity
+\lang spanish
+, UID) que lo identifica de forma única, no solo en la red local, sino en
+ toda la Internet.
 \begin_inset Note Note
 status open
 
@@ -1582,8 +1637,8 @@ explicar mejor
 Una diferencia a destacar entre los sensores y los actuadores es que los
  primeros usan un transmisor (comunicación unidireccional) mientras que
  los segundos hacen uso de un transceptor (comunicación bidireccional).
- Esto fuerza que la topología de red sea en estrella, donde el nodo central
- es el miniGW.
+ Esto fuerza que la topología de red sea en estrella, con el miniGW como
+ nodo central.
 \end_layout
 
 \begin_layout Standard
@@ -1614,8 +1669,7 @@ IoT
 El servicio AWS IoT se encarga de almacenar los datos de los sensores, haciendo
  que permanezcan disponibles para que el usuario pueda consultarlos cuando
  desee.
- Esto se consigue gracias a la sombra del dispositivo descrita con mas detalle
- en la 
+ Esto se consigue gracias a la sombra del dispositivo, descrita en la 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Esquema-de-funcionamiento"
@@ -1657,10 +1711,10 @@ En los otros hemos dado especificaciones técnicas.
 \end_layout
 
 \begin_layout Standard
-La nube contendrá dispositivos virtuales, uno por cada dispositivo físico
- (sensor o actuador), que tendrá que asociarse al usuario.
+La nube alojará dispositivos virtuales, uno por cada dispositivo físico
+ (sensor o actuador), que tendrá que asociar al usuario.
  La definición de estos dispositivos en producción está fuera del alcance
- de esta memoria.
+ de este proyecto.
  En la 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1894,7 +1948,7 @@ Además de la compatibilidad con el sistema, será necesario que la implementaci
 \begin_layout Itemize
 Biblioteca en continuo desarrollo: se trata de un requisito de seguridad,
  ya que es frecuente encontrar vulnerabilidades en las implementaciones,
- y estas deben solventarse.
+ y estas deben solventarse cuanto antes.
 \begin_inset Note Note
 status collapsed
 
@@ -1908,7 +1962,11 @@ status collapsed
 \end_layout
 
 \begin_layout Itemize
-Ciphersuite compatible con AWS
+
+\lang english
+Ciphersuite
+\lang spanish
+ compatible con AWS
 \begin_inset space ~
 \end_inset
 
@@ -1978,7 +2036,17 @@ Disponibilidad del código fuente: se valorará positivamente la disponibilidad
  del código fuente previa adquisición de la licencia, de forma que podamos
  indagar en el mismo para evaluar la implementación.
  Además, tener el código fuente abierto a la comunidad disminuye el riesgo
- de que contenga errores o puertas traseras #ref#.
+ de que contenga errores o puertas traseras
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ #ref#
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
@@ -2026,12 +2094,32 @@ Lanzada en 2006 bajo la denominación de CyaSSL, da soporte a los protocolos
  Es altamente modular y personalizable, gracias a los diversos Makefiles
  que incluye consigo.
  Se distribuye siguiendo un modelo de doble licencia, incluyendo una licencia
- Open Source y otra comercial, que tiene un precio de license USD $5000.
+ 
+\lang english
+Open Source
+\lang spanish
+ y otra comercial, que tiene un precio de license USD $5000.
 \end_layout
 
 \begin_layout Standard
-Esta implementación es conocida por su uso en MySQL 
-\begin_inset Note Greyedout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{sloppypar}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Esta implementación es conocida por su uso en MySQL
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -2046,8 +2134,8 @@ status open
 \begin_inset space ~
 \end_inset
 
-140-2 
-\begin_inset Note Greyedout
+140-2
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -2057,6 +2145,22 @@ status open
 \end_inset
 
  (Certificate #2425).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{sloppypar}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -2075,8 +2179,8 @@ footprint
 \emph on
 Tiny version
 \emph default
-, que solo soporta PSK 
-\begin_inset Note Greyedout
+, que solo soporta PSK
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -2098,8 +2202,8 @@ cryptlib
 Lanzada inicialmente en 1995, da soporte a los protocolos y configuraciones
  de TLS más usados.
  Tiene un modelo de doble licencia, incluyendo una licencia Open Source
- y otra comercial, que puede adquirirse por USD $5000 
-\begin_inset Note Greyedout
+ y otra comercial, que puede adquirirse por USD $5000
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -2121,8 +2225,8 @@ e dedicada a IoT.
  La compañía también distribuye soluciones para HTTPS, MQTT y SMQ, entre
  otras.
  De acuerdo con la web, SharkSSL puede compilarse en menos de 38KB ROM,
- necesitando solo 13KB RAM en tiempo de ejecución 
-\begin_inset Note Greyedout
+ necesitando solo 13KB RAM en tiempo de ejecución
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -2133,8 +2237,8 @@ status open
 
 .
  Se distribuye bajo una licencia privada, cuyo precio no está disponible
- en la web 
-\begin_inset Note Greyedout
+ en la web
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -2167,7 +2271,7 @@ reference "tab:Comparación-general"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -3787,7 +3891,7 @@ color{white}
 
 \end_inset
 
-NSA suite B
+NSA Suite B
 \end_layout
 
 \end_inset
@@ -3929,9 +4033,7 @@ color{white}
 
 \end_inset
 
-
-\color red
-Certificaciones FIPS 140 de nivel 1
+Verificaciones FIPS-140 de nivel 1
 \end_layout
 
 \end_inset
@@ -4212,7 +4314,7 @@ name "tab:Comparación-general"
 \end_inset
 
 Comparación de las bibliotecas analizadas: datos generales, licencia y compatibi
-lidad con los distintos estándares TLS
+lidad con los distintos estándares TLS.
 \end_layout
 
 \end_inset
@@ -4231,15 +4333,19 @@ Debemos destacar aquí que a pesar de las diferencias mostradas, todas las
 \end_layout
 
 \begin_layout Itemize
-Lenguaje de programación: C stándard (y ensamblador, en algunos casos) 
+Lenguaje de programación
+\begin_inset space ~
+\end_inset
+
+C estándar (y ensamblador, en algunos casos).
 \end_layout
 
 \begin_layout Itemize
-Soporte para TLS 1.2 
+Soporte para TLS 1.2.
 \end_layout
 
 \begin_layout Itemize
-Soporte para la suite
+Soporte para la Suite
 \begin_inset space ~
 \end_inset
 
@@ -4255,45 +4361,58 @@ National Security Agency (NSA)
 \end_inset
 
 ), que incluye 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rfc6379-NSA-Suite-B"
 
 \end_inset
 
-
+:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Algoritmos de criptografía simétrica: Advanced Encryption Standard – AES-128
- y AES-256, con los modos CTR o GCM
+ y AES-256, con los modos CTR o GCM.
 \end_layout
 
 \begin_layout Itemize
-Algoritmos de criptografía asimétrica: Elliptic Curve Digital Signature
- Algorithm – ECDSA (firmas digitales) y Elliptic Curve Diffie-Hellman –
- ECDH (intercambio de claves) 
+Algoritmos de criptografía asimétrica: 
+\lang english
+Elliptic Curve Digital Signature Algorithm
+\lang spanish
+ – ECDSA (firmas digitales) y 
+\lang english
+Elliptic Curve Diffie-Hellman
+\lang spanish
+ – ECDH (intercambio de claves).
 \end_layout
 
 \begin_layout Itemize
-Algoritmos de hash: Secure Hash Algorithm 2 – SHA-256 y SHA-384 (message
- digest) 
+Algoritmos de hash: Secure Hash Algorithm 2 – SHA-256 y SHA-384 (
+\lang english
+message digest
+\lang spanish
+).
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Footprint reducida, necesaria para la integración en sistemas embebidos
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\lang english
+Footprint
+\lang spanish
+ reducida, necesaria para la integración en sistemas embebidos.
 \end_layout
 
 \begin_layout Itemize
-Compatible con la arquitectura ARM
+Compatible con la arquitectura ARM.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Compatibilidad con el sistema objetivo
 \end_layout
 
@@ -4307,16 +4426,12 @@ reference "chap:Descripción-del-sistema"
 
 , el sistema objetivo está basado en un procesador de la familia ARM Cortex-M4,
  en el que se ejecuta CMSIS-RTOS como sistema operativo de tiempo real y
- se usa light-weight
-\begin_inset space ~
-\end_inset
-
-IP (lwIP) para implementar la pila de protocolos TCP/IP y UDP/IP.
+ se usa lwIP para implementar la pila de protocolos TCP/IP y UDP/IP.
 \end_layout
 
 \begin_layout Standard
 Estos aspectos deben considerarse cuidadosamente a la hora de elegir la
- biblioteca TLS a implementar.
+ biblioteca TLS a integrar.
  En esta sección trataremos los aspectos de compatibilidad con el sistema
  objetivo, así como la disponibilidad de documentación y de otros recursos.
 \end_layout
@@ -5005,11 +5120,23 @@ cellcolor{good}
 
 \end_inset
 
-Disponible en GitHub (
+Disponible en GitHub
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\size small
+(
 \color red
 73+
 \color inherit
- versiones estables).
+ versiones estables)
+\end_layout
+
+\end_inset
+
+.
  Disponible el código de la última versión estable en la web oficial
 \end_layout
 
@@ -5033,11 +5160,23 @@ cellcolor{good}
 
 \end_inset
 
-Disponible en GitHub (
+Disponible en GitHub
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\size small
+(
 \color red
 99+
 \color inherit
- versiones estables).
+ versiones estables)
+\end_layout
+
+\end_inset
+
+.
  Disponibles varias versiones estables en la web oficial
 \end_layout
 
@@ -5061,11 +5200,23 @@ cellcolor{good}
 
 \end_inset
 
-Disponible en GitHub (
+Disponible en GitHub
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\size small
+(
 \color red
 2+
 \color inherit
- versiones estables).
+ versiones estables)
+\end_layout
+
+\end_inset
+
+.
  Disponibles 46+ versiones estables en la web oficial
 \end_layout
 
@@ -5562,7 +5713,7 @@ name "tab:Comparación-doc+compatib"
 \end_inset
 
 Comparación de las bibliotecas analizadas: disponibilidad de documentación
- y soporte y compatibilidad con el sistema objetivo
+ y soporte y compatibilidad con el sistema objetivo.
 \end_layout
 
 \end_inset
@@ -5609,19 +5760,6 @@ reference "tab:Comparación-WolfSSL-mbedTLS"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-El precio de la licencia es menor.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
 AWS
 \begin_inset space ~
 \end_inset
@@ -5633,6 +5771,10 @@ IoT Device SDK funciona con mbedTLS de forma nativa.
 \end_inset
 
 IoT.
+\end_layout
+
+\begin_layout Itemize
+La licencia parece más apropiada para el proyecto.
 \end_layout
 
 \begin_layout Standard
@@ -6339,12 +6481,12 @@ AWS IoT Device SDK funciona con mbedTLS de forma nativa
 \end_layout
 
 \begin_layout Standard
-Con esta elección le ponemos fin a este capítulo, en el que hemos analizado
- y comparado una serie de implentaciones TLS, tanto de código abierto como
- privativas.
+Con esta elección ponemos fin a este capítulo, en el que hemos analizado
+ y comparado una serie de implementaciones TLS, tanto de código abierto
+ como privativas.
  Destacaremos que de entre las alternativas comparadas, WolfSSL y mbedTLS
  parecen ser las más desarrolladas, tanto desde el punto de vista tecnológico
- como a la disponibilidad de documentación, presencia en las redes sociales
+ como por la disponibilidad de documentación, presencia en las redes sociales
  y comunidad.
  Tras revisar la información disponible en los sitios web de WolfSSL y mbedTLS,
  resultan tener características muy similares.
@@ -6405,8 +6547,8 @@ Detalles de la biblioteca
 \begin_layout Standard
 mbedTLS ofrece APIs tanto para la parte del cliente como para la del servidor,
  con soporte para todos los estándares SSL y TLS actuales.
- Además, la biblioteca incluye una amplio rango de algoritmos criptográficos.
- Asímismo, incluye una variedad de métodos de intercambio de claves, algoritmos
+ Además, la biblioteca incluye un amplio rango de algoritmos criptográficos.
+ Así mismo, incluye una variedad de métodos de intercambio de claves, algoritmos
  de cifrado simétrico, algoritmos de hash, diversas curvas elípticas y herramien
 tas para la generación de números aleatorios 
 \begin_inset CommandInset citation
@@ -6449,13 +6591,8 @@ El código fuente de la biblioteca está estructurado de la forma que se present
 \family typewriter
 /
 \family default
- 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-en el directorio raíz se encuentran los ficheros que podemos encontrar en
- la mayoría de los proyectos, como 
+ en el directorio raíz se encuentran los ficheros que podemos encontrar
+ en la mayoría de los proyectos, como 
 \family typewriter
 Makefile
 \family default
@@ -6468,11 +6605,6 @@ README
 LICENSE
 \family default
 , etc.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -6555,7 +6687,11 @@ Visual
 \begin_inset space ~
 \end_inset
 
-Studio, usado para compilar mbedTLS en entornos Windows.
+Studio, usado para compilar mbedTLS en entornos MS
+\begin_inset space ~
+\end_inset
+
+Windows.
 \end_layout
 
 \begin_layout Description
@@ -6580,8 +6716,8 @@ Dado que muy pocos sistemas requieren de todos los algoritmos criptográficos
  disponibles, mbedTLS permite habilitarlos o deshabilitarlos en tiempo de
  compilación.
  De este modo, tanto el tamaño del ejecutable como la memoria requerida
- en tiempo de ejecución son minimizados, atendiendo a las necesidades de
- la aplicación.
+ en tiempo de ejecución son minimizados, atendiendo únicamente a las necesidades
+ de la aplicación.
  Para facilitar el proceso de configuración a los desarrolladores, la biblioteca
  incluye un fichero de configuración con todas las opciones disponibles.
  Este fichero de configuración es, en realidad, un archivo de cabecera en
@@ -6595,15 +6731,14 @@ C, que contiene una lista exhaustiva de definiciones con su correspondiente
  las opciones.
  El fichero de configuración es referenciado por cada uno de los otros ficheros
  de cabecera, consiguiendo que la configuración se haga efectiva en tiempo
- de compilación.
- 
+ de compilación 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "mbedTLS-config_h"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -6622,7 +6757,7 @@ Las opciones son comprobadas para ver si son compatibles (por ejemplo, no
 \end_layout
 
 \begin_layout Standard
-Las opciones de configuración pueden ser divididas en cutro grupos:
+Las opciones de configuración pueden ser divididas en cuatro grupos:
 \end_layout
 
 \begin_layout Description
@@ -6656,7 +6791,7 @@ de
 \end_inset
 
 seguridad estas opciones permiten elegir las características que son necesarias
- de cada módulo hablitado.
+ de cada módulo habilitado.
  De esta forma, pueden seleccionarse qué modos de cifrado estarán disponibles,
  qué curvas elípticas, qué algoritmos de intercambio de claves, etc.
  Se trata de opciones con una alta granularidad.
@@ -6699,21 +6834,20 @@ los
 \end_inset
 
 módulos estas opciones permiten ajustas opciones específicas para cada módulo,
- como el tamaño máximo de los números enteros, el tamñao de los búferes
- interonos de SSL, etc.
+ como el tamaño máximo de los números enteros, el tamaño de los búferes
+ internos de SSL, etc.
 \end_layout
 
 \begin_layout Standard
 Todas estas opciones pueden modificarse de forma manual o usando un script
- en Perl proporcionado con la biblioteca.
- 
+ en Perl proporcionado con la biblioteca 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "mbedTLS-how-do-i-configure,mbedTLS-reduce-footprint"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsection
@@ -6724,15 +6858,14 @@ Opciones de compilación
 Con el fin ejecutar mbedTLS en la plataforma objetivo, tendremos que compilarlo
  con las opciones apropiadas, usando el conjunto de herramientas de compilación
  y enlazado necesarias.
- Tenemos cuatro formas de compilar la biblioteca.
- 
+ Tenemos cuatro formas de compilar la biblioteca 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "mbedTLS-how-do-I-build-compile"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Description
@@ -6743,7 +6876,8 @@ Makefile a pesar de ser el método de compilación por defecto en sistemas
 
 \begin_layout Description
 CMake este método permite generar un fichero Makefile bien estructurado
- y de forma autmática, detectando las dependencias y las opciones de compilación.
+ y de forma automática, detectando las dependencias y las opciones de compilació
+n.
  Además, crea una estructura de directorios con la que se consigue que los
  ficheros objeto no se mezclen con el código fuente.
  Este es el método recomendado por el equipo de mbedTLS.
@@ -6775,29 +6909,76 @@ Studio el equipo de mbedTLS proporciona un fichero de proyecto de Microsoft
 \begin_layout Standard
 Aunque estos son los procedimientos de compilación provistos con la biblioteca,
  existen más opciones.
- Por ejemplo, podemos incluir el código fuente en un proyecto de DAVE y
- dejar que este lo compile de forma automática.
- Esto es posible gracias a que DAVE genera los ficheros objeto para cada
- fichero 
+ Por ejemplo, podemos incluir el código fuente en un proyecto de 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ y dejar que este lo compile de forma automática.
+ Esto es posible gracias a que 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ genera los ficheros objeto para cada fichero 
 \family typewriter
 .c
 \family default
 , buscando las cabeceras en los directorios que se le indique.
- De esta forma, DAVE comprobará si hemos realizado algún cambio en los ficheros
- de mbedTLS antes de cada compilación, por lo que no tendremos que compilar
- la biblioteca y el proyecto por separado.
- Esta opción, aunque muy flexible, puede ser más lenta.
+ De esta forma, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
+\end_layout
+
+\end_inset
+
+ comprobará si hemos realizado algún cambio en los ficheros de mbedTLS antes
+ de cada compilación, por lo que no tendremos que compilar la biblioteca
+ y el proyecto por separado.
+ Esta opción es muy flexible, y será la que usaremos en este proyecto.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+, puede ser más lenta.
  Por eso, hemos preferido compilar la biblioteca en un fichero archivador
  (
 \family typewriter
 .a
 \family default
-), que será el que incluímos en el proyecto junto con los ficheros de cabecera
+), que será el que incluimos en el proyecto junto con los ficheros de cabecera
  (
 \family typewriter
 .h
 \family default
 ).
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -6811,17 +6992,20 @@ Portabilidad a otras plataformas
 \end_layout
 
 \begin_layout Standard
-mbedTLS está programado en código C estándar, por lo que es fácilmente portable.
+mbedTLS está programado en código
+\begin_inset space ~
+\end_inset
+
+C estándar, por lo que es fácilmente portable.
  Además, el código de esta biblioteca es muy modular, siendo los siguientes
- los únicos módulos que presentan dependencias de la plataforma.
- 
+ los únicos módulos que presentan dependencias de la plataforma 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "mbedTLS-how-do-I-port"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -6864,7 +7048,11 @@ Networking
 [requerido] las funciones de red están implementadas usando la API de sockets
  BSD.
  Gracias es esto, el módulo de red incluido con la biblioteca es compatible
- tanto con sistemas Unix con Windows.
+ tanto con sistemas Unix como con MS
+\begin_inset space ~
+\end_inset
+
+Windows.
  A fin de que mbedTLS pueda establecer comunicaciones de red en un sistema
  empotrado, será necesario compilarlo junto a una biblioteca que proporcione
  una interfaz de sockets BSD.
@@ -6930,8 +7118,12 @@ sources
 \begin_inset space ~
 \end_inset
 
-[requerido] el pool de entropía (entropy pool) se encarga de acumular y
- combinar la entropopía de distintas fuentes de una forma segura.
+[requerido] el pool de entropía (
+\lang english
+entropy pool
+\lang spanish
+) se encarga de acumular y combinar la entropía de distintas fuentes de
+ una forma segura.
  Estas fuentes pueden estar basadas en software o en hardware, y deben proporcio
 nársele al módulo de generación de números aleatorios.
  Aunque las funciones de entropía pueden ser desactivadas sin afectar a
@@ -6959,7 +7151,7 @@ Acceleration
 \lang spanish
 ) muchos de los módulos que implementan primitivas criptográficas pueden
  ser sustituidos por implementaciones alternativas de las mismas.
- De esta forma, la es posible aprovechar implementaciones hardware que puedieran
+ De esta forma, la es posible aprovechar implementaciones hardware que pudieran
  estar presentes en la plataforma.
 \end_layout
 
@@ -6972,7 +7164,7 @@ al
 \begin_inset space ~
 \end_inset
 
-sitema
+sistema
 \begin_inset space ~
 \end_inset
 
@@ -7005,7 +7197,11 @@ a fuego
 \begin_inset Quotes frd
 \end_inset
 
- en el código fuente (hard-coded).
+ en el código fuente (
+\lang english
+hard-coded
+\lang spanish
+).
 \end_layout
 
 \begin_layout Description
@@ -7062,12 +7258,9 @@ Certificate Authorities
 programs/x509/cert_app.c
 \family default
  demuestra el uso de certificados X.509 en mbedTLS.
+ Como se demuestra en este programa, las autoridades certificadoras pueden
+ cargarse a partir del sistema de ficheros haciendo uso de las funciones
  
-\end_layout
-
-\begin_layout Standard
-Las autoridades certificadoras pueden cargarse a partir del sistema de ficheros
- haciendo uso de las funciones 
 \family typewriter
 mbedtls_x509_crt_parse_file()
 \family default
@@ -7076,7 +7269,11 @@ mbedtls_x509_crt_parse_file()
 mbedtls_x509_crt_parse_path()
 \family default
 .
- Estas funciones no son más que una envoltura (wrapper) de la función 
+ Estas funciones no son más que una envoltura (
+\lang english
+wrapper
+\lang spanish
+) de la función 
 \family typewriter
 mbedtls_x509_crt_parse()
 \family default
@@ -7099,6 +7296,22 @@ programs/ssl/ssl_client1.c
  Los siguientes pasos deben seguirse para establecer la conexión.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{sloppypar}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Enumerate
 Inicializar el contexto TCP mediante la función 
 \family typewriter
@@ -7115,17 +7328,8 @@ Configurar el contexto TLS con
 mbedtls_ssl_config_defaults()
 \family default
 .
- En este paso deben definirse algunos parámetros de configuración de TLS
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-, como la versión o las ciphersuites
-\end_layout
-
-\end_inset
-
-.
+ En este paso deben definirse algunos parámetros de configuración de TLS,
+ como la versión o las ciphersuites.
 \end_layout
 
 \begin_layout Enumerate
@@ -7162,6 +7366,22 @@ mbedtls_ssl_close_notify()
 .
  No debemos olvidarnos de liberar la memoria dinámica que hayamos reservado
  en los pasos anteriores.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{sloppypar}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -7309,20 +7529,16 @@ DAVE
 
 IDE.
  La alternativa consiste en 
-\begin_inset Quotes fld
-\end_inset
-
+\emph on
 enlazar
-\begin_inset Quotes frd
-\end_inset
-
- la biblioteca al proyecto, de forma que en el mismo lo único que existe
- es una referencia a la primera.
+\emph default
+ la biblioteca al proyecto, de forma que en el mismo se almacena únicamente
+ una referencia a la biblioteca.
  De esta forma, cualquier cambio que realicemos a la biblioteca dentro del
  proyecto quedará guardado en la misma.
  Este flujo de trabajo es especialmente conveniente cuando la biblioteca
- se tiene bajo control de versiones, en un repositorio compartido por todo
- el equipo
+ se tiene bajo control de versiones, en un repositorio distinto al del proyecto
+ y que es compartido por todo el equipo
 \begin_inset Foot
 status collapsed
 
@@ -7433,7 +7649,7 @@ s del preprocesador de
 \begin_inset space ~
 \end_inset
 
-C (es decir, a través de 
+C (es decir, a través de directivas 
 \family typewriter
 #if
 \family default
@@ -7461,7 +7677,7 @@ y que deben ser portados
 \end_inset
 
 son el módulo de red y la fuente de entropía.
- A continuación describimos los cambios realizados en cada uno de estos
+ A continuación describiremos los cambios realizados en cada uno de estos
  módulos.
 \end_layout
 
@@ -7471,28 +7687,18 @@ Módulo de red
 
 \begin_layout Standard
 Con respecto a las capacidades de red, mbedTLS se basa en los sockets BSD
- estándar 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
-
-\end_inset
-
-, que es la interfaz de red predeterminada en muchos sistemas tipo Unix,
- así como lo es en MS
+ estándar, que es la interfaz de red predeterminada en muchos sistemas tipo
+ Unix, así como lo es en MS
 \begin_inset space ~
 \end_inset
 
 Windows.
  Las versiones recientes de lwIP proporcionan esta interfaz de sockets estándar,
- por lo que se puede utilizar como la pila de red para el sistema.
+ por lo podremos usar esta biblioteca como la pila de red del sistema.
 \end_layout
 
 \begin_layout Standard
-Hemos modificado el fichero 
+Volviendo a mbedTLS, hemos modificado el fichero 
 \family typewriter
 net_sockets.c
 \family default
@@ -7515,7 +7721,11 @@ Windows, incluyendo directivas
 
 \begin_layout Itemize
 Uso de lwIP como la pila de red, incluyendo los ficheros de cabecera al
- comienzo de net_sockets.c, bajo la condicional 
+ comienzo de 
+\family typewriter
+net_sockets.c
+\family default
+, bajo la condicional 
 \family typewriter
 #ifdef DAVE
 \family default
@@ -7540,25 +7750,28 @@ Uso de la implementación de la función
 \family typewriter
 fcntl()
 \family default
- 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-provista por la biblioteca 
+ provista por la biblioteca 
 \lang english
 newlib
 \lang spanish
- provista con el kit de herrameintas de compilación 
+, incluida en el kit de herramientas de compilación 
 \emph on
 arm-none-eabi
 \emph default
-.
+ de 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+DAVE
 \end_layout
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -7569,8 +7782,11 @@ Fuentes de entropía
 Una buena entropía es la base fundamental para una criptografía robusta.
  Esta entropía puede obtenerse de diversas maneras.
  Los módulos de hardware que proporcionan entropía, como los módulos de
- generación de números (pseudo-)aleatorios (pseudo-random number generator,
- PRNG) está presente en muchos microcontroladores.
+ generación de números (pseudo-)aleatorios (
+\lang english
+pseudo-random number generator
+\lang spanish
+, PRNG) están presentes en muchos microcontroladores.
  El microcontrolador XMC4500 incluye uno de estos módulos PRNG como parte
  de los generadores de señal del módulo DAC.
  Utilizaremos este módulo como fuente principal de entropía en este proyecto.
@@ -7604,16 +7820,14 @@ name "fig:XMC-PRNG-block-diagram"
 
 \end_inset
 
-Diagrama de bloques del generador de números pseudo aleatorios (PRNG) disponible
- en el XMC4500.
- 
+Diagrama de bloques del PRNG disponible en el XMC4500 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "infineon:XMC4500-reference"
 
 \end_inset
 
-
+.
 \end_layout
 
 \end_inset
@@ -7730,12 +7944,28 @@ DAVE APPs
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{sloppypar}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Para integrar esta fuente de entropía en mbedTLS hemos modificado el fichero
  
 \family typewriter
 entropy_poll.c
 \family default
-, que contine las funciones de entropía definidas por el usuario para cada
+, que contiene las funciones de entropía definidas por el usuario para cada
  plataforma.
  En este fichero, hemos añadido una sección específica para la plataforma
  
@@ -7765,8 +7995,40 @@ DAVE APP
  del ADC.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{sloppypar}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Módulo de temporización
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{sloppypar}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7815,6 +8077,22 @@ DAVE APP
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{sloppypar}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7889,8 +8167,8 @@ key "mbedTLS-config_h"
 \family typewriter
 MBEDTLS_SELF_TEST
 \family default
- habilita las funciones de reconocimiento, para poder verificar la integridad
- de la biblioteca.
+ habilita las funciones de test, para poder verificar la integridad de la
+ biblioteca.
 \end_layout
 
 \begin_layout Description
@@ -7926,8 +8204,8 @@ MBEDTLS_HAVE_TIME_DATE
 \family typewriter
 MBEDTLS_PLATFORM_TIME_ALT
 \family default
- permite que mbedTLS soporte funciones de alternativas en el módulo de temporiza
-ción, que estarán definidas en la capa de abstracción de plataforma.
+ permite que mbedTLS soporte funciones alternativas en el módulo de temporizació
+n, que estarán definidas en la capa de abstracción de la plataforma.
 \end_layout
 
 \begin_layout Description
@@ -7957,8 +8235,11 @@ Además de estos nuevos símbolos, el fichero de configuración incluye opciones
  para reducir el uso de memoria de mbedTLS.
  El uso de algunas de estas opciones requiere conocer cuáles son los requisitos
  específicos de la comunicación con el servidor, ya que la reducción del
- uso de memoria consiste, en muchos casos, en limitar los ciphersuites disponibl
-es y el tamaño de las operaciones.
+ uso de memoria consiste, en muchos casos, en limitar los 
+\lang english
+ciphersuites
+\lang spanish
+ disponibles y el tamaño de las operaciones.
  A continuación destacamos alguna de estas opciones 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -8005,7 +8286,11 @@ multiple-precision integers
 \family typewriter
 MBEDTLS_SSL_CIPHERSUITES
 \family default
- permite definir las ciphersuites que serán requeridas.
+ permite definir las 
+\lang english
+ciphersuites
+\lang spanish
+ que serán requeridas.
  Solo estas estarán disponibles en tiempo de ejecución, evitando que mbedTLS
  incluya código de otras en su compilación y reduciendo por tanto el tamaño
  del programa.
@@ -8064,8 +8349,9 @@ reference "subsec:mbedTLS-test-programs"
 \end_inset
 
 .
- Una vez que llevemos a cabo este proceso de autoverificación, pasaremos
- a realizar un test funcional, que consistirá en realizar una petición HTTPS.
+ Una vez que llevemos a cabo este proceso de auto-verificación, pasaremos
+ a realizar un test funcional, que consistirá en descargar una web a través
+ de HTTPS.
 \end_layout
 
 \begin_layout Standard
@@ -8145,12 +8431,13 @@ DAVE APPs
 DAVE_Init()
 \family default
 .
- Se inicializan tanto módulos hardware como componentes software, como las
+ Se inicializan tanto módulos hardware y componentes software, como las
  variables de CMSIS-RTOS.
 \end_layout
 
 \begin_layout Enumerate
-Configuración de mbedTLS para usar el RTC.
+Configuración de mbedTLS para usar el RTC, tal y como hemos explicado en
+ la sección anterior.
 \end_layout
 
 \begin_layout Enumerate
@@ -8180,8 +8467,8 @@ suites_tested
 suites_failed
 \family default
 .
- 
-\begin_inset Note Greyedout
+ En este proceso
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -8191,7 +8478,8 @@ Gracias a Prometeo,
 \end_inset
 
  hemos podido comprobar que la totalidad de los tests han sido superados
- con éxito, por lo que todos los módulos funcionan correctamente.
+ con éxito, por lo que todos los módulos funcionan correctamente en la integraci
+ón llevada a cabo.
 \end_layout
 
 \begin_layout Subsubsection
@@ -8211,7 +8499,27 @@ ssl_client1.c
 \family typewriter
 programs/ssl
 \family default
-, establece conexión con un servidor TLS y realiza una petición 
+, establece conexión con un servidor HTTPS
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+HTTPS es una extensión del protocolo de aplicación HTTP, que consigue una
+ comunicación segura gracias a una capa adicional de SSL o TLS.
+ Por este motivo, a veces HTTPS es referido como 
+\emph on
+HTTP sobre SSL
+\emph default
+ o 
+\emph on
+HTTP sobre TLS
+\emph default
+.
+\end_layout
+
+\end_inset
+
+ y realiza una petición 
 \family typewriter
 HTTP
 \begin_inset space ~
@@ -8234,11 +8542,11 @@ ssl_client1.c
 \family typewriter
 SERVER_NAME
 \family default
- para que tuviera el valor 
+ con el valor 
 \begin_inset Quotes fld
 \end_inset
 
-https://www.wikipedia.org
+https://www.wikipedia.org/
 \begin_inset Quotes frd
 \end_inset
 
@@ -8247,20 +8555,11 @@ https://www.wikipedia.org
 
 \begin_layout Standard
 Para completar este test, hemos tenido que conectar el miniGW a Internet.
- Esto lo hemos llevado a cabo haciendo uso de un ordenador con GNU/Linux,
- que ha sido configurado para redireccionar el tráfico de red entre el puerto
- Ethernet y WiFi, de forma que pudiéramos ver los paquetes de datos con
- Wireshark 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
-
-\end_inset
-
-.
+ Esto lo hemos conseguido haciendo uso de un ordenador con GNU/Linux, que
+ ha sido configurado para redireccionar el tráfico de red entre el puerto
+ Ethernet y una conexión WiFi.
+ De esta forma también hemos podido ver los paquetes de datos con el software
+ de análisis de red Wireshark.
  Una vez hecho esto, hemos tenido que configurar lwIP y la interfaz Ethernet
  del computador convenientemente, a fin de que las interfaces de ambos dispositi
 vos se encuentren en la misma subred IP y para que el computador se use
@@ -8270,7 +8569,11 @@ vos se encuentren en la misma subred IP y para que el computador se use
 \begin_layout Standard
 Al ejecutar el programa y analizar algunas variables con el depurador, hemos
  podido ver la respuesta del servidor, que ha aceptado nuestra petición
- devolviendo un mensaje 200 OK #ref:HTTP#.
+ devolviendo un mensaje del tipo 
+\family typewriter
+200 OK
+\family default
+.
 \end_layout
 
 \begin_layout Standard
@@ -8351,7 +8654,7 @@ Configuración de CMSIS-RTOS
 \begin_layout Standard
 Como mencionamos en el 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "chap:Seguridad-en-sist-empotrados"
 
 \end_inset
@@ -8361,10 +8664,19 @@ reference "chap:Seguridad-en-sist-empotrados"
  un uso intensivo de la memoria.
  Por este motivo, para hacer que mbedTLS funcione en nuestro sistema, hemos
  tenido que aumentar la memoria disponible para las tareas en RTOS hasta
- 10kB.
- Debe tenerse en cuenta que este valor se refiere exclusivamente a la pila,
- es decir, variables declaradas de forma estática en las funciones que de
- mbedTLS y en los programas de ejemplo.
+ 10KB.
+ Debe tenerse en cuenta que este valor se refiere exclusivamente a la memoria
+ disponible para la pila, es decir, para las variables declaradas 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+de forma estática 
+\end_layout
+
+\end_inset
+
+en las funciones de mbedTLS y de los programas de ejemplo.
  No tenemos una forma directa de saber cuánto heap está siendo usado por
  las funciones criptográficas, aunque podemos presumir que algo más.
 \end_layout
@@ -8424,12 +8736,21 @@ DAVE APP
 
 \end_inset
 
- (vXX.YY) #! estaba obsoleta, por lo que fue necesario llevar a cabo una
- actualización.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(vXX.YY) #!
+\end_layout
+
+\end_inset
+
+ estaba obsoleta, por lo que fue necesario llevar a cabo una actualización.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Greyedout
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
@@ -8451,9 +8772,9 @@ APP
 
 \end_inset
 
- en busca del código fuente de lwIP y de los ficheros de configuración y
- sustituir el directorio donde se encuentra el código fuente de lwIP.
- En este caso, hemos usado la versión
+ en busca del código fuente de lwIP y de los ficheros de configuración,
+ para sustituir el directorio donde se encuentra el código fuente de lwIP.
+ Hemos usado la versión de lwIP
 \begin_inset space ~
 \end_inset
 
@@ -8471,7 +8792,16 @@ APP
 
 \end_inset
 
-, para hacerla compatible con el sistema.
+, en aras de la compatibilidad con el sistema.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+, para hacer compatible con el sistema.
+\end_layout
+
+\end_inset
+
  
 \begin_inset Note Note
 status open
@@ -8548,8 +8878,8 @@ DAVE APPs
 \end_inset
 
 , ya que al generar el código de las mismas se revierten los cambios realizados
- manualmente al código fuente de la estas, y, en concreto, se revierten
- los cambios realizados en la 
+ manualmente al código fuente de estas, y, en concreto, se revierten los
+ cambios realizados en la 
 \begin_inset ERT
 status open
 
@@ -8569,7 +8899,7 @@ Entre los cambios recogidos en este parche, cabe destacar la inclusión de
  símbolos.
  Además, después de aplicar los cambios mencionados, hemos tenido que actualizar
  las propiedades de compilación para incluir algunas rutas de archivos de
- cabecera, que se encuentran en dististos directorios ahora.
+ cabecera, que se encuentran en directorios distintos ahora.
 \end_layout
 
 \begin_layout Subsubsection
@@ -8585,7 +8915,7 @@ Suite
 \begin_inset space ~
 \end_inset
 
-B VS suite
+B VS Suite
 \begin_inset space ~
 \end_inset
 
@@ -8599,7 +8929,7 @@ B
 
 \begin_layout Standard
 La configuración de mbedTLS expuesta anteriormente es la mínima requerida
- para tener la suite
+ para tener la Suite
 \begin_inset space ~
 \end_inset
 
@@ -8610,9 +8940,12 @@ B de la NSA funcionando en nuestro sistema.
  realizar el test funcional y conectarnos con el servidor HTTPS.
  En concreto, hemos tenido que habilitar RSA como método para criptografía
  de clave pública e intercambio de claves.
- También hemos tenido que eliminar muchas de las opciones para reducir el
- uso de memoria, ya que estas limitaban las ciphersuites disponibles y el
- tamaño de las claves criptográficas.
+ También hemos tenido que eliminar algunas de las opciones para reducir
+ el uso de memoria, ya que estas limitaban las 
+\lang english
+ciphersuites
+\lang spanish
+ disponibles y el tamaño de las claves criptográficas.
  Finalmente, hemos tenido que incrementar el tamaño de los búferes de recepción
  a 2048 bytes, pues los paquetes de respuesta del servidor superaban el
  tamaño del búfer (
@@ -8640,7 +8973,7 @@ Integración de AWS IoT Device SDK
 Amazon Web Services proporciona un SDK oficial para conectarse con AWS-IoT
  desde cualquier dispositivo.
  Este kit de desarrollo, denominado 
-\family sans
+\emph on
 AWS
 \begin_inset space ~
 \end_inset
@@ -8653,14 +8986,26 @@ Device
 \begin_inset space ~
 \end_inset
 
-SDK
-\family default
+SDK para
+\begin_inset space ~
+\end_inset
+
+C
+\begin_inset space ~
+\end_inset
+
+embebido
+\emph default
 , está escrito en el lenguaje de programación
 \begin_inset space ~
 \end_inset
 
 C y puede portarse a cualquier tipo de dispositivo.
- Además, su código fuente está disponible en GitHub (
+ Además, su código fuente está disponible en GitHub 
+\begin_inset Newline linebreak
+\end_inset
+
+(
 \begin_inset Flex URL
 status collapsed
 
@@ -8767,11 +9112,7 @@ IoT Device
 \begin_inset space ~
 \end_inset
 
-SDK para C
-\begin_inset space ~
-\end_inset
-
-embebido 
+SDK 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "AWS-IoT-SDK-porting-guide"
@@ -8815,13 +9156,23 @@ external_libs
 
 SDK: mbedTLS y jsmn
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Jsmn (pronunciado como 'jasmine') es una biblioteca para dar soporte a JSON
  en C.
  Gracias a su implementación minimalista, se puede integrar fácilmente proyectos
- con limitaciones de recursos, incluyendo sistemas embebidos #ref#.
+ con limitaciones de recursos, incluyendo sistemas embebidos
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ #ref#
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -8865,7 +9216,7 @@ que las aplicaciones deben incluir para hacer uso del SDK.
 src
 \family default
  este directorio contiene el código fuente del SDK, incluyendo la biblioteca
- MQTT, el código de la sombra de dispositivo 
+ MQTT, el código de la sombra del dispositivo 
 \begin_inset Note Note
 status open
 
@@ -8899,9 +9250,12 @@ timers
 samples
 \family default
  este directorio contiene algunos programas de ejemplo, así como sus Makefiles.
- Entre estos programas, caben destacar dos ejemplos: el primero demuestra
- el uso de MQTT, a través de la suscripción y publicación en un canal de
- AWS IoT; el segundo muestra cómo interactuar con la sombra del dispositivo
+ Entre estos programas, cabe destacar dos ejemplos: el primero demuestra
+ el uso de MQTT, a través de la suscripción y publicación en un 
+\lang english
+topic
+\lang spanish
+ de AWS IoT; el segundo muestra cómo interactuar con la sombra del dispositivo
 \begin_inset Note Note
 status open
 
@@ -8933,7 +9287,16 @@ En esta sección, explicaremos los elementos del AWS
 
 IoT Device SDK que deben ser portados para hacer que este pueda ejecutarse
  en una nueva plataforma.
- Cabe destacar que las interfaces del SDK siguen el modelo de controlador,
+ Cabe destacar que las interfaces del SDK siguen un
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ modelo de muchos controladores de dispositivo (drivers),
+\end_layout
+
+\end_inset
+
  donde solo los prototipos están definidos por el Device SDK, mientras que
  la implementación corre a cargo del usuario del SDK, que deberá ajustarla
  a la plataforma en uso.
@@ -9123,8 +9486,12 @@ Definición de una nueva plataforma
 A diferencia de mbedTLS, el Device SDK de AWS IoT se basa en el modelo de
  controladores, con el que se intenta facilitar la portabilidad a otras
  plataformas.
- Siguiendo este modelo, la biblioteca incluye un directorio platform, donde
- se colocan los ficheros dependientes de plataforma de una forma estructurada.
+ Siguiendo este modelo, la biblioteca incluye un directorio 
+\family typewriter
+platform
+\family default
+, donde se colocan los ficheros dependientes de plataforma de una forma
+ estructurada.
  De esta manera, es posible definir varias plataformas, usándose solo la
  que se incluya en las opciones de compilación del proyecto.
  Otra particularidad de este modelo es que las funciones que se encuentran
@@ -9161,6 +9528,22 @@ Temporizadores
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{sloppypar}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Estas funciones se encargan de los 
 \lang english
 timeouts
@@ -9185,6 +9568,22 @@ platform/DAVE4_CMSIS_RTOS/common
 .
  Las funciones definidas harán uso de SysTick, disponible a través de CMSIS-RTOS
 , para proporcionar las funcionalidades requeridas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{sloppypar}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -9212,6 +9611,22 @@ platform/DAVE4_CMSIS_RTOS/pthreads
 
 \begin_layout Subsubsection
 Conectividad de red
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{sloppypar}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9243,11 +9658,43 @@ parsee
  certificados contenidos en variables directamente.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{sloppypar}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 \noindent
 
 \family typewriter
 aws_iot_config.h
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{sloppypar}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9266,6 +9713,22 @@ ones de los módulos, se incluye en algunas de las cabeceras de estos mismos
 samples/linux/shadow_sample
 \family default
 ).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{sloppypar}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -9326,7 +9789,7 @@ status open
 \begin_layout Plain Layout
 Aun con el hardware necesario para la depuración, existen formas de proteger
  el código contra lectura, de forma que la clave privada sea realmente inaccesib
-le #ref#.
+le.
 \end_layout
 
 \end_inset
@@ -9334,23 +9797,22 @@ le #ref#.
 .
  Por simplicidad, las constantes de este fichero no serán más que cadenas
  de caracteres ASCII con el contenido literal de los certificados y de la
- clave privada en formato PEM (formalmente PKIX Textual Encodings, tal y
- como se define en el RFC7468 
+ clave privada en formato PEM 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "rfc4648-Base64-encoding,rfc7468-PKIX-Encoding"
 
 \end_inset
 
-).
+.
 \end_layout
 
 \begin_layout Standard
 Este fichero, que llamaremos 
 \family typewriter
-certificate.c
+certificates.c
 \family default
-, será el reponsable de almacenar el certificado del cliente (
+, será el responsable de almacenar el certificado del cliente (
 \family typewriter
 client_cert
 \family default
@@ -9385,6 +9847,23 @@ status open
 Configuracion llevada a cabo en conjunto con la consola de AWS IoT.
  Para el test realizado, se ha considerado que el miniGW es un dispositivo
  (normalmente no sería así, sino que cada sensor sría un dispositivo)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{sloppypar}
 \end_layout
 
 \end_inset
@@ -9458,9 +9937,16 @@ Más detalles en la obtención de estos parámetros se explicarán en la secció
 \family typewriter
 AWS_IOT_MQTT_HOST
 \family default
- URL del personal endpoint asociado a AWS IoT.
- Puede encontrarse en la pestaña Settings de la consola, y tiene el formato
- 
+ URL del 
+\lang english
+personal endpoint
+\lang spanish
+ asociado a AWS IoT.
+ Puede encontrarse en la pestaña 
+\lang english
+Settings
+\lang spanish
+ de la consola, y tiene el formato 
 \family typewriter
 xxxxxxx.region-key.amazonaws.com
 \family default
@@ -9549,12 +10035,31 @@ client_key
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{sloppypar}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 El resto de parámetros definidos en el fichero se han dejado intactos, con
  sus valores por defecto.
  Estos parámetros controlan la configuración de búferes, uso de la sombra
  y otros parámetros de conexión.
- Además, incluiremos las constantes de los certificados digitales como extern,
- para que las mismas puedan ser usadas donde se requiera.
+ Además, incluiremos las constantes de los certificados digitales como 
+\family typewriter
+extern
+\family default
+, para que las mismas puedan ser usadas donde se requiera.
 \end_layout
 
 \begin_layout Section
@@ -9587,10 +10092,10 @@ shadow
 sample
 \family default
 .
- Estos tests requerirán que confiuguremos de forma conjunta tanto la plataforma
- y como el dispositivo.
- En esta sección explicaremos las configuraciones llevadas a cabo para estos
- tests en particular, que van un poco más allá de las expuestas en el epígrafe
+ Estos tests requerirán que configuremos de forma conjunta la plataforma
+ y el dispositivo.
+ En esta sección explicaremos las configuraciones requeridas por estos tests
+ en particular, que van un poco más allá de las expuestas en el epígrafe
  anterior.
 \begin_inset Note Note
 status open
@@ -9650,31 +10155,16 @@ reference "fig:Configuración-de-prueba-AWS-IoT"
 \end_inset
 
 .
- Como podemos ver en la misma, conectaremos el miniGW a Internet a través
- de un computador GNU/Linux que hará las veces de puerta de enlace, a través
- del conocido IP forwarding 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
-
-\end_inset
-
+ Como se muestra en la misma, conectaremos el miniGW a Internet a través
+ de un computador GNU/Linux que hará las veces de puerta de enlace, gracias
+ a que lo configuraremos para realizar 
+\lang english
+IP forwarding
+\lang spanish
 .
- Esta conexión será monitorizada con Wireshark 
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-#ref#
-\end_layout
-
-\end_inset
-
-, donde veremos los paquetes transmitidos en ambas direcciones.
- Gracias a este sotfware, podremos comprobar si se lleva a cabo la conexión,
+ Esta conexión será monitorizada con Wireshark, donde veremos los paquetes
+ transmitidos en ambas direcciones.
+ Gracias a este software, podremos comprobar si se lleva a cabo la conexión,
  en qué puntos se producen errores en la misma, si hay paquetes erróneos,
  etc.
  En este mismo computador tendremos una terminal serial para visualizar
@@ -9796,20 +10286,30 @@ En esta sección trataremos la creación y configuración de un dispositivo
 
 \begin_layout Standard
 Como hemos indicado anteriormente, para conectar el dispositivo a la Nube,
- tendremos que definirlo en la plataforma.
+ tendremos que definir un dispositivo virtual en la plataforma.
  También tendremos que asignarle un certificado digital y una política de
  acceso.
- 
 \end_layout
 
 \begin_layout Standard
-En primer lugar, deberemos crear un dispositivo virtual en la plataforma.
+En primer lugar, deberemos crear el dispositivo virtual en la plataforma.
  Tendremos que definir los distintos parámetros de nuestro dispositivo,
- como el nombre, que será fundamental para conectarnos al mismo (
+ como su nombre, que tendremos que definir de igual manera en el dispositivo
+ físico (
 \family typewriter
-AWS_IOT_MQTT_CLIENT_ID
+AWS_IOT_MY_THING_NAME
 \family default
 ).
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+será fundamental para conectarnos al mismo.
+\end_layout
+
+\end_inset
+
  Este es, en realidad, el único campo requerido.
  Sin embargo, podemos definir algunos atributos, como la versión del 
 \lang english
@@ -9823,6 +10323,10 @@ firmware
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 placement H
 wide false
@@ -9870,14 +10374,28 @@ Interact
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-En la pestaña 
+En la consola de AWS
+\begin_inset space ~
+\end_inset
+
+IoT, podemos acceder a la pestaña 
 \family sans
 \lang english
 Interact
 \family default
 \lang spanish
- del dispositivo (figura
+ del dispositivo 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(figura
 \begin_inset space ~
 \end_inset
 
@@ -9888,14 +10406,22 @@ reference "fig:Thing-properties-1"
 
 \end_inset
 
-) se mostrará la información que tendremos que copiar para configurar el
- fichero 
+) 
+\end_layout
+
+\end_inset
+
+, donde se mostrará la información que tendremos que copiar para configurar
+ el fichero 
 \family typewriter
 aws_iot_config.h
 \family default
 .
- En concreto, aquí se muestra la información sobre el endpoint, con la que
- deberá definirse el símbolo 
+ En concreto, aquí se muestra la información sobre el 
+\lang english
+endpoint
+\lang spanish
+, con la que deberá definirse el símbolo 
 \family typewriter
 AWS_IOT_MQTT_HOST
 \family default
@@ -9907,8 +10433,11 @@ El siguiente paso será crear un certificado.
  Es imprescindible que al crear el certificado se descargue la clave privada
  del mismo, ya que al cerrar el diálogo de descarga la clave privada será
  eliminada de la plataforma.
- También tendremos que descargar el certificado raíz (CA root), disponible
- desde la misma pestaña.
+ También tendremos que descargar el certificado raíz (
+\lang english
+CA root
+\lang spanish
+), disponible desde la misma pestaña.
 \end_layout
 
 \begin_layout Standard
@@ -9916,8 +10445,8 @@ A continuación, tendremos que asociar este certificado con el dispositivo
  y con una política de acceso.
  Como se trata de un test, definiremos una política de acceso bastante laxa,
  en la que el dispositivo podrá interactuar libremente con todos los elementos
- IoT.
- Para ello, añadieremos a la política la acción 
+ IoT de nuestra cuenta de AWS.
+ Para ello, añadiremos a la política la acción 
 \family typewriter
 iot:*
 \family default
@@ -9947,6 +10476,22 @@ shadow_sample
  siguientes:
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{sloppypar}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Enumerate
 Inicialización del sistema, a través de la inicialización de las 
 \begin_inset ERT
@@ -9966,7 +10511,7 @@ DAVE APPs
 DAVE_Init()
 \family default
 .
- Se inicializan tanto módulos hardware como componentes software, como las
+ Se inicializan tanto módulos hardware y componentes software, como las
  variables de CMSIS-RTOS.
 \end_layout
 
@@ -9993,11 +10538,27 @@ Explicar el ejemplo, o hacer referencia a la explicación!
 \end_layout
 
 \begin_layout Enumerate
-OS kernel start instruction 
+Llamada a la instrucción de inicialización del núcleo de CMSIS-RTOS
 \family typewriter
-osKernelStart()
+ osKernelStart()
 \family default
 .
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{sloppypar}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10019,17 +10580,18 @@ IoT.
 Activity
 \family default
 \lang spanish
-, 
-\begin_inset Note Greyedout
+, donde podremos ver los mensajes MQTT que producirán las sucesivas actualizacio
+nes de la sombra
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-donde podremos ver las sucesivas actualizaciones de la sombra
+ , como se muestra en la #missing-figure#
 \end_layout
 
 \end_inset
 
- , como se muestra en la #missing-figure#.
+.
  Para observar el estado actual del dispositivo, podemos consultar su sombra
  en la pestaña 
 \family sans
@@ -10037,7 +10599,12 @@ donde podremos ver las sucesivas actualizaciones de la sombra
 Shadow
 \family default
 \lang spanish
-, tal y como se muestra en la 
+.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ tal y como se muestra en la 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:Thing-properties"
@@ -10047,7 +10614,16 @@ reference "fig:Thing-properties"
 .
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 placement H
 wide false
@@ -10107,9 +10683,23 @@ Sustituir por imagen con el contenido real del miniGW.
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-Como podemos comprobar, tras este proceso de integración, el miniGW puede
- comunicarse con los servidores AWS IoT.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Como podemos comprobar
+\end_layout
+
+\end_inset
+
+Finalmente, tras este proceso de integración, el miniGW puede comunicarse
+ con los servidores AWS IoT.
 \end_layout
 
 \begin_layout Standard
@@ -10130,7 +10720,7 @@ Resolución de problemas
 \end_layout
 
 \begin_layout Standard
-Como no podía ser de otra manera, la integración del device SDK ha supuesto
+Como no podía ser de otra manera, la integración del Device SDK ha supuesto
  resolver algunos conflictos.
  La mayoría de ellos tienen que ver con el uso de memoria, ya que trabajamos
  en un entorno con recursos muy reducidos.
@@ -10144,11 +10734,20 @@ Configuración de CMSIS-RTOS
 \begin_layout Standard
 De nuevo, hemos necesitado más memoria para CMIS-RTOS.
  Esto se debe a que en esta ocasión estamos verificando un certificado
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
 Con la conexión HTTPS no se verificaba el certificado del servidor #?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -10163,7 +10762,12 @@ seguro que es por esto?
 
 \end_inset
 
- y estamos autenticando al dispositivo de cara al servidor 
+ y estamos autenticando al dispositivo de cara al servidor, lo que supone
+ la firma de un 
+\lang english
+challenge
+\lang spanish
+
 \begin_inset Note Note
 status open
 
@@ -10175,7 +10779,7 @@ de nuevo: seguro?
 
 .
  Estas operaciones requieren de mucha memoria, por lo que tendremos que
- incrementar el tamaño de la pila a 17kB.
+ incrementar el tamaño de la pila a 17KB.
  De nuevo, mencionamos que este valor no tiene nada que ver con el heap,
  solo la pila se está aumentando aquí.
 \end_layout
@@ -10194,28 +10798,27 @@ status collapsed
 También se puede configurar mbedTLS para usar pools de memoria reservados
  de forma estática.
  En el caso que nos ocupa, al no tratarse de un sistema crítico, hemos preferido
- usar el heap gestionado por newlib y el linker script #ref#.
+ usar el heap gestionado por 
+\lang english
+newlib
+\lang spanish
+ y el 
+\lang english
+linker script
+\lang spanish
+.
 \end_layout
 
 \end_inset
 
 .
  Sin embargo, el heap presente en el sistema con la configuración predefinida
- es demasiado pequeño 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-para la verificación de certificado con claves de clave asimétrica tan largas
-\end_layout
-
-\end_inset
-
-.
+ es demasiado pequeño para la verificación de certificado con claves de
+ clave asimétrica tan largas.
  Para que las aplicaciones probadas se ejecuten correctamente, es necesario
- un heap de al menos 35kB.
+ un heap de al menos 35KB.
  Esta heap será necesario para el proceso de validación del certificado
- y el proceso de firma (en la autenticación mutua 
+ y el proceso de firma en la autenticación mutua 
 \begin_inset Note Note
 status open
 
@@ -10225,7 +10828,7 @@ copiado del report ;)
 
 \end_inset
 
-).
+.
 \end_layout
 
 \begin_layout Standard
@@ -10271,7 +10874,11 @@ Heap_BankX_Start
 \family typewriter
 Heap_BankX_End
 \family default
-, que han tenido que definirse en el linker script.
+, que han tenido que definirse en el 
+\lang english
+linker script
+\lang spanish
+.
  La definición de estas variables ha sido directa, a partir de la definición
  del primer bloque de heap.
 \end_layout
@@ -10312,9 +10919,31 @@ Sockets BSD
 \end_layout
 
 \begin_layout Standard
-en aws_iot_mqtt_client.h: #undef connect #undef read #undef write (se deben
- usar ¿los de lwIP?, pero estos están definidos en algún otro sitio y producen
- conflicto, no?)
+Al tratar de compilar el proyecto, hemos encontrado algunos conflictos con
+ las funciones 
+\family typewriter
+connect
+\family default
+, 
+\family typewriter
+read
+\family default
+ y 
+\family typewriter
+write
+\family default
+, que estaban definidos en distintos lugares.
+ Para solucionarlo, hemos modificado el fichero 
+\family typewriter
+aws_iot_mqtt_client.h
+\family default
+ para asegurar que se usa la implementación proporcionada por lwIP.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+#undef connect #undef read #undef write (se deben usar ¿los de lwIP?, pero
+ estos están definidos en algún otro sitio y producen conflicto, no?)
 \begin_inset Note Note
 status open
 
@@ -10327,13 +10956,30 @@ INVESTIGAR BIEN!
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+\begin_inset Note Note
+status open
+
 \begin_layout Subsubsection
 Ciphersuites?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 configurados en config.h de mbedTLS para tener una versión compatible.
  o venía ya hecho?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status open
 

@@ -6,9 +6,9 @@
 \origin unavailable
 \textclass book
 \use_default_options true
-\master preface.lyx
+\master ../THESIS.lyx
 \maintain_unincluded_children false
-\language english
+\language spanish
 \language_package default
 \inputencoding utf8
 \fontencoding global
@@ -59,7 +59,7 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\quotes_language french
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -135,6 +135,13 @@ A todo el personal de la Universidad de Granada que ha trabajado en esta
  En especial, a Diego Pedro Morales Santos, que ha coordinado la relación
  con la empresa, y a Yolanda García Avilés, que me ha guiado en el laberinto
  de la burocracia.
+\end_layout
+
+\begin_layout Standard
+A Miguel Damas Hermoso y a Gustavo Romero López, profesores de asignaturas
+ relacionadas con este proyecto, por ofrecerme un marco sobre el que estructurar
+ el conocimiento y por instarme a aplicar los contenidos de sus asignaturas
+ en el proyecto.
 \end_layout
 
 \begin_layout Standard

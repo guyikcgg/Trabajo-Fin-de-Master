@@ -239,6 +239,8 @@ numbers=left
 \newcommand{\DAVE}{\dave}
 \newcommand{\xmc}{XMC\texttrademark\xspace}
 \newcommand{\XMC}{\xmc}
+
+%\usepackage{microtype}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -676,25 +678,21 @@ options "bibtotoc,unsrt"
 status open
 
 \begin_layout Plain Layout
-Fix lang: should be spanish
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset index_print
 LatexCommand printindex
 type "idx"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
