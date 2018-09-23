@@ -260,16 +260,16 @@
 					</aside>
 				</section>
 
-				<!-- <section> -->
-				<!-- 	<h2>Objetivos</h2> -->
-				<!-- 	<ol> -->
-				<!-- 		<li>Establecer comunicación segura con Internet</li> -->
-				<!-- 		<ul> -->
-				<!-- 			<li>Revisar implementaciones TLS</li> -->
-				<!-- 		</ul> -->
-				<!-- 		<li>Intercambio de mensajes con AWS IoT</li> -->
-				<!-- 	</ol> -->
-				<!-- </section> -->
+				<section>
+					<h2>Objetivos</h2>
+					<ol>
+						<li>Establecer comunicación segura con Internet</li>
+						<ul>
+							<li>Revisar implementaciones TLS</li>
+						</ul>
+						<li>Intercambio de mensajes con AWS IoT</li>
+					</ol>
+				</section>
 
 				<section id="PresentacionSistema">
 					<h2>Seguridad de los Datos en Sistemas Empotrados</h2>
@@ -310,6 +310,9 @@
 				<section data-background="#fff" data-transition="none">
 					<h2>H2 miniGW</h2>
 					<img class="plain" src="img/gw_hw_photo4.png" alt=""/>
+					<aside>
+						<strong>Lo que programaremos es el XMC</strong>
+					</aside>
 				</section>
 
 				<!-- <section> -->
@@ -346,7 +349,7 @@
 					</ul>
 				</section>
 
-				<section data-background="#fff">
+				<section data-background="#ddd">
 					<h2>Firmware</h2>
 					<img class="plain" src="img/gw_sw.png" alt=""/>
 					<!-- XMC4500: Firmware (CMSIS&#45;RTOS + lwIP) -->
@@ -402,7 +405,7 @@
 					<aside class="notes">
 						Buscamos en: Wikipedia, StackExchange, Github
 						1er filtro: características mencionadas en estas plataformas
-						Comparamos características basándonos en información disponible en documentación oficial
+						Comparamos características de 5 bibliotecas basándonos en su documentación oficial
 					</aside>
 				</section>
 
@@ -510,6 +513,8 @@
 					<!-- 	<li>Módulo de temporización</li> -->
 					<!-- </ul> -->
 					<aside class="notes">
+						El módulo de red permite conectividad TCP/IP
+						Necesario para TLS (no necesario para validar certificados)
 					</aside>
 				</section>
 
@@ -523,6 +528,7 @@
 					<!-- 	<li>Módulo de temporización</li> -->
 					<!-- </ul> -->
 					<aside class="notes">
+						Entropía es clave en seguridad: para generar claves, challenges, etc.
 					</aside>
 				</section>
 
@@ -536,6 +542,7 @@
 					<!-- 	<li>Módulo de temporización</li> -->
 					<!-- </ul> -->
 					<aside class="notes">
+						Tiempo real usado para validar certificados
 					</aside>
 				</section>
 
@@ -811,6 +818,7 @@ mbedtls_time_t mbedtls_time_DAVE( mbedtls_time_t* timer ) {
 
 				<section>
 					<h3>Configuración</h3>
+					<p class="left"><code>aws_iot_config.h</code></p>
 					<pre><code class="hljs" data-trim>
 #define AWS_IOT_MQTT_HOST        "XXXXXX.amazonaws.com"
 #define AWS_IOT_MQTT_PORT        8883
@@ -834,8 +842,8 @@ mbedtls_time_t mbedtls_time_DAVE( mbedtls_time_t* timer ) {
 
 				<section>
 					<h2>Problemas encontrados</h2>
-					Actualizar lwIP
-					Modificar malloc
+					<p>Actualizar lwIP</p>
+					<p>Modificar malloc</p>
 				</section>
 
 				<section id="Conclusiones">
