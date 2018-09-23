@@ -18,7 +18,8 @@
 		<link rel="stylesheet" href="css/theme/black.css" id="theme">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+		<link rel="stylesheet" href="lib/css/vs2015.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -64,17 +65,30 @@
 				font-size: 30pt;
 				text-transform: none !important;
 			}
-			.full-screen {
-				/* position: absolute; */
-				/* width: 100%; */
-				/* height: 100%; */
-				position: fixed;
-				top: -50px;
-				left: -50px;
+			ol.index li.current a {
+				color: #fff;
+				font-weight: bold;
 			}
-			.full-screen img {
-				max-width: unset;
-				max-height: unset;
+			ol.index li a {
+				color: #999;
+			}
+			img.plain {
+				background: none !important;
+			}
+			p.left {
+				text-align: left !important;
+			}
+			table.middle th, table.middle td {
+				vertical-align: middle;
+			}
+			table.center th, table.center td {
+				text-align: center;
+			}
+			table.center td:first-child {
+				text-align: left;
+			}
+			table.plain td, table.plain th {
+				border: none;
 			}
 		</style>
 	</head>
@@ -126,17 +140,35 @@
 					</aside>
 				</section>
 
-				<section data-background="#dddddd" data-transition="slide">
-					<h2>2016 - Prácticas en Múnich</h2>
-					<img src="img/map_malaga_munich.png" alt=""/>
-					<aside class="notes">
-						2016: Obtengo título de Graduado en Telecomunicaciones
-						Prácticas de empresa en Múnich, con eesy-innovation
-					</aside>
+				<section>
+
+					<section id="Motivacion" data-background="img/graduado.jpg" data-transition="slide">
+						<!-- <h2 class="fragment" style="color: #000">2016 <br> Prácticas en Múnich</h2> -->
+						<img class="fragment" style="width: 50%; position: fixed; left: 0; bottom: 0;" src="img/map_malaga_munich.png" alt=""/>
+						<img class="fragment" style="position: fixed; width: 60%; top: 0; right: 5%;" src="img/nevando.jpg" alt=""/>
+						<aside class="notes">
+							2016: Obtengo título de Graduado en Telecomunicaciones
+							Prácticas de empresa en Múnich, con eesy-innovation
+						</aside>
+					</section>
+
+					<section id="Indice">
+						<h2>Seguridad de los Datos en Sistemas Empotrados</h2>
+						<ol class="index">
+							<li class="current"><a href="#/Motivacion">Motivación</a></li>
+							<li><a href="#/Objetivos">Objetivos</a></li>
+							<li><a href="#/PresentacionSistema">Presentación del sistema</a></li>
+							<li><a href="#/AnalisisTLS">Análisis de bibliotecas TLS</a></li>
+							<li><a href="#/IntegracionTLS">Integración de mbedTLS</a></li>
+							<li><a href="#/IntegracionSDK">Integración de AWS IoT Device SDK</a></li>
+							<li><a href="#/Conclusiones">Conclusiones</a></li>
+						</ol>
+					</section>
+
 				</section>
 
-				<section>
-					<img style="background: none; box-shadow: none; border: none;" src="img/eesy_logo_blau.png" alt=""/>
+				<section data-background="img/eesy_engineering_buehnenbild_1.jpg">
+					<img class="plain" style="width: 40%;" src="img/eesy_logo_blau.png" alt=""/>
 					<p>A SME enabler for nationally and internationally funded projects. Offering engineering services for:</p>
 					<ul>
 						<li>Chip development</li>
@@ -148,115 +180,684 @@
 				</section>
 
 				<section data-background="#fff" data-transition="fade">
-					<img class="plain" src="img/h2.jpg" alt=""/>
+					<img class="plain" src="img/h2.png" alt=""/>
 					<aside class="notes">
 						Con la experiencia adquirida:
 						Mercado: Productos SmartHome
 					</aside>
 				</section>
 
-
 				<section data-background="img/aq_home.jpg">
 				</section>
 
-				<section data-background="img/h2.jpg" data-transition="fade">
-					<!-- <img class="plain" src="img/h2.jpg" alt=""/> -->
+				<section data-background="#ccc" data-transition="fade">
+					<img class="plain" src="img/h2.png" alt=""/>
 				</section>
 
-				<section data-background="#b2b2b2" data-transition="fade">
-					<img class="plain" src="img/h2_aq.jpg" alt=""/>
+				<section data-background="#ccc" data-transition="fade">
+					<img class="plain" src="img/h2_aq.png" alt=""/>
 				</section>
 
-				<section>
-					<img class="plain" src="img/aq_phone.jpg" alt=""/>
-				</section>
-
-				<section data-background="#fff" data-transition="none">
-					<img class="plain" src="img/h2.jpg" alt=""/>
+				<section data-background="#fff" data-transition="fade">
+					<img class="plain" src="img/aq_phone.png" alt=""/>
 				</section>
 
 				<section data-background="#fff" data-transition="none">
-					<img class="plain " src="img/h2_gw_c.jpg" alt=""/>
+					<img class="plain" src="img/h2.png" alt=""/>
 				</section>
 
-				<section data-background="#b2b2b2" data-transition="none">
-					<div style="background-color: #b2b2b2;">
-						<img class="plain " src="img/h2_gw_c2.jpg" alt=""/>
-					</div>
+				<section data-background="#fff" data-transition="none">
+					<img class="plain " src="img/h2_gw_c.png" alt=""/>
+					<aside class="notes">
+						Los sensores se conectan a la nube a través del miniGW
+					</aside>
 				</section>
 
-				<section data-background="#dddddd" data-transition="none">
-					<h2>H2 miniGW</h2>
-					<img src="img/gw_funcion.png" alt=""/>
-				</section>
+				<!-- <section data&#45;background="#b2b2b2" data&#45;transition="none"> -->
+				<!-- 	<div style="background&#45;color: #b2b2b2;"> -->
+				<!-- 		<img class="plain " src="img/h2_gw_c2.jpg" alt=""/> -->
+				<!-- 	</div> -->
+				<!-- </section> -->
 
 				<section>
 					Concluye mi estancia en M'unich, curso el Master, trabajo a jornada parcial (llevo a cabo este proyecto, como uno de los trabajos)
+					Concluye mi estancia en M'unich, y tengo la oportunidad de cursar este maravilloso Master mientras sigo trabajando para eesy-innovation
 				</section>
 
-				<section data-background="#dddddd">
-					<h2>Objetivos</h2>
-					<img src="img/objetivos1.png" alt=""/>
-				</section>
-
-				<section data-background="#dddddd">
-					<h2>Objetivos</h2>
-					<img src="img/objetivos2.png" alt=""/>
-				</section>
-
-				<section>
-					<h2>Objetivos</h2>
-					<ol>
-						<li>Establecer comunicación segura con Internet</li>
-						<ul>
-							<li class="fragment">Revisar implementaciones TLS</li>
-						</ul>
-						<li>Intercambio de mensajes con AWS IoT</li>
+				<section id="Objetivos">
+					<h2>Seguridad de los Datos en Sistemas Empotrados</h2>
+					<ol class="index">
+						<li><a href="#/Motivacion">Motivación</a></li>
+						<li class="current"><a href="#/Objetivos">Objetivos</a></li>
+						<li><a href="#/PresentacionSistema">Presentación del sistema</a></li>
+						<li><a href="#/AnalisisTLS">Análisis de bibliotecas TLS</a></li>
+						<li><a href="#/IntegracionTLS">Integración de mbedTLS</a></li>
+						<li><a href="#/IntegracionSDK">Integración de AWS IoT Device SDK</a></li>
+						<li><a href="#/Conclusiones">Conclusiones</a></li>
 					</ol>
+				</section>
 
+				<section data-background="#dddddd" data-transition="none">
+					<h2>Objetivos</h2>
+					<img class="plain" style="width: 60%" src="img/gw_funcion.png" alt=""/>
+				</section>
+
+				<section data-background="#dddddd" data-transition="none">
+					<h2>Objetivos</h2>
+					<img class="plain" style="width: 60%" src="img/objetivos1.png" alt=""/>
 					<aside class="notes">
-						Esto lo llevaremos a cabo en un sistema específico (el miniGW), por lo que vamos a introducirlo con más detalle
+						<p>Establecer comunicación segura con Internet</p>
+						<p>Revisar implementaciones TLS</p>
 					</aside>
 				</section>
 
+				<section data-background="#dddddd" data-transition="none">
+					<h2>Objetivos</h2>
+					<img class="plain" style="width: 60%" src="img/objetivos2.png" alt=""/>
+					<aside class="notes">
+						<p>Intercambio de mensajes con AWS IoT</p>
+						<p>Esto lo llevaremos a cabo en un sistema específico (el miniGW), por lo que vamos a introducirlo con más detalle</p>
+					</aside>
+				</section>
+
+				<!-- <section> -->
+				<!-- 	<h2>Objetivos</h2> -->
+				<!-- 	<ol> -->
+				<!-- 		<li>Establecer comunicación segura con Internet</li> -->
+				<!-- 		<ul> -->
+				<!-- 			<li>Revisar implementaciones TLS</li> -->
+				<!-- 		</ul> -->
+				<!-- 		<li>Intercambio de mensajes con AWS IoT</li> -->
+				<!-- 	</ol> -->
+				<!-- </section> -->
+
+				<section id="PresentacionSistema">
+					<h2>Seguridad de los Datos en Sistemas Empotrados</h2>
+					<ol class="index">
+						<li><a href="#/Motivacion">Motivación</a></li>
+						<li><a href="#/Objetivos">Objetivos</a></li>
+						<li class="current"><a href="#/PresentacionSistema">Presentación del sistema</a></li>
+						<li><a href="#/AnalisisTLS">Análisis de bibliotecas TLS</a></li>
+						<li><a href="#/IntegracionTLS">Integración de mbedTLS</a></li>
+						<li><a href="#/IntegracionSDK">Integración de AWS IoT Device SDK</a></li>
+						<li><a href="#/Conclusiones">Conclusiones</a></li>
+					</ol>
+				</section>
+
+				<section data-background="#fff" data-transition="none">
+					<h2>H2 miniGW</h2>
+					<img class="plain" src="img/gw_hw_photo0.png" alt=""/>
+				</section>
+
+				<section data-background="#fff" data-transition="none">
+					<h2>H2 miniGW</h2>
+					<img class="plain" src="img/gw_hw_photo1.png" alt=""/>
+				</section>
+
+				<section data-background="#fff" data-transition="none">
+					<h2>H2 miniGW</h2>
+					<img class="plain" src="img/gw_hw_photo2.png" alt=""/>
+					<aside class="notes">
+						TDA conectado por SPI
+					</aside>
+				</section>
+
+				<section data-background="#fff" data-transition="none">
+					<h2>H2 miniGW</h2>
+					<img class="plain" src="img/gw_hw_photo3.png" alt=""/>
+				</section>
+
+				<section data-background="#fff" data-transition="none">
+					<h2>H2 miniGW</h2>
+					<img class="plain" src="img/gw_hw_photo4.png" alt=""/>
+				</section>
+
+				<!-- <section> -->
+				<!-- 	<h2>H2 miniGW</h2> -->
+				<!-- 	<table> -->
+				<!-- 		<thead><tr><th colspan="2">Componentes principales</th></tr></thead> -->
+				<!-- 		<tr><td>Microcontrolador</td><td><strong>XMC4500</strong></td></tr> -->
+				<!-- 		<tr><td>Conexión con sensores</td><td><strong>TDA5340 + Antena</strong></td></tr> -->
+				<!-- 		<tr><td>Conexión a Internet</td><td><strong>Ethernet (RJ45)</strong></td></tr> -->
+				<!-- 	</table> -->
+				<!-- 	<!&#45;&#45; <p class="left">Componentes principales:</p> &#45;&#45;> -->
+				<!-- 	<!&#45;&#45; <ul> &#45;&#45;> -->
+				<!-- 	<!&#45;&#45; 	<li>Microcontrolador: <strong>XMC4500</strong></li> &#45;&#45;> -->
+				<!-- 	<!&#45;&#45; 	<li>Conexión con sensores: <strong>TDA5340 + Antena</strong></li> &#45;&#45;> -->
+				<!-- 	<!&#45;&#45; 	<li>Conexión a Internet: <strong>Ethernet (RJ45)</strong></li> &#45;&#45;> -->
+				<!-- 	<!&#45;&#45; </ul> &#45;&#45;> -->
+				<!-- </section> -->
+
 				<section>
-					<h2>H2 miniGW - Componentes principales</h2>
+					<h2>XMC4500</h2>
 					<ul>
-						<li>Microcontrolador: <strong>XMC4500</strong></li>
-						<li>Conexión con sensores: <strong>TDA5340 + Antena</strong></li>
-						<li>Conexión a Internet: <strong>Ethernet (RJ45)</strong></li>
+						<li>Procesador: ARM Cortex-M4 (32-bit CPU)</li>
+						<li>Flash: 1024KB</li>
+						<li>RAM: 160KB (en 3 bloques)</li>
+						<li>Periféricos: DAC, ADC, Ethernet, USIC, etc.</li>
+						<!-- <li>Periféricos:</li> -->
+						<!-- <ul> -->
+						<!-- 	<li>DAC</li> -->
+						<!-- 	<li>ADC</li> -->
+						<!-- 	<li>Ethernet</li> -->
+						<!-- 	<li>USIC</li> -->
+						<!-- 	<li>etc.</li> -->
+						<!-- </ul> -->
 					</ul>
 				</section>
 
-				<section>
-					XMC4500: HW (CPU y RAM)
+				<section data-background="#fff">
+					<h2>Firmware</h2>
+					<img class="plain" src="img/gw_sw.png" alt=""/>
+					<!-- XMC4500: Firmware (CMSIS&#45;RTOS + lwIP) -->
+				</section>
+
+				<section id="AnalisisTLS">
+					<h2>Seguridad de los Datos en Sistemas Empotrados</h2>
+					<ol class="index">
+						<li><a href="#/Motivacion">Motivación</a></li>
+						<li><a href="#/Objetivos">Objetivos</a></li>
+						<li><a href="#/PresentacionSistema">Presentación del sistema</a></li>
+						<li class="current"><a href="#/AnalisisTLS">Análisis de bibliotecas TLS</a></li>
+						<li><a href="#/IntegracionTLS">Integración de mbedTLS</a></li>
+						<li><a href="#/IntegracionSDK">Integración de AWS IoT Device SDK</a></li>
+						<li><a href="#/Conclusiones">Conclusiones</a></li>
+					</ol>
 				</section>
 
 				<section>
-					XMC4500: Firmware (CMSIS-RTOS + lwIP)
-				</section>
-
-				<section>
-					B'usqueda de TLS: Criterios
+					<h2>Criterios de la búsqueda</h2>
+					<ol>
+						<li>Sistemas empotrados</li>
+						<ul class="fragment">
+							<li>Lenguaje C estándar</li>
+							<!-- <li>Mínimas dependencias</li> -->
+							<li><em>Low footprint</em></li>
+						</ul>
+						<li>Compatible con el sistema</li>
+						<ul class="fragment">
+							<li>CMSIS-RTOS y lwIP</li>
+						</ul>
+						<li>Seguridad</li>
+						<ul class="fragment">
+							<li>Desarrollo continuo</li>
+							<li>Ciphersuites AWS IoT</li>
+						</ul>
+					</ol>
 					<aside class="notes">
 						Criterios relacionados con (las restricciones de los) sistemas empotrados
+						También valoramos:
+						<ul>
+							<li>Disponibilidad de documentación</li>
+							<li>Soporte para ingenieros</li>
+							<li>Licencias</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section data-background="#ddd">
+					<div><img class="plain" style="width: 20%; margin: 0;" src="img/wiki2.png" alt=""/></div>
+					<div><img class="plain" style="width: 35%; margin: 0;" src="img/gh.png" alt=""/></div>
+					<div><img class="plain" style="width: 60%; margin: 0;" src="img/se.png" alt=""/></div>
+					<aside class="notes">
+						Buscamos en: Wikipedia, StackExchange, Github
+						1er filtro: características mencionadas en estas plataformas
+						Comparamos características basándonos en información disponible en documentación oficial
+					</aside>
+				</section>
+
+				<section data-background="#ddd">
+					<!-- <div> -->
+					<!-- 	<div style="width: 45%; display: inline&#45;block;"> -->
+					<!-- 		<img class="plain" src="img/wolf&#45;logo&#45;shadow&#45;icon.png" alt=""/> -->
+					<!-- 		<p class="fragment">Seguridad en MySQL</p> -->
+					<!--  -->
+					<!-- 	</div> -->
+					<!-- 	<div style="width: 45%; display: inline&#45;block;"> -->
+					<!-- 		<p>mbed TLS</p> -->
+					<!-- 		<img class="plain fragment" src="img/mbed_logo.png" alt=""/> -->
+					<!-- 	</div> -->
+					<!-- </div> -->
+					<table class="center middle plain">
+						<thead>
+							<tr>
+								<th class="fragment" style="font-size: 48pt">VS</th>
+								<th>
+									<img class="plain" src="img/wolf-logo-shadow-icon.png" alt="WolfSSL"/>
+								</th>
+								<th>
+									mbed TLS
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fragment">
+								<td>Conocido por</td>
+								<td>MySQL</td>
+								<td><img class="plain" src="img/mbed_logo.png" alt="ARM mbed"/></td>
+							</tr>
+							<tr class="fragment">
+								<td>Verificaciones</td>
+								<td>WolfCrypt<br>(FIPS-140 l1)</td>
+								<td>No</td>
+							</tr>
+							<tr class="fragment">
+								<td>Licencia</td>
+								<td>$5000</td>
+								<td>Sin costo</td>
+							</tr>
+							<tr class="fragment">
+								<td>Compatible</td>
+								<td>RTOS, lwIP</td>
+								<td><strong>AWS IoT SDK</strong></td>
+							</tr>
+						</tbody>
+					</table>
+					<aside class="notes">
+						Tras analizar las 5 candidatas, hay 2 muy fuertes: mbedTLS y WolfSSL
+						Ambas tienen características similares:
+						<ul>
+							<li>Bibliotecas altamente configurables</li>
+							<li>Compatible con el sistema</li>
+							<li>En continuo desarrollo</li>
+							<li>Comunidad activa</li>
+							<li>Test de integridad</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- <section> -->
+				<!-- 	Finalmente nos decantamos por mbedTLS: motivos -->
+				<!-- </section> -->
+
+				<section id="IntegracionTLS">
+					<h2>Seguridad de los Datos en Sistemas Empotrados</h2>
+					<ol class="index">
+						<li><a href="#/Motivacion">Motivación</a></li>
+						<li><a href="#/Objetivos">Objetivos</a></li>
+						<li><a href="#/PresentacionSistema">Presentación del sistema</a></li>
+						<li><a href="#/AnalisisTLS">Análisis de bibliotecas TLS</a></li>
+						<li class="current"><a href="#/IntegracionTLS">Integración de mbedTLS</a></li>
+						<li><a href="#/IntegracionSDK">Integración de AWS IoT Device SDK</a></li>
+						<li><a href="#/Conclusiones">Conclusiones</a></li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Integración de mbed TLS</h2>
+					Encargada de establecer conexiones seguras
+						- Encriptación (simétrica, clave pública)
+						- Certificados (Autenticación mutua)
+						- Protocolo (búferes, estado de la conexión...)
+					<aside>
+						mbedTLS es altamente configurable
+						Para integrarla:
+						Importamos la biblioteca al proyecto
+						Compilamos (firmware contendrá la biblioteca)
+						Modificamos lo necesario para que funcione
+
+						Tiene dependencias...
+					</aside>
+				</section>
+
+				<section data-background="#ddd" data-transition="none">
+					<h2>Integración de mbed TLS</h2>
+					<img class="plain" src="img/mbedTLS_port0.png" alt=""/>
+					<!-- <p class="left">Será necesario portar:</p> -->
+					<!-- <ul> -->
+					<!-- 	<li>Módulo de red</li> -->
+					<!-- 	<li>Fuentes de entropía</li> -->
+					<!-- 	<li>Módulo de temporización</li> -->
+					<!-- </ul> -->
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section data-background="#ddd" data-transition="none">
+					<h2>Integración de mbed TLS</h2>
+					<img class="plain" src="img/mbedTLS_port1.png" alt=""/>
+					<!-- <p class="left">Será necesario portar:</p> -->
+					<!-- <ul> -->
+					<!-- 	<li>Módulo de red</li> -->
+					<!-- 	<li>Fuentes de entropía</li> -->
+					<!-- 	<li>Módulo de temporización</li> -->
+					<!-- </ul> -->
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section data-background="#ddd" data-transition="none">
+					<h2>Integración de mbed TLS</h2>
+					<img class="plain" src="img/mbedTLS_port2.png" alt=""/>
+					<!-- <p class="left">Será necesario portar:</p> -->
+					<!-- <ul> -->
+					<!-- 	<li>Módulo de red</li> -->
+					<!-- 	<li>Fuentes de entropía</li> -->
+					<!-- 	<li>Módulo de temporización</li> -->
+					<!-- </ul> -->
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section data-background="#ddd" data-transition="none">
+					<h2>Integración de mbed TLS</h2>
+					<img class="plain" src="img/mbedTLS_port3.png" alt=""/>
+					<!-- <p class="left">Será necesario portar:</p> -->
+					<!-- <ul> -->
+					<!-- 	<li>Módulo de red</li> -->
+					<!-- 	<li>Fuentes de entropía</li> -->
+					<!-- 	<li>Módulo de temporización</li> -->
+					<!-- </ul> -->
+					<aside class="notes">
 					</aside>
 				</section>
 
 				<section>
-					Tras analizar las 5 candidatas, hay 2 muy fuertes: mbedTLS y WolfSSL
+					<h3>Módulo de red</h3>
+					<p class="left">net_sockets.c</p>
+					<pre style="width: 95%"><code class="cpp hljs" data-trim>
+#if defined(MBEDTLS_NET_C)
+
+#if !defined(unix) &amp;&amp; !defined(__unix__) &amp;&amp; !defined(__unix) &amp;&amp; \
+	!defined(__APPLE__) &amp;&amp; !defined(_WIN32) &amp;&amp; !defined(DAVE)
+	#error "This module only works on Unix, DAVE and Windows, see MBEDTLS_NET_C in config.h"
+#endif
+
+#if defined(MBEDTLS_PLATFORM_C)
+	#include "mbedtls/platform.h"
+#else
+	#include &lt;stdlib.h&gt;
+#endif
+
+#include "mbedtls/net_sockets.h"
+
+#include &lt;string.h&gt;
+
+#if (defined(_WIN32) || defined(_WIN32_WCE)) &amp;&amp; !defined(EFIX64) &amp;&amp; \
+	!defined(EFI32)
+
+	/***********
+	 * WINDOWS *
+	 ***********/
+	#ifdef _WIN32_WINNT
+		#undef _WIN32_WINNT
+	#endif
+	/* Enables getaddrinfo() &amp; Co */
+	#define _WIN32_WINNT 0x0501
+	#include &lt;ws2tcpip.h&gt;
+
+	#include &lt;winsock2.h&gt;
+	#include &lt;windows.h&gt;
+
+	#if defined(_MSC_VER)
+		#if defined(_WIN32_WCE)
+			#pragma comment( lib, "ws2.lib" )
+		#else
+			#pragma comment( lib, "ws2_32.lib" )
+		#endif
+	#endif /* _MSC_VER */
+
+	#define read(fd,buf,len)        recv(fd,(char*)buf,(int) len,0)
+	#define write(fd,buf,len)       send(fd,(char*)buf,(int) len,0)
+	#define close(fd)               closesocket(fd)
+
+	static int wsa_init_done = 0;
+
+#else /* ( _WIN32 || _WIN32_WCE ) &amp;&amp; !EFIX64 &amp;&amp; !EFI32 */
+
+	#if defined(DAVE)
+
+		/********
+		 * DAVE *
+		 ********/
+		#include &lt;sys/types.h&gt;
+		#include &lt;lwip/sockets.h&gt;
+		#include &lt;lwip/inet.h&gt;
+		#include &lt;unistd.h&gt;
+		#include &lt;signal.h&gt;
+		#include &lt;lwip/netdb.h&gt;
+		#include &lt;errno.h&gt;
+
+	#else
+
+		/********
+		 * UNIX *
+		 ********/
+		#include &lt;sys/types.h&gt;
+		#include &lt;sys/socket.h&gt;
+		#include &lt;netinet/in.h&gt;
+		#include &lt;arpa/inet.h&gt;
+		#include &lt;sys/time.h&gt;
+		#include &lt;unistd.h&gt;
+		#include &lt;signal.h&gt;
+		#include &lt;fcntl.h&gt;
+		#include &lt;netdb.h&gt;
+		#include &lt;errno.h&gt;
+
+	#endif /* DAVE */
+
+#endif /* ( _WIN32 || _WIN32_WCE ) &amp;&amp; !EFIX64 &amp;&amp; !EFI32 */
+
+#endif /* MBEDTLS_NET_C */
+					</code></pre>
+				</section>
+
+				<section data-background="#ddd">
+					<h3>Fuentes de entropía</h3>
+					<img class="plain" src="img/prng.png" alt=""/>
+					<aside class="notes">
+						Entropía: es la base de una buena seguridad
+						Usamos módulo HW (DAC)
+						Secuencia pseudoaleatoria
+						Se lee a través del ADC
+					</aside>
 				</section>
 
 				<section>
-					Finalmente nos decantamos por mbedTLS: motivos
+					<h3>Fuentes de entropía</h3>
+					<p class="left">Aleatoriedad dada por:</p>
+					<ol>
+						<li>No determinismo</li>
+						<li>Digital &#x2192; Analog &#x2192; Digital</li>
+						<li>Recolección de entropía</li>
+					</ol>
 				</section>
 
 				<section>
-					Integración de mbedTLS (y de los distintos módulos)
+					<h3>Módulo de temporización</h3>
+					<pre><code class="cpp hljs" data-trim>
+#include "mbedtls/platform_DAVE.h"
+
+mbedtls_time_t mbedtls_time_DAVE( mbedtls_time_t* timer ) {
+	mbedtls_time_t now;
+
+	if (timer == NULL) {
+		timer = &now;
+	}
+
+	RTC_Time(timer);
+	return *timer;
+}
+					</code></pre>
 				</section>
 
 				<section>
-					Integración de AWS IoT Device SDK (y de los distintos módulos)
+					<h2>Configuración de mbed TLS</h2>
+					<p>Configuración mínima con ciphersuites recomendados por AWS y reducción del uso de memoria</p>
+				</section>
+
+				<section data-background="#ddd">
+					<img class="plain" style="width: 75%" src="img/test-setup.png" alt=""/>
+				</section>
+
+				<section>
+					<h2>Verificaciones</h2>
+					<ol>
+						<li class="fragment">Tests unitarios: <span class="fragment">proporcionados por mbed TLS</span></li>
+						<p class="fragment">Programa <code>selftest.c</code></p>
+						<li class="fragment">Test funcional: <span class="fragment">conectar con servidor HTTPS</span></li>
+						<p class="fragment">Verificar recepción de <code>200 OK</code></p>
+					</ol>
+				</section>
+
+				<section id="IntegracionSDK">
+					<h2>Seguridad de los Datos en Sistemas Empotrados</h2>
+					<ol class="index">
+						<li><a href="#/Motivacion">Motivación</a></li>
+						<li><a href="#/Objetivos">Objetivos</a></li>
+						<li><a href="#/PresentacionSistema">Presentación del sistema</a></li>
+						<li><a href="#/AnalisisTLS">Análisis de bibliotecas TLS</a></li>
+						<li><a href="#/IntegracionTLS">Integración de mbedTLS</a></li>
+						<li class="current"><a href="#/IntegracionSDK">Integración de AWS IoT Device SDK</a></li>
+						<li><a href="#/Conclusiones">Conclusiones</a></li>
+					</ol>
+				</section>
+
+				<section data-background="#fff">
+					<!-- <h2>Integración de AWS IoT Device SDK</h2> -->
+					<img class="plain" src="img/AWS_IoT.png" alt=""/>
+					<aside class="notes">
+						Describir la biblioteca:
+							encargada de conectarse con AWS IoT:
+								conexión segura (mutuamente autenticada)
+								modificar lecturas en dispositivos virtuales (sombra)
+								ejecutar acciones (sombra)
+							para ello usa:
+								MQTT
+								JSON (jsmn)
+								TLS (mbed TLS)
+						Hay elementos que dependen de la plataforma. AWS IoT SDK usa el paradigma de PLATAFORMA.
+					</aside>
+				</section>
+
+				<section data-background="#ddd" data-transition="none">
+					<h2>Integración AWS IoT Device SDK</h2>
+					<img class="plain" src="img/mbedTLS_port0.png" alt=""/>
+					<!-- <p class="left">Será necesario portar:</p> -->
+					<!-- <ul> -->
+					<!-- 	<li>Conectividad de red</li> -->
+					<!-- 	<li>Temporizadores</li> -->
+					<!-- 	<li>Concurrencia</li> -->
+					<!-- </ul> -->
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section data-background="#ddd" data-transition="none">
+					<h2>Integración AWS IoT Device SDK</h2>
+					<img class="plain" src="img/AWSSDK_port1.png" alt=""/>
+					<!-- <p class="left">Será necesario portar:</p> -->
+					<!-- <ul> -->
+					<!-- 	<li>Conectividad de red</li> -->
+					<!-- 	<li>Temporizadores</li> -->
+					<!-- 	<li>Concurrencia</li> -->
+					<!-- </ul> -->
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section data-background="#ddd" data-transition="none">
+					<h2>Integración AWS IoT Device SDK</h2>
+					<img class="plain" src="img/AWSSDK_port2.png" alt=""/>
+					<!-- <p class="left">Será necesario portar:</p> -->
+					<!-- <ul> -->
+					<!-- 	<li>Conectividad de red</li> -->
+					<!-- 	<li>Temporizadores</li> -->
+					<!-- 	<li>Concurrencia</li> -->
+					<!-- </ul> -->
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section data-background="#ddd" data-transition="none">
+					<h2>Integración AWS IoT Device SDK</h2>
+					<img class="plain" src="img/AWSSDK_port3.png" alt=""/>
+					<!-- <p class="left">Será necesario portar:</p> -->
+					<!-- <ul> -->
+					<!-- 	<li>Conectividad de red</li> -->
+					<!-- 	<li>Temporizadores</li> -->
+					<!-- 	<li>Concurrencia</li> -->
+					<!-- </ul> -->
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>Conectividad de red</h3>
+					<p class="left">Modificado fichero <code>network_mbedtls_wrapper.c</code></p>
+					<p class="left">Certificados contenidos en variables (hardcoded):</p>
+					<ul>
+						<li>Certificado del dispositivo</li>
+						<li>Clave privada</li>
+						<li>Autoridad certificadora</li>
+					</ul>
+					<aside class="notes">
+						En la conexión se lleva a cabo la autenticación mutua. Requiere:
+							- Tener el certificado del dispositivo
+							- Validar el certificado del servidor (con Autoridad Certificadora)
+					</aside>
+				</section>
+
+				<section>
+					<h3>Temporizadores</h3>
+					<p>Gestionan <em>timeouts</em> en las conexiones</p>
+					<p>Implementados a partir de <code>osKernelSysTick()</code></p>
+				</section>
+
+				<section>
+					<h3>Concurrencia</h3>
+						<p>Implementado a partir de los <em>mutex</em> de RTOS</p>
+				</section>
+
+				<section>
+					<h3>Configuración</h3>
+					<pre><code class="hljs" data-trim>
+#define AWS_IOT_MQTT_HOST        "XXXXXX.amazonaws.com"
+#define AWS_IOT_MQTT_PORT        8883
+#define AWS_IOT_MQTT_CLIENT_ID   "c-sdk-client-id"
+#define AWS_IOT_MY_THING_NAME    "AWS-IoT-C-SDK"
+#define AWS_IOT_ROOT_CA          ca_root
+#define AWS_IOT_CERTIFICATE      client_cert
+#define AWS_IOT_PRIVATE_KEY      client_key
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Verificaciones</h3>
+					<ol>
+						<li class="fragment">Test funcional: <span class="fragment">envío de mensajes MQTT</span></li>
+						<p class="fragment">Visualización del tráfico desde la consola</p>
+						<li class="fragment">Test funcional: <span class="fragment">actualización de la sombra</span></li>
+						<p class="fragment">Visualización de la sombra desde la consola</p>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Problemas encontrados</h2>
+					Actualizar lwIP
+					Modificar malloc
+				</section>
+
+				<section id="Conclusiones">
+					<h2>Seguridad de los Datos en Sistemas Empotrados</h2>
+					<ol class="index">
+						<li><a href="#/Motivacion">Motivación</a></li>
+						<li><a href="#/Objetivos">Objetivos</a></li>
+						<li><a href="#/PresentacionSistema">Presentación del sistema</a></li>
+						<li><a href="#/AnalisisTLS">Análisis de bibliotecas TLS</a></li>
+						<li><a href="#/IntegracionTLS">Integración de mbedTLS</a></li>
+						<li><a href="#/IntegracionSDK">Integración de AWS IoT Device SDK</a></li>
+						<li class="current"><a href="#/Conclusiones">Conclusiones</a></li>
+					</ol>
+				</section>
+
+				<section>
+
+				</section>
+
+				<section>
+					<h2>Gracias por su atención</h2>
+					<h3 class="fragment">¿Preguntas?</h3>
 				</section>
 
 
