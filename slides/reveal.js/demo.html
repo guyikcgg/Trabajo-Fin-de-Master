@@ -6,8 +6,8 @@
 
 		<title>Seguridad de los Datos en Sistemas Empotrados</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Trabajo Fin de Máster (UGR/DATCOM)">
+		<meta name="author" content="Cristian Gonzalez Guerrero">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -98,9 +98,12 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+
 				<section>
-					<div id="hacked">
-						<script charset="utf-8">
+
+					<section data-transition="slide">
+						<div id="hacked">
+							<script charset="utf-8">
 							function writeNext()
 							{
 								var tmp = content.substr(0,9);
@@ -121,38 +124,26 @@
 								content += word + " ";
 							}
 							document.getElementById("hacked").innerHTML = content;
-							// window.setTimeout(writeNext, 500);
-						</script>
-					</div>
-					<br>
-					<h1 id="title">Seguridad de los Datos en Sistemas Empotrados</h1>
-					<br>
-					<p>
-						<small>Cristian González Guerrero</small>
-					</p>
-					<br>
-					<h3 id="subtitle" style="font-family: Dustismo; ">Universidad de Granada</h3>
-					<h3 id="subtitle">Máster en Ciencia de Datos e <br>Ingeniería de Computadores</h3>
-					<aside class="notes">
-						Cristian González Guerrero
-						Defender el Trabajo Fin de Máster: Seguridad de los Datos en Sistemas Empotrados
-						pero antes... explicaré cómo he llegado hasta aquí
-					</aside>
-				</section>
-
-				<section>
-
-					<section id="Motivacion" data-background="img/graduado.jpg" data-transition="slide">
-						<!-- <h2 class="fragment" style="color: #000">2016 <br> Prácticas en Múnich</h2> -->
-						<img class="fragment" style="width: 50%; position: fixed; left: 0; bottom: 0;" src="img/map_malaga_munich.png" alt=""/>
-						<img class="fragment" style="position: fixed; width: 60%; top: 0; right: 5%;" src="img/nevando.jpg" alt=""/>
-						<aside class="notes">
-							2016: Obtengo título de Graduado en Telecomunicaciones
-							Prácticas de empresa en Múnich, con eesy-innovation
-						</aside>
+							window.setTimeout(writeNext, 500);
+							</script>
+						</div>
+							<br>
+							<h1 id="title">Seguridad de los Datos en Sistemas Empotrados</h1>
+							<br>
+							<p>
+								<small>Cristian González Guerrero</small>
+							</p>
+							<br>
+							<h3 id="subtitle" style="font-family: Dustismo; ">Universidad de Granada</h3>
+							<h3 id="subtitle">Máster en Ciencia de Datos e <br>Ingeniería de Computadores</h3>
+							<aside class="notes">
+								<p>Cristian González Guerrero</p>
+								<p>Defender el Trabajo Fin de Máster: Seguridad de los Datos en Sistemas Empotrados</p>
+								<p>pero antes... explicaré cómo he llegado hasta aquí</p>
+							</aside>
 					</section>
 
-					<section id="Indice">
+					<section id="Motivacion">
 						<h2>Seguridad de los Datos en Sistemas Empotrados</h2>
 						<ol class="index">
 							<li class="current"><a href="#/Motivacion">Motivación</a></li>
@@ -165,6 +156,16 @@
 						</ol>
 					</section>
 
+				</section>
+
+				<section data-background="img/graduado.jpg" data-transition="slide">
+					<!-- <h2 class="fragment" style="color: #000">2016 <br> Prácticas en Múnich</h2> -->
+					<img class="fragment" style="width: 50%; position: fixed; left: 0; bottom: 0;" src="img/map_malaga_munich.png" alt=""/>
+					<img class="fragment" style="position: fixed; width: 60%; top: 0; right: 5%;" src="img/nevando.jpg" alt=""/>
+					<aside class="notes">
+						<p>2016: Obtengo título de Graduado en Telecomunicaciones</p>
+						<p>Prácticas de empresa en Múnich, con eesy-innovation</p>
+					</aside>
 				</section>
 
 				<section data-background="img/eesy_engineering_buehnenbild_1.jpg">
@@ -180,10 +181,11 @@
 				</section>
 
 				<section data-background="#fff" data-transition="fade">
+					<h2 style="margin-bottom: -90px">H2 smart</h2>
 					<img class="plain" src="img/h2.png" alt=""/>
 					<aside class="notes">
-						Con la experiencia adquirida:
-						Mercado: Productos SmartHome
+						<p>Con la experiencia adquirida:</p>
+						<p>Mercado: Productos SmartHome</p>
 					</aside>
 				</section>
 
@@ -209,7 +211,7 @@
 				<section data-background="#fff" data-transition="none">
 					<img class="plain " src="img/h2_gw_c.png" alt=""/>
 					<aside class="notes">
-						Los sensores se conectan a la nube a través del miniGW
+						<p>Los sensores se conectan a la nube a través del miniGW</p>
 					</aside>
 				</section>
 
@@ -219,9 +221,17 @@
 				<!-- 	</div> -->
 				<!-- </section> -->
 
-				<section>
-					Concluye mi estancia en M'unich, curso el Master, trabajo a jornada parcial (llevo a cabo este proyecto, como uno de los trabajos)
-					Concluye mi estancia en M'unich, y tengo la oportunidad de cursar este maravilloso Master mientras sigo trabajando para eesy-innovation
+				<section data-background="img/tw.jpg">
+					<h2>Fin de las prácticas</h2>
+					<p class="left">Durante la estancia descubro:</p>
+					<ul>
+						<li class="fragment">Internet de las Cosas (IoT)</li>
+						<li class="fragment">Sistemas empotrados</li>
+					</ul>
+					<p class="fragment">Máster DATCOM <span class="fragment">- proyectos con eesy-innovation</span></p>
+					<br>
+					<!-- <p>Concluye mi estancia en M'unich, curso el Master, trabajo a jornada parcial (llevo a cabo este proyecto, como uno de los trabajos)</p> -->
+					<!-- <p>Concluye mi estancia en M'unich, y tengo la oportunidad de cursar este maravilloso Master mientras sigo trabajando para eesy&#45;innovation</p> -->
 				</section>
 
 				<section id="Objetivos">
@@ -240,6 +250,14 @@
 				<section data-background="#dddddd" data-transition="none">
 					<h2>Objetivos</h2>
 					<img class="plain" style="width: 60%" src="img/gw_funcion.png" alt=""/>
+					<aside class="notes">
+						<p>Arquitectura del sistema:</p>
+						<ol>
+							<li>Red de sensores: miden variables de interés</li>
+							<li>Nube: almacena, dando acceso al usuario</li>
+							<li>Pasarela (miniGW): comunica la red de sensores con la nube</li>
+						</ol>
+					</aside>
 				</section>
 
 				<section data-background="#dddddd" data-transition="none">
@@ -247,6 +265,10 @@
 					<img class="plain" style="width: 60%" src="img/objetivos1.png" alt=""/>
 					<aside class="notes">
 						<p>Establecer comunicación segura con Internet</p>
+						<ul>
+							<li>Confidencialidad e integridad de los datos</li>
+							<li>Ejemplo: temperatura + movimiento = ladron</li>
+						</ul>
 						<p>Revisar implementaciones TLS</p>
 					</aside>
 				</section>
@@ -255,8 +277,8 @@
 					<h2>Objetivos</h2>
 					<img class="plain" style="width: 60%" src="img/objetivos2.png" alt=""/>
 					<aside class="notes">
-						<p>Intercambio de mensajes con AWS IoT</p>
-						<p>Esto lo llevaremos a cabo en un sistema específico (el miniGW), por lo que vamos a introducirlo con más detalle</p>
+						<p>Comunicación con AWS IoT (intercambio de mensajes)</p>
+						<p>No definiremos toda la arquitectura: prueba de concepto</p>
 					</aside>
 				</section>
 
@@ -269,6 +291,9 @@
 						</ul>
 						<li>Intercambio de mensajes con AWS IoT</li>
 					</ol>
+					<aside class="notes">
+						<p>Esto lo llevaremos a cabo en un sistema específico (el miniGW), por lo que vamos a introducirlo con más detalle</p>
+					</aside>
 				</section>
 
 				<section id="PresentacionSistema">
@@ -287,30 +312,42 @@
 				<section data-background="#fff" data-transition="none">
 					<h2>H2 miniGW</h2>
 					<img class="plain" src="img/gw_hw_photo0.png" alt=""/>
+					<aside class="notes">
+						<p>DAR CIRCUITO FÍSICO</p>
+						<p>Sistema embebido. Función: comunicar sensores con nube</p>
+					</aside>
 				</section>
 
 				<section data-background="#fff" data-transition="none">
 					<h2>H2 miniGW</h2>
 					<img class="plain" src="img/gw_hw_photo1.png" alt=""/>
+					<aside class="notes">
+						<p>XMC: microcontrolador principal, ejecuta el programa que da funcionalidad</p>
+					</aside>
 				</section>
 
 				<section data-background="#fff" data-transition="none">
 					<h2>H2 miniGW</h2>
 					<img class="plain" src="img/gw_hw_photo2.png" alt=""/>
 					<aside class="notes">
-						TDA conectado por SPI
+						<p>TDA: comunicación con sensores</p>
+						<p>TDA conectado a XMC por SPI</p>
 					</aside>
 				</section>
 
 				<section data-background="#fff" data-transition="none">
 					<h2>H2 miniGW</h2>
 					<img class="plain" src="img/gw_hw_photo3.png" alt=""/>
+					<aside class="notes">
+						<p>Antena: comunicación inalámbrica subGHz</p>
+					</aside>
 				</section>
 
 				<section data-background="#fff" data-transition="none">
 					<h2>H2 miniGW</h2>
 					<img class="plain" src="img/gw_hw_photo4.png" alt=""/>
-					<aside>
+					<aside class="notes">
+						<p>Ethernet: conexión a Internet</p>
 						<strong>Lo que programaremos es el XMC</strong>
 					</aside>
 				</section>
@@ -334,10 +371,10 @@
 				<section>
 					<h2>XMC4500</h2>
 					<ul>
-						<li>Procesador: ARM Cortex-M4 (32-bit CPU)</li>
-						<li>Flash: 1024KB</li>
-						<li>RAM: 160KB (en 3 bloques)</li>
-						<li>Periféricos: DAC, ADC, Ethernet, USIC, etc.</li>
+						<li>Procesador<span class="fragment">: ARM Cortex-M4 (32-bit CPU)</span></li>
+						<li>Flash (programa + datos)<span class="fragment">: 1024KB</span></li>
+						<li>RAM<span class="fragment">: 160KB (en 3 bloques)</span></li>
+						<li>Periféricos<span class="fragment">: DAC, ADC, Ethernet, USIC, etc.</span></li>
 						<!-- <li>Periféricos:</li> -->
 						<!-- <ul> -->
 						<!-- 	<li>DAC</li> -->
@@ -347,12 +384,24 @@
 						<!-- 	<li>etc.</li> -->
 						<!-- </ul> -->
 					</ul>
+					<aside class="notes">
+						<p>Recursos muy limitados</p>
+						<p>En este microcontrolador se ejecuta un firmware, encargado de llevar a cabo las funciones...</p>
+					</aside>
 				</section>
 
 				<section data-background="#ddd">
 					<h2>Firmware</h2>
 					<img class="plain" src="img/gw_sw.png" alt=""/>
 					<!-- XMC4500: Firmware (CMSIS&#45;RTOS + lwIP) -->
+					<aside class="notes">
+						<p>Firmware complejo:</p>
+						<ul>
+							<li>Múltiples tareas de alto nivel: lectura de sensores, reenvío de datos, NTP</li>
+							<li>Software de soporte: RTOS (coordinación de tareas), pilas de red (com. Inet + sensores), bibliotecas</li>
+							<li>Capa de abstracción de HW: provista por la IDE</li>
+						</ul>
+					</aside>
 				</section>
 
 				<section id="AnalisisTLS">
@@ -371,7 +420,7 @@
 				<section>
 					<h2>Criterios de la búsqueda</h2>
 					<ol>
-						<li>Sistemas empotrados</li>
+						<li>Adecuada para sistemas empotrados</li>
 						<ul class="fragment">
 							<li>Lenguaje C estándar</li>
 							<!-- <li>Mínimas dependencias</li> -->
@@ -379,17 +428,18 @@
 						</ul>
 						<li>Compatible con el sistema</li>
 						<ul class="fragment">
-							<li>CMSIS-RTOS y lwIP</li>
+							<li>CMSIS-RTOS</li>
+							<li>lwIP</li>
 						</ul>
 						<li>Seguridad</li>
 						<ul class="fragment">
-							<li>Desarrollo continuo</li>
 							<li>Ciphersuites AWS IoT</li>
+							<li>Desarrollo continuo</li>
 						</ul>
 					</ol>
 					<aside class="notes">
-						Criterios relacionados con (las restricciones de los) sistemas empotrados
-						También valoramos:
+						<p>Criterios relacionados con (las restricciones de los) sistemas empotrados</p>
+						<p>También valoramos:</p>
 						<ul>
 							<li>Disponibilidad de documentación</li>
 							<li>Soporte para ingenieros</li>
@@ -400,12 +450,12 @@
 
 				<section data-background="#ddd">
 					<div><img class="plain" style="width: 20%; margin: 0;" src="img/wiki2.png" alt=""/></div>
-					<div><img class="plain" style="width: 35%; margin: 0;" src="img/gh.png" alt=""/></div>
+					<div style="margin-top: 10px; margin-bottom: -40px;"><img class="plain" style="width: 35%; margin: 0;" src="img/gh.png" alt=""/></div>
 					<div><img class="plain" style="width: 60%; margin: 0;" src="img/se.png" alt=""/></div>
 					<aside class="notes">
-						Buscamos en: Wikipedia, StackExchange, Github
-						1er filtro: características mencionadas en estas plataformas
-						Comparamos características de 5 bibliotecas basándonos en su documentación oficial
+						<p>Buscamos en: Wikipedia, StackExchange, Github</p>
+						<p>1er filtro: características mencionadas en estas plataformas</p>
+						<p>Comparamos características de 5 bibliotecas basándonos en su documentación oficial</p>
 					</aside>
 				</section>
 
@@ -457,8 +507,8 @@
 						</tbody>
 					</table>
 					<aside class="notes">
-						Tras analizar las 5 candidatas, hay 2 muy fuertes: mbedTLS y WolfSSL
-						Ambas tienen características similares:
+						<p>Tras analizar las 5 candidatas, hay 2 muy fuertes: mbedTLS y WolfSSL</p>
+						<p>Ambas tienen características similares:</p>
 						<ul>
 							<li>Bibliotecas altamente configurables</li>
 							<li>Compatible con el sistema</li>
@@ -486,20 +536,30 @@
 					</ol>
 				</section>
 
+				<section data-background="#dddddd" data-transition="none">
+					<h2>Objetivos</h2>
+					<img class="plain" style="width: 60%" src="img/objetivos1.png" alt=""/>
+					<aside class="notes">
+						<p>Encargada de establecer conexiones seguras</p>
+						<ul>
+							<li>Encriptación (simétrica, clave pública)</li>
+							<li>Certificados (Autenticación mutua)</li>
+							<li>Protocolo (búferes, estado de la conexión...)</li>
+						</ul>
+					</aside>
+				</section>
+
 				<section>
 					<h2>Integración de mbed TLS</h2>
-					Encargada de establecer conexiones seguras
-						- Encriptación (simétrica, clave pública)
-						- Certificados (Autenticación mutua)
-						- Protocolo (búferes, estado de la conexión...)
-					<aside>
-						mbedTLS es altamente configurable
-						Para integrarla:
-						Importamos la biblioteca al proyecto
-						Compilamos (firmware contendrá la biblioteca)
-						Modificamos lo necesario para que funcione
-
-						Tiene dependencias...
+						<p class="left">Será necesario:</p>
+						<ol>
+							<li>Importar biblioteca al proyecto</li>
+							<li>Compilar (firmware incluye biblioteca)</li>
+							<li>Modificar lo necesario para que funcione</li>
+						</ol>
+						<p class="fragment">Tiene dependencias de la plataforma...</p>
+					<aside class="notes">
+						<p>mbedTLS es altamente configurable</p>
 					</aside>
 				</section>
 
@@ -513,8 +573,8 @@
 					<!-- 	<li>Módulo de temporización</li> -->
 					<!-- </ul> -->
 					<aside class="notes">
-						El módulo de red permite conectividad TCP/IP
-						Necesario para TLS (no necesario para validar certificados)
+						<p>El módulo de red permite conectividad TCP/IP</p>
+						<p>Necesario para TLS (no necesario para validar certificados)</p>
 					</aside>
 				</section>
 
@@ -528,7 +588,7 @@
 					<!-- 	<li>Módulo de temporización</li> -->
 					<!-- </ul> -->
 					<aside class="notes">
-						Entropía es clave en seguridad: para generar claves, challenges, etc.
+						<p>Entropía es clave en seguridad: para generar claves, challenges, etc.</p>
 					</aside>
 				</section>
 
@@ -542,7 +602,7 @@
 					<!-- 	<li>Módulo de temporización</li> -->
 					<!-- </ul> -->
 					<aside class="notes">
-						Tiempo real usado para validar certificados
+						<p>Tiempo real usado para validar certificados</p>
 					</aside>
 				</section>
 
@@ -653,10 +713,10 @@
 					<h3>Fuentes de entropía</h3>
 					<img class="plain" src="img/prng.png" alt=""/>
 					<aside class="notes">
-						Entropía: es la base de una buena seguridad
-						Usamos módulo HW (DAC)
-						Secuencia pseudoaleatoria
-						Se lee a través del ADC
+						<p>Entropía: es la base de una buena seguridad</p>
+						<p>Usamos módulo HW (DAC)</p>
+						<p>Secuencia pseudoaleatoria</p>
+						<p>Se lee a través del ADC</p>
 					</aside>
 				</section>
 
@@ -724,16 +784,22 @@ mbedtls_time_t mbedtls_time_DAVE( mbedtls_time_t* timer ) {
 					<!-- <h2>Integración de AWS IoT Device SDK</h2> -->
 					<img class="plain" src="img/AWS_IoT.png" alt=""/>
 					<aside class="notes">
-						Describir la biblioteca:
-							encargada de conectarse con AWS IoT:
-								conexión segura (mutuamente autenticada)
-								modificar lecturas en dispositivos virtuales (sombra)
-								ejecutar acciones (sombra)
-							para ello usa:
-								MQTT
-								JSON (jsmn)
-								TLS (mbed TLS)
-						Hay elementos que dependen de la plataforma. AWS IoT SDK usa el paradigma de PLATAFORMA.
+						<p>Describir la biblioteca:</p>
+						<ol>
+							<li>encargada de conectarse con AWS IoT:</li>
+							<ul>
+								<li>conexión segura (mutuamente autenticada)</li>
+								<li>modificar lecturas en dispositivos virtuales (sombra)</li>
+								<li>ejecutar acciones (sombra)</li>
+							</ul>
+							<li>para ello usa:</li>
+							<ul>
+								<li>MQTT</li>
+								<li>JSON (jsmn)</li>
+								<li>TLS (mbed TLS)</li>
+							</ul>
+						</ol>
+						<p>Hay elementos que dependen de la plataforma. AWS IoT SDK usa el paradigma de PLATAFORMA.</p>
 					</aside>
 				</section>
 
@@ -799,9 +865,11 @@ mbedtls_time_t mbedtls_time_DAVE( mbedtls_time_t* timer ) {
 						<li>Autoridad certificadora</li>
 					</ul>
 					<aside class="notes">
-						En la conexión se lleva a cabo la autenticación mutua. Requiere:
-							- Tener el certificado del dispositivo
-							- Validar el certificado del servidor (con Autoridad Certificadora)
+						<p>En la conexión se lleva a cabo la autenticación mutua. Requiere:</p>
+						<ul>
+							<li>Tener el certificado del dispositivo</li>
+							<li>Validar el certificado del servidor (con Autoridad Certificadora)</li>
+						</ul>
 					</aside>
 				</section>
 
@@ -831,19 +899,21 @@ mbedtls_time_t mbedtls_time_DAVE( mbedtls_time_t* timer ) {
 				</section>
 
 				<section>
-					<h3>Verificaciones</h3>
-					<ol>
-						<li class="fragment">Test funcional: <span class="fragment">envío de mensajes MQTT</span></li>
-						<p class="fragment">Visualización del tráfico desde la consola</p>
-						<li class="fragment">Test funcional: <span class="fragment">actualización de la sombra</span></li>
-						<p class="fragment">Visualización de la sombra desde la consola</p>
-					</ol>
-				</section>
+					<section>
+						<h3>Verificaciones</h3>
+						<ol>
+							<li class="fragment">Test funcional: <span class="fragment">envío de mensajes MQTT</span></li>
+							<p class="fragment">Visualización del tráfico desde la consola</p>
+							<li class="fragment">Test funcional: <span class="fragment">actualización de la sombra</span></li>
+							<p class="fragment">Visualización de la sombra desde la consola</p>
+						</ol>
+					</section>
 
-				<section>
-					<h2>Problemas encontrados</h2>
-					<p>Actualizar lwIP</p>
-					<p>Modificar malloc</p>
+					<section>
+						<h2>Problemas encontrados</h2>
+						<p>Actualizar lwIP</p>
+						<p>Modificar malloc</p>
+					</section>
 				</section>
 
 				<section id="Conclusiones">
@@ -860,312 +930,31 @@ mbedtls_time_t mbedtls_time_DAVE( mbedtls_time_t* timer ) {
 				</section>
 
 				<section>
+					<h2>Conclusiones</h2>
+					<ul>
+						<li class="fragment">Conexión segura con AWS IoT</li>
+						<li class="fragment">TLS configurable en tiempo de compilación</li>
+						<li class="fragment">RAM necesaria (ECC): 17KB stack + 35KB heap</li>
+						<li class="fragment">La seguridad es fundamental en IoT</li>
+					</ul>
 
+					<aside class="notes">
+						<ul>
+							<li>Hemos conseguido conectarnos a AWS IoT de forma segura</li>
+							<li>Existen soluciones de seguridad para sistemas empotrados muy versátiles</li>
+							<li>Aunque la criptografía es computacionalmente costosa, 50KB de RAM son suficientes</li>
+							<li>Un sistema vulnerable supone un riesgo: para el consumidor y para la sociedad</li>
+							<ul>
+								<li>Los consumidores deben exigir sistemas seguros</li>
+								<li>Las empresas deben trabajar en la seguridad de sus productos</li>
+							</ul>
+						</ul>
+					</aside>
 				</section>
 
 				<section>
 					<h2>Gracias por su atención</h2>
 					<h3 class="fragment">¿Preguntas?</h3>
-				</section>
-
-
-
-
-
-
-
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="https://slides.com" target="_blank">https://slides.com</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-							## Markdown support
-
-							Write content using inline or external Markdown.
-							Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment fade-up">fade-up (also down, left and right!)</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
-					</section>
-				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
-
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
-				</section>
-
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
-
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code class="hljs" data-trim contenteditable>
-function linkify( selector ) {
-	if( supports3DTransforms ) {
-
-		var nodes = document.querySelectorAll( selector );
-
-		for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-			var node = nodes[i];
-
-			if( !node.className ) {
-				node.className += ' roll';
-			}
-		}
-	}
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">The nice thing about standards is that there are so many to choose from</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
-
-				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
-
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="https://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
 				</section>
 
 			</div>
