@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="140mm"
+   viewBox="0 0 210 140"
+   version="1.1"
+   id="svg5773"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="hardware-architecture.svg">
+  <defs
+     id="defs5767" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="325.09852"
+     inkscape:cy="194.72335"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-global="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="704"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5770">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-157)">
+    <rect
+       style="fill:#cccccc;stroke:#808080;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:normal"
+       id="rect6409"
+       width="6.6817379"
+       height="6.6817379"
+       x="220.05588"
+       y="86.63662"
+       ry="0.15546811" />
+    <g
+       id="g6573"
+       transform="translate(15.798971)">
+      <rect
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         ry="0.14892252"
+         y="167.78004"
+         x="17.965952"
+         height="115.53361"
+         width="142.47015"
+         id="rect6318"
+         style="fill:#cccccc;stroke:#808080;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:normal" />
+      <path
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         inkscape:connector-curvature="0"
+         id="path6405"
+         d="M 32.94939,264.66039 V 247.82241"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         ry="0.1627543"
+         y="261.07162"
+         x="25.123335"
+         height="26.970703"
+         width="15.652113"
+         id="rect6322"
+         style="fill:#e6e6e6;stroke:#808080;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:normal" />
+      <path
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 54.726246,264.66039 V 247.82241"
+         id="path6411"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         inkscape:connector-curvature="0"
+         id="path6413"
+         d="M 76.503089,264.66039 V 247.82241"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 98.279959,264.66039 V 247.82241"
+         id="path6415"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         inkscape:connector-curvature="0"
+         id="path6417"
+         d="M 133.63476,264.66039 V 247.82241"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         style="fill:#e6e6e6;stroke:#808080;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:normal"
+         id="rect6324"
+         width="15.652113"
+         height="26.970703"
+         x="46.900188"
+         y="261.07162"
+         ry="0.1627543" />
+      <rect
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         ry="0.1627543"
+         y="261.07162"
+         x="68.67704"
+         height="26.970703"
+         width="15.652113"
+         id="rect6326"
+         style="fill:#e6e6e6;stroke:#808080;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:normal" />
+      <rect
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         style="fill:#e6e6e6;stroke:#808080;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:normal"
+         id="rect6328"
+         width="15.652113"
+         height="26.970703"
+         x="90.453903"
+         y="261.07162"
+         ry="0.1627543" />
+      <rect
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         ry="0.1627543"
+         y="261.07162"
+         x="125.80871"
+         height="26.970703"
+         width="15.652113"
+         id="rect6394"
+         style="fill:#e6e6e6;stroke:#808080;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:normal" />
+      <path
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         inkscape:connector-curvature="0"
+         id="path6405-5"
+         d="m 100.70014,210.8593 h 16.83798"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         style="fill:#333333;stroke:#808080;stroke-width:0.49999997;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:normal"
+         id="rect6338"
+         width="80.982666"
+         height="65.481033"
+         x="25.123335"
+         y="185.8696"
+         ry="0.16607514" />
+      <rect
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         ry="0.16607514"
+         y="185.8696"
+         x="113.58955"
+         height="65.481033"
+         width="40.090427"
+         id="rect6344"
+         style="fill:#333333;stroke:#808080;stroke-width:0.49999997;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;paint-order:normal" />
+      <text
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         transform="rotate(-90)"
+         id="text6365"
+         y="34.771839"
+         x="-285.2319"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;font-family:'Free Avant Garde';-inkscape-font-specification:'Free Avant Garde';stroke-width:0.26458332"
+           y="34.771839"
+           x="-285.2319"
+           id="tspan6363"
+           sodipodi:role="line">JTAG</tspan></text>
+      <text
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         inkscape:transform-center-x="9.827381"
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-285.2319"
+         y="77.885979"
+         id="text6369"
+         transform="rotate(-90)"><tspan
+           sodipodi:role="line"
+           id="tspan6367"
+           x="-285.2319"
+           y="77.885979"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;font-family:'Free Avant Garde';-inkscape-font-specification:'Free Avant Garde';stroke-width:0.26458332">μUSB</tspan></text>
+      <text
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         transform="rotate(-90)"
+         id="text6373"
+         y="99.662849"
+         x="-285.2319"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"
+         inkscape:transform-center-x="9.827381"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;font-family:'Free Avant Garde';-inkscape-font-specification:'Free Avant Garde';stroke-width:0.26458332"
+           y="99.662849"
+           x="-285.2319"
+           id="tspan6371"
+           sodipodi:role="line">μSD</tspan></text>
+      <text
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-285.2319"
+         y="56.519062"
+         id="text6377"
+         transform="rotate(-90)"><tspan
+           sodipodi:role="line"
+           id="tspan6375"
+           x="-285.2319"
+           y="56.519062"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;font-family:'Free Avant Garde';-inkscape-font-specification:'Free Avant Garde';stroke-width:0.26458332">Ethernet</tspan></text>
+      <text
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         inkscape:transform-center-x="9.827381"
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-285.2319"
+         y="135.42757"
+         id="text6398"
+         transform="rotate(-90)"><tspan
+           sodipodi:role="line"
+           id="tspan6396"
+           x="-285.2319"
+           y="135.42757"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;font-family:'Free Avant Garde';-inkscape-font-specification:'Free Avant Garde';stroke-width:0.26458332">Antena</tspan></text>
+      <text
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         id="text6365-1"
+         y="220.43503"
+         x="54.4062"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;font-family:'Free Avant Garde';-inkscape-font-specification:'Free Avant Garde';fill:#f9f9f9;stroke-width:0.26458332"
+           y="220.43503"
+           x="54.4062"
+           id="tspan6363-0"
+           sodipodi:role="line">XMC4500</tspan></text>
+      <text
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="123.49468"
+         y="220.43503"
+         id="text6466"><tspan
+           sodipodi:role="line"
+           id="tspan6464"
+           x="123.49468"
+           y="220.43503"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;font-family:'Free Avant Garde';-inkscape-font-specification:'Free Avant Garde';fill:#f9f9f9;stroke-width:0.26458332">TDA5340</tspan></text>
+      <text
+         inkscape:export-ydpi="200"
+         inkscape:export-xdpi="200"
+         inkscape:export-filename="/home/cristian-deb/workspace/master/tfm/memoria/txt/img/hardware-architecture.png"
+         id="text6365-1-0"
+         y="178.93161"
+         x="25.269896"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888903px;font-family:'Free Avant Garde';-inkscape-font-specification:'Free Avant Garde';fill:#000000;stroke-width:0.26458332"
+           y="178.93161"
+           x="25.269896"
+           id="tspan6363-0-1"
+           sodipodi:role="line">miniGW</tspan></text>
+    </g>
+  </g>
+</svg>
